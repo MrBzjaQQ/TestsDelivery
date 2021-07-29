@@ -232,4 +232,8 @@ _Pvt_Extensions
 .fake/
 
 # JetBrains products
-.idea/
+.idea
+ClientApp/.idea
+
+# Logs
+Logs*.txt

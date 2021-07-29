@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using TestsDelivery.Data;
+using TestsDelivery.Logging;
 using TestsDelivery.Models.Identity;
 using TestsDelivery.Options.Tokens;
 
@@ -34,6 +35,13 @@ namespace TestsDelivery
             services.AddDbContext<TestsDeliveryContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("TestsDeliveryConnection")));
 
+            var authOptions = new AuthOptions(Configuration.GetValue<string>("TokenSecretKey"))
+            {
+                Issuer = Configuration.GetValue<string>("TokenIssuer"),
+                Audience = Configuration.GetValue<string>("TokenAudience"),
+                Lifetime = Configuration.GetValue<int>("TokenLifetime")
+            };
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -41,17 +49,17 @@ namespace TestsDelivery
                     options.TokenValidationParameters = new()
                     {
                         ValidateIssuer = true,
-                        ValidIssuer = Configuration.GetValue<string>("TokenIssuer"),
+                        ValidIssuer = authOptions.Issuer,
                         ValidateAudience = true,
-                        ValidAudience = Configuration.GetValue<string>("TokenAudience"),
+                        ValidAudience = authOptions.Audience,
                         ValidateLifetime = true,
-                        IssuerSigningKey =
-                            AuthOptions.GetSymmetricSecurityKey(Configuration.GetValue<string>("TokenSecretKey")),
+                        IssuerSigningKey = authOptions.GetSymmetricSecurityKey(),
                         ValidateIssuerSigningKey = true,
                     };
                 });
 
-            services.AddIdentity<User, IdentityUser>().AddEntityFrameworkStores<TestsDeliveryContext>();
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<TestsDeliveryContext>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -60,6 +68,11 @@ namespace TestsDelivery
             });
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddSingleton(new IdentityErrorDescriber());
+            services.AddSingleton(authOptions);
+
+            services.AddScoped(typeof(IAppLogging<>), typeof(AppLogging<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

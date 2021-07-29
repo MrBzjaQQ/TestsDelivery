@@ -3,11 +3,24 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace TestsDelivery.Options.Tokens
 {
-    public static class AuthOptions
+    public class AuthOptions
     {
-        public static SymmetricSecurityKey GetSymmetricSecurityKey(string key)
+        private readonly string _key;
+
+        public AuthOptions(string key)
         {
-            return new(Encoding.ASCII.GetBytes(key));
+            _key = key;
+        }
+
+        public string Issuer { get; set; }
+
+        public string Audience { get; set; }
+
+        public int Lifetime { get; set; }
+        
+        public SymmetricSecurityKey GetSymmetricSecurityKey()
+        {
+            return new(Encoding.ASCII.GetBytes(_key));
         }
     }
 }
