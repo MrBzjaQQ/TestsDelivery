@@ -12,6 +12,7 @@ using TestsDelivery.Data;
 using TestsDelivery.Logging;
 using TestsDelivery.Models.Identity;
 using TestsDelivery.Options.Tokens;
+using TestsDelivery.Services;
 
 namespace TestsDelivery
 {
@@ -73,6 +74,8 @@ namespace TestsDelivery
             services.AddSingleton(authOptions);
 
             services.AddScoped(typeof(IAppLogging<>), typeof(AppLogging<>));
+
+            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

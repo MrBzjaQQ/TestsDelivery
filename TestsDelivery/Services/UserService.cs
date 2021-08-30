@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
@@ -10,7 +12,7 @@ using TestsDelivery.Options.Tokens;
 
 namespace TestsDelivery.Services
 {
-    public class UserService
+    public class UserService : IUserService
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
@@ -32,12 +34,22 @@ namespace TestsDelivery.Services
         public async Task<LoginResult> LoginUser(LoginModel model)
         {
             LoginResult result = new();
-            
+
             var user = await _userManager.FindByNameAsync(model.UserName);
 
             if (user == null)
             {
-                result.Errors.Add(_describer.InvalidUserName(model.UserName));
+                result.Errors.Add(_describer.PasswordMismatch());
+                return result;
+            }
+
+            var signInResult = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
+
+            result.IsLoginSucceed = signInResult.Succeeded;
+
+            if (!signInResult.Succeeded)
+            {
+                result.Errors.Add(_describer.PasswordMismatch());
                 return result;
             }
 
@@ -45,7 +57,12 @@ namespace TestsDelivery.Services
                 issuer: _authOptions.Issuer,
                 audience: _authOptions.Audience,
                 expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(_authOptions.Lifetime)),
-                signingCredentials: new SigningCredentials(_authOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha512));
+                signingCredentials: new SigningCredentials(_authOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha512),
+                claims: new Claim[]
+                {
+                    new("Id", user.Id),
+                    new("UserName", user.UserName)
+                });
 
             var accessToken = new JwtSecurityTokenHandler().WriteToken(jwt);
 
@@ -54,6 +71,54 @@ namespace TestsDelivery.Services
                 AccessToken = accessToken,
                 Email = user.Email
             };
+
+            return result;
+        }
+
+        public async Task<RegisterResult> RegisterUser(RegisterModel model)
+        {
+            RegisterResult result = new();
+
+            var user = await _userManager.FindByEmailAsync(model.Email);
+
+            if (user != null)
+            {
+                result.Errors.Add(_describer.DuplicateEmail(model.Email));
+                return result;
+            }
+
+            user = await _userManager.FindByNameAsync(model.UserName);
+
+            if (user != null)
+            {
+                result.Errors.Add(_describer.DuplicateUserName(model.UserName));
+                return result;
+            }
+
+            var identityResult = await _userManager.CreateAsync(
+                new User
+                {
+                    UserName = model.UserName,
+                    Email = model.Email
+                },
+                model.Password);
+
+            result.IsRegistrationSucceed = identityResult.Succeeded;
+
+            if (result.IsRegistrationSucceed)
+            {
+                user = await _userManager.FindByEmailAsync(model.Email);
+                result.RegisterResponse = new RegisterSucceedResponseDto
+                {
+                    Email = user.Email,
+                    Id = user.Id,
+                    UserName = user.UserName
+                };
+            }
+            else
+            {
+                result.Errors = identityResult.Errors.ToList();
+            }
 
             return result;
         }

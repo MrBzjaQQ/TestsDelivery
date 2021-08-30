@@ -9,7 +9,6 @@ namespace TestsDelivery.Data
         public TestsDeliveryContext(DbContextOptions<TestsDeliveryContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
         }
     }
 }
