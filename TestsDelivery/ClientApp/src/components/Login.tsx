@@ -1,9 +1,16 @@
 import React from "react";
 import {Button, Checkbox, Form, Input} from "antd";
+import {useDispatch} from "react-redux";
+import sendLoginRequest from "../store/slices/auth/sendLoginRequestThunk";
 
 const Login = () => {
+    const dispatch = useDispatch();
     const onFinish = (values: any) => {
         console.log('Success:', values);
+        dispatch(sendLoginRequest({
+            userName: values.username,
+            password: values.password
+        }));
     };
 
     const onFinishFailed = (errorInfo: any) => {
