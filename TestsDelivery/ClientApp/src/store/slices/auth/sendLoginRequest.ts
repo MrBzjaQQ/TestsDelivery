@@ -1,6 +1,7 @@
 import { AuthState } from './authSlice';
 import {createAsyncThunk} from "@reduxjs/toolkit";
 
+// TODO: move model to the correct place
 interface LoginModel {
     userName: string,
     password: string

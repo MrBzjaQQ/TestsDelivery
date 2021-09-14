@@ -48,5 +48,7 @@ namespace TestsDelivery.Controllers
 
             return BadRequest(ModelState);
         }
+
+        // TODO: Login by token
     }
 }

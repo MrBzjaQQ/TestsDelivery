@@ -1,9 +1,11 @@
 import React from "react";
 import {Button, Checkbox, Form, Input} from "antd";
 import {useDispatch} from "react-redux";
-import sendLoginRequest from "../store/slices/auth/sendLoginRequestThunk";
+import sendLoginRequest from "../../store/slices/auth/sendLoginRequest";
 
 const Login = () => {
+    // TODO: Remember me = save token to storage
+    // TODO: Error handling
     const dispatch = useDispatch();
     const onFinish = (values: any) => {
         console.log('Success:', values);
