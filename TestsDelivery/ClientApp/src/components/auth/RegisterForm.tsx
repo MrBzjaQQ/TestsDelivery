@@ -3,26 +3,7 @@ import {Button, Form, Input} from 'antd';
 import sendRegisterRequest, {RegisterModel} from "../../store/slices/auth/sendRegisterRequest";
 import {useDispatch} from "react-redux";
 
-const formItemLayout = {
-    labelCol: {
-        xs: {
-            span: 24,
-        },
-        sm: {
-            span: 8,
-        },
-    },
-    wrapperCol: {
-        xs: {
-            span: 24,
-        },
-        sm: {
-            span: 16,
-        },
-    },
-};
-
-const RegistrationForm = () => {
+const RegisterForm = () => {
     // TODO: error handling
     const [form] = Form.useForm();
 
@@ -35,7 +16,6 @@ const RegistrationForm = () => {
 
     return (
         <Form
-            {...formItemLayout}
             form={form}
             name="register"
             onFinish={onFinish}
@@ -123,4 +103,4 @@ const RegistrationForm = () => {
     );
 };
 
-export default RegistrationForm;
+export default RegisterForm;

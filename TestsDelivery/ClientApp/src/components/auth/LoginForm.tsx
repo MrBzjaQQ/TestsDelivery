@@ -3,7 +3,7 @@ import {Button, Checkbox, Form, Input} from "antd";
 import {useDispatch} from "react-redux";
 import sendLoginRequest from "../../store/slices/auth/sendLoginRequest";
 
-const Login = () => {
+const LoginForm = () => {
     // TODO: Remember me = save token to storage
     // TODO: Error handling
     const dispatch = useDispatch();
@@ -57,4 +57,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default LoginForm;

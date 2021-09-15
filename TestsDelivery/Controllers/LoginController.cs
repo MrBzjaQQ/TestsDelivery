@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using TestsDelivery.DataTransferObjects;
 using TestsDelivery.Logging;
 using TestsDelivery.Models.Identity;
 using TestsDelivery.Services;
@@ -49,6 +48,6 @@ namespace TestsDelivery.Controllers
             return BadRequest(ModelState);
         }
 
-        // TODO: Login by token
+        // TODO: Username by token
     }
 }
