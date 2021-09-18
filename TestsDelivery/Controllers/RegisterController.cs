@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TestsDelivery.DataTransferObjects;
 using TestsDelivery.Logging;
 using TestsDelivery.Models.Identity;
 using TestsDelivery.Services;
 
 namespace TestsDelivery.Controllers
 {
+    /// <summary>
+    /// Controller represents api/register endpoints
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class RegisterController : ControllerBase
@@ -22,8 +26,13 @@ namespace TestsDelivery.Controllers
             _service = service;
         }
 
+        /// <summary>
+        /// Method Register handles POST request to the '/api/register'
+        /// </summary>
+        /// <param name="model">Information about information</param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> Register(RegisterModelRequestDto model)
         {
             if (ModelState.IsValid)
             {

@@ -2,6 +2,9 @@
 
 namespace TestsDelivery.DataTransferObjects
 {
+    /// <summary>
+    /// LoginRequestDto represents Data Transfer Object received from client
+    /// </summary>
     public class LoginRequestDto
     {
         [Required]

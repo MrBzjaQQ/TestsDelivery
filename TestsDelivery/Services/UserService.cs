@@ -31,7 +31,7 @@ namespace TestsDelivery.Services
             _authOptions = authOptions;
         }
 
-        public async Task<LoginResult> LoginUser(LoginModel model)
+        public async Task<LoginResult> LoginUser(LoginRequestDto model)
         {
             LoginResult result = new();
 
@@ -60,8 +60,8 @@ namespace TestsDelivery.Services
                 signingCredentials: new SigningCredentials(_authOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha512),
                 claims: new Claim[]
                 {
-                    new("Id", user.Id),
-                    new("UserName", user.UserName)
+                    new(nameof(User.Id), user.Id),
+                    new(nameof(User.UserName), user.UserName)
                 });
 
             var accessToken = new JwtSecurityTokenHandler().WriteToken(jwt);
@@ -69,13 +69,13 @@ namespace TestsDelivery.Services
             result.LoginResponse = new LoginSucceedResponseDto
             {
                 AccessToken = accessToken,
-                Email = user.Email
+                UserName = user.UserName
             };
 
             return result;
         }
 
-        public async Task<RegisterResult> RegisterUser(RegisterModel model)
+        public async Task<RegisterResult> RegisterUser(RegisterModelRequestDto model)
         {
             RegisterResult result = new();
 

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Moq;
+using TestsDelivery.DataTransferObjects;
 using TestsDelivery.Models.Identity;
 using TestsDelivery.Options.Tokens;
 using TestsDelivery.Services;
@@ -82,7 +83,7 @@ namespace TestsDelivery.UnitTests.Services
                 Email = Email
             };
 
-            LoginModel loginModel = new()
+            LoginRequestDto loginModel = new()
             {
                 UserName = user.UserName,
                 Password = "Some password"
@@ -111,14 +112,14 @@ namespace TestsDelivery.UnitTests.Services
             // Assert
             Assert.True(loginResult.IsLoginSucceed);
             Assert.Equal(expectedToken, loginResult.LoginResponse.AccessToken);
-            Assert.Equal(user.Email, loginResult.LoginResponse.Email);
+            Assert.Equal(user.UserName, loginResult.LoginResponse.UserName);
         }
 
         [Fact]
         public async Task LoginUser_UserDoesNotExists_IncorrectPassword()
         {
             // Arrange
-            LoginModel loginModel = new()
+            LoginRequestDto loginModel = new()
             {
                 UserName = "User Name",
                 Password = "Some password"
@@ -144,7 +145,7 @@ namespace TestsDelivery.UnitTests.Services
                 Email = Email
             };
 
-            LoginModel loginModel = new()
+            LoginRequestDto loginModel = new()
             {
                 UserName = user.UserName,
                 Password = "Some password"
@@ -167,7 +168,7 @@ namespace TestsDelivery.UnitTests.Services
         public async Task RegisterUser_UserDoesNotExists_Success()
         {
             // Arrange
-            RegisterModel model = new()
+            RegisterModelRequestDto model = new()
             {
                 UserName = "UserName",
                 Email = Email,
@@ -196,7 +197,7 @@ namespace TestsDelivery.UnitTests.Services
                 Email = Email
             };
 
-            RegisterModel model = new()
+            RegisterModelRequestDto model = new()
             {
                 UserName = user.UserName,
                 Email = user.Email,
@@ -225,7 +226,7 @@ namespace TestsDelivery.UnitTests.Services
                 UserName = "Some name"
             };
 
-            RegisterModel model = new()
+            RegisterModelRequestDto model = new()
             {
                 UserName = user.UserName,
                 Email = Email,

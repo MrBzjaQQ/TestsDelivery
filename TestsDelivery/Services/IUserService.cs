@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
+using TestsDelivery.DataTransferObjects;
 using TestsDelivery.Infrastructure.User;
-using TestsDelivery.Models.Identity;
 
 namespace TestsDelivery.Services
 {
     public interface IUserService
     {
-        Task<LoginResult> LoginUser(LoginModel model);
+        Task<LoginResult> LoginUser(LoginRequestDto model);
 
-        Task<RegisterResult> RegisterUser(RegisterModel model);
+        Task<RegisterResult> RegisterUser(RegisterModelRequestDto model);
     }
 }
