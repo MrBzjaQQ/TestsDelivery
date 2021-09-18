@@ -1,11 +1,24 @@
 import React from 'react';
 import RegisterForm from "./RegisterForm";
 import CenterContainer from "../shared/centerContainer/CenterContainer";
+import {Card} from "antd";
+
+interface RegisterComponentStyle {
+    width: number;
+    height: number;
+}
+
+const style: RegisterComponentStyle = {
+    width: 500,
+    height: 610
+};
 
 const RegisterComponent = () => (
-  <CenterContainer>
-      <RegisterForm />
-  </CenterContainer>
+    <CenterContainer>
+        <Card style={style}>
+            <RegisterForm/>
+        </Card>
+    </CenterContainer>
 );
 
 export default RegisterComponent;
