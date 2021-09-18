@@ -4,7 +4,7 @@ import sendRegisterRequest from "./sendRegisterRequest";
 
 // TODO: move types to the correct state (?)
 export interface AuthState {
-    email?: string,
+    userName?: string,
     authToken?: string
 }
 
