@@ -1,7 +1,6 @@
-import {configureStore} from "@reduxjs/toolkit";
-import rootReducer from './slices/rootReducer';
-import {useDispatch} from "react-redux";
 import thunkMiddleware from 'redux-thunk';
+import rootReducer from './slices/rootReducer';
+import {configureStore} from "@reduxjs/toolkit";
 
 export const store = configureStore({
     reducer: rootReducer,
@@ -9,6 +8,5 @@ export const store = configureStore({
 });
 
 export type AppDispatch = typeof store.dispatch;
-export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export default store;

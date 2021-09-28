@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {RegisterState} from "./authSlice";
+import http from "../../../infrastructure/http/http";
 
 // TODO: move model to the correct place
 export interface RegisterModel {
@@ -9,18 +9,16 @@ export interface RegisterModel {
     passwordConfirm: string;
 }
 
-const sendRegisterRequest = createAsyncThunk(
-  'authentication/registerUser',
-    async (registerModel: RegisterModel) => {
-      const response = await fetch('/api/register', {
-          method: 'POST',
-          body: JSON.stringify(registerModel),
-          headers: {
-              'Content-Type': 'application/json'
-          },
-      });
+export interface RegisterState {
+    id: string;
+    username: string;
+    email: string;
+}
 
-      return (await response.json()) as RegisterState;
+export const sendRegisterRequest = createAsyncThunk(
+  'authentication/registerUser',
+    (registerModel: RegisterModel) => {
+      return http.post('/api/register', registerModel);
     }
 );
 

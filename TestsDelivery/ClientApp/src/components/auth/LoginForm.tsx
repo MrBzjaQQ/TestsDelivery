@@ -16,12 +16,13 @@ const LoginForm = () => {
         console.log('Success:', values);
         dispatch(sendLoginRequest({
             userName: values.username,
-            password: values.password
+            password: values.password,
+            rememberMe: values.rememberMe
         }));
     };
 
     const onFinishFailed = (errorInfo: any) => {
-        console.log('Failed:', errorInfo);
+        console.error(errorInfo);
     };
 
     return (

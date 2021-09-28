@@ -1,24 +1,23 @@
-import { AuthState } from './authSlice';
 import {createAsyncThunk} from "@reduxjs/toolkit";
+import http from "../../../infrastructure/http/http";
 
+// TODO: sendLoginRequest.fulfilled is undefined.
 // TODO: move model to the correct place
-interface LoginModel {
-    userName: string,
-    password: string
+export interface AuthState {
+    userName?: string,
+    authToken?: string
 }
 
-const sendLoginRequest = createAsyncThunk(
-    'authentication/loginUser',
-    async (loginModel: LoginModel) => {
-      const response = await fetch('/api/login', {
-          method: 'POST',
-          body: JSON.stringify(loginModel),
-          headers: {
-              'Content-Type': 'application/json'
-          },
-      });
+export interface LoginModel {
+    userName: string,
+    password: string,
+    rememberMe: boolean
+}
 
-      return (await response.json()) as AuthState;
+export const sendLoginRequest = createAsyncThunk(
+    'authentication/loginUser',
+     async (loginModel: LoginModel) => {
+      return (await http.post('/api/login', loginModel)).data as AuthState;
     }
 );
 
