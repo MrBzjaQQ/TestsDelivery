@@ -10,7 +10,7 @@ interface LoginComponentStyle {
 
 const style : LoginComponentStyle = {
     width: 560,
-    height: 300
+    height: 375
 };
 
 const LoginComponent = () => (

@@ -6,6 +6,7 @@ import RegisterComponent from "./components/auth/RegisterComponent";
 
 import 'antd/dist/antd.css';
 import './custom.css'
+import UserInfo from "./components/header/UserInfo/UserInfo";
 
 const { Header, Footer, Content } = Layout;
 
@@ -13,7 +14,9 @@ const { Header, Footer, Content } = Layout;
 
 export default () => (
     <Layout style={{height: '100%'}}>
-        <Header style={{ zIndex: 1, width: '100%' }} />
+        <Header style={{ zIndex: 1, width: '100%' }} >
+            <UserInfo className="user-info" />
+        </Header>
         <Content style={{minHeight: 'calc(100% - 134px)'}}>
             <Route exact path={'/login'} component={LoginComponent}/>
             <Route exact path={'/register'} component={RegisterComponent}/>

@@ -10,7 +10,7 @@ interface RegisterComponentStyle {
 
 const style: RegisterComponentStyle = {
     width: 500,
-    height: 610
+    height: 485
 };
 
 const RegisterComponent = () => (

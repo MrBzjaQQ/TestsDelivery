@@ -1,14 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice, Draft} from "@reduxjs/toolkit";
 import { AuthState, sendLoginRequest } from "./sendLoginRequest";
 import sendRegisterRequest from "./sendRegisterRequest";
 
-// TODO: move types to the correct state (?)
-const initialState: AuthState = {};
+const initialState: AuthState = {
+    authToken: '',
+    userName: ''
+};
 
 export const authSlice = createSlice({
     name: 'authentication',
     initialState,
     reducers: {
+        clearState: (state: Draft<AuthState>) => {
+            state.authToken = '';
+            state.userName = '';
+        },
     },
     extraReducers: (builder) => {
       builder.addCase(sendLoginRequest.fulfilled, (state, action) => {

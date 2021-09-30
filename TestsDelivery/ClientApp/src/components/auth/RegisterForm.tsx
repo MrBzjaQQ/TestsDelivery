@@ -23,6 +23,7 @@ const RegisterForm = () => {
             <Form
                 form={form}
                 name="register"
+                layout="vertical"
                 onFinish={onFinish}
                 scrollToFirstError
             >

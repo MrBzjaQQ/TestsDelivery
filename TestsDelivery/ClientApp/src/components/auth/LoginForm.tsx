@@ -31,6 +31,7 @@ const LoginForm = () => {
             <Form
                 name="basic"
                 initialValues={{remember: true}}
+                layout="vertical"
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
             >
