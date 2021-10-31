@@ -33,7 +33,9 @@ namespace TestsDelivery.BL.Services.Subjects
 
         public void EditSubject(Subject subject)
         {
-            throw new System.NotImplementedException();
+            var subjectData = _mapper.Map<DAL.Models.Subject.Subject>(subject);
+
+            _subjectsRepository.EditSubject(subjectData);
         }
     }
 }

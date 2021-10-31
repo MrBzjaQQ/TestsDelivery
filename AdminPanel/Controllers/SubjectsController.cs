@@ -1,6 +1,4 @@
 ﻿using System;
-using AdminPanel.Logging;
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators;
@@ -14,17 +12,10 @@ namespace AdminPanel.Controllers
     public class SubjectsController : ControllerBase
     {
         private readonly ISubjectsMediator _subjectsMediator;
-        private readonly IAppLogging<SubjectsController> _logger;
-        private readonly IMapper _mapper;
 
-        public SubjectsController(
-            ISubjectsMediator subjectsMediator,
-            IAppLogging<SubjectsController> logger,
-            IMapper mapper)
+        public SubjectsController(ISubjectsMediator subjectsMediator)
         {
             _subjectsMediator = subjectsMediator;
-            _logger = logger;
-            _mapper = mapper;
         }
 
         [HttpGet("{id}", Name = "GetSubject")]

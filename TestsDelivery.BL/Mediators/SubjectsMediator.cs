@@ -30,7 +30,9 @@ namespace TestsDelivery.BL.Mediators
 
         public void EditSubject(SubjectEditModel model)
         {
-            throw new System.NotImplementedException();
+            var subject = _mapper.Map<Subject>(model);
+
+            _subjectsService.EditSubject(subject);
         }
     }
 }

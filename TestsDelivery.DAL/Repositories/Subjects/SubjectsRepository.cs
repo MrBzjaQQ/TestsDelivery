@@ -10,12 +10,10 @@ namespace TestsDelivery.DAL.Repositories.Subjects
     public class SubjectsRepository : ISubjectsRepository
     {
         private readonly TestsDeliveryContext _context;
-        private readonly IMapper _mapper;
 
-        public SubjectsRepository(TestsDeliveryContext context, IMapper mapper)
+        public SubjectsRepository(TestsDeliveryContext context)
         {
             _context = context;
-            _mapper = mapper;
         }
 
         public void CreateSubject(Subject subject)
@@ -38,7 +36,8 @@ namespace TestsDelivery.DAL.Repositories.Subjects
 
         public void EditSubject(Subject subject)
         {
-            throw new NotImplementedException();
+            _context.Subjects.Update(subject);
+            _context.SaveChanges();
         }
     }
 }
