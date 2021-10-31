@@ -10,9 +10,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
+using TestsDelivery.BL.Mediators;
 using TestsDelivery.BL.Services;
+using TestsDelivery.BL.Services.Subjects;
+using TestsDelivery.BL.Services.Users;
 using TestsDelivery.DAL.Data;
 using TestsDelivery.DAL.Models.Identity;
+using TestsDelivery.DAL.Repositories.Subjects;
 using TestsDelivery.Options.Tokens;
 
 namespace AdminPanel
@@ -84,6 +88,9 @@ namespace AdminPanel
             services.AddSingleton(authOptions);
 
             services.AddScoped(typeof(IAppLogging<>), typeof(AppLogging<>));
+            services.AddScoped<ISubjectsMediator, SubjectsMediator>();
+            services.AddScoped<ISubjectsService, SubjectsService>();
+            services.AddScoped<ISubjectsRepository, SubjectsRepository>();
 
             services.AddScoped<IUserService, UserService>();
         }

@@ -2,7 +2,7 @@
 using TestsDelivery.BL.Models;
 using TestsDelivery.Infrastructure.User;
 
-namespace TestsDelivery.BL.Services
+namespace TestsDelivery.BL.Services.Users
 {
     public interface IUserService
     {

@@ -18,9 +18,8 @@ namespace TestsDelivery.BL.UnitTests.Services.Mocks
             IUserClaimsPrincipalFactory<TUser> claimsFactory,
             IOptions<IdentityOptions> optionsAccessor,
             ILogger<SignInManager<TUser>> logger,
-            IAuthenticationSchemeProvider schemes,
-            IUserConfirmation<TUser> confirmation) 
-            : base(userManager, contextAccessor, claimsFactory, optionsAccessor, logger, schemes, confirmation)
+            IAuthenticationSchemeProvider schemes) 
+            : base(userManager, contextAccessor, claimsFactory, optionsAccessor, logger, schemes)
         {
         }
 

@@ -39,6 +39,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TestsDelivery.BL\TestsDelivery.BL.csproj" />
+    <ProjectReference Include="..\TestsDelivery.Domain\TestsDelivery.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>

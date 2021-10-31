@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Moq;
 using TestsDelivery.BL.Models;
-using TestsDelivery.BL.Services;
+using TestsDelivery.BL.Services.Users;
 using TestsDelivery.BL.UnitTests.Services.Mocks;
 using TestsDelivery.DAL.Models.Identity;
 using TestsDelivery.Options.Tokens;
@@ -54,8 +54,7 @@ namespace TestsDelivery.BL.UnitTests.Services
                 new Mock<IUserClaimsPrincipalFactory<User>>().Object,
                 null,
                 new Mock<ILogger<SignInManager<User>>>().Object,
-                new Mock<IAuthenticationSchemeProvider>().Object,
-                new Mock<IUserConfirmation<User>>().Object);
+                new Mock<IAuthenticationSchemeProvider>().Object);
 
             _authOptions = new AuthOptions(AuthOptionsKey)
             {

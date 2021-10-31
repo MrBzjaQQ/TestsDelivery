@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using TestsDelivery.BL.Models;
-using TestsDelivery.DAL.Models.Identity;
 using TestsDelivery.Infrastructure.User;
 using TestsDelivery.Options.Tokens;
+// TODO: Create Domain model for User
+using TestsDelivery.DAL.Models.Identity;
 
-namespace TestsDelivery.BL.Services
+namespace TestsDelivery.BL.Services.Users
 {
     public class UserService : IUserService
     {
