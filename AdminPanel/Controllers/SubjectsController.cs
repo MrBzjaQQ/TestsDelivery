@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators;
 using TestsDelivery.BL.Models.Subject;
+using TestsDelivery.DAL.Exceptions.Subjects;
 
 namespace AdminPanel.Controllers
 {
@@ -33,9 +34,17 @@ namespace AdminPanel.Controllers
             if (id < 1)
                 throw new ArgumentException(nameof(id));
 
-            var subjectReadModel = _subjectsMediator.GetSubject(id);
+            try
+            {
+                var subjectReadModel = _subjectsMediator.GetSubject(id);
 
-            return Ok(subjectReadModel);
+                return Ok(subjectReadModel);
+            }
+            catch (SubjectNotFoundException exception)
+            {
+                ModelState.TryAddModelException("SubjectNotFound", exception);
+                return BadRequest(ModelState);
+            }
 
         }
 

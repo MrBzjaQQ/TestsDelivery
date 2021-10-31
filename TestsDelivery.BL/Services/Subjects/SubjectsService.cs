@@ -28,7 +28,7 @@ namespace TestsDelivery.BL.Services.Subjects
 
         public Subject GetSubject(int id)
         {
-            throw new System.NotImplementedException();
+            return _mapper.Map<Subject>(_subjectsRepository.GetSubject(id));
         }
 
         public void EditSubject(Subject subject)

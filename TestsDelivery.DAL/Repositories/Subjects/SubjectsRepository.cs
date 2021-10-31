@@ -2,11 +2,12 @@
 using System.Linq;
 using AutoMapper;
 using TestsDelivery.DAL.Data;
+using TestsDelivery.DAL.Exceptions.Subjects;
 using TestsDelivery.DAL.Models.Subject;
 
 namespace TestsDelivery.DAL.Repositories.Subjects
 {
-    public class SubjectsRepository: ISubjectsRepository
+    public class SubjectsRepository : ISubjectsRepository
     {
         private readonly TestsDeliveryContext _context;
         private readonly IMapper _mapper;
@@ -25,7 +26,14 @@ namespace TestsDelivery.DAL.Repositories.Subjects
 
         public Subject GetSubject(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return _context.Subjects.Single(subject => subject.Id == id);
+            }
+            catch (InvalidOperationException)
+            {
+                throw new SubjectNotFoundException(id);
+            }
         }
 
         public void EditSubject(Subject subject)

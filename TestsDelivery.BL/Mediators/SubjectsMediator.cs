@@ -25,7 +25,7 @@ namespace TestsDelivery.BL.Mediators
 
         public SubjectReadModel GetSubject(int id)
         {
-            throw new System.NotImplementedException();
+            return _mapper.Map<SubjectReadModel>(_subjectsService.GetSubject(id));
         }
 
         public void EditSubject(SubjectEditModel model)
