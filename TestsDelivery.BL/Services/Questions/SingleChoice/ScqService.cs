@@ -31,10 +31,10 @@ namespace TestsDelivery.BL.Services.Questions.SingleChoice
             var questionDataModel = _mapper.Map<Question>(question);
             _questionsRepository.CreateQuestion(questionDataModel);
 
-            var answerOptions = MapAnswerOptionsToDataModels(question.AnswerOptions, questionDataModel.Id);
+            var answerOptions = MapAnswerOptionsToDataModels(question.AnswerOptions, questionDataModel.Id).ToList();
             _answerOptionsRepository.CreateAnswerOptions(answerOptions);
 
-            return MapQuestionToScq(questionDataModel, answerOptions);
+            return MapQuestionToScq(_questionsRepository.GetQuestion(questionDataModel.Id), answerOptions);
         }
 
         public void EditQuestion(SingleChoiceQuestion question)
@@ -55,7 +55,13 @@ namespace TestsDelivery.BL.Services.Questions.SingleChoice
 
         public SingleChoiceQuestion GetQuestion(long id)
         {
-            return _mapper.Map<SingleChoiceQuestion>(_questionsRepository.GetQuestion(id));
+            var question = _mapper.Map<SingleChoiceQuestion>(_questionsRepository.GetQuestion(id));
+
+            var answerOptions = _mapper.Map<IEnumerable<Domain.Questions.AnswerOption>>(
+                _answerOptionsRepository.GetAnswerOptionsForQuestion(question.Id));
+            question.AnswerOptions = answerOptions;
+
+            return question;
         }
 
         private IEnumerable<AnswerOption> MapAnswerOptionsToDataModels(
@@ -81,7 +87,7 @@ namespace TestsDelivery.BL.Services.Questions.SingleChoice
                 AnswerOptions = _mapper.Map<IEnumerable<Domain.Questions.AnswerOption>>(options),
                 Id = question.Id,
                 Name = question.Name,
-                Question = question.Text,
+                Text = question.Text,
                 Subject = _mapper.Map<Subject>(question.Subject)
             };
         }

@@ -1,4 +1,6 @@
-﻿namespace TestsDelivery.DAL.Exceptions.Questions
+﻿using System;
+
+namespace TestsDelivery.DAL.Exceptions.Questions
 {
     public class QuestionNotFoundException : QuestionException
     {

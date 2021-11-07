@@ -10,7 +10,7 @@ namespace TestsDelivery.BL.Models.Questions.SingleChoice
 
         public string Name { get; set; }
 
-        public string Question { get; set; }
+        public string Text { get; set; }
 
         public SubjectReadModel Subject { get; set; }
 

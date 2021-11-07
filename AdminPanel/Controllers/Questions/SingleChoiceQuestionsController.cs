@@ -20,6 +20,7 @@ namespace AdminPanel.Controllers.Questions
 
         [HttpGet("{id}", Name = "GetQuestion")]
         [Authorize]
+        // TODO: Get does not return options
         public IActionResult GetQuestion(long id)
         {
             if (id < 1)
@@ -41,7 +42,6 @@ namespace AdminPanel.Controllers.Questions
 
         [HttpPost]
         [Authorize]
-        // TODO: Text is not created
         public IActionResult CreateQuestion(ScqCreateModel model)
         {
             if (ModelState.IsValid)
@@ -56,7 +56,6 @@ namespace AdminPanel.Controllers.Questions
 
         [HttpPut]
         [Authorize]
-        // TODO: question was not found by id
         public IActionResult EditQuestion(ScqEditModel model)
         {
             if (ModelState.IsValid)

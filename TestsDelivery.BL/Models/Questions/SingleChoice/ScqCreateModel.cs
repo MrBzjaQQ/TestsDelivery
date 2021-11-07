@@ -12,7 +12,7 @@ namespace TestsDelivery.BL.Models.Questions.SingleChoice
 
         [Required]
         [MinLength(2)]
-        public string Question { get; set; }
+        public string Text { get; set; }
 
         [Range(1, int.MaxValue)]
         public int SubjectId { get; set; }

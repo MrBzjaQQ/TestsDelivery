@@ -6,7 +6,7 @@
 
         public string Name { get; set; }
 
-        public string Question { get; set; }
+        public string Text { get; set; }
 
         public Subject.Subject Subject { get; set; }
 

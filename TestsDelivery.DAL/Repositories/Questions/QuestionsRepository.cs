@@ -12,7 +12,7 @@ namespace TestsDelivery.DAL.Repositories.Questions
     {
         private readonly TestsDeliveryContext _context;
 
-        public QuestionsRepository(TestsDeliveryContext context, IMapper mapper)
+        public QuestionsRepository(TestsDeliveryContext context)
         {
             _context = context;
         }
@@ -27,14 +27,16 @@ namespace TestsDelivery.DAL.Repositories.Questions
         {
             try
             {
-                var existingQuestion = _context.Questions.Single(x => x.Id == question.Id);
+                var existingQuestion = _context.Questions
+                    .Single(x => x.Id == question.Id);
+
                 if (existingQuestion.ItemType != question.ItemType)
                     throw new QuestionIncorrectTypeException(question.ItemType, existingQuestion.ItemType);
 
-                _context.Questions.Update(question);
+                ApplyChangesToDestination(question, existingQuestion);
                 _context.SaveChanges();
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException ex)
             {
                 throw new QuestionNotFoundException(question.Id);
             }
@@ -52,6 +54,12 @@ namespace TestsDelivery.DAL.Repositories.Questions
             {
                 throw new QuestionNotFoundException(id);
             }
+        }
+
+        private void ApplyChangesToDestination(Question source, Question destination)
+        {
+            destination.Name = source.Name;
+            destination.Text = source.Text;
         }
     }
 }
