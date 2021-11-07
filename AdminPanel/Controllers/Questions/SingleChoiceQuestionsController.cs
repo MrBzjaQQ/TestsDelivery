@@ -1,6 +1,9 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TestsDelivery.BL.Mediators.Questions;
 using TestsDelivery.BL.Models.Questions.SingleChoice;
+using TestsDelivery.DAL.Exceptions.Questions;
 
 namespace AdminPanel.Controllers.Questions
 {
@@ -8,27 +11,62 @@ namespace AdminPanel.Controllers.Questions
     [ApiController]
     public class SingleChoiceQuestionsController : ControllerBase
     {
-        public SingleChoiceQuestionsController()
+        private readonly IScqMediator _mediator;
+
+        public SingleChoiceQuestionsController(IScqMediator mediator)
         {
-            
+            _mediator = mediator;
         }
 
-        [HttpGet]
-        public IActionResult GetItem(int id)
+        [HttpGet("{id}", Name = "GetQuestion")]
+        [Authorize]
+        public IActionResult GetQuestion(long id)
         {
-            throw new NotImplementedException();
+            if (id < 1)
+                return BadRequest(new ArgumentException(nameof(id)));
+
+            try
+            {
+                var question = _mediator.GetQuestion(id);
+
+                return Ok(question);
+            }
+            catch(QuestionException ex)
+            {
+                ModelState.AddModelError("QuestionException", ex.Message);
+
+                return BadRequest(ModelState);
+            }
         }
 
         [HttpPost]
-        public IActionResult CreateItem(ScqCreateModel model)
+        [Authorize]
+        // TODO: Text is not created
+        public IActionResult CreateQuestion(ScqCreateModel model)
         {
-            throw new NotImplementedException();
+            if (ModelState.IsValid)
+            {
+                var createdQuestion = _mediator.CreateQuestion(model);
+
+                return CreatedAtRoute(nameof(GetQuestion), new { Id = createdQuestion.Id }, createdQuestion);
+            }
+            
+            return BadRequest(ModelState);
         }
 
         [HttpPut]
-        public IActionResult EditItem(ScqEditModel model)
+        [Authorize]
+        // TODO: question was not found by id
+        public IActionResult EditQuestion(ScqEditModel model)
         {
-            throw new NotImplementedException();
+            if (ModelState.IsValid)
+            {
+                _mediator.EditQuestion(model);
+
+                return Ok();
+            }
+
+            return BadRequest(ModelState);
         }
     }
 }

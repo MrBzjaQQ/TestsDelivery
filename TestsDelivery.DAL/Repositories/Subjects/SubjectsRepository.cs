@@ -22,7 +22,7 @@ namespace TestsDelivery.DAL.Repositories.Subjects
             _context.SaveChanges();
         }
 
-        public Subject GetSubject(int id)
+        public Subject GetSubject(long id)
         {
             try
             {

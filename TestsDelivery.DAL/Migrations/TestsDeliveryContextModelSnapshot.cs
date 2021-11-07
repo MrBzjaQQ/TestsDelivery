@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestsDelivery.DAL.Data;
 
-namespace TestsDelivery.Migrations
+namespace TestsDelivery.DAL.Migrations
 {
     [DbContext(typeof(TestsDeliveryContext))]
     partial class TestsDeliveryContextModelSnapshot : ModelSnapshot
@@ -217,16 +217,16 @@ namespace TestsDelivery.Migrations
 
             modelBuilder.Entity("TestsDelivery.DAL.Models.Questions.AnswerOption", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("IsCorrect")
                         .HasColumnType("bit");
 
-                    b.Property<int>("QuestionId")
-                        .HasColumnType("int");
+                    b.Property<long>("QuestionId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
@@ -240,9 +240,9 @@ namespace TestsDelivery.Migrations
 
             modelBuilder.Entity("TestsDelivery.DAL.Models.Questions.Question", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<short>("ItemType")
@@ -251,8 +251,11 @@ namespace TestsDelivery.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("SubjectId")
-                        .HasColumnType("int");
+                    b.Property<long>("SubjectId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -263,9 +266,9 @@ namespace TestsDelivery.Migrations
 
             modelBuilder.Entity("TestsDelivery.DAL.Models.Subject.Subject", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")

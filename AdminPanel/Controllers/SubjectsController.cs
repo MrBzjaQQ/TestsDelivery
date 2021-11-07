@@ -20,7 +20,7 @@ namespace AdminPanel.Controllers
 
         [HttpGet("{id}", Name = "GetSubject")]
         [Authorize]
-        public IActionResult GetSubject(int id)
+        public IActionResult GetSubject(long id)
         {
             if (id < 1)
                 throw new ArgumentException(nameof(id));

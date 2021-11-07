@@ -6,7 +6,7 @@ namespace TestsDelivery.BL.Services.Subjects
     {
         Subject CreateSubject(Subject subject);
 
-        Subject GetSubject(int id);
+        Subject GetSubject(long id);
 
         void EditSubject(Subject subject);
     }

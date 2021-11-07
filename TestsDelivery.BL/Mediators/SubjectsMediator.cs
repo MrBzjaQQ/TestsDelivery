@@ -23,7 +23,7 @@ namespace TestsDelivery.BL.Mediators
             return _mapper.Map<SubjectReadModel>(_subjectsService.CreateSubject(subject));
         }
 
-        public SubjectReadModel GetSubject(int id)
+        public SubjectReadModel GetSubject(long id)
         {
             return _mapper.Map<SubjectReadModel>(_subjectsService.GetSubject(id));
         }

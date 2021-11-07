@@ -6,7 +6,7 @@ namespace TestsDelivery.BL.Mediators
     {
         SubjectReadModel CreateSubject(SubjectCreateModel model);
 
-        SubjectReadModel GetSubject(int id);
+        SubjectReadModel GetSubject(long id);
 
         void EditSubject(SubjectEditModel model);
     }

@@ -26,7 +26,7 @@ namespace TestsDelivery.BL.Services.Subjects
             return createdSubject;
         }
 
-        public Subject GetSubject(int id)
+        public Subject GetSubject(long id)
         {
             return _mapper.Map<Subject>(_subjectsRepository.GetSubject(id));
         }
