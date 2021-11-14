@@ -11,9 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using TestsDelivery.BL.Mediators;
-using TestsDelivery.BL.Mediators.Questions;
+using TestsDelivery.BL.Mediators.Questions.Essay;
 using TestsDelivery.BL.Mediators.Questions.MultipleChoice;
 using TestsDelivery.BL.Mediators.Questions.SingleChoice;
+using TestsDelivery.BL.Services.Questions.Essay;
 using TestsDelivery.BL.Services.Questions.MultipleChoice;
 using TestsDelivery.BL.Services.Questions.SingleChoice;
 using TestsDelivery.BL.Services.Subjects;
@@ -100,12 +101,15 @@ namespace AdminPanel
             services.AddScoped<ISubjectsRepository, SubjectsRepository>();
             services.AddScoped<IScqMediator, ScqMediator>();
             services.AddScoped<IMcqMediator, McqMediator>();
+            services.AddScoped<IEssayMediator, EssayMediator>();
             services.AddScoped<IScqService, ScqService>();
             services.AddScoped<IMcqService, McqService>();
+            services.AddScoped<IEssayService, EssayService>();
             services.AddScoped<IQuestionsRepository, QuestionsRepository>();
             services.AddScoped<IAnswerOptionsRepository, AnswerOptionsRepository>();
             services.AddScoped<IScqModelValidator, ScqModelValidator>();
             services.AddScoped<IMcqModelValidator, McqModelValidator>();
+            services.AddScoped<IEssayValidator, EssayValidator>();
 
             services.AddScoped<IUserService, UserService>();
         }
