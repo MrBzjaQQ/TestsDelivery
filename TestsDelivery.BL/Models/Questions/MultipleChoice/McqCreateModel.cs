@@ -2,13 +2,10 @@
 using System.ComponentModel.DataAnnotations;
 using TestsDelivery.BL.Models.Questions.AnswerOptions;
 
-namespace TestsDelivery.BL.Models.Questions.SingleChoice
+namespace TestsDelivery.BL.Models.Questions.MultipleChoice
 {
-    public record ScqEditModel
+    public record McqCreateModel
     {
-        [Range(1, int.MaxValue)]
-        public int Id { get; set; }
-
         [Required]
         [MinLength(2)]
         public string Name { get; set; }
@@ -17,6 +14,10 @@ namespace TestsDelivery.BL.Models.Questions.SingleChoice
         [MinLength(2)]
         public string Text { get; set; }
 
-        public IEnumerable<AnswerOptionEditModel> AnswerOptions { get; set; }
+        [Range(1, int.MaxValue)]
+        public int SubjectId { get; set; }
+
+        [MinLength(2)]
+        public IEnumerable<AnswerOptionCreateModel> AnswerOptions { get; set; }
     }
 }

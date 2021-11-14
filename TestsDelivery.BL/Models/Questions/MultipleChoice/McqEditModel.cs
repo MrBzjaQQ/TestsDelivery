@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations;
 using TestsDelivery.BL.Models.Questions.AnswerOptions;
 
-namespace TestsDelivery.BL.Models.Questions.SingleChoice
+namespace TestsDelivery.BL.Models.Questions.MultipleChoice
 {
-    public record ScqEditModel
+    public record McqEditModel
     {
         [Range(1, int.MaxValue)]
         public int Id { get; set; }

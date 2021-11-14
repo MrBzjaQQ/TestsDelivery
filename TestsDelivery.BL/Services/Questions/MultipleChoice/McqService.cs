@@ -9,15 +9,15 @@ using TestsDelivery.Domain.Subject;
 using AnswerOptionDALModel = TestsDelivery.DAL.Models.Questions.AnswerOption;
 using AnswerOptionDomainModel = TestsDelivery.Domain.Questions.AnswerOption;
 
-namespace TestsDelivery.BL.Services.Questions.SingleChoice
+namespace TestsDelivery.BL.Services.Questions.MultipleChoice
 {
-    public class ScqService : IScqService
+    public class McqService : IMcqService
     {
         private readonly IQuestionsRepository _questionsRepository;
         private readonly IAnswerOptionsRepository _answerOptionsRepository;
         private readonly IMapper _mapper;
 
-        public ScqService(
+        public McqService(
             IQuestionsRepository questionsRepository,
             IAnswerOptionsRepository answerOptionsRepository,
             IMapper mapper)
@@ -27,7 +27,7 @@ namespace TestsDelivery.BL.Services.Questions.SingleChoice
             _mapper = mapper;
         }
 
-        public SingleChoiceQuestion CreateQuestion(SingleChoiceQuestion question)
+        public MultipleChoiceQuestion CreateQuestion(MultipleChoiceQuestion question)
         {
             var questionDataModel = _mapper.Map<Question>(question);
             _questionsRepository.CreateQuestion(questionDataModel);
@@ -35,10 +35,10 @@ namespace TestsDelivery.BL.Services.Questions.SingleChoice
             var answerOptions = MapAnswerOptionsToDataModels(question.AnswerOptions, questionDataModel.Id).ToList();
             _answerOptionsRepository.CreateAnswerOptions(answerOptions);
 
-            return MapQuestionToScq(_questionsRepository.GetQuestion(questionDataModel.Id), answerOptions);
+            return MapQuestionToMcq(_questionsRepository.GetQuestion(questionDataModel.Id), answerOptions);
         }
 
-        public void EditQuestion(SingleChoiceQuestion question)
+        public void EditQuestion(MultipleChoiceQuestion question)
         {
             var questionDataModel = _mapper.Map<Question>(question);
             _questionsRepository.EditQuestion(questionDataModel);
@@ -54,9 +54,9 @@ namespace TestsDelivery.BL.Services.Questions.SingleChoice
             _answerOptionsRepository.CreateAnswerOptions(answerOptionsToCreate);
         }
 
-        public SingleChoiceQuestion GetQuestion(long id)
+        public MultipleChoiceQuestion GetQuestion(long id)
         {
-            var question = _mapper.Map<SingleChoiceQuestion>(_questionsRepository.GetQuestion(id));
+            var question = _mapper.Map<MultipleChoiceQuestion>(_questionsRepository.GetQuestion(id));
 
             var answerOptions = _mapper.Map<IEnumerable<AnswerOptionDomainModel>>(
                 _answerOptionsRepository.GetAnswerOptionsForQuestion(question.Id));
@@ -81,15 +81,16 @@ namespace TestsDelivery.BL.Services.Questions.SingleChoice
             }
         }
 
-        private SingleChoiceQuestion MapQuestionToScq(Question question, IEnumerable<AnswerOptionDALModel> options)
+        private MultipleChoiceQuestion MapQuestionToMcq(Question question, IEnumerable<AnswerOptionDALModel> options)
         {
-            return new SingleChoiceQuestion
+            return new MultipleChoiceQuestion
             {
                 AnswerOptions = _mapper.Map<IEnumerable<AnswerOptionDomainModel>>(options),
                 Id = question.Id,
                 Name = question.Name,
                 Text = question.Text,
-                Subject = _mapper.Map<Subject>(question.Subject)
+                Subject = _mapper.Map<Subject>(question.Subject),
+                Type = QuestionType.MultipleChoice
             };
         }
     }

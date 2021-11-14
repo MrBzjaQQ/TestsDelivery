@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.Questions;
+using TestsDelivery.BL.Mediators.Questions.SingleChoice;
 using TestsDelivery.BL.Models.Questions.SingleChoice;
 using TestsDelivery.DAL.Exceptions.Questions;
 
@@ -9,17 +10,17 @@ namespace AdminPanel.Controllers.Questions
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SingleChoiceQuestionsController : ControllerBase
+    [Authorize]
+    public class SingleChoiceQuestionController : ControllerBase
     {
         private readonly IScqMediator _mediator;
 
-        public SingleChoiceQuestionsController(IScqMediator mediator)
+        public SingleChoiceQuestionController(IScqMediator mediator)
         {
             _mediator = mediator;
         }
 
         [HttpGet("{id}", Name = "GetQuestion")]
-        [Authorize]
         // TODO: Get does not return options
         public IActionResult GetQuestion(long id)
         {
@@ -32,7 +33,7 @@ namespace AdminPanel.Controllers.Questions
 
                 return Ok(question);
             }
-            catch(QuestionException ex)
+            catch (QuestionException ex)
             {
                 ModelState.AddModelError("QuestionException", ex.Message);
 
@@ -41,7 +42,6 @@ namespace AdminPanel.Controllers.Questions
         }
 
         [HttpPost]
-        [Authorize]
         public IActionResult CreateQuestion(ScqCreateModel model)
         {
             if (ModelState.IsValid)
@@ -55,7 +55,6 @@ namespace AdminPanel.Controllers.Questions
         }
 
         [HttpPut]
-        [Authorize]
         public IActionResult EditQuestion(ScqEditModel model)
         {
             if (ModelState.IsValid)

@@ -4,7 +4,7 @@ using TestsDelivery.BL.Services.Questions.SingleChoice;
 using TestsDelivery.BL.Validators.Questions;
 using TestsDelivery.Domain.Questions;
 
-namespace TestsDelivery.BL.Mediators.Questions
+namespace TestsDelivery.BL.Mediators.Questions.SingleChoice
 {
     public class ScqMediator: IScqMediator
     {
