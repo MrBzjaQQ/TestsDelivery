@@ -1,6 +1,6 @@
 ﻿namespace TestsDelivery.Domain.Questions
 {
-    public class AnswerOption
+    public record AnswerOption
     {
         public long Id { get; set; }
 

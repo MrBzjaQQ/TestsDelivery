@@ -7,20 +7,24 @@ using TestsDelivery.BL.Models.Questions.SingleChoice;
 
 namespace TestsDelivery.BL.Validators.Questions
 {
-    public class ScqModelValidator : IScqModelValidator
+    public class ScqModelValidator : BaseQuestionValidator<ScqCreateModel, ScqEditModel>, IScqModelValidator
     {
-        public void ValidateCreateModel(ScqCreateModel model)
+        public override void ValidateCreateModel(ScqCreateModel model)
         {
             if (model.AnswerOptions == null)
                 throw new ArgumentNullException(nameof(model.AnswerOptions));
+
+            base.ValidateCreateModel(model);
 
             ValidateAnswerOptions(model.AnswerOptions);
         }
 
-        public void ValidateEditModel(ScqEditModel model)
+        public override void ValidateEditModel(ScqEditModel model)
         {
             if (model.AnswerOptions == null)
                 throw new ArgumentNullException(nameof(model.AnswerOptions));
+
+            base.ValidateEditModel(model);
 
             ValidateAnswerOptions(model.AnswerOptions);
         }

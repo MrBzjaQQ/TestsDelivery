@@ -2,10 +2,7 @@
 
 namespace TestsDelivery.BL.Validators.Questions
 {
-    public interface IScqModelValidator
+    public interface IScqModelValidator : IBaseQuestionValidator<ScqCreateModel, ScqEditModel>
     {
-        void ValidateCreateModel(ScqCreateModel model);
-
-        void ValidateEditModel(ScqEditModel model);
     }
 }

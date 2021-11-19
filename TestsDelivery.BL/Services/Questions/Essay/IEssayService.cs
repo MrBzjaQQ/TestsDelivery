@@ -2,12 +2,7 @@
 
 namespace TestsDelivery.BL.Services.Questions.Essay
 {
-    public interface IEssayService
+    public interface IEssayService: IBaseQuestionService<EssayQuestion>
     {
-        EssayQuestion CreateQuestion(EssayQuestion question);
-
-        void EditQuestion(EssayQuestion question);
-
-        EssayQuestion GetQuestion(long id);
     }
 }

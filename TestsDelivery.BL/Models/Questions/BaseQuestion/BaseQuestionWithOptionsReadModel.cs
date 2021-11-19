@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using TestsDelivery.BL.Models.Questions.AnswerOptions;
-using TestsDelivery.BL.Models.Questions.BaseQuestion;
 
-namespace TestsDelivery.BL.Models.Questions.SingleChoice
+namespace TestsDelivery.BL.Models.Questions.BaseQuestion
 {
-    public record ScqReadModel : BaseQuestionReadModel
+    public record BaseQuestionWithOptionsReadModel : BaseQuestionReadModel
     {
         public IEnumerable<AnswerOptionReadModel> AnswerOptions { get; set; }
     }

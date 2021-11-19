@@ -2,12 +2,7 @@
 
 namespace TestsDelivery.BL.Mediators.Questions.MultipleChoice
 {
-    public interface IMcqMediator
+    public interface IMcqMediator : IBaseMediator<McqCreateModel, McqEditModel, McqReadModel>
     {
-        McqReadModel CreateQuestion(McqCreateModel model);
-
-        void EditQuestion(McqEditModel model);
-
-        McqReadModel GetQuestion(long id);
     }
 }

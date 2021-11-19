@@ -2,12 +2,7 @@
 
 namespace TestsDelivery.BL.Services.Questions.SingleChoice
 {
-    public interface IScqService
+    public interface IScqService : IBaseQuestionService<SingleChoiceQuestion>
     {
-        SingleChoiceQuestion CreateQuestion(SingleChoiceQuestion question);
-
-        void EditQuestion(SingleChoiceQuestion question);
-
-        SingleChoiceQuestion GetQuestion(long id);
     }
 }

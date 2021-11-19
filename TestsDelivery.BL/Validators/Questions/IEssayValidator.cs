@@ -2,10 +2,7 @@
 
 namespace TestsDelivery.BL.Validators.Questions
 {
-    public interface IEssayValidator
+    public interface IEssayValidator : IBaseQuestionValidator<EssayCreateModel, EssayEditModel>
     {
-        void ValidateCreateModel(EssayCreateModel model);
-
-        void ValidateEditModel(EssayEditModel model);
     }
 }

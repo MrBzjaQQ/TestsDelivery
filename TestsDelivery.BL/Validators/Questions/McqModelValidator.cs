@@ -5,23 +5,26 @@ using TestsDelivery.BL.Exceptions.Validation;
 using TestsDelivery.BL.Models.Questions.AnswerOptions;
 using TestsDelivery.BL.Models.Questions.MultipleChoice;
 
-// TODO: generalize validators
 namespace TestsDelivery.BL.Validators.Questions
 {
-    public class McqModelValidator : IMcqModelValidator
+    public class McqModelValidator : BaseQuestionValidator<McqCreateModel, McqEditModel>, IMcqModelValidator
     {
-        public void ValidateCreateModel(McqCreateModel model)
+        public override void ValidateCreateModel(McqCreateModel model)
         {
             if (model.AnswerOptions == null)
                 throw new ArgumentNullException(nameof(model.AnswerOptions));
+
+            base.ValidateCreateModel(model);
 
             ValidateAnswerOptions(model.AnswerOptions);
         }
 
-        public void ValidateEditModel(McqEditModel model)
+        public override void ValidateEditModel(McqEditModel model)
         {
             if (model.AnswerOptions == null)
                 throw new ArgumentNullException(nameof(model.AnswerOptions));
+
+            base.ValidateEditModel(model);
 
             ValidateAnswerOptions(model.AnswerOptions);
         }

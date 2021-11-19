@@ -2,12 +2,7 @@
 
 namespace TestsDelivery.BL.Services.Questions.MultipleChoice
 {
-    public interface IMcqService
+    public interface IMcqService: IBaseQuestionService<MultipleChoiceQuestion>
     {
-        MultipleChoiceQuestion CreateQuestion(MultipleChoiceQuestion question);
-
-        void EditQuestion(MultipleChoiceQuestion question);
-
-        MultipleChoiceQuestion GetQuestion(long id);
     }
 }

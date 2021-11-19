@@ -1,6 +1,4 @@
 ﻿namespace TestsDelivery.Domain.Questions
 {
-    public class EssayQuestion : QuestionBase
-    {
-    }
+    public record EssayQuestion : QuestionBase;
 }

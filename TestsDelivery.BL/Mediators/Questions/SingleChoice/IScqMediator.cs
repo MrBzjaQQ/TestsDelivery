@@ -2,12 +2,7 @@
 
 namespace TestsDelivery.BL.Mediators.Questions.SingleChoice
 {
-    public interface IScqMediator
+    public interface IScqMediator : IBaseMediator<ScqCreateModel, ScqEditModel, ScqReadModel>
     {
-        ScqReadModel CreateQuestion(ScqCreateModel model);
-
-        void EditQuestion(ScqEditModel model);
-
-        ScqReadModel GetQuestion(long id);
     }
 }

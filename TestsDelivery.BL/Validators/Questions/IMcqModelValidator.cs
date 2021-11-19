@@ -2,10 +2,7 @@
 
 namespace TestsDelivery.BL.Validators.Questions
 {
-    public interface IMcqModelValidator
+    public interface IMcqModelValidator : IBaseQuestionValidator<McqCreateModel, McqEditModel>
     {
-        void ValidateCreateModel(McqCreateModel model);
-
-        void ValidateEditModel(McqEditModel model);
     }
 }

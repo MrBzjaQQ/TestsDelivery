@@ -2,12 +2,7 @@
 
 namespace TestsDelivery.BL.Mediators.Questions.Essay
 {
-    public interface IEssayMediator
+    public interface IEssayMediator : IBaseMediator<EssayCreateModel, EssayEditModel, EssayReadModel>
     {
-        EssayReadModel CreateQuestion(EssayCreateModel model);
-
-        void EditQuestion(EssayEditModel model);
-
-        EssayReadModel GetQuestion(long id);
     }
 }
