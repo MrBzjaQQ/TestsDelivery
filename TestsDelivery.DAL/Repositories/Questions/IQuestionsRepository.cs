@@ -9,5 +9,7 @@ namespace TestsDelivery.DAL.Repositories.Questions
         void EditQuestion(Question question);
 
         Question GetQuestion(long id);
+
+        Question GetQuestion(long id, short questionType);
     }
 }

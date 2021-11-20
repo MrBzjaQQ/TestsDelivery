@@ -1,4 +1,6 @@
-﻿namespace TestsDelivery.BL.Services.Questions
+﻿using TestsDelivery.Domain.Questions;
+
+namespace TestsDelivery.BL.Services.Questions
 {
     public interface IBaseQuestionService<TQuestionBase>
     {

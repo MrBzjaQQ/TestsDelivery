@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using TestsDelivery.DAL.Models.Questions;
 using TestsDelivery.DAL.Repositories.Questions;
 using TestsDelivery.Domain.Questions;
@@ -11,11 +12,13 @@ namespace TestsDelivery.BL.Services.Questions
     {
         private readonly IQuestionsRepository _repository;
         private readonly IMapper _mapper;
+        private readonly QuestionType _questionType;
 
-        protected BaseQuestionService(IQuestionsRepository repository, IMapper mapper)
+        protected BaseQuestionService(IQuestionsRepository repository, IMapper mapper, QuestionType questionType)
         {
             _repository = repository;
             _mapper = mapper;
+            _questionType = questionType;
         }
 
         public TDomainQuestion CreateQuestion(TDomainQuestion question)
@@ -23,7 +26,7 @@ namespace TestsDelivery.BL.Services.Questions
             var questionData = _mapper.Map<TDataQuestion>(question);
             _repository.CreateQuestion(questionData);
 
-            var questionResult = _mapper.Map<TDomainQuestion>(question);
+            var questionResult = _mapper.Map<TDomainQuestion>(_repository.GetQuestion(questionData.Id));
             return questionResult;
         }
 
@@ -35,7 +38,7 @@ namespace TestsDelivery.BL.Services.Questions
 
         public TDomainQuestion GetQuestion(long id)
         {
-            return _mapper.Map<TDomainQuestion>(_repository.GetQuestion(id));
+            return _mapper.Map<TDomainQuestion>(_repository.GetQuestion(id, (short)_questionType));
         }
     }
 }

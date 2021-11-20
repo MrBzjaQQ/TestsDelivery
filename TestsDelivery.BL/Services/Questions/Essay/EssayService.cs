@@ -8,7 +8,7 @@ namespace TestsDelivery.BL.Services.Questions.Essay
     public class EssayService : BaseQuestionService<EssayQuestion, Question>, IEssayService
     {
         public EssayService(IQuestionsRepository repository, IMapper mapper)
-            :base(repository, mapper)
+            :base(repository, mapper, QuestionType.Essay)
         {
         }
     }

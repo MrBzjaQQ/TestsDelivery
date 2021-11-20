@@ -42,6 +42,15 @@ namespace TestsDelivery.DAL.Repositories.Questions
             }
         }
 
+        public Question GetQuestion(long id, short questionType)
+        {
+            var question = GetQuestion(id);
+            if (question.ItemType != questionType)
+                throw new QuestionIncorrectTypeException(questionType, question.ItemType);
+
+            return question;
+        }
+
         public Question GetQuestion(long id)
         {
             try

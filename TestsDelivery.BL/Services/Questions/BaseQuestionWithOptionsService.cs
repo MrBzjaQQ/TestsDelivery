@@ -17,15 +17,18 @@ namespace TestsDelivery.BL.Services.Questions
         private readonly IQuestionsRepository _questionsRepository;
         private readonly IAnswerOptionsRepository _answerOptionsRepository;
         private readonly IMapper _mapper;
+        private readonly QuestionType _questionType;
 
         protected BaseQuestionWithOptionsService(
             IQuestionsRepository questionsRepository,
             IAnswerOptionsRepository answerOptionsRepository,
-            IMapper mapper)
+            IMapper mapper,
+            QuestionType questionType)
         {
             _questionsRepository = questionsRepository;
             _answerOptionsRepository = answerOptionsRepository;
             _mapper = mapper;
+            _questionType = questionType;
         }
 
         public TDomainQuestion CreateQuestion(TDomainQuestion question)
@@ -36,7 +39,7 @@ namespace TestsDelivery.BL.Services.Questions
             var answerOptions = MapAnswerOptionsToDataModels(question.AnswerOptions, questionDataModel.Id).ToList();
             _answerOptionsRepository.CreateAnswerOptions(answerOptions);
 
-            return MapQuestionToMcq(_questionsRepository.GetQuestion(questionDataModel.Id), answerOptions);
+            return MapQuestionToDomain(_questionsRepository.GetQuestion(questionDataModel.Id), answerOptions);
         }
 
         public void EditQuestion(TDomainQuestion question)
@@ -46,18 +49,28 @@ namespace TestsDelivery.BL.Services.Questions
 
             var answerOptionsToEdit = MapAnswerOptionsToDataModels(
                 question.AnswerOptions.Where(x => x.Id != 0),
-                questionDataModel.Id);
+                questionDataModel.Id).ToArray();
             var answerOptionsToCreate = MapAnswerOptionsToDataModels(
                 question.AnswerOptions.Where(x => x.Id == 0),
-                questionDataModel.Id);
+                questionDataModel.Id).ToArray();
 
             _answerOptionsRepository.EditAnswerOptions(answerOptionsToEdit);
             _answerOptionsRepository.CreateAnswerOptions(answerOptionsToCreate);
+
+            var answerOptions = _answerOptionsRepository.GetAnswerOptionsForQuestion(questionDataModel.Id);
+            var currentAnswerOptionsIds = answerOptionsToCreate.Concat(answerOptionsToEdit).Select(x => x.Id).ToHashSet();
+            var answerOptionsToDelete = answerOptions
+                .Select(x => x.Id)
+                .Where(id => !currentAnswerOptionsIds.Contains(id));
+
+            _answerOptionsRepository.DeleteAnswerOptions(answerOptionsToDelete);
         }
 
         public TDomainQuestion GetQuestion(long id)
         {
-            return _mapper.Map<TDomainQuestion>(_questionsRepository.GetQuestion(id));
+            var question = _questionsRepository.GetQuestion(id, (short)_questionType);
+            var answerOptions = _answerOptionsRepository.GetAnswerOptionsForQuestion(id);
+            return MapQuestionToDomain(question, answerOptions);
         }
 
         private IEnumerable<AnswerOptionDALModel> MapAnswerOptionsToDataModels(
@@ -76,7 +89,7 @@ namespace TestsDelivery.BL.Services.Questions
             }
         }
 
-        private TDomainQuestion MapQuestionToMcq(Question question, IEnumerable<AnswerOptionDALModel> options)
+        private TDomainQuestion MapQuestionToDomain(Question question, IEnumerable<AnswerOptionDALModel> options)
         {
             return new TDomainQuestion
             {

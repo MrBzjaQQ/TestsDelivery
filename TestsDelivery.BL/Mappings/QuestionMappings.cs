@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TestsDelivery.BL.Models.Questions.Essay;
+using TestsDelivery.BL.Models.Questions.MultipleChoice;
 using TestsDelivery.BL.Models.Questions.SingleChoice;
 using TestsDelivery.DAL.Models.Questions;
 using TestsDelivery.Domain.Questions;
@@ -13,39 +14,54 @@ namespace TestsDelivery.BL.Mappings
         {
             CreateMap<SingleChoiceQuestion, ScqReadModel>()
                 .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
-            CreateMap<ScqEditModel, SingleChoiceQuestion>();
+            CreateMap<ScqEditModel, SingleChoiceQuestion>()
+                .ForMember(x => x.Type, x => x.MapFrom(y => QuestionType.SingleChoice));
             CreateMap<ScqCreateModel, SingleChoiceQuestion>()
-                .ForMember(x => x.Subject, x => x.MapFrom(y => new Subject { Id = y.SubjectId }));
+                .ForMember(x => x.Subject, x => x.MapFrom(y => new Subject { Id = y.SubjectId }))
+                .ForMember(x => x.Type, x => x.MapFrom(y => QuestionType.SingleChoice));
 
             CreateMap<SingleChoiceQuestion, Question>()
                 .ForMember(x => x.SubjectId, x => x.MapFrom(y => y.Subject.Id))
-                .ForMember(x => x.Subject, x => x.Ignore());
+                .ForMember(x => x.Subject, x => x.Ignore())
+                .ForMember(x => x.ItemType, x => x.MapFrom(y => y.Type));
 
-            CreateMap<Question, SingleChoiceQuestion>();
-
-            CreateMap<MultipleChoiceQuestion, ScqReadModel>()
+            CreateMap<Question, SingleChoiceQuestion>()
+                .ForMember(x => x.Type, x => x.MapFrom(y => y.ItemType))
                 .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
-            CreateMap<ScqEditModel, MultipleChoiceQuestion>();
-            CreateMap<ScqCreateModel, MultipleChoiceQuestion>()
-                .ForMember(x => x.Subject, x => x.MapFrom(y => new Subject { Id = y.SubjectId }));
+
+            CreateMap<MultipleChoiceQuestion, McqReadModel>()
+                .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
+            CreateMap<McqEditModel, MultipleChoiceQuestion>()
+                .ForMember(x => x.Type, x => x.MapFrom(y => QuestionType.MultipleChoice)); ;
+            CreateMap<McqCreateModel, MultipleChoiceQuestion>()
+                .ForMember(x => x.Subject, x => x.MapFrom(y => new Subject { Id = y.SubjectId }))
+                .ForMember(x => x.Type, x => x.MapFrom(y => QuestionType.MultipleChoice)); ;
 
             CreateMap<MultipleChoiceQuestion, Question>()
                 .ForMember(x => x.SubjectId, x => x.MapFrom(y => y.Subject.Id))
-                .ForMember(x => x.Subject, x => x.Ignore());
+                .ForMember(x => x.Subject, x => x.Ignore())
+                .ForMember(x => x.ItemType, x => x.MapFrom(y => y.Type));
 
-            CreateMap<Question, MultipleChoiceQuestion>();
+            CreateMap<Question, MultipleChoiceQuestion>()
+                .ForMember(x => x.Type, x => x.MapFrom(y => y.ItemType))
+                .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
 
             CreateMap<EssayQuestion, EssayReadModel>()
                 .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
-            CreateMap<EssayEditModel, EssayQuestion>();
+            CreateMap<EssayEditModel, EssayQuestion>()
+                .ForMember(x => x.Type, x => x.MapFrom(y => QuestionType.Essay));
             CreateMap<EssayCreateModel, EssayQuestion>()
-                .ForMember(x => x.Subject, x => x.MapFrom(y => new Subject { Id = y.SubjectId }));
+                .ForMember(x => x.Subject, x => x.MapFrom(y => new Subject { Id = y.SubjectId }))
+                .ForMember(x => x.Type, x => x.MapFrom(y => QuestionType.Essay));
 
             CreateMap<EssayQuestion, Question>()
                 .ForMember(x => x.SubjectId, x => x.MapFrom(y => y.Subject.Id))
-                .ForMember(x => x.Subject, x => x.Ignore());
+                .ForMember(x => x.Subject, x => x.Ignore())
+                .ForMember(x => x.ItemType, x => x.MapFrom(y => y.Type));
 
-            CreateMap<Question, EssayQuestion>();
+            CreateMap<Question, EssayQuestion>()
+                .ForMember(x => x.Type, x => x.MapFrom(y => y.ItemType))
+                .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
         }
     }
 }

@@ -10,7 +10,10 @@ namespace TestsDelivery.BL.Services.Questions.SingleChoice
         public ScqService(
             IQuestionsRepository questionsRepository,
             IAnswerOptionsRepository answerOptionsRepository,
-            IMapper mapper) : base(questionsRepository, answerOptionsRepository, mapper)
+            IMapper mapper) : base(questionsRepository,
+            answerOptionsRepository,
+            mapper,
+            QuestionType.SingleChoice)
         {
         }
     }

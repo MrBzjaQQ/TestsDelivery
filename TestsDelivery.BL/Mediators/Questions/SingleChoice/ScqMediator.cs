@@ -6,40 +6,29 @@ using TestsDelivery.Domain.Questions;
 
 namespace TestsDelivery.BL.Mediators.Questions.SingleChoice
 {
-    public class ScqMediator: IScqMediator
+    public class ScqMediator : BaseMediator<ScqCreateModel, ScqEditModel, ScqReadModel, SingleChoiceQuestion>, IScqMediator
     {
-        private readonly IScqService _service;
-        private readonly IMapper _mapper;
         private readonly IScqModelValidator _validator;
 
         public ScqMediator(
             IScqService service,
             IScqModelValidator validator,
             IMapper mapper)
+            : base(service, mapper)
         {
             _validator = validator;
-            _service = service;
-            _mapper = mapper;
         }
 
-        public ScqReadModel CreateQuestion(ScqCreateModel model)
+        public override ScqReadModel CreateQuestion(ScqCreateModel model)
         {
             _validator.ValidateCreateModel(model);
-            var question = _mapper.Map<SingleChoiceQuestion>(model);
-            var createdQuestion = _service.CreateQuestion(question);
-            return _mapper.Map<ScqReadModel>(createdQuestion);
+            return base.CreateQuestion(model);
         }
 
-        public void EditQuestion(ScqEditModel model)
+        public override void EditQuestion(ScqEditModel model)
         {
             _validator.ValidateEditModel(model);
-            var question = _mapper.Map<SingleChoiceQuestion>(model);
-            _service.EditQuestion(question);
-        }
-
-        public ScqReadModel GetQuestion(long id)
-        {
-            return _mapper.Map<ScqReadModel>(_service.GetQuestion(id));
+            base.EditQuestion(model);
         }
     }
 }

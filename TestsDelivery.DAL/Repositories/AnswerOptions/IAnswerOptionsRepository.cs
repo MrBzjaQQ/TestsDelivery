@@ -13,6 +13,8 @@ namespace TestsDelivery.DAL.Repositories.AnswerOptions
 
         void EditAnswerOptions(IEnumerable<AnswerOption> answerOptions);
 
+        void DeleteAnswerOptions(IEnumerable<long> ids);
+
         AnswerOption GetAnswerOption(long id);
 
         IEnumerable<AnswerOption> GetAnswerOptionsForQuestion(long questionId);

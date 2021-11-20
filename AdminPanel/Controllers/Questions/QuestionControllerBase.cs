@@ -1,11 +1,14 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
+using TestsDelivery.BL.Exceptions.Validation;
 using TestsDelivery.BL.Mediators.Questions;
 using TestsDelivery.BL.Models.Questions.BaseQuestion;
 using TestsDelivery.DAL.Exceptions.Questions;
 
 namespace AdminPanel.Controllers.Questions
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public abstract class QuestionControllerBase <TCreateModel, TEditModel, TReadModel> : ControllerBase
         where TCreateModel: BaseQuestionCreateModel
         where TEditModel: BaseQuestionEditModel
@@ -18,7 +21,8 @@ namespace AdminPanel.Controllers.Questions
             _mediator = mediator;
         }
 
-        [HttpGet("{id}", Name = "GetQuestion")]
+        [HttpGet("{id}")]
+        [ActionName(nameof(GetQuestion))]
         public IActionResult GetQuestion(long id)
         {
             if (id < 1)
@@ -45,7 +49,7 @@ namespace AdminPanel.Controllers.Questions
             {
                 var createdQuestion = _mediator.CreateQuestion(model);
 
-                return CreatedAtRoute(nameof(GetQuestion), new { Id = createdQuestion.Id }, createdQuestion);
+                return CreatedAtAction(nameof(GetQuestion), createdQuestion);
             }
 
             return BadRequest(ModelState);
@@ -56,7 +60,16 @@ namespace AdminPanel.Controllers.Questions
         {
             if (ModelState.IsValid)
             {
-                _mediator.EditQuestion(model);
+                try
+                {
+                    _mediator.EditQuestion(model);
+                }
+                catch (QuestionValidationException ex)
+                {
+                    ModelState.AddModelError("QuestionException", ex.Message);
+
+                    return BadRequest(ModelState);
+                }
 
                 return Ok();
             }

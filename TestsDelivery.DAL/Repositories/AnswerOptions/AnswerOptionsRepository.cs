@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Data;
 using TestsDelivery.DAL.Exceptions.AnswerOptions;
 using TestsDelivery.DAL.Models.Questions;
@@ -40,6 +41,20 @@ namespace TestsDelivery.DAL.Repositories.AnswerOptions
             _context.SaveChanges();
         }
 
+        public void DeleteAnswerOptions(IEnumerable<long> ids)
+        {
+            if (ids == null)
+                throw new ArgumentNullException(nameof(ids));
+
+            var options = new List<AnswerOption>();
+            foreach (var id in ids)
+                options.Add(new AnswerOption { Id = id });
+            
+            _context.AttachRange(options);
+            _context.RemoveRange(options);
+            _context.SaveChanges();
+        }
+
         public AnswerOption GetAnswerOption(long id)
         {
             try
@@ -54,7 +69,7 @@ namespace TestsDelivery.DAL.Repositories.AnswerOptions
 
         public IEnumerable<AnswerOption> GetAnswerOptionsForQuestion(long questionId)
         {
-            return _context.AnswerOptions.Where(x => x.QuestionId == questionId).ToList();
+            return _context.AnswerOptions.Where(x => x.QuestionId == questionId).AsNoTracking().ToList();
         }
     }
 }

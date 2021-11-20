@@ -1,4 +1,6 @@
-﻿namespace TestsDelivery.BL.Mediators.Questions
+﻿using TestsDelivery.Domain.Questions;
+
+namespace TestsDelivery.BL.Mediators.Questions
 {
     public interface IBaseMediator<in TCreateModel, in TEditModel, out TReadModel>
     {

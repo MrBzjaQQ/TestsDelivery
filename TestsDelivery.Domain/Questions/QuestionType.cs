@@ -1,6 +1,6 @@
 ﻿namespace TestsDelivery.Domain.Questions
 {
-    public enum QuestionType
+    public enum QuestionType : short
     {
         SingleChoice,
         MultipleChoice,
