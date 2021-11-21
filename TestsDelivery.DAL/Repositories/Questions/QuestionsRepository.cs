@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Data;
@@ -50,6 +51,19 @@ namespace TestsDelivery.DAL.Repositories.Questions
             return question;
         }
 
+        public IEnumerable<Question> GetQuestionsByTestId(long testId)
+        {
+            return GetQuestionsByTestIdInternal(testId)
+                    .ToList();
+        }
+
+        public IEnumerable<long> GetQuestionIdsByTestId(long testId)
+        {
+            return GetQuestionsByTestIdInternal(testId)
+                .Select(x => x.Id)
+                .ToList();
+        }
+
         public Question GetQuestion(long id)
         {
             try
@@ -68,6 +82,18 @@ namespace TestsDelivery.DAL.Repositories.Questions
         {
             destination.Name = source.Name;
             destination.Text = source.Text;
+        }
+
+        private IQueryable<Question> GetQuestionsByTestIdInternal(long testId)
+        {
+            return _context.QuestionInTests
+                .Where(questionInTest => questionInTest.TestId == testId)
+                .Join(
+                    _context.Questions,
+                    questionInTest => questionInTest.QuestionId,
+                    question => question.Id,
+                    (questionInTest, question) => question)
+                .Include(x => x.Subject);
         }
     }
 }

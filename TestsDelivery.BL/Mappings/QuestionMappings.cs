@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using TestsDelivery.BL.Models.Questions.BaseQuestion;
 using TestsDelivery.BL.Models.Questions.Essay;
 using TestsDelivery.BL.Models.Questions.MultipleChoice;
 using TestsDelivery.BL.Models.Questions.SingleChoice;
@@ -62,6 +63,15 @@ namespace TestsDelivery.BL.Mappings
             CreateMap<Question, EssayQuestion>()
                 .ForMember(x => x.Type, x => x.MapFrom(y => y.Type))
                 .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
+
+            CreateMap<QuestionBase, Question>()
+                .ForMember(x => x.SubjectId, x => x.MapFrom(y => y.Subject.Id))
+                .ForMember(x => x.Subject, x => x.Ignore())
+                .ForMember(x => x.Type, x => x.MapFrom(y => y.Type));
+            CreateMap<Question, QuestionBase>()
+                .ForMember(x => x.Type, x => x.MapFrom(y => y.Type))
+                .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
+            CreateMap<QuestionBase, BaseQuestionReadModel>();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using TestsDelivery.DAL.Models.Questions;
+﻿using System.Collections.Generic;
+using TestsDelivery.DAL.Models.Questions;
 
 namespace TestsDelivery.DAL.Repositories.Questions
 {
@@ -11,5 +12,9 @@ namespace TestsDelivery.DAL.Repositories.Questions
         Question GetQuestion(long id);
 
         Question GetQuestion(long id, short questionType);
+
+        IEnumerable<Question> GetQuestionsByTestId(long testId);
+
+        IEnumerable<long> GetQuestionIdsByTestId(long testId);
     }
 }

@@ -15,19 +15,23 @@ using TestsDelivery.BL.Mediators.Candidate;
 using TestsDelivery.BL.Mediators.Questions.Essay;
 using TestsDelivery.BL.Mediators.Questions.MultipleChoice;
 using TestsDelivery.BL.Mediators.Questions.SingleChoice;
+using TestsDelivery.BL.Mediators.Test;
 using TestsDelivery.BL.Services.Candidates;
 using TestsDelivery.BL.Services.Questions.Essay;
 using TestsDelivery.BL.Services.Questions.MultipleChoice;
 using TestsDelivery.BL.Services.Questions.SingleChoice;
 using TestsDelivery.BL.Services.Subjects;
+using TestsDelivery.BL.Services.Test;
 using TestsDelivery.BL.Services.Users;
 using TestsDelivery.BL.Validators.Questions;
 using TestsDelivery.DAL.Data;
 using TestsDelivery.DAL.Models.Identity;
 using TestsDelivery.DAL.Repositories.AnswerOptions;
 using TestsDelivery.DAL.Repositories.Candidate;
+using TestsDelivery.DAL.Repositories.QuestionInTests;
 using TestsDelivery.DAL.Repositories.Questions;
 using TestsDelivery.DAL.Repositories.Subjects;
+using TestsDelivery.DAL.Repositories.Test;
 using TestsDelivery.Options.Tokens;
 
 namespace AdminPanel
@@ -100,24 +104,30 @@ namespace AdminPanel
 
             services.AddScoped(typeof(IAppLogging<>), typeof(AppLogging<>));
             services.AddScoped<ISubjectsMediator, SubjectsMediator>();
-            services.AddScoped<ISubjectsService, SubjectsService>();
-            services.AddScoped<ISubjectsRepository, SubjectsRepository>();
             services.AddScoped<IScqMediator, ScqMediator>();
             services.AddScoped<IMcqMediator, McqMediator>();
             services.AddScoped<IEssayMediator, EssayMediator>();
             services.AddScoped<ICandidateMediator, CandidateMediator>();
+            services.AddScoped<ITestMediator, TestMediator>();
+
+            services.AddScoped<ISubjectsService, SubjectsService>();
             services.AddScoped<IScqService, ScqService>();
             services.AddScoped<IMcqService, McqService>();
             services.AddScoped<IEssayService, EssayService>();
             services.AddScoped<ICandidateService, CandidateService>();
+            services.AddScoped<ITestService, TestService>();
+            services.AddScoped<IUserService, UserService>();
+
+            services.AddScoped<ISubjectsRepository, SubjectsRepository>();
             services.AddScoped<IQuestionsRepository, QuestionsRepository>();
             services.AddScoped<IAnswerOptionsRepository, AnswerOptionsRepository>();
             services.AddScoped<ICandidateRepository, CandidateRepository>();
+            services.AddScoped<ITestRepository, TestRepository>();
+            services.AddScoped<IQuestionInTestRepository, QuestionInTestRepository>();
+
             services.AddScoped<IScqModelValidator, ScqModelValidator>();
             services.AddScoped<IMcqModelValidator, McqModelValidator>();
             services.AddScoped<IEssayValidator, EssayValidator>();
-
-            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

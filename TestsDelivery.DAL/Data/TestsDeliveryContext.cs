@@ -4,6 +4,7 @@ using TestsDelivery.DAL.Models.Candidate;
 using TestsDelivery.DAL.Models.Identity;
 using TestsDelivery.DAL.Models.Questions;
 using TestsDelivery.DAL.Models.Subject;
+using TestsDelivery.DAL.Models.Test;
 
 namespace TestsDelivery.DAL.Data
 {
@@ -24,5 +25,9 @@ namespace TestsDelivery.DAL.Data
         public DbSet<AnswerOption> AnswerOptions { get; set; }
 
         public DbSet<Candidate> Candidates { get; set; }
+
+        public DbSet<QuestionInTest> QuestionInTests { get; set; }
+
+        public DbSet<Test> Tests { get; set; }
     }
 }

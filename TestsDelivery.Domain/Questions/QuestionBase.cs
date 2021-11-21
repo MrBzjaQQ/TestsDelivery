@@ -1,6 +1,6 @@
 ﻿namespace TestsDelivery.Domain.Questions
 {
-    public abstract record QuestionBase
+    public record QuestionBase
     {
         public long Id { get; set; }
 
