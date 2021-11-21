@@ -15,11 +15,13 @@ using TestsDelivery.BL.Mediators.Candidate;
 using TestsDelivery.BL.Mediators.Questions.Essay;
 using TestsDelivery.BL.Mediators.Questions.MultipleChoice;
 using TestsDelivery.BL.Mediators.Questions.SingleChoice;
+using TestsDelivery.BL.Mediators.ScheduledTest;
 using TestsDelivery.BL.Mediators.Test;
 using TestsDelivery.BL.Services.Candidates;
 using TestsDelivery.BL.Services.Questions.Essay;
 using TestsDelivery.BL.Services.Questions.MultipleChoice;
 using TestsDelivery.BL.Services.Questions.SingleChoice;
+using TestsDelivery.BL.Services.ScheduledTest;
 using TestsDelivery.BL.Services.Subjects;
 using TestsDelivery.BL.Services.Test;
 using TestsDelivery.BL.Services.Users;
@@ -30,6 +32,7 @@ using TestsDelivery.DAL.Repositories.AnswerOptions;
 using TestsDelivery.DAL.Repositories.Candidate;
 using TestsDelivery.DAL.Repositories.QuestionInTests;
 using TestsDelivery.DAL.Repositories.Questions;
+using TestsDelivery.DAL.Repositories.ScheduledTest;
 using TestsDelivery.DAL.Repositories.Subjects;
 using TestsDelivery.DAL.Repositories.Test;
 using TestsDelivery.Options.Tokens;
@@ -109,6 +112,7 @@ namespace AdminPanel
             services.AddScoped<IEssayMediator, EssayMediator>();
             services.AddScoped<ICandidateMediator, CandidateMediator>();
             services.AddScoped<ITestMediator, TestMediator>();
+            services.AddScoped<IScheduledTestMediator, ScheduledTestMediator>();
 
             services.AddScoped<ISubjectsService, SubjectsService>();
             services.AddScoped<IScqService, ScqService>();
@@ -116,6 +120,7 @@ namespace AdminPanel
             services.AddScoped<IEssayService, EssayService>();
             services.AddScoped<ICandidateService, CandidateService>();
             services.AddScoped<ITestService, TestService>();
+            services.AddScoped<IScheduledTestService, ScheduledTestService>();
             services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<ISubjectsRepository, SubjectsRepository>();
@@ -124,6 +129,7 @@ namespace AdminPanel
             services.AddScoped<ICandidateRepository, CandidateRepository>();
             services.AddScoped<ITestRepository, TestRepository>();
             services.AddScoped<IQuestionInTestRepository, QuestionInTestRepository>();
+            services.AddScoped<IScheduledTestRepository, ScheduledTestRepository>();
 
             services.AddScoped<IScqModelValidator, ScqModelValidator>();
             services.AddScoped<IMcqModelValidator, McqModelValidator>();

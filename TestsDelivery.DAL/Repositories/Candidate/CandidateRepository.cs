@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Data;
 using TestsDelivery.DAL.Exceptions.Candidate;
 

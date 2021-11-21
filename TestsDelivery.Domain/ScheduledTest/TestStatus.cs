@@ -1,4 +1,4 @@
-﻿namespace TestsDelivery.Domain.Test
+﻿namespace TestsDelivery.Domain.ScheduledTest
 {
     public enum TestStatus : short
     {

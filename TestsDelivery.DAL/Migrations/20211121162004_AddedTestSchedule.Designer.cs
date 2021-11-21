@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestsDelivery.DAL.Data;
 
 namespace TestsDelivery.DAL.Migrations
 {
     [DbContext(typeof(TestsDeliveryContext))]
-    partial class TestsDeliveryContextModelSnapshot : ModelSnapshot
+    [Migration("20211121162004_AddedTestSchedule")]
+    partial class AddedTestSchedule
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -292,9 +294,6 @@ namespace TestsDelivery.DAL.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<long>("CandidateId")
-                        .HasColumnType("bigint");
-
                     b.Property<int>("Duration")
                         .HasColumnType("int");
 
@@ -317,8 +316,6 @@ namespace TestsDelivery.DAL.Migrations
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CandidateId");
 
                     b.HasIndex("TestId");
 
@@ -455,19 +452,11 @@ namespace TestsDelivery.DAL.Migrations
 
             modelBuilder.Entity("TestsDelivery.DAL.Models.ScheduledTest.ScheduledTest", b =>
                 {
-                    b.HasOne("TestsDelivery.DAL.Models.Candidate.Candidate", "Candidate")
-                        .WithMany()
-                        .HasForeignKey("CandidateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("TestsDelivery.DAL.Models.Test.Test", "Test")
                         .WithMany()
                         .HasForeignKey("TestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Candidate");
 
                     b.Navigation("Test");
                 });

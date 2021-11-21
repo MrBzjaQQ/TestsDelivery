@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Models.Candidate;
 using TestsDelivery.DAL.Models.Identity;
 using TestsDelivery.DAL.Models.Questions;
+using TestsDelivery.DAL.Models.ScheduledTest;
 using TestsDelivery.DAL.Models.Subject;
 using TestsDelivery.DAL.Models.Test;
 
@@ -29,5 +30,7 @@ namespace TestsDelivery.DAL.Data
         public DbSet<QuestionInTest> QuestionInTests { get; set; }
 
         public DbSet<Test> Tests { get; set; }
+
+        public DbSet<ScheduledTest> ScheduledTests { get; set; }
     }
 }
