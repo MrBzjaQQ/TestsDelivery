@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Data;
 using TestsDelivery.DAL.Exceptions.Questions;
@@ -30,13 +29,13 @@ namespace TestsDelivery.DAL.Repositories.Questions
                 var existingQuestion = _context.Questions
                     .Single(x => x.Id == question.Id);
 
-                if (existingQuestion.ItemType != question.ItemType)
-                    throw new QuestionIncorrectTypeException(question.ItemType, existingQuestion.ItemType);
+                if (existingQuestion.Type != question.Type)
+                    throw new QuestionIncorrectTypeException(question.Type, existingQuestion.Type);
 
                 ApplyChangesToDestination(question, existingQuestion);
                 _context.SaveChanges();
             }
-            catch (InvalidOperationException ex)
+            catch (InvalidOperationException)
             {
                 throw new QuestionNotFoundException(question.Id);
             }
@@ -45,8 +44,8 @@ namespace TestsDelivery.DAL.Repositories.Questions
         public Question GetQuestion(long id, short questionType)
         {
             var question = GetQuestion(id);
-            if (question.ItemType != questionType)
-                throw new QuestionIncorrectTypeException(questionType, question.ItemType);
+            if (question.Type != questionType)
+                throw new QuestionIncorrectTypeException(questionType, question.Type);
 
             return question;
         }

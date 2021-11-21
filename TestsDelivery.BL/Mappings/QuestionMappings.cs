@@ -23,10 +23,10 @@ namespace TestsDelivery.BL.Mappings
             CreateMap<SingleChoiceQuestion, Question>()
                 .ForMember(x => x.SubjectId, x => x.MapFrom(y => y.Subject.Id))
                 .ForMember(x => x.Subject, x => x.Ignore())
-                .ForMember(x => x.ItemType, x => x.MapFrom(y => y.Type));
+                .ForMember(x => x.Type, x => x.MapFrom(y => y.Type));
 
             CreateMap<Question, SingleChoiceQuestion>()
-                .ForMember(x => x.Type, x => x.MapFrom(y => y.ItemType))
+                .ForMember(x => x.Type, x => x.MapFrom(y => y.Type))
                 .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
 
             CreateMap<MultipleChoiceQuestion, McqReadModel>()
@@ -40,10 +40,10 @@ namespace TestsDelivery.BL.Mappings
             CreateMap<MultipleChoiceQuestion, Question>()
                 .ForMember(x => x.SubjectId, x => x.MapFrom(y => y.Subject.Id))
                 .ForMember(x => x.Subject, x => x.Ignore())
-                .ForMember(x => x.ItemType, x => x.MapFrom(y => y.Type));
+                .ForMember(x => x.Type, x => x.MapFrom(y => y.Type));
 
             CreateMap<Question, MultipleChoiceQuestion>()
-                .ForMember(x => x.Type, x => x.MapFrom(y => y.ItemType))
+                .ForMember(x => x.Type, x => x.MapFrom(y => y.Type))
                 .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
 
             CreateMap<EssayQuestion, EssayReadModel>()
@@ -57,10 +57,10 @@ namespace TestsDelivery.BL.Mappings
             CreateMap<EssayQuestion, Question>()
                 .ForMember(x => x.SubjectId, x => x.MapFrom(y => y.Subject.Id))
                 .ForMember(x => x.Subject, x => x.Ignore())
-                .ForMember(x => x.ItemType, x => x.MapFrom(y => y.Type));
+                .ForMember(x => x.Type, x => x.MapFrom(y => y.Type));
 
             CreateMap<Question, EssayQuestion>()
-                .ForMember(x => x.Type, x => x.MapFrom(y => y.ItemType))
+                .ForMember(x => x.Type, x => x.MapFrom(y => y.Type))
                 .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
         }
     }

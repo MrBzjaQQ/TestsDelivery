@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TestsDelivery.DAL.Models.Candidate;
 using TestsDelivery.DAL.Models.Identity;
 using TestsDelivery.DAL.Models.Questions;
 using TestsDelivery.DAL.Models.Subject;
@@ -21,5 +22,7 @@ namespace TestsDelivery.DAL.Data
         public DbSet<Question> Questions { get; set; }
 
         public DbSet<AnswerOption> AnswerOptions { get; set; }
+
+        public DbSet<Candidate> Candidates { get; set; }
     }
 }

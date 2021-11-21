@@ -12,7 +12,7 @@ namespace TestsDelivery.DAL.Models.Questions
 
         public string Text { get; set; }
 
-        public short ItemType { get; set; }
+        public short Type { get; set; }
 
         [ForeignKey(nameof(Models.Subject.Subject))]
         public long SubjectId { get; set; }
