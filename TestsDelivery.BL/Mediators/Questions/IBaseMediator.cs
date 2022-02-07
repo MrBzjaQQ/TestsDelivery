@@ -9,5 +9,7 @@ namespace TestsDelivery.BL.Mediators.Questions
         void EditQuestion(TEditModel model);
 
         TReadModel GetQuestion(long id);
+
+        void DeleteQuestion(long id);
     }
 }

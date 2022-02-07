@@ -3,7 +3,7 @@ using TestsDelivery.BL.Models.Subject;
 using TestsDelivery.BL.Services.Subjects;
 using TestsDelivery.Domain.Subject;
 
-namespace TestsDelivery.BL.Mediators
+namespace TestsDelivery.BL.Mediators.Subjects
 {
     public class SubjectsMediator: ISubjectsMediator
     {

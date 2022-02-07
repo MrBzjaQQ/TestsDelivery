@@ -42,6 +42,12 @@ namespace TestsDelivery.BL.Services.Questions
             return MapQuestionToDomain(_questionsRepository.GetQuestion(questionDataModel.Id), answerOptions);
         }
 
+        public void DeleteQuestion(long id)
+        {
+            _answerOptionsRepository.DeleteAnswerOptionsByQuestionId(id);
+            _questionsRepository.DeleteQuestion(id, (short)_questionType);
+        }
+
         public void EditQuestion(TDomainQuestion question)
         {
             var questionDataModel = _mapper.Map<Question>(question);

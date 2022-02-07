@@ -18,5 +18,7 @@ namespace TestsDelivery.DAL.Repositories.AnswerOptions
         AnswerOption GetAnswerOption(long id);
 
         IEnumerable<AnswerOption> GetAnswerOptionsForQuestion(long questionId);
+
+        void DeleteAnswerOptionsByQuestionId(long questionId);
     }
 }

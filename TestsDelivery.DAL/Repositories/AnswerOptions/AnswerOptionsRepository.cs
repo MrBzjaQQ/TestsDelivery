@@ -71,5 +71,11 @@ namespace TestsDelivery.DAL.Repositories.AnswerOptions
         {
             return _context.AnswerOptions.Where(x => x.QuestionId == questionId).AsNoTracking().ToList();
         }
+
+        public void DeleteAnswerOptionsByQuestionId(long questionId)
+        {
+            var optionsToRemove = _context.AnswerOptions.Where(option => option.QuestionId == questionId);
+            _context.RemoveRange(optionsToRemove);
+        }
     }
 }

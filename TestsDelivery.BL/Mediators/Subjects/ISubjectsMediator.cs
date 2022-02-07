@@ -1,6 +1,6 @@
 ﻿using TestsDelivery.BL.Models.Subject;
 
-namespace TestsDelivery.BL.Mediators
+namespace TestsDelivery.BL.Mediators.Subjects
 {
     public interface ISubjectsMediator
     {

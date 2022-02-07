@@ -16,5 +16,7 @@ namespace TestsDelivery.DAL.Repositories.Questions
         IEnumerable<Question> GetQuestionsByTestId(long testId);
 
         IEnumerable<long> GetQuestionIdsByTestId(long testId);
+
+        void DeleteQuestion(long id, short questionType);
     }
 }

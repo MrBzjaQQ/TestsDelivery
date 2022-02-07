@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TestsDelivery.BL.Mediators;
+using TestsDelivery.BL.Mediators.Subjects;
 using TestsDelivery.BL.Models.Subject;
 using TestsDelivery.DAL.Exceptions.Subjects;
 

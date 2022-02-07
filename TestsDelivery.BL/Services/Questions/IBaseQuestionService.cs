@@ -9,5 +9,7 @@ namespace TestsDelivery.BL.Services.Questions
         void EditQuestion(TQuestionBase question);
 
         TQuestionBase GetQuestion(long id);
+
+        void DeleteQuestion(long id);
     }
 }

@@ -42,6 +42,27 @@ namespace AdminPanel.Controllers.Questions
             }
         }
 
+        [HttpDelete("{id}")]
+        [ActionName(nameof(DeleteQuestion))]
+        public IActionResult DeleteQuestion(long id)
+        {
+            if (id < 1)
+                return BadRequest(new ArgumentException(nameof(id)));
+
+            try
+            {
+                _mediator.DeleteQuestion(id);
+
+                return Ok();
+            }
+            catch (QuestionException ex)
+            {
+                ModelState.AddModelError("QuestionException", ex.Message);
+
+                return BadRequest(ModelState);
+            }
+        }
+
         [HttpPost]
         public IActionResult CreateQuestion(TCreateModel model)
         {

@@ -95,5 +95,17 @@ namespace TestsDelivery.DAL.Repositories.Questions
                     (questionInTest, question) => question)
                 .Include(x => x.Subject);
         }
+
+        public void DeleteQuestion(long id, short questionType)
+        {
+            var question = _context.Questions.Find(id);
+            if (question != null)
+            {
+                if (question.Type != questionType)
+                    throw new QuestionIncorrectTypeException(questionType, question.Type);
+
+                _context.Questions.Remove(question);
+            }
+        }
     }
 }

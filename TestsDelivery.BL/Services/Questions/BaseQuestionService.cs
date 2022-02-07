@@ -1,5 +1,4 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using TestsDelivery.DAL.Models.Questions;
 using TestsDelivery.DAL.Repositories.Questions;
 using TestsDelivery.Domain.Questions;
@@ -28,6 +27,13 @@ namespace TestsDelivery.BL.Services.Questions
 
             var questionResult = _mapper.Map<TDomainQuestion>(_repository.GetQuestion(questionData.Id));
             return questionResult;
+        }
+
+        public void DeleteQuestion(long id)
+        {
+            // TODO this way removes question without checking its type
+            // It needs to check question type before delete
+            _repository.DeleteQuestion(id, (short)_questionType);
         }
 
         public void EditQuestion(TDomainQuestion question)

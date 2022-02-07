@@ -29,6 +29,11 @@ namespace TestsDelivery.BL.Mediators.Questions
             return _mapper.Map<TReadModel>(createdQuestion);
         }
 
+        public void DeleteQuestion(long id)
+        {
+            _service.DeleteQuestion(id);
+        }
+
         public virtual void EditQuestion(TEditModel model)
         {
             var question = _mapper.Map<TDomainModel>(model);
