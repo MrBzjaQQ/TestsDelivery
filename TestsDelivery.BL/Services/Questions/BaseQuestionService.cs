@@ -5,46 +5,45 @@ using TestsDelivery.Domain.Questions;
 
 namespace TestsDelivery.BL.Services.Questions
 {
-    public abstract class BaseQuestionService<TDomainQuestion, TDataQuestion> : IBaseQuestionService<TDomainQuestion>
+    public abstract class BaseQuestionService<TDomainQuestion> : IBaseQuestionService<TDomainQuestion>
         where TDomainQuestion : QuestionBase
-        where TDataQuestion: Question
     {
-        private readonly IQuestionsRepository _repository;
-        private readonly IMapper _mapper;
-        private readonly QuestionType _questionType;
+        protected readonly IQuestionsRepository QuestionsRepository;
+        protected readonly IMapper Mapper;
+        protected readonly QuestionType QuestionType;
 
         protected BaseQuestionService(IQuestionsRepository repository, IMapper mapper, QuestionType questionType)
         {
-            _repository = repository;
-            _mapper = mapper;
-            _questionType = questionType;
+            QuestionsRepository = repository;
+            Mapper = mapper;
+            QuestionType = questionType;
         }
 
-        public TDomainQuestion CreateQuestion(TDomainQuestion question)
+        public virtual TDomainQuestion CreateQuestion(TDomainQuestion question)
         {
-            var questionData = _mapper.Map<TDataQuestion>(question);
-            _repository.CreateQuestion(questionData);
+            var questionData = Mapper.Map<Question>(question);
+            QuestionsRepository.CreateQuestion(questionData);
 
-            var questionResult = _mapper.Map<TDomainQuestion>(_repository.GetQuestion(questionData.Id));
+            var questionResult = Mapper.Map<TDomainQuestion>(QuestionsRepository.GetQuestion(questionData.Id));
             return questionResult;
         }
 
-        public void DeleteQuestion(long id)
+        public virtual void DeleteQuestion(long id)
         {
             // TODO this way removes question without checking its type
             // It needs to check question type before delete
-            _repository.DeleteQuestion(id, (short)_questionType);
+            QuestionsRepository.DeleteQuestion(id, (short)QuestionType);
         }
 
-        public void EditQuestion(TDomainQuestion question)
+        public virtual void EditQuestion(TDomainQuestion question)
         {
-            var questionData = _mapper.Map<TDataQuestion>(question);
-            _repository.EditQuestion(questionData);
+            var questionData = Mapper.Map<Question>(question);
+            QuestionsRepository.EditQuestion(questionData);
         }
 
-        public TDomainQuestion GetQuestion(long id)
+        public virtual TDomainQuestion GetQuestion(long id)
         {
-            return _mapper.Map<TDomainQuestion>(_repository.GetQuestion(id, (short)_questionType));
+            return Mapper.Map<TDomainQuestion>(QuestionsRepository.GetQuestion(id, (short)QuestionType));
         }
     }
 }
