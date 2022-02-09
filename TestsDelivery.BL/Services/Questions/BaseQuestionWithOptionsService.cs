@@ -96,7 +96,7 @@ namespace TestsDelivery.BL.Services.Questions
                 Name = question.Name,
                 Text = question.Text,
                 Subject = Mapper.Map<Subject>(question.Subject),
-                Type = QuestionType.MultipleChoice
+                Type = QuestionType
             };
         }
     }
