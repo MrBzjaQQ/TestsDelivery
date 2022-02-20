@@ -30,8 +30,6 @@ namespace TestsDelivery.BL.Services.Questions
 
         public virtual void DeleteQuestion(long id)
         {
-            // TODO this way removes question without checking its type
-            // It needs to check question type before delete
             QuestionsRepository.DeleteQuestion(id, (short)QuestionType);
         }
 

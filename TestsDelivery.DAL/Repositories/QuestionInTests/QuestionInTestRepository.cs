@@ -14,7 +14,7 @@ namespace TestsDelivery.DAL.Repositories.QuestionInTests
             _context = context;
         }
 
-        public void CreateQuestionInTests(IEnumerable<QuestionInTest> questions)
+        public void CreateQuestionsInTests(IEnumerable<QuestionInTest> questions)
         {
             _context.AddRange(questions);
             _context.SaveChanges();

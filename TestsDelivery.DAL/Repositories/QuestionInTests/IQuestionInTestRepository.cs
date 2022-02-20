@@ -5,7 +5,7 @@ namespace TestsDelivery.DAL.Repositories.QuestionInTests
 {
     public interface IQuestionInTestRepository
     {
-        void CreateQuestionInTests(IEnumerable<QuestionInTest> questions);
+        void CreateQuestionsInTests(IEnumerable<QuestionInTest> questions);
 
         void DeleteQuestionInTests(IEnumerable<long> ids);
 

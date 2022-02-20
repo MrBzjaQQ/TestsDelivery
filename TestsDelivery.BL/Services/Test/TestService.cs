@@ -35,7 +35,7 @@ namespace TestsDelivery.BL.Services.Test
             _testRepository.CreateTest(testData);
 
             var questionsInTest = MapQuestionsToQuestionsInTest(test.Questions, testData.Id);
-            _questionInTestRepository.CreateQuestionInTests(questionsInTest);
+            _questionInTestRepository.CreateQuestionsInTests(questionsInTest);
 
             return MapTestToDomainAndGetQuestions(testData);
         }
@@ -55,7 +55,7 @@ namespace TestsDelivery.BL.Services.Test
             _questionInTestRepository.DeleteQuestionsForTest(testData.Id);
 
             var questionsInTest = MapQuestionsToQuestionsInTest(test.Questions, test.Id);
-            _questionInTestRepository.CreateQuestionInTests(questionsInTest);
+            _questionInTestRepository.CreateQuestionsInTests(questionsInTest);
         }
 
         private List<QuestionInTest> MapQuestionsToQuestionsInTest(IEnumerable<QuestionBase> questions, long testId)
