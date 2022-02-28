@@ -6,9 +6,9 @@ using TestsDelivery.Domain.Questions;
 namespace TestsDelivery.BL.Mediators.Questions
 {
     public abstract class BaseMediator<TCreateModel, TEditModel, TReadModel, TDomainModel> : IBaseMediator<TCreateModel, TEditModel, TReadModel>
-        where TCreateModel : BaseQuestionCreateModel
-        where TEditModel: BaseQuestionEditModel
-        where TReadModel: BaseQuestionReadModel
+        where TCreateModel : QuestionCreateModel
+        where TEditModel: QuestionEditModel
+        where TReadModel: QuestionReadModel
         where TDomainModel: QuestionBase
     {
         private readonly IBaseQuestionService<TDomainModel> _service;

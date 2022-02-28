@@ -2,5 +2,5 @@
 
 namespace TestsDelivery.BL.Models.Questions.MultipleChoice
 {
-    public record McqEditModel : BaseQuestionWithOptionsEditModel;
+    public record McqEditModel : QuestionWithOptionsEditModel;
 }

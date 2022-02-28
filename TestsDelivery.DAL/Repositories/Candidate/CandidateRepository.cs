@@ -1,8 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Data;
-using TestsDelivery.DAL.Exceptions.Candidate;
 
 namespace TestsDelivery.DAL.Repositories.Candidate
 {
@@ -17,14 +16,12 @@ namespace TestsDelivery.DAL.Repositories.Candidate
 
         public Models.Candidate.Candidate GetCandidate(long id)
         {
-            try
-            {
-                return _context.Candidates.Single(c => c.Id == id);
-            }
-            catch (InvalidOperationException)
-            {
-                throw new CandidateNotFoundException(id);
-            }
+            return _context.Candidates.Single(c => c.Id == id);
+        }
+
+        public IEnumerable<Models.Candidate.Candidate> GetCandidates(IEnumerable<long> ids)
+        {
+            return _context.Candidates.Where(x => ids.Contains(x.Id)).ToList();
         }
 
         public void CreateCandidate(Models.Candidate.Candidate candidate)

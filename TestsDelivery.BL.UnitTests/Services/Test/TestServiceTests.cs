@@ -13,6 +13,7 @@ using TestsDelivery.DAL.Models.Test;
 using System.Collections.Generic;
 using System.Linq;
 using TestsDelivery.DAL.Models.Questions;
+using TestsDelivery.DAL.Repositories.AnswerOptions;
 
 namespace TestsDelivery.BL.UnitTests.Services.Test
 {
@@ -22,6 +23,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Test
         private readonly Mock<ITestRepository> _testRepoMock;
         private readonly Mock<IQuestionInTestRepository> _questionInTestRepoMock;
         private readonly Mock<IQuestionsRepository> _questionsRepoMock;
+        private readonly Mock<IAnswerOptionsRepository> _answerOptionsRepositoryMock;
         private readonly TestService _service;
 
         public TestServiceTests()
@@ -37,10 +39,12 @@ namespace TestsDelivery.BL.UnitTests.Services.Test
             _testRepoMock = new Mock<ITestRepository>();
             _questionInTestRepoMock = new Mock<IQuestionInTestRepository>();
             _questionsRepoMock = new Mock<IQuestionsRepository>();
+            _answerOptionsRepositoryMock = new Mock<IAnswerOptionsRepository>();
             _service = new TestService(
                 _testRepoMock.Object,
                 _questionInTestRepoMock.Object,
                 _questionsRepoMock.Object,
+                _answerOptionsRepositoryMock.Object,
                 _mapper);
         }
 

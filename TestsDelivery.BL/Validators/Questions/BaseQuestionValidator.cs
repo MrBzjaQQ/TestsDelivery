@@ -4,8 +4,8 @@ using TestsDelivery.BL.Models.Questions.BaseQuestion;
 namespace TestsDelivery.BL.Validators.Questions
 {
     public class BaseQuestionValidator<TCreateModel, TEditModel> : IBaseQuestionValidator<TCreateModel, TEditModel>
-        where TCreateModel: BaseQuestionCreateModel
-        where TEditModel: BaseQuestionEditModel
+        where TCreateModel: QuestionCreateModel
+        where TEditModel: QuestionEditModel
     {
         public virtual void ValidateCreateModel(TCreateModel model)
         {

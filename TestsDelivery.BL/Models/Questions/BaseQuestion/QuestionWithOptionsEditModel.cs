@@ -3,7 +3,7 @@ using TestsDelivery.BL.Models.Questions.AnswerOptions;
 
 namespace TestsDelivery.BL.Models.Questions.BaseQuestion
 {
-    public record BaseQuestionWithOptionsEditModel : BaseQuestionEditModel
+    public record QuestionWithOptionsEditModel : QuestionEditModel
     {
         public IEnumerable<AnswerOptionEditModel> AnswerOptions { get; set; }
     }

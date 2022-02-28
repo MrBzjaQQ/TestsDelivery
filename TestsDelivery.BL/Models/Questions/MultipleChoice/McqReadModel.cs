@@ -2,5 +2,5 @@
 
 namespace TestsDelivery.BL.Models.Questions.MultipleChoice
 {
-    public record McqReadModel : BaseQuestionWithOptionsReadModel;
+    public record McqReadModel : QuestionWithOptionsReadModel;
 }

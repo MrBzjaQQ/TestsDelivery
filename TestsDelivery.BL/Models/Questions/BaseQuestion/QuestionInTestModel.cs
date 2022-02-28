@@ -2,7 +2,7 @@
 
 namespace TestsDelivery.BL.Models.Questions.BaseQuestion
 {
-    public record BaseQuestionEditModel
+    public record QuestionInTestModel
     {
         [Range(1, long.MaxValue)]
         public long Id { get; set; }
@@ -12,8 +12,5 @@ namespace TestsDelivery.BL.Models.Questions.BaseQuestion
 
         [Required]
         public string Text { get; set; }
-
-        [Range(1, long.MaxValue)]
-        public long SubjectId { get; set; }
     }
 }

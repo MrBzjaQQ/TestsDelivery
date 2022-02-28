@@ -2,5 +2,5 @@
 
 namespace TestsDelivery.BL.Models.Questions.SingleChoice
 {
-    public record ScqReadModel : BaseQuestionWithOptionsReadModel;
+    public record ScqReadModel : QuestionWithOptionsReadModel;
 }

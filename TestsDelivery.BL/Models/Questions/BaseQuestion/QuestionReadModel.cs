@@ -3,7 +3,7 @@ using TestsDelivery.BL.Models.Subject;
 
 namespace TestsDelivery.BL.Models.Questions.BaseQuestion
 {
-    public record BaseQuestionReadModel
+    public record QuestionReadModel
     {
         [Range(1, long.MaxValue)]
         public long Id { get; set; }
@@ -14,7 +14,6 @@ namespace TestsDelivery.BL.Models.Questions.BaseQuestion
         [Required]
         public string Text { get; set; }
 
-        [Range(1, long.MaxValue)]
         public SubjectReadModel Subject { get; set; }
     }
 }

@@ -1,37 +1,45 @@
 ﻿using AutoMapper;
 using TestsDelivery.DAL.Repositories.Candidate;
 using TestsDelivery.DAL.Repositories.ScheduledTest;
-using TestsDelivery.Domain.Candidate;
 using ScheduledTestDomain = TestsDelivery.Domain.ScheduledTest.ScheduledTest;
 using ScheduledTestData = TestsDelivery.DAL.Models.ScheduledTest.ScheduledTest;
+using System.Linq;
+using System.Collections.Generic;
+using TestsDelivery.BL.Services.Test;
+using TestsDelivery.BL.Services.Candidates;
 
 namespace TestsDelivery.BL.Services.ScheduledTest
 {
     public class ScheduledTestService : IScheduledTestService
     {
         private readonly IScheduledTestRepository _scheduledTestRepository;
+        private readonly ITestService _testService;
         private readonly IMapper _mapper;
-        private readonly ICandidateRepository _candidateRepository;
+        private readonly ICandidateService _candidateService;
 
         public ScheduledTestService(
+            ITestService testService,
             IScheduledTestRepository scheduledTestRepository,
-            ICandidateRepository candidateRepository,
+            ICandidateService candidateService,
             IMapper mapper)
         {
             _scheduledTestRepository = scheduledTestRepository;
-            _candidateRepository = candidateRepository;
+            _candidateService = candidateService;
+            _testService = testService;
             _mapper = mapper;
         }
 
         public ScheduledTestDomain ScheduleTest(ScheduledTestDomain test)
         {
-            var candidate = _candidateRepository.GetCandidate(test.Candidate.Id);
+            // TODO: use service
+            var candidates = _candidateService.GetCandidates(test.Candidates.Select(x => x.Id));
 
             var testData = _mapper.Map<ScheduledTestData>(test);
             _scheduledTestRepository.ScheduleTest(testData);
 
             var testDomain = _mapper.Map<ScheduledTestDomain>(testData);
-            testDomain.Candidate = _mapper.Map<Candidate>(candidate);
+            testDomain.Candidates = _mapper.Map<IEnumerable<Domain.Candidate.Candidate>>(candidates);
+            testDomain.Test = _testService.GetFullTest(test.Test.Id);
 
             return testDomain;
         }

@@ -8,6 +8,8 @@ namespace TestsDelivery.BL.Services.Test
 
         TestDomainModel GetTest(long id);
 
+        TestDomainModel GetFullTest(long id);
+
         void EditTest(TestDomainModel test);
     }
 }

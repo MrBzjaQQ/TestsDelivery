@@ -9,6 +9,6 @@ namespace TestsDelivery.BL.Models.Test
 
         public string Name { get; set; }
 
-        public IEnumerable<BaseQuestionReadModel> Questions { get; set; }
+        public IEnumerable<QuestionReadModel> Questions { get; set; }
     }
 }

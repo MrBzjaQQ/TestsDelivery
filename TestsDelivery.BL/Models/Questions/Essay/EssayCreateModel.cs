@@ -2,5 +2,5 @@
 
 namespace TestsDelivery.BL.Models.Questions.Essay
 {
-    public record EssayCreateModel : BaseQuestionCreateModel;
+    public record EssayCreateModel : QuestionCreateModel;
 }

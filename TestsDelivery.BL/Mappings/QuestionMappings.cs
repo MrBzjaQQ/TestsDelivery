@@ -71,7 +71,7 @@ namespace TestsDelivery.BL.Mappings
             CreateMap<Question, QuestionBase>()
                 .ForMember(x => x.Type, x => x.MapFrom(y => y.Type))
                 .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
-            CreateMap<QuestionBase, BaseQuestionReadModel>();
+            CreateMap<QuestionBase, QuestionReadModel>();
         }
     }
 }

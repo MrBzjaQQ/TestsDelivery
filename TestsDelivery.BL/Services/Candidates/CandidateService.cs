@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using TestsDelivery.DAL.Exceptions.Candidate;
 using TestsDelivery.DAL.Repositories.Candidate;
 using TestsDelivery.Domain.Candidate;
 
@@ -26,7 +30,27 @@ namespace TestsDelivery.BL.Services.Candidates
 
         public Candidate GetCandidate(long id)
         {
-            return _mapper.Map<Candidate>(_repository.GetCandidate(id));
+            try
+            {
+                return _mapper.Map<Candidate>(_repository.GetCandidate(id));
+            }
+            catch (InvalidOperationException)
+            {
+                throw new CandidateNotFoundException(id);
+            }
+        }
+
+        public IEnumerable<Candidate> GetCandidates(IEnumerable<long> candidateIds)
+        {
+            var candidates = _repository.GetCandidates(candidateIds);
+
+            if (candidates.Count() != candidateIds.Count())
+            {
+                var missingIds = candidateIds.Except(candidates.Select(x => x.Id));
+                throw new CandidatesNotFountException(missingIds);
+            }
+
+            return _mapper.Map<IEnumerable<Candidate>>(candidates);
         }
 
         public void EditCandidate(Candidate candidate)

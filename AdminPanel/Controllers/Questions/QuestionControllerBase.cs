@@ -10,9 +10,9 @@ namespace AdminPanel.Controllers.Questions
     [Route("api/[controller]")]
     [ApiController]
     public abstract class QuestionControllerBase <TCreateModel, TEditModel, TReadModel> : ControllerBase
-        where TCreateModel: BaseQuestionCreateModel
-        where TEditModel: BaseQuestionEditModel
-        where TReadModel: BaseQuestionReadModel
+        where TCreateModel: QuestionCreateModel
+        where TEditModel: QuestionEditModel
+        where TReadModel: QuestionReadModel
     {
         private readonly IBaseMediator<TCreateModel, TEditModel, TReadModel> _mediator;
 

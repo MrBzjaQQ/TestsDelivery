@@ -2,5 +2,5 @@
 
 namespace TestsDelivery.BL.Models.Questions.SingleChoice
 {
-    public record ScqCreateModel : BaseQuestionWithOptionsCreateModel;
+    public record ScqCreateModel : QuestionWithOptionsCreateModel;
 }

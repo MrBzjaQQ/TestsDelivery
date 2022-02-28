@@ -7,6 +7,9 @@ using TestsDelivery.DAL.Repositories.Test;
 using TestsDelivery.Domain.Questions;
 using TestDomain = TestsDelivery.Domain.Test.Test;
 using TestData = TestsDelivery.DAL.Models.Test.Test;
+using TestsDelivery.DAL.Repositories.AnswerOptions;
+using System.Linq;
+using TestsDelivery.DAL.Exceptions.Questions;
 
 namespace TestsDelivery.BL.Services.Test
 {
@@ -16,16 +19,19 @@ namespace TestsDelivery.BL.Services.Test
         private readonly ITestRepository _testRepository;
         private readonly IQuestionInTestRepository _questionInTestRepository;
         private readonly IQuestionsRepository _questionsRepository;
+        private readonly IAnswerOptionsRepository _answerOptionsRepository;
 
         public TestService(
             ITestRepository testRepository,
             IQuestionInTestRepository questionInTestRepository,
             IQuestionsRepository questionsRepository,
+            IAnswerOptionsRepository answerOptionsRepository,
             IMapper mapper)
         {
             _testRepository = testRepository;
             _questionInTestRepository = questionInTestRepository;
             _questionsRepository = questionsRepository;
+            _answerOptionsRepository = answerOptionsRepository;
             _mapper = mapper;
         }
 
@@ -45,6 +51,13 @@ namespace TestsDelivery.BL.Services.Test
             var testData = _testRepository.GetTest(id);
 
             return MapTestToDomainAndGetQuestions(testData);
+        }
+
+        public TestDomain GetFullTest(long id)
+        {
+            var testData = _testRepository.GetTest(id);
+
+            return MapFullTestToDomain(testData);
         }
 
         public void EditTest(TestDomain test)
@@ -76,6 +89,50 @@ namespace TestsDelivery.BL.Services.Test
             var testDomain = _mapper.Map<TestDomain>(test);
             testDomain.Questions = _mapper.Map<IEnumerable<QuestionBase>>(_questionsRepository.GetQuestionsByTestId(test.Id));
             return testDomain;
+        }
+
+        private TestDomain MapFullTestToDomain(TestData test)
+        {
+            var testDomain = _mapper.Map<TestDomain>(test);
+            testDomain.Questions = GetFullQuestions(test.Id);
+
+            return testDomain;
+        }
+
+        private IEnumerable<QuestionBase> GetFullQuestions(long testId)
+        {
+            var questions = _questionsRepository.GetQuestionsByTestId(testId);
+            var answerOptions = _answerOptionsRepository.GetAnswerOptionsForQuestionIds(questions.Select(x => x.Id)).ToLookup(x => x.QuestionId);
+
+            foreach (var question in questions)
+            {
+                switch (question.Type)
+                {
+                    case (short)QuestionType.SingleChoice:
+                        {
+                            var domainQuestion = _mapper.Map<SingleChoiceQuestion>(question);
+                            domainQuestion.AnswerOptions = _mapper.Map<IEnumerable<AnswerOption>>(answerOptions[domainQuestion.Id]);
+                            yield return domainQuestion;
+                            break;
+                        }
+                    case (short)QuestionType.MultipleChoice:
+                        {
+                            var domainQuestion = _mapper.Map<MultipleChoiceQuestion>(question);
+                            domainQuestion.AnswerOptions = _mapper.Map<IEnumerable<AnswerOption>>(answerOptions[domainQuestion.Id]);
+                            yield return domainQuestion;
+                            break;
+                        }
+                    case (short)QuestionType.Essay:
+                        {
+                            yield return _mapper.Map<EssayQuestion>(question);
+                            break;
+                        }
+                    default:
+                        {
+                            throw new QuestionTypeDoesNotExistsException(question.Type);
+                        }
+                }
+            }
         }
     }
 }

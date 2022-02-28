@@ -2,5 +2,5 @@
 
 namespace TestsDelivery.BL.Models.Questions.Essay
 {
-    public record EssayEditModel : BaseQuestionEditModel;
+    public record EssayEditModel : QuestionEditModel;
 }

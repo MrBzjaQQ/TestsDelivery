@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using TestsDelivery.BL.Models.Candidate;
+using TestsDelivery.BL.Models.Test;
 
 namespace TestsDelivery.BL.Models.ScheduledTest
 {
-    public record ScheduledTestReadModel
+    public record ScheduledTestDetailedModel
     {
         public long Id { get; set; }
 
@@ -17,5 +18,7 @@ namespace TestsDelivery.BL.Models.ScheduledTest
         public DateTime StartDateTime { get; set; }
 
         public DateTime ExpirationDateTime { get; set; }
+
+        public TestDetailedModel Test {get;set;}
     }
 }

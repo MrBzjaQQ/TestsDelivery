@@ -2,7 +2,7 @@
 
 namespace TestsDelivery.BL.Models.Questions.BaseQuestion
 {
-    public record BaseQuestionCreateModel
+    public record QuestionCreateModel
     {
         [Required]
         public string Name { get; set; }

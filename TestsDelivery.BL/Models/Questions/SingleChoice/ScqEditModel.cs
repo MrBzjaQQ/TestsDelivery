@@ -2,5 +2,5 @@
 
 namespace TestsDelivery.BL.Models.Questions.SingleChoice
 {
-    public record ScqEditModel : BaseQuestionWithOptionsEditModel;
+    public record ScqEditModel : QuestionWithOptionsEditModel;
 }

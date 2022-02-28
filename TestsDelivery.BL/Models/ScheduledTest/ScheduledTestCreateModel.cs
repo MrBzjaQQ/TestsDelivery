@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace TestsDelivery.BL.Models.ScheduledTest
@@ -22,7 +23,7 @@ namespace TestsDelivery.BL.Models.ScheduledTest
         public int Duration { get; set; }
 
         [Required]
-        [Range(1, long.MaxValue)]
-        public long CandidateId { get; set; }
+        [MinLength(1)]
+        public IEnumerable<long> CandidateIds { get; set; }
     }
 }
