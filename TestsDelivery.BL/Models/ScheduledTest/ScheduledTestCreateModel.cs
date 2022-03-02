@@ -25,5 +25,7 @@ namespace TestsDelivery.BL.Models.ScheduledTest
         [Required]
         [MinLength(1)]
         public IEnumerable<long> CandidateIds { get; set; }
+
+        public string DestinationInstance { get; set; }
     }
 }

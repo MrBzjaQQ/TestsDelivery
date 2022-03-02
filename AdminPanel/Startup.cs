@@ -25,6 +25,7 @@ using TestsDelivery.BL.Services.Questions.SingleChoice;
 using TestsDelivery.BL.Services.ScheduledTest;
 using TestsDelivery.BL.Services.Subjects;
 using TestsDelivery.BL.Services.Test;
+using TestsDelivery.BL.Services.TestPortalInstances;
 using TestsDelivery.BL.Services.Users;
 using TestsDelivery.BL.Validators.Questions;
 using TestsDelivery.DAL.Data;
@@ -124,6 +125,7 @@ namespace AdminPanel
             services.AddScoped<IScheduledTestService, ScheduledTestService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IAdminPanelCommunicationService, AdminPanelCommunicationService>();
+            services.AddScoped<ITestPortalInstancesService, TestPortalInstancesService>();
 
             services.AddScoped<ISubjectsRepository, SubjectsRepository>();
             services.AddScoped<IQuestionsRepository, QuestionsRepository>();

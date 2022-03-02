@@ -2,6 +2,6 @@
 {
     public interface IAdminPanelCommunicationService
     {
-        void ScheduleTest(Domain.ScheduledTest.ScheduledTest test);
+        void ScheduleTest(Domain.ScheduledTest.ScheduledTest test, string destinationInstance);
     }
 }

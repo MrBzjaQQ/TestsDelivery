@@ -31,7 +31,6 @@ namespace TestsDelivery.BL.Services.ScheduledTest
 
         public ScheduledTestDomain ScheduleTest(ScheduledTestDomain test)
         {
-            // TODO: use service
             var candidates = _candidateService.GetCandidates(test.Candidates.Select(x => x.Id));
 
             var testData = _mapper.Map<ScheduledTestData>(test);
