@@ -1,4 +1,4 @@
-﻿using TestsDelivery.BL.Models.Subject;
+﻿using TestsDelivery.UserModels.Subject;
 
 namespace TestsDelivery.BL.Mediators.Subjects
 {

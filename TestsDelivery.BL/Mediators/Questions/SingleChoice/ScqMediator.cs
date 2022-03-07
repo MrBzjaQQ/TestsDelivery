@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TestsDelivery.BL.Models.Questions.SingleChoice;
+using TestsDelivery.UserModels.Questions.SingleChoice;
 using TestsDelivery.BL.Services.Questions.SingleChoice;
 using TestsDelivery.BL.Validators.Questions;
 using TestsDelivery.Domain.Questions;

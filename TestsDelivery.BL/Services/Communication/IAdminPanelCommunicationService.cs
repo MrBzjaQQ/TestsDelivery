@@ -1,7 +1,9 @@
-﻿namespace TestsDelivery.BL.Services.Communication
+﻿using TestsDelivery.UserModels.ScheduledTest;
+
+namespace TestsDelivery.BL.Services.Communication
 {
     public interface IAdminPanelCommunicationService
     {
-        void ScheduleTest(Domain.ScheduledTest.ScheduledTest test, string destinationInstance);
+        void ScheduleTest(ScheduledTestDetailedModel test);
     }
 }

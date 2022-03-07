@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Exceptions.Validation;
 using TestsDelivery.BL.Mediators.Questions;
-using TestsDelivery.BL.Models.Questions.BaseQuestion;
+using TestsDelivery.UserModels.Questions.BaseQuestion;
 using TestsDelivery.DAL.Exceptions.Questions;
 
 namespace AdminPanel.Controllers.Questions

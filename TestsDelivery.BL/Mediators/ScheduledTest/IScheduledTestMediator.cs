@@ -1,4 +1,4 @@
-﻿using TestsDelivery.BL.Models.ScheduledTest;
+﻿using TestsDelivery.UserModels.ScheduledTest;
 
 namespace TestsDelivery.BL.Mediators.ScheduledTest
 {

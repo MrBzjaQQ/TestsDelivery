@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using TestsDelivery.BL.Exceptions.Validation;
-using TestsDelivery.BL.Models.Questions.AnswerOptions;
-using TestsDelivery.BL.Models.Questions.SingleChoice;
+using TestsDelivery.UserModels.AnswerOptions;
+using TestsDelivery.UserModels.Questions.SingleChoice;
 
 namespace TestsDelivery.BL.Validators.Questions
 {

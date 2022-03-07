@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TestsDelivery.BL.Models.Subject;
+using TestsDelivery.UserModels.Subject;
 using TestsDelivery.Domain.Subject;
 
 namespace TestsDelivery.BL.Mappings

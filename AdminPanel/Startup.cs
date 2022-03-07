@@ -1,5 +1,5 @@
 using System;
-using AdminPanel.Logging;
+using TestsDelivery.Infrastructure.Logging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
+using TestsDelivery.BL.Factories;
 using TestsDelivery.BL.Mediators.Candidate;
 using TestsDelivery.BL.Mediators.Questions.Essay;
 using TestsDelivery.BL.Mediators.Questions.MultipleChoice;
@@ -124,7 +125,6 @@ namespace AdminPanel
             services.AddScoped<ITestService, TestService>();
             services.AddScoped<IScheduledTestService, ScheduledTestService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IAdminPanelCommunicationService, AdminPanelCommunicationService>();
             services.AddScoped<ITestPortalInstancesService, TestPortalInstancesService>();
 
             services.AddScoped<ISubjectsRepository, SubjectsRepository>();
@@ -138,6 +138,8 @@ namespace AdminPanel
             services.AddScoped<IScqModelValidator, ScqModelValidator>();
             services.AddScoped<IMcqModelValidator, McqModelValidator>();
             services.AddScoped<IEssayValidator, EssayValidator>();
+
+            services.AddScoped<ICommunicationServiceFactory, CommunicationServiceFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

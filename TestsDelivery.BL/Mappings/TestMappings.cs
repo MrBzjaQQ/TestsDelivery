@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using AutoMapper;
-using TestsDelivery.BL.Models.Test;
+using TestsDelivery.UserModels.Test;
 using TestsDelivery.Domain.Questions;
 using TestsDelivery.Domain.Test;
 

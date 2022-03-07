@@ -1,4 +1,4 @@
-﻿using TestsDelivery.BL.Models.Candidate;
+﻿using TestsDelivery.UserModels.Candidate;
 
 namespace TestsDelivery.BL.Mediators.Candidate
 {

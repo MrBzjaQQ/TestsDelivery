@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TestsDelivery.BL.Models.Questions.AnswerOptions;
+using TestsDelivery.UserModels.AnswerOptions;
 using TestsDelivery.Domain.Questions;
 
 namespace TestsDelivery.BL.Mappings

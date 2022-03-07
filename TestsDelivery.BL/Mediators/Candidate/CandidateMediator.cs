@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TestsDelivery.BL.Models.Candidate;
+using TestsDelivery.UserModels.Candidate;
 using TestsDelivery.BL.Services.Candidates;
 
 namespace TestsDelivery.BL.Mediators.Candidate

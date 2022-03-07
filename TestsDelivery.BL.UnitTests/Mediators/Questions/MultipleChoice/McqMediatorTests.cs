@@ -5,8 +5,8 @@ using TestsDelivery.BL.Services.Questions.MultipleChoice;
 using AutoMapper;
 using TestsDelivery.BL.Mappings;
 using Xunit;
-using TestsDelivery.BL.Models.Questions.MultipleChoice;
-using TestsDelivery.BL.Models.Questions.AnswerOptions;
+using TestsDelivery.UserModels.Questions.MultipleChoice;
+using TestsDelivery.UserModels.AnswerOptions;
 using TestsDelivery.Domain.Questions;
 using System.Linq;
 

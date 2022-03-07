@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TestsDelivery.Infrastructure.Logging;
+using TestsPortal.BL.Mediators.ScheduledTest;
+using TestsPortal.BL.Services.ScheduledTest;
 
 namespace TestsPortal
 {
@@ -28,6 +31,12 @@ namespace TestsPortal
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddScoped(typeof(IAppLogging<>), typeof(AppLogging<>));
+
+            services.AddScoped<IScheduledTestMediator, ScheduledTestMediator>();
+
+            services.AddScoped<IScheduledTestService, ScheduledTestService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

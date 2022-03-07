@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
-using TestsDelivery.BL.Models;
+using TestsDelivery.UserModels.Login;
+using TestsDelivery.UserModels.Register;
 using TestsDelivery.Infrastructure.User;
 
 namespace TestsDelivery.BL.Services.Users

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.Questions.SingleChoice;
-using TestsDelivery.BL.Models.Questions.SingleChoice;
+using TestsDelivery.UserModels.Questions.SingleChoice;
 
 namespace AdminPanel.Controllers.Questions
 {

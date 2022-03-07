@@ -1,10 +1,29 @@
-﻿namespace TestsDelivery.BL.Services.Communication
+﻿using AutoMapper;
+using System;
+using TestsDelivery.BL.Clients.Integration;
+using TestsDelivery.UserModels.ScheduledTest;
+
+namespace TestsDelivery.BL.Services.Communication
 {
     public class AdminPanelCommunicationService : IAdminPanelCommunicationService
     {
-        public void ScheduleTest(Domain.ScheduledTest.ScheduledTest test, string destinationInstance)
+        private readonly IIntegrationApiClient _apiClient;
+        private readonly string _instanceUrl;
+        private readonly IMapper _mapper;
+
+        public AdminPanelCommunicationService(
+            IIntegrationApiClient apiClient,
+            string instanceUrl,
+            IMapper mapper)
         {
-            throw new System.NotImplementedException();
+            _apiClient = apiClient;
+            _instanceUrl = instanceUrl;
+            _mapper = mapper;
+        }
+
+        public async void ScheduleTest(ScheduledTestDetailedModel test)
+        {
+            throw new NotImplementedException();
         }
     }
 }

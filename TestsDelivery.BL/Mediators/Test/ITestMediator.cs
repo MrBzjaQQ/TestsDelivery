@@ -1,4 +1,4 @@
-﻿using TestsDelivery.BL.Models.Test;
+﻿using TestsDelivery.UserModels.Test;
 
 namespace TestsDelivery.BL.Mediators.Test
 {

@@ -5,7 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using TestsDelivery.BL.Models;
+using TestsDelivery.UserModels.Login;
+using TestsDelivery.UserModels.Register;
 using TestsDelivery.Infrastructure.User;
 using TestsDelivery.Options.Tokens;
 // TODO: Create Domain model for User

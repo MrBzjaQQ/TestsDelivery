@@ -1,4 +1,4 @@
-﻿using TestsDelivery.BL.Models.Questions.SingleChoice;
+﻿using TestsDelivery.UserModels.Questions.SingleChoice;
 
 namespace TestsDelivery.BL.Validators.Questions
 {

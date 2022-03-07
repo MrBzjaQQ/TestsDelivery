@@ -1,4 +1,4 @@
-using AdminPanel.Logging;
+using TestsDelivery.Infrastructure.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using TestsDelivery;

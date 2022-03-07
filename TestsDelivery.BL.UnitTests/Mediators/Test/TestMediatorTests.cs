@@ -3,7 +3,7 @@ using Moq;
 using System.Linq;
 using TestsDelivery.BL.Mappings;
 using TestsDelivery.BL.Mediators.Test;
-using TestsDelivery.BL.Models.Test;
+using TestsDelivery.UserModels.Test;
 using TestsDelivery.BL.Services.Test;
 using TestsDelivery.Domain.Questions;
 using Xunit;

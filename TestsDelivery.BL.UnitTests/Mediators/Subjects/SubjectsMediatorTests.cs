@@ -4,7 +4,7 @@ using TestsDelivery.BL.Mediators.Subjects;
 using TestsDelivery.BL.Services.Subjects;
 using TestsDelivery.BL.Mappings;
 using Xunit;
-using TestsDelivery.BL.Models.Subject;
+using TestsDelivery.UserModels.Subject;
 using TestsDelivery.Domain.Subject;
 
 namespace TestsDelivery.BL.UnitTests.Mediators.Subjects

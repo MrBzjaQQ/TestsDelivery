@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.ScheduledTest;
-using TestsDelivery.BL.Models.ScheduledTest;
+using TestsDelivery.UserModels.ScheduledTest;
 using TestsDelivery.DAL.Exceptions.Candidate;
 using TestsDelivery.DAL.Exceptions.ScheduledTest;
 

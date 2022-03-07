@@ -19,5 +19,11 @@ namespace TestsDelivery.BL.Services.TestPortalInstances
             var section = _configuration.GetSection(TestPortalInstancesConfigKey);
             return section.GetChildren().Select(x => x.Key);
         }
+
+        public string GetInstanceUrl(string instanceKey)
+        {
+            var section = _configuration.GetSection(TestPortalInstancesConfigKey);
+            return section.GetChildren().Where(x => x.Key == instanceKey).Single().Value;
+        }
     }
 }

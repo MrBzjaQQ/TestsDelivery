@@ -2,7 +2,7 @@
 using Moq;
 using TestsDelivery.BL.Mappings;
 using TestsDelivery.BL.Mediators.Candidate;
-using TestsDelivery.BL.Models.Candidate;
+using TestsDelivery.UserModels.Candidate;
 using TestsDelivery.BL.Services.Candidates;
 using Xunit;
 

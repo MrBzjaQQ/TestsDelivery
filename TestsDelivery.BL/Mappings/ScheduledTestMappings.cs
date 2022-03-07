@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
-using TestsDelivery.BL.Models.ScheduledTest;
-using TestsDelivery.Domain.Candidate;
+using TestsDelivery.UserModels.ScheduledTest;
 using TestsDelivery.Domain.ScheduledTest;
 using TestsDelivery.Domain.Test;
 

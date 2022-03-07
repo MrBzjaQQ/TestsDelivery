@@ -1,20 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
+using System.Text.Json;
+using TestsDelivery.Infrastructure.Logging;
+using TestsDelivery.UserModels.ScheduledTest;
+using TestsPortal.BL.Mediators.ScheduledTest;
 
 namespace TestsPortal.Controllers
 {
     [ApiController]
     public class ScheduledTestsController : ControllerBase
     {
-        public ScheduledTestsController()
-        {
+        private readonly IScheduledTestMediator _mediator;
+        private readonly IAppLogging<ScheduledTestsController> _logger;
 
+        public ScheduledTestsController(
+            IScheduledTestMediator mediator,
+            IAppLogging<ScheduledTestsController> logger)
+        {
+            _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpPost]
-        public IActionResult ScheduleTest()
+        public IActionResult ScheduleTest(ScheduledTestDetailedModel detailedModel)
         {
-            throw new NotImplementedException();
+            _logger.LogAppInformation($"Received data from {Request.Host}: {JsonSerializer.Serialize(detailedModel)}");
+            return Ok();
         }
     }
 }

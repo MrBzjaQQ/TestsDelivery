@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="5.0.9" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.12.2" />
   </ItemGroup>
@@ -14,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\TestsDelivery.DAL\TestsDelivery.DAL.csproj" />
     <ProjectReference Include="..\TestsDelivery.Domain\TestsDelivery.Domain.csproj" />
+    <ProjectReference Include="..\TestsDelivery.UserModels\TestsDelivery.UserModels.csproj" />
   </ItemGroup>
 
 </Project>

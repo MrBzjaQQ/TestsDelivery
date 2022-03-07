@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using TestsDelivery.BL.Models.Questions.BaseQuestion;
-using TestsDelivery.BL.Models.Questions.Essay;
-using TestsDelivery.BL.Models.Questions.MultipleChoice;
-using TestsDelivery.BL.Models.Questions.SingleChoice;
+using TestsDelivery.UserModels.Questions.BaseQuestion;
+using TestsDelivery.UserModels.Questions.Essay;
+using TestsDelivery.UserModels.Questions.MultipleChoice;
+using TestsDelivery.UserModels.Questions.SingleChoice;
 using TestsDelivery.DAL.Models.Questions;
 using TestsDelivery.Domain.Questions;
 using TestsDelivery.Domain.Subject;

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TestsDelivery.BL.Models.Test;
+using TestsDelivery.UserModels.Test;
 using TestsDelivery.BL.Services.Test;
 
 namespace TestsDelivery.BL.Mediators.Test

@@ -1,5 +1,5 @@
 ﻿using System;
-using TestsDelivery.BL.Models.Questions.BaseQuestion;
+using TestsDelivery.UserModels.Questions.BaseQuestion;
 
 namespace TestsDelivery.BL.Validators.Questions
 {

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.Subjects;
-using TestsDelivery.BL.Models.Subject;
+using TestsDelivery.UserModels.Subject;
 using TestsDelivery.DAL.Exceptions.Subjects;
 
 namespace AdminPanel.Controllers

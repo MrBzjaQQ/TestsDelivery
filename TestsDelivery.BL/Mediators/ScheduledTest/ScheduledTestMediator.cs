@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using TestsDelivery.BL.Models.ScheduledTest;
+using TestsDelivery.UserModels.ScheduledTest;
+using TestsDelivery.BL.Providers.Communication;
 using TestsDelivery.BL.Services.Communication;
 using TestsDelivery.BL.Services.ScheduledTest;
 
@@ -7,16 +8,16 @@ namespace TestsDelivery.BL.Mediators.ScheduledTest
 {
     public class ScheduledTestMediator : IScheduledTestMediator
     {
-        private readonly IAdminPanelCommunicationService _communicationService;
+        private readonly ICommunicationServiceProvider _communicationServiceProvider;
         private readonly IScheduledTestService _scheduledTestService;
         private readonly IMapper _mapper;
 
         public ScheduledTestMediator(
-            IAdminPanelCommunicationService communicationService,
+            ICommunicationServiceProvider communicationServiceProvider,
             IScheduledTestService scheduledTestService,
             IMapper mapper)
         {
-            _communicationService = communicationService;
+            _communicationServiceProvider = communicationServiceProvider;
             _scheduledTestService = scheduledTestService;
             _mapper = mapper;
         }
@@ -25,8 +26,9 @@ namespace TestsDelivery.BL.Mediators.ScheduledTest
         {
             var test = _mapper.Map<Domain.ScheduledTest.ScheduledTest>(model);
             var scheduledTest = _scheduledTestService.ScheduleTest(test);
-            _communicationService.ScheduleTest(scheduledTest);
             // TODO: integration part - fill keycode and pin here
+            var communicationService = _communicationServiceProvider.Get<IAdminPanelCommunicationService>(model.DestinationInstance);
+            communicationService.ScheduleTest(_mapper.Map<ScheduledTestDetailedModel>(scheduledTest));
             return _mapper.Map<ScheduledTestReadModel>(scheduledTest);
         }
 
