@@ -18,17 +18,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsDelivery.DAL.UnitTests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsPortal", "TestsPortal\TestsPortal.csproj", "{FD09AEDE-D9A0-4C05-9EA6-0B03C03A10CB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsPortal.BL", "TestsPortal.BL\TestsPortal.BL.csproj", "{94779DBB-D8C9-4D14-9393-58731A20A46F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsPortal.BL", "TestsPortal.BL\TestsPortal.BL.csproj", "{94779DBB-D8C9-4D14-9393-58731A20A46F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsDelivery.UserModels", "TestsDelivery.UserModels\TestsDelivery.UserModels.csproj", "{71EE108D-FB9B-4C02-BA34-AB22AF1691F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsDelivery.UserModels", "TestsDelivery.UserModels\TestsDelivery.UserModels.csproj", "{71EE108D-FB9B-4C02-BA34-AB22AF1691F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsDelivery.Infrastructure", "TestsDelivery.Infrastructure\TestsDelivery.Infrastructure.csproj", "{F5E049B9-ED0E-45AB-8178-304452193AB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsDelivery.Infrastructure", "TestsDelivery.Infrastructure\TestsDelivery.Infrastructure.csproj", "{F5E049B9-ED0E-45AB-8178-304452193AB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsPortal.DAL", "TestsPortal.DAL\TestsPortal.DAL.csproj", "{3C068472-1CC5-490C-91BC-CDBA4CD352C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsPortal.DAL", "TestsPortal.DAL\TestsPortal.DAL.csproj", "{3C068472-1CC5-490C-91BC-CDBA4CD352C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsPortal.DAL.UnitTests", "TestsPortal.DAL.UnitTests\TestsPortal.DAL.UnitTests.csproj", "{465BB777-AE5F-405F-BECF-CD31571A8904}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsPortal.DAL.UnitTests", "TestsPortal.DAL.UnitTests\TestsPortal.DAL.UnitTests.csproj", "{465BB777-AE5F-405F-BECF-CD31571A8904}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsPortal.BL.Tests", "TestsPortal.BL.Tests\TestsPortal.BL.Tests.csproj", "{F0F74424-0EB8-4A41-B569-F14731B3E575}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsPortal.BL.Tests", "TestsPortal.BL.Tests\TestsPortal.BL.Tests.csproj", "{F0F74424-0EB8-4A41-B569-F14731B3E575}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsPortal.Domain", "TestsPortal.Domain\TestsPortal.Domain.csproj", "{8A9C48AE-065F-49ED-8C15-A54BC0B7548D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -92,6 +94,10 @@ Global
 		{F0F74424-0EB8-4A41-B569-F14731B3E575}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0F74424-0EB8-4A41-B569-F14731B3E575}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0F74424-0EB8-4A41-B569-F14731B3E575}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A9C48AE-065F-49ED-8C15-A54BC0B7548D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A9C48AE-065F-49ED-8C15-A54BC0B7548D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A9C48AE-065F-49ED-8C15-A54BC0B7548D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A9C48AE-065F-49ED-8C15-A54BC0B7548D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

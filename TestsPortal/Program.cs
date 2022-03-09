@@ -22,6 +22,6 @@ namespace TestsPortal
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                }).ConfigureLogging();
+                }).ConfigureSerilog();
     }
 }

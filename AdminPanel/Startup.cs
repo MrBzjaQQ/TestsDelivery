@@ -108,6 +108,7 @@ namespace AdminPanel
             services.AddSingleton(new IdentityErrorDescriber());
             services.AddSingleton(authOptions);
 
+            // TODO: think about adding dependencies for each project
             services.AddScoped(typeof(IAppLogging<>), typeof(AppLogging<>));
             services.AddScoped<ISubjectsMediator, SubjectsMediator>();
             services.AddScoped<IScqMediator, ScqMediator>();

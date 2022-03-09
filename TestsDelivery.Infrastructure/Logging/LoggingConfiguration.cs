@@ -9,7 +9,6 @@ using Serilog.Sinks.MSSqlServer;
 
 namespace TestsDelivery.Infrastructure.Logging
 {
-    // TODO: finish logging configuration
     public static class LoggingConfiguration
     {
         private static readonly string OutputTemplate = @"[{Timestamp:yy-MM-dd HH:mm:ss} {Level}]{ApplicationName}:
