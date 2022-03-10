@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using TestsDelivery.UserModels.Questions.MultipleChoice;
 using TestsDelivery.BL.Services.Questions.MultipleChoice;
-using TestsDelivery.BL.Validators.Questions;
+using TestsDelivery.UserModels.Validators.Questions;
 using TestsDelivery.Domain.Questions;
 
 namespace TestsDelivery.BL.Mediators.Questions.MultipleChoice

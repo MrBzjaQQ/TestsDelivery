@@ -1,6 +1,6 @@
 ﻿using Moq;
 using TestsDelivery.BL.Mediators.Questions.MultipleChoice;
-using TestsDelivery.BL.Validators.Questions;
+using TestsDelivery.UserModels.Validators.Questions;
 using TestsDelivery.BL.Services.Questions.MultipleChoice;
 using AutoMapper;
 using TestsDelivery.BL.Mappings;

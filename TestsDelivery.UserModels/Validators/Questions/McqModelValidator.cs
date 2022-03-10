@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using TestsDelivery.BL.Exceptions.Validation;
+using TestsDelivery.UserModels.Exceptions.Validation;
 using TestsDelivery.UserModels.AnswerOptions;
 using TestsDelivery.UserModels.Questions.MultipleChoice;
 
-namespace TestsDelivery.BL.Validators.Questions
+namespace TestsDelivery.UserModels.Validators.Questions
 {
     public class McqModelValidator : BaseQuestionValidator<McqCreateModel, McqEditModel>, IMcqModelValidator
     {

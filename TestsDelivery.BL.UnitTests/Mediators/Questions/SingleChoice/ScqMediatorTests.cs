@@ -6,7 +6,7 @@ using TestsDelivery.BL.Mediators.Questions.SingleChoice;
 using TestsDelivery.UserModels.AnswerOptions;
 using TestsDelivery.UserModels.Questions.SingleChoice;
 using TestsDelivery.BL.Services.Questions.SingleChoice;
-using TestsDelivery.BL.Validators.Questions;
+using TestsDelivery.UserModels.Validators.Questions;
 using TestsDelivery.Domain.Questions;
 using Xunit;
 

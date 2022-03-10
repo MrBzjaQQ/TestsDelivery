@@ -4,7 +4,7 @@ using TestsDelivery.BL.Mappings;
 using TestsDelivery.BL.Mediators.Questions.Essay;
 using TestsDelivery.UserModels.Questions.Essay;
 using TestsDelivery.BL.Services.Questions.Essay;
-using TestsDelivery.BL.Validators.Questions;
+using TestsDelivery.UserModels.Validators.Questions;
 using TestsDelivery.Domain.Questions;
 using Xunit;
 

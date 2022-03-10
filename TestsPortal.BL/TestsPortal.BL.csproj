@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TestsDelivery.UserModels\TestsDelivery.UserModels.csproj" />
+    <ProjectReference Include="..\TestsPortal.Domain\TestsPortal.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TestsDelivery.BL.Exceptions.Validation
+namespace TestsDelivery.UserModels.Exceptions.Validation
 {
     public class QuestionValidationException : Exception
     {

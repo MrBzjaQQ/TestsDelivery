@@ -1,4 +1,4 @@
-﻿namespace TestsDelivery.BL.Exceptions.Validation
+﻿namespace TestsDelivery.UserModels.Exceptions.Validation
 {
     public class MultipleCorrectAnswersException : QuestionValidationException
     {

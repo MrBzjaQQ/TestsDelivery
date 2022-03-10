@@ -1,6 +1,6 @@
 ﻿using TestsDelivery.UserModels.Questions.BaseQuestion;
 
-namespace TestsDelivery.BL.Validators.Questions
+namespace TestsDelivery.UserModels.Validators.Questions
 {
     public interface IBaseQuestionValidator<in TCreateModel, in TEditModel>
     {

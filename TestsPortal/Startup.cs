@@ -1,14 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TestsDelivery.Infrastructure.Logging;
-using TestsPortal.BL.Mediators.ScheduledTest;
-using TestsPortal.BL.Services.ScheduledTest;
+using TestsPortal.BL.Mediators.ScheduledTests;
+using TestsPortal.BL.Services.ScheduledTests;
 
 namespace TestsPortal
 {

@@ -2,7 +2,7 @@
 using System.Text.Json;
 using TestsDelivery.Infrastructure.Logging;
 using TestsDelivery.UserModels.ScheduledTest;
-using TestsPortal.BL.Mediators.ScheduledTest;
+using TestsPortal.BL.Mediators.ScheduledTests;
 
 namespace TestsPortal.Controllers
 {
@@ -24,6 +24,7 @@ namespace TestsPortal.Controllers
         public IActionResult ScheduleTest(ScheduledTestDetailedModel detailedModel)
         {
             _logger.LogAppInformation($"Received data from {Request.Host}: {JsonSerializer.Serialize(detailedModel)}");
+            _mediator.ScheduleTest(detailedModel);
             return Ok();
         }
     }

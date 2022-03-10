@@ -1,7 +1,6 @@
-﻿using System;
-using TestsDelivery.UserModels.Questions.BaseQuestion;
+﻿using TestsDelivery.UserModels.Questions.BaseQuestion;
 
-namespace TestsDelivery.BL.Validators.Questions
+namespace TestsDelivery.UserModels.Validators.Questions
 {
     public class BaseQuestionValidator<TCreateModel, TEditModel> : IBaseQuestionValidator<TCreateModel, TEditModel>
         where TCreateModel: QuestionCreateModel

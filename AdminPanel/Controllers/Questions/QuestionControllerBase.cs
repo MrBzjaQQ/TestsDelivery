@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using TestsDelivery.BL.Exceptions.Validation;
+using TestsDelivery.UserModels.Exceptions.Validation;
 using TestsDelivery.BL.Mediators.Questions;
 using TestsDelivery.UserModels.Questions.BaseQuestion;
 using TestsDelivery.DAL.Exceptions.Questions;
