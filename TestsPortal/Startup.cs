@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TestsDelivery.Infrastructure.Logging;
 using TestsPortal.BL.Mediators.ScheduledTests;
+using TestsPortal.BL.Services.EmailServices;
 using TestsPortal.BL.Services.ScheduledTests;
 
 namespace TestsPortal
@@ -35,6 +36,8 @@ namespace TestsPortal
             services.AddScoped<IScheduledTestMediator, ScheduledTestMediator>();
 
             services.AddScoped<IScheduledTestService, ScheduledTestService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<ICandidateNotificationService, CandidateNotificationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

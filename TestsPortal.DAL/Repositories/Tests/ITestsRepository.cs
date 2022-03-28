@@ -8,5 +8,6 @@ namespace TestsPortal.DAL.Repositories.Tests
 {
     public interface ITestsRepository
     {
+        void CreateTest(Models.Tests.Test test);
     }
 }

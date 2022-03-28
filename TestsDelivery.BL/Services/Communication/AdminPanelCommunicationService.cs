@@ -23,7 +23,7 @@ namespace TestsDelivery.BL.Services.Communication
 
         public async void ScheduleTest(ScheduledTestDetailedModel test)
         {
-            throw new NotImplementedException();
+            await _apiClient.PostAsync<ScheduledTestDetailedModel, ScheduledTestReadModel>(_instanceUrl, test);
         }
     }
 }

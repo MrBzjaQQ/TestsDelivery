@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TestsPortal.DAL.Models.Candidate
+namespace TestsPortal.DAL.Models.Candidates
 {
     public record Candidate
     {

@@ -5,10 +5,10 @@ namespace TestsDelivery.UserModels.Test
 {
     public record TestDetailedModel
     {
+        public long Id { get; set; }
+
         public string Name { get; set; }
 
-        public IEnumerable<QuestionInTestModel> Questions { get; set; }
-
-        public SubjectInTestModel Subject { get; set; }
+        public IEnumerable<QuestionReadModel> Questions { get; set; }
     }
 }

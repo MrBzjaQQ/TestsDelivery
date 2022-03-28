@@ -1,6 +1,9 @@
-﻿namespace TestsPortal.DAL.Repositories.AnswerOptions
+﻿using TestsPortal.DAL.Models.Questions;
+
+namespace TestsPortal.DAL.Repositories.AnswerOptions
 {
-    internal interface IAnswerOptionsRepository
+    public interface IAnswerOptionsRepository
     {
+        void CreateAnswerOptions(IEnumerable<AnswerOption> options);
     }
 }

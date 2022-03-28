@@ -15,10 +15,10 @@ namespace TestsPortal.DAL.Models.ScheduledTests
 
         public Tests.Test Test { get; set; }
 
-        [ForeignKey(nameof(Models.Candidate.Candidate))]
+        [ForeignKey(nameof(Candidates.Candidate))]
         public long CandidateId { get; set; }
 
-        public Candidate.Candidate Candidate { get; set; }
+        public Candidates.Candidate Candidate { get; set; }
 
         public int Duration { get; set; }
 

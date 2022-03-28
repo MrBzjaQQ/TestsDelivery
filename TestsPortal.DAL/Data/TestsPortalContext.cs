@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TestsPortal.DAL.Models.Candidate;
+using TestsPortal.DAL.Models.Candidates;
 using TestsPortal.DAL.Models.Questions;
 using TestsPortal.DAL.Models.ScheduledTests;
 using TestsPortal.DAL.Models.Subject;
