@@ -24,6 +24,7 @@ namespace TestsPortal.BL.Mediators.ScheduledTests
 
         public ScheduledTestReadModel ScheduleTest(ScheduledTestDetailedModel model)
         {
+            // TODO: conditional mapping for questions
             var inputModel = _mapper.Map<ScheduledTest>(model);
             var outputModel = _scheduledTestService.ScheduleTest(inputModel);
             _notificationService.NotifyCandidates(outputModel.Candidates, "TODO: think about building a message");

@@ -16,6 +16,10 @@ namespace TestsPortal.BL.Mappings
                 .Include<EssayReadModel, QuestionBase>()
                 .Include<ScqReadModel, QuestionBase>()
                 .Include<McqReadModel, QuestionBase>();
+
+            CreateMap<QuestionBase, EssayQuestion>();
+            CreateMap<QuestionBase, SingleChoiceQuestion>();
+            CreateMap<QuestionBase, MultipleChoiceQuestion>();
         }
     }
 }

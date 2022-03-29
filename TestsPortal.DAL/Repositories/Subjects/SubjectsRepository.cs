@@ -1,6 +1,6 @@
 ﻿namespace TestsPortal.DAL.Repositories.Subjects
 {
-    public class SubjectsRepository
+    public class SubjectsRepository : ISubjectsRepository
     {
     }
 }

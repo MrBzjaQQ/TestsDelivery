@@ -6,8 +6,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TestsDelivery.Infrastructure.Logging;
 using TestsPortal.BL.Mediators.ScheduledTests;
+using TestsPortal.BL.Services.Candidates;
 using TestsPortal.BL.Services.EmailServices;
+using TestsPortal.BL.Services.Questions;
 using TestsPortal.BL.Services.ScheduledTests;
+using TestsPortal.BL.Services.Tests;
+using TestsPortal.DAL.Repositories.AnswerOptions;
+using TestsPortal.DAL.Repositories.Candidate;
+using TestsPortal.DAL.Repositories.Questions;
+using TestsPortal.DAL.Repositories.ScheduledTests;
+using TestsPortal.DAL.Repositories.Subjects;
+using TestsPortal.DAL.Repositories.Tests;
 
 namespace TestsPortal
 {
@@ -35,9 +44,19 @@ namespace TestsPortal
 
             services.AddScoped<IScheduledTestMediator, ScheduledTestMediator>();
 
+            services.AddScoped<ITestsService, TestsService>();
+            services.AddScoped<ICandidateService, CandidateService>();
+            services.AddScoped<IQuestionsService, QuestionsService>();
             services.AddScoped<IScheduledTestService, ScheduledTestService>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ICandidateNotificationService, CandidateNotificationService>();
+
+            services.AddScoped<IAnswerOptionsRepository, AnswerOptionsRepository>();
+            services.AddScoped<ICandidatesRepository, CandidatesRepository>();
+            services.AddScoped<IQuestionsRepository, QuestionsRepository>();
+            services.AddScoped<IScheduledTestsRepository, ScheduledTestsRepository>();
+            services.AddScoped<ISubjectsRepository, SubjectsRepository>();
+            services.AddScoped<ITestsRepository, TestsRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
