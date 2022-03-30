@@ -2,6 +2,7 @@
 using TestsPortal.BL.Services.Candidates;
 using AutoMapper;
 using TestsPortal.BL.Services.Tests;
+using TestsPortal.DAL.Repositories.ScheduledTests;
 
 namespace TestsPortal.BL.Services.ScheduledTests
 {
@@ -9,18 +10,18 @@ namespace TestsPortal.BL.Services.ScheduledTests
     {
         private readonly ICandidateService _candidateService;
         private readonly ITestsService _testsService;
-        private readonly IScheduledTestService _scheduledTestRepository;
+        private readonly IScheduledTestsRepository _scheduledTestsRepository;
         private readonly IMapper _mapper;
 
         public ScheduledTestService(
             ICandidateService candidateService,
             ITestsService testsService,
-            IScheduledTestService scheduledTestRepository,
+            IScheduledTestsRepository scheduledTestsRepository,
             IMapper mapper)
         {
             _candidateService = candidateService;
             _testsService = testsService;
-            _scheduledTestRepository = scheduledTestRepository;
+            _scheduledTestsRepository = scheduledTestsRepository;
             _mapper = mapper;
         }
 
@@ -29,9 +30,13 @@ namespace TestsPortal.BL.Services.ScheduledTests
             var candidates = _candidateService.CreateCandidates(scheduledTest.Candidates);
             var test = _testsService.CreateTest(scheduledTest.Test);
             var dalScheduledTest = _mapper.Map<DAL.Models.ScheduledTests.ScheduledTest>(scheduledTest);
-            _scheduledTestRepository.ScheduleTest(scheduledTest);
-            // TODO: schedule service
-            throw new NotImplementedException();
+
+            _scheduledTestsRepository.CreateScheduledTest(dalScheduledTest);
+
+            var resultTest = _mapper.Map<ScheduledTest>(dalScheduledTest);
+            resultTest.Candidates = candidates;
+            resultTest.Test = test;
+            return resultTest;
         }
     }
 }

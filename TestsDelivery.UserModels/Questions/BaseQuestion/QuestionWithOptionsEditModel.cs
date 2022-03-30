@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TestsDelivery.UserModels.AnswerOptions;
+﻿using TestsDelivery.UserModels.AnswerOptions;
 
 namespace TestsDelivery.UserModels.Questions.BaseQuestion
 {

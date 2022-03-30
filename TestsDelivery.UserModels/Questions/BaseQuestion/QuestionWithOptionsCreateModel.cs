@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using TestsDelivery.UserModels.AnswerOptions;
 
 namespace TestsDelivery.UserModels.Questions.BaseQuestion

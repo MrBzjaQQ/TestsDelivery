@@ -10,6 +10,7 @@ using TestsPortal.BL.Services.Candidates;
 using TestsPortal.BL.Services.EmailServices;
 using TestsPortal.BL.Services.Questions;
 using TestsPortal.BL.Services.ScheduledTests;
+using TestsPortal.BL.Services.Subjects;
 using TestsPortal.BL.Services.Tests;
 using TestsPortal.DAL.Repositories.AnswerOptions;
 using TestsPortal.DAL.Repositories.Candidate;
@@ -48,6 +49,7 @@ namespace TestsPortal
             services.AddScoped<ICandidateService, CandidateService>();
             services.AddScoped<IQuestionsService, QuestionsService>();
             services.AddScoped<IScheduledTestService, ScheduledTestService>();
+            services.AddScoped<ISubjectsService, SubjectsService>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ICandidateNotificationService, CandidateNotificationService>();
 
