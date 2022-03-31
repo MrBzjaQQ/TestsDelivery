@@ -23,5 +23,12 @@ namespace TestsPortal.BL.Services.Subjects
             _subjectsRepository.CreateSubject(dalSubject);
             return _mapper.Map<Subject>(dalSubject);
         }
+
+        public IEnumerable<Subject> CreateSubjects(IEnumerable<Subject> subject)
+        {
+            var dalSubjects = _mapper.Map<IEnumerable<DAL.Models.Subject.Subject>>(subject);
+            _subjectsRepository.CreateSubjects(dalSubjects);
+            return _mapper.Map<IEnumerable<Subject>>(dalSubjects);
+        }
     }
 }

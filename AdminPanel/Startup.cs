@@ -60,7 +60,7 @@ namespace AdminPanel
 
             services.AddDbContext<TestsDeliveryContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("TestsDeliveryConnection"),
-                    optAction => optAction.MigrationsAssembly("TestsDelivery.DAL")));
+                optAction => optAction.MigrationsAssembly("TestsDelivery.DAL")));
 
             var authOptions = new AuthOptions(Configuration.GetValue<string>("TokenSecretKey"))
             {

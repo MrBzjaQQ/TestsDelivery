@@ -17,5 +17,11 @@ namespace TestsPortal.DAL.Repositories.Subjects
             _context.Subjects.Add(subject);
             _context.SaveChanges();
         }
+
+        public void CreateSubjects(IEnumerable<Subject> subjects)
+        {
+            _context.Subjects.AddRange(subjects);
+            _context.SaveChanges();
+        }
     }
 }

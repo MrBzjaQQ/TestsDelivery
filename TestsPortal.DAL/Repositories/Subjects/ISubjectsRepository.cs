@@ -5,5 +5,7 @@ namespace TestsPortal.DAL.Repositories.Subjects
     public interface ISubjectsRepository
     {
         void CreateSubject(Subject subject);
+
+        void CreateSubjects(IEnumerable<Subject> subjects);
     }
 }

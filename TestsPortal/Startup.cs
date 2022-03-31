@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using TestsDelivery.Infrastructure.Logging;
 using TestsPortal.BL.Mediators.ScheduledTests;
 using TestsPortal.BL.Services.Candidates;
@@ -12,6 +14,7 @@ using TestsPortal.BL.Services.Questions;
 using TestsPortal.BL.Services.ScheduledTests;
 using TestsPortal.BL.Services.Subjects;
 using TestsPortal.BL.Services.Tests;
+using TestsPortal.DAL.Data;
 using TestsPortal.DAL.Repositories.AnswerOptions;
 using TestsPortal.DAL.Repositories.Candidate;
 using TestsPortal.DAL.Repositories.Questions;
@@ -35,11 +38,17 @@ namespace TestsPortal
         {
             services.AddControllersWithViews();
 
+            services.AddDbContext<TestsPortalContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("TestsPortalConnection"),
+                optAction => optAction.MigrationsAssembly("TestsPortal.DAL")));
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped(typeof(IAppLogging<>), typeof(AppLogging<>));
 
