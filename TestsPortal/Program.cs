@@ -1,12 +1,6 @@
 using TestsDelivery.Infrastructure.Logging;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TestsPortal
 {
@@ -22,6 +16,7 @@ namespace TestsPortal
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                }).ConfigureSerilog();
+                })
+            .ConfigureSerilog();
     }
 }

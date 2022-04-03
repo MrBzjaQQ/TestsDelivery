@@ -7,6 +7,7 @@ using TestsPortal.BL.Mediators.ScheduledTests;
 namespace TestsPortal.Controllers
 {
     [ApiController]
+    [Route("api/[controller]")]
     public class ScheduledTestsController : ControllerBase
     {
         private readonly IScheduledTestMediator _mediator;
@@ -24,8 +25,7 @@ namespace TestsPortal.Controllers
         public IActionResult ScheduleTest(ScheduledTestDetailedModel detailedModel)
         {
             _logger.LogAppInformation($"Received data from {Request.Host}: {JsonSerializer.Serialize(detailedModel)}");
-            _mediator.ScheduleTest(detailedModel);
-            return Ok();
+            return Ok(_mediator.ScheduleTest(detailedModel));
         }
     }
 }

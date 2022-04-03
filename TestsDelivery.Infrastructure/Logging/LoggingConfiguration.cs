@@ -69,7 +69,7 @@ namespace TestsDelivery.Infrastructure.Logging
             }).UseSerilog((hostingContext, loggerConfiguration) =>
             {
                 var config = hostingContext.Configuration;
-                var connectionString = config.GetConnectionString("TestsDeliveryConnection").ToString(CultureInfo.InvariantCulture);
+                var connectionString = config.GetConnectionString("DatabaseConnection").ToString(CultureInfo.InvariantCulture);
 
                 var tableName = config["Logging:MSSqlServer:tableName"].ToString(CultureInfo.InvariantCulture);
                 var schema = config["Logging:MSSqlServer:schema"].ToString(CultureInfo.InvariantCulture);

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -38,15 +39,15 @@ namespace TestsPortal
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<TestsPortalContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("TestsPortalConnection"),
-                optAction => optAction.MigrationsAssembly("TestsPortal.DAL")));
-
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            services.AddDbContext<TestsPortalContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection"),
+                optAction => optAction.MigrationsAssembly("TestsPortal.DAL")));
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
