@@ -38,6 +38,9 @@ using TestsDelivery.DAL.Repositories.ScheduledTest;
 using TestsDelivery.DAL.Repositories.Subjects;
 using TestsDelivery.DAL.Repositories.Test;
 using TestsDelivery.Options.Tokens;
+using TestsDelivery.BL.Providers.Communication;
+using TestsDelivery.BL.Clients.Integration;
+using TestsDelivery.BL.Providers.Client;
 
 namespace AdminPanel
 {
@@ -102,6 +105,8 @@ namespace AdminPanel
                 configuration.RootPath = "ClientApp/build";
             });
 
+            services.AddHttpClient();
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddSingleton(new IdentityErrorDescriber());
@@ -140,6 +145,9 @@ namespace AdminPanel
             services.AddScoped<IEssayValidator, EssayValidator>();
 
             services.AddScoped<ICommunicationServiceFactory, CommunicationServiceFactory>();
+            services.AddScoped<ICommunicationServiceProvider, CommunicationServiceProvider>();
+            services.AddScoped<IIntegrationApiClient, IntegrationApiClient>();
+            services.AddScoped<IHttpClientProvider, TestsPotralClientProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
