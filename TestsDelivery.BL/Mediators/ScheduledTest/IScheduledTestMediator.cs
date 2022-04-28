@@ -1,10 +1,11 @@
-﻿using TestsDelivery.UserModels.ScheduledTest;
+﻿using System.Threading.Tasks;
+using TestsDelivery.UserModels.ScheduledTest;
 
 namespace TestsDelivery.BL.Mediators.ScheduledTest
 {
     public interface IScheduledTestMediator
     {
-        ScheduledTestReadModel ScheduleTest(ScheduledTestCreateModel model);
+        Task<ScheduledTestReadModel> ScheduleTest(ScheduledTestCreateModel model);
 
         ScheduledTestReadModel GetTest(long id);
     }

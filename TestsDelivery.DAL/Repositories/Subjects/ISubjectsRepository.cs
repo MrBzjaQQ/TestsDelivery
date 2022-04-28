@@ -2,12 +2,7 @@
 
 namespace TestsDelivery.DAL.Repositories.Subjects
 {
-    public interface ISubjectsRepository
+    public interface ISubjectsRepository : IBaseRepository<Subject>
     {
-        void CreateSubject(Subject subject);
-
-        Subject GetSubject(long id);
-
-        void EditSubject(Subject subject);
     }
 }

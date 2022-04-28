@@ -38,7 +38,7 @@ namespace TestsDelivery.BL.Services.Test
         public TestDomain CreateTest(TestDomain test)
         {
             var testData = _mapper.Map<TestData>(test);
-            _testRepository.CreateTest(testData);
+            _testRepository.Create(testData);
 
             var questionsInTest = MapQuestionsToQuestionsInTest(test.Questions, testData.Id);
             _questionInTestRepository.CreateQuestionsInTests(questionsInTest);
@@ -48,14 +48,14 @@ namespace TestsDelivery.BL.Services.Test
 
         public TestDomain GetTest(long id)
         {
-            var testData = _testRepository.GetTest(id);
+            var testData = _testRepository.GetById(id);
 
             return MapTestToDomainAndGetQuestions(testData);
         }
 
         public TestDomain GetFullTest(long id)
         {
-            var testData = _testRepository.GetTest(id);
+            var testData = _testRepository.GetById(id);
 
             return MapFullTestToDomain(testData);
         }
@@ -63,7 +63,7 @@ namespace TestsDelivery.BL.Services.Test
         public void EditTest(TestDomain test)
         {
             var testData = _mapper.Map<TestData>(test);
-            _testRepository.EditTest(testData);
+            _testRepository.Update(testData);
 
             _questionInTestRepository.DeleteQuestionsForTest(testData.Id);
 

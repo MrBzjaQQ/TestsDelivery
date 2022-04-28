@@ -32,7 +32,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Candidate
                 LastName = "Last Name"
             };
 
-            _candidateRepositoryMock.Setup(x => x.CreateCandidate(It.IsAny<DAL.Models.Candidate.Candidate>()));
+            _candidateRepositoryMock.Setup(x => x.Create(It.IsAny<DAL.Models.Candidate.Candidate>()));
 
             // Act
             var readModel = _candidateService.CreateCandidate(createModel);
@@ -42,7 +42,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Candidate
             Assert.Equal(createModel.LastName, readModel.LastName);
             Assert.Equal(createModel.Email, readModel.Email);
 
-            _candidateRepositoryMock.Verify(x => x.CreateCandidate(It.IsAny<DAL.Models.Candidate.Candidate>()), Times.Once);
+            _candidateRepositoryMock.Verify(x => x.Create(It.IsAny<DAL.Models.Candidate.Candidate>()), Times.Once);
         }
 
         [Fact]
@@ -56,13 +56,13 @@ namespace TestsDelivery.BL.UnitTests.Services.Candidate
                 LastName = "Last Name"
             };
 
-            _candidateRepositoryMock.Setup(x => x.EditCandidate(It.IsAny<DAL.Models.Candidate.Candidate>()));
+            _candidateRepositoryMock.Setup(x => x.Update(It.IsAny<DAL.Models.Candidate.Candidate>()));
 
             // Act
             _candidateService.EditCandidate(editModel);
 
             // Assert
-            _candidateRepositoryMock.Verify(x => x.EditCandidate(It.IsAny<DAL.Models.Candidate.Candidate>()), Times.Once);
+            _candidateRepositoryMock.Verify(x => x.Update(It.IsAny<DAL.Models.Candidate.Candidate>()), Times.Once);
         }
 
         [Fact]
@@ -70,13 +70,13 @@ namespace TestsDelivery.BL.UnitTests.Services.Candidate
         {
             // Arrange
             const long candidateId = 1;
-            _candidateRepositoryMock.Setup(x => x.GetCandidate(candidateId));
+            _candidateRepositoryMock.Setup(x => x.GetById(candidateId));
 
             // Act
             _candidateService.GetCandidate(candidateId);
 
             // Assert
-            _candidateRepositoryMock.Verify(x => x.GetCandidate(candidateId), Times.Once);
+            _candidateRepositoryMock.Verify(x => x.GetById(candidateId), Times.Once);
         }
     }
 }

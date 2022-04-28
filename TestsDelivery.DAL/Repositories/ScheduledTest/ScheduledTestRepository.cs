@@ -6,33 +6,11 @@ using TestsDelivery.DAL.Exceptions.ScheduledTest;
 
 namespace TestsDelivery.DAL.Repositories.ScheduledTest
 {
-    public class ScheduledTestRepository : IScheduledTestRepository
+    public class ScheduledTestRepository : BaseRepository<Models.ScheduledTest.ScheduledTest>, IScheduledTestRepository
     {
-        private readonly TestsDeliveryContext _context;
-
         public ScheduledTestRepository(TestsDeliveryContext context)
+            : base(context)
         {
-            _context = context;
-        }
-
-        public void ScheduleTest(Models.ScheduledTest.ScheduledTest test)
-        {
-            _context.ScheduledTests.Add(test);
-            _context.SaveChanges();
-        }
-
-        public Models.ScheduledTest.ScheduledTest GetTest(long id)
-        {
-            try
-            {
-                return _context.ScheduledTests
-                    .Include(x => x.Candidate)
-                    .Single(test => test.Id == id);
-            }
-            catch (InvalidOperationException)
-            {
-                throw new ScheduledTestNotFoundException(id);
-            }
         }
     }
 }

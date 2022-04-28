@@ -3,6 +3,8 @@ using TestsDelivery.UserModels.ScheduledTest;
 using TestsDelivery.BL.Providers.Communication;
 using TestsDelivery.BL.Services.Communication;
 using TestsDelivery.BL.Services.ScheduledTest;
+using TestsDelivery.BL.Clients.Integration;
+using System.Threading.Tasks;
 
 namespace TestsDelivery.BL.Mediators.ScheduledTest
 {
@@ -22,13 +24,14 @@ namespace TestsDelivery.BL.Mediators.ScheduledTest
             _mapper = mapper;
         }
 
-        public ScheduledTestReadModel ScheduleTest(ScheduledTestCreateModel model)
+        public async Task<ScheduledTestReadModel> ScheduleTest(ScheduledTestCreateModel model)
         {
             var test = _mapper.Map<Domain.ScheduledTest.ScheduledTest>(model);
             var scheduledTest = _scheduledTestService.ScheduleTest(test);
             // TODO: integration part - fill keycode and pin here
             var communicationService = _communicationServiceProvider.Get<IAdminPanelCommunicationService>(model.DestinationInstance);
-            communicationService.ScheduleTest(_mapper.Map<ScheduledTestDetailedModel>(scheduledTest));
+            await communicationService.ScheduleTest(_mapper.Map<ScheduledTestDetailedModel>(scheduledTest));
+            
             return _mapper.Map<ScheduledTestReadModel>(scheduledTest);
         }
 

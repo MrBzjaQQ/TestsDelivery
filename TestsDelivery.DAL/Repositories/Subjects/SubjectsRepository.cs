@@ -7,37 +7,11 @@ using TestsDelivery.DAL.Models.Subject;
 
 namespace TestsDelivery.DAL.Repositories.Subjects
 {
-    public class SubjectsRepository : ISubjectsRepository
+    public class SubjectsRepository : BaseRepository<Subject>, ISubjectsRepository
     {
-        private readonly TestsDeliveryContext _context;
-
         public SubjectsRepository(TestsDeliveryContext context)
+            : base(context)
         {
-            _context = context;
-        }
-
-        public void CreateSubject(Subject subject)
-        {
-            _context.Subjects.Add(subject);
-            _context.SaveChanges();
-        }
-
-        public Subject GetSubject(long id)
-        {
-            try
-            {
-                return _context.Subjects.Single(subject => subject.Id == id);
-            }
-            catch (InvalidOperationException)
-            {
-                throw new SubjectNotFoundException(id);
-            }
-        }
-
-        public void EditSubject(Subject subject)
-        {
-            _context.Subjects.Update(subject);
-            _context.SaveChanges();
         }
     }
 }

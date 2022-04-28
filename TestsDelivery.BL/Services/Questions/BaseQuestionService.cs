@@ -22,9 +22,9 @@ namespace TestsDelivery.BL.Services.Questions
         public virtual TDomainQuestion CreateQuestion(TDomainQuestion question)
         {
             var questionData = Mapper.Map<Question>(question);
-            QuestionsRepository.CreateQuestion(questionData);
+            QuestionsRepository.Create(questionData);
 
-            var questionResult = Mapper.Map<TDomainQuestion>(QuestionsRepository.GetQuestion(questionData.Id));
+            var questionResult = Mapper.Map<TDomainQuestion>(QuestionsRepository.GetById(questionData.Id));
             return questionResult;
         }
 
@@ -36,7 +36,7 @@ namespace TestsDelivery.BL.Services.Questions
         public virtual void EditQuestion(TDomainQuestion question)
         {
             var questionData = Mapper.Map<Question>(question);
-            QuestionsRepository.EditQuestion(questionData);
+            QuestionsRepository.Update(questionData);
         }
 
         public virtual TDomainQuestion GetQuestion(long id)

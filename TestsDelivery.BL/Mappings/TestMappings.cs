@@ -19,6 +19,7 @@ namespace TestsDelivery.BL.Mappings
 
             CreateMap<Test, DAL.Models.Test.Test>();
             CreateMap<DAL.Models.Test.Test, Test>();
+            CreateMap<Test, TestDetailedModel>();
         }
     }
 }

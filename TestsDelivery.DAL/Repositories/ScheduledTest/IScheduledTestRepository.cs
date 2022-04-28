@@ -1,9 +1,6 @@
 ﻿namespace TestsDelivery.DAL.Repositories.ScheduledTest
 {
-    public interface IScheduledTestRepository
+    public interface IScheduledTestRepository : IBaseRepository<Models.ScheduledTest.ScheduledTest>
     {
-        void ScheduleTest(Models.ScheduledTest.ScheduledTest test);
-
-        Models.ScheduledTest.ScheduledTest GetTest(long id);
     }
 }

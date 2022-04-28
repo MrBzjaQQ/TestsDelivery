@@ -72,9 +72,9 @@ namespace TestsDelivery.BL.UnitTests.Services.Questions.SingleChoice
                 Subject = new DAL.Models.Subject.Subject { Id = inputQuestion.Subject.Id }
             };
 
-            _questionRepositoryMock.Setup(x => x.CreateQuestion(It.IsAny<Question>()))
+            _questionRepositoryMock.Setup(x => x.Create(It.IsAny<Question>()))
                 .Callback<Question>(x => x.Id = questionId);
-            _questionRepositoryMock.Setup(x => x.GetQuestion(questionId)).Returns(createdQuestion);
+            _questionRepositoryMock.Setup(x => x.GetById(questionId)).Returns(createdQuestion);
             _answerOptionsRepoMock.Setup(x => x.CreateAnswerOptions(It.IsAny<IEnumerable<DAL.Models.Questions.AnswerOption>>()));
 
             // Act
@@ -87,8 +87,8 @@ namespace TestsDelivery.BL.UnitTests.Services.Questions.SingleChoice
             Assert.Equal(createdQuestion.Subject.Id, resultQuestion.Subject.Id);
             Assert.Equal(createdQuestion.Type, (short)resultQuestion.Type);
 
-            _questionRepositoryMock.Verify(x => x.CreateQuestion(It.IsAny<Question>()), Times.Once);
-            _questionRepositoryMock.Verify(x => x.GetQuestion(questionId), Times.Once);
+            _questionRepositoryMock.Verify(x => x.Create(It.IsAny<Question>()), Times.Once);
+            _questionRepositoryMock.Verify(x => x.GetById(questionId), Times.Once);
             _answerOptionsRepoMock.Verify(x => x.CreateAnswerOptions(It.IsAny<IEnumerable<DAL.Models.Questions.AnswerOption>>()), Times.Once);
         }
 
@@ -145,7 +145,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Questions.SingleChoice
             _answerOptionsRepoMock.Verify(x => x.CreateAnswerOptions(It.IsAny<IEnumerable<DAL.Models.Questions.AnswerOption>>()), Times.Once);
             _answerOptionsRepoMock.Verify(x => x.GetAnswerOptionsForQuestion(inputQuestion.Id), Times.Once);
             _answerOptionsRepoMock.Verify(x => x.DeleteAnswerOptions(It.IsAny<IEnumerable<long>>()), Times.Once);
-            _questionRepositoryMock.Verify(x => x.EditQuestion(It.IsAny<Question>()), Times.Once);
+            _questionRepositoryMock.Verify(x => x.Update(It.IsAny<Question>()), Times.Once);
         }
 
         [Fact]

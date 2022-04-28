@@ -22,7 +22,7 @@ namespace TestsDelivery.BL.Services.Candidates
         public Candidate CreateCandidate(Candidate candidate)
         {
             var candidateData = _mapper.Map<DAL.Models.Candidate.Candidate>(candidate);
-            _repository.CreateCandidate(candidateData);
+            _repository.Create(candidateData);
             var createdCandidate = _mapper.Map<Candidate>(candidateData);
 
             return createdCandidate;
@@ -32,7 +32,7 @@ namespace TestsDelivery.BL.Services.Candidates
         {
             try
             {
-                return _mapper.Map<Candidate>(_repository.GetCandidate(id));
+                return _mapper.Map<Candidate>(_repository.GetById(id));
             }
             catch (InvalidOperationException)
             {
@@ -56,7 +56,7 @@ namespace TestsDelivery.BL.Services.Candidates
         public void EditCandidate(Candidate candidate)
         {
             var candidateData = _mapper.Map<DAL.Models.Candidate.Candidate>(candidate);
-            _repository.EditCandidate(candidateData);
+            _repository.Update(candidateData);
         }
     }
 }

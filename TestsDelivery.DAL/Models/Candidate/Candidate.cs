@@ -2,11 +2,8 @@
 
 namespace TestsDelivery.DAL.Models.Candidate
 {
-    public record Candidate
+    public record Candidate : IdEntity<long>
     {
-        [Key]
-        public long Id { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }

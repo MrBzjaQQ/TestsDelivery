@@ -4,12 +4,13 @@ using TestsDelivery.BL.Mediators.ScheduledTest;
 using TestsDelivery.UserModels.ScheduledTest;
 using TestsDelivery.DAL.Exceptions.Candidate;
 using TestsDelivery.DAL.Exceptions.ScheduledTest;
+using TestsDelivery.BL.Clients.Integration;
 
 namespace AdminPanel.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    // [Authorize]
     public class ScheduleController : ControllerBase
     {
         private readonly IScheduledTestMediator _mediator;
@@ -19,14 +20,22 @@ namespace AdminPanel.Controllers
             _mediator = mediator;
         }
 
+        // TODO: Candidates: [ null ]
         [HttpPost]
         public IActionResult ScheduleTest(ScheduledTestCreateModel model)
         {
             if (ModelState.IsValid)
             {
-                var test = _mediator.ScheduleTest(model);
-
-                return CreatedAtRoute(nameof(GetScheduledTest), new {test.Id}, test);
+                try
+                {
+                    var test = _mediator.ScheduleTest(model);
+                    return CreatedAtRoute(nameof(GetScheduledTest), new { test.Id }, test);
+                }
+                catch(IntegrationException ex)
+                {
+                    ModelState.AddModelError("IntegrationException", ex.Message);
+                    return Problem(detail: ex.Message);
+                }
             }
 
             return BadRequest(ModelState);

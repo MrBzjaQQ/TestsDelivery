@@ -1,9 +1,10 @@
-﻿using TestsDelivery.UserModels.ScheduledTest;
+﻿using System.Threading.Tasks;
+using TestsDelivery.UserModels.ScheduledTest;
 
 namespace TestsDelivery.BL.Services.Communication
 {
     public interface IAdminPanelCommunicationService
     {
-        void ScheduleTest(ScheduledTestDetailedModel test);
+        Task ScheduleTest(ScheduledTestDetailedModel test);
     }
 }

@@ -70,7 +70,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Test
                 Id = x.Id,
             });
 
-            _testRepoMock.Setup(x => x.CreateTest(It.IsAny<TestDAL>()))
+            _testRepoMock.Setup(x => x.Create(It.IsAny<TestDAL>()))
                 .Callback<TestDAL>(x => x.Id = testId);
             _questionsRepoMock.Setup(x => x.GetQuestionsByTestId(testId))
                 .Returns(questions);
@@ -92,7 +92,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Test
             }
 
             _questionInTestRepoMock.Verify(x => x.CreateQuestionsInTests(It.IsAny<List<QuestionInTest>>()), Times.Once);
-            _testRepoMock.Verify(x => x.CreateTest(It.IsAny<TestDAL>()), Times.Once);
+            _testRepoMock.Verify(x => x.Create(It.IsAny<TestDAL>()), Times.Once);
             _questionsRepoMock.Verify(x => x.GetQuestionsByTestId(testId), Times.Once);
         }
 
@@ -115,14 +115,14 @@ namespace TestsDelivery.BL.UnitTests.Services.Test
                 }
             };
 
-            _testRepoMock.Setup(x => x.GetTest(testId)).Returns(test);
+            _testRepoMock.Setup(x => x.GetById(testId)).Returns(test);
             _questionsRepoMock.Setup(x => x.GetQuestionsByTestId(testId)).Returns(questions);
 
             // Act
             _service.GetTest(testId);
 
             // Assert
-            _testRepoMock.Verify(x => x.GetTest(testId), Times.Once);
+            _testRepoMock.Verify(x => x.GetById(testId), Times.Once);
             _questionsRepoMock.Verify(x => x.GetQuestionsByTestId(testId), Times.Once);
         }
 
@@ -147,7 +147,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Test
             _service.EditTest(test);
 
             // Assert
-            _testRepoMock.Verify(x => x.EditTest(It.IsAny<TestDAL>()), Times.Once);
+            _testRepoMock.Verify(x => x.Update(It.IsAny<TestDAL>()), Times.Once);
             _questionInTestRepoMock.Verify(x => x.DeleteQuestionsForTest(test.Id), Times.Once);
             _questionInTestRepoMock.Verify(x => x.CreateQuestionsInTests(It.IsAny<IEnumerable<QuestionInTest>>()), Times.Once);
         }

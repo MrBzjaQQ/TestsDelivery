@@ -3,11 +3,11 @@ using TestsDelivery.DAL.Models.Test;
 
 namespace TestsDelivery.DAL.Repositories.QuestionInTests
 {
-    public interface IQuestionInTestRepository
+    public interface IQuestionInTestRepository : IBaseRepository<QuestionInTest>
     {
         void CreateQuestionsInTests(IEnumerable<QuestionInTest> questions);
 
-        void DeleteQuestionInTests(IEnumerable<long> ids);
+        void DeleteQuestionsInTests(IEnumerable<long> ids);
 
         void DeleteQuestionsForTest(long testId);
     }

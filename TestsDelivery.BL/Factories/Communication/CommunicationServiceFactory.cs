@@ -18,7 +18,7 @@ namespace TestsDelivery.BL.Factories
         public TInterface Create<TInterface>(IIntegrationApiClient apiClient, string instanceUrl)
         {
             var implementationType = GetImplementationType<TInterface>();
-            return (TInterface)Activator.CreateInstance(implementationType, apiClient, _mapper);
+            return (TInterface)Activator.CreateInstance(implementationType, apiClient, instanceUrl, _mapper);
         }
 
         private Type GetImplementationType<TInterface>()

@@ -5,38 +5,36 @@ using TestsDelivery.DAL.Models.Test;
 
 namespace TestsDelivery.DAL.Repositories.QuestionInTests
 {
-    public class QuestionInTestRepository : IQuestionInTestRepository
+    public class QuestionInTestRepository : BaseRepository<QuestionInTest>, IQuestionInTestRepository
     {
-        private readonly TestsDeliveryContext _context;
-
         public QuestionInTestRepository(TestsDeliveryContext context)
+            : base(context)
         {
-            _context = context;
         }
 
         public void CreateQuestionsInTests(IEnumerable<QuestionInTest> questions)
         {
-            _context.AddRange(questions);
-            _context.SaveChanges();
+            Context.AddRange(questions);
+            Context.SaveChanges();
         }
 
-        public void DeleteQuestionInTests(IEnumerable<long> ids)
+        public void DeleteQuestionsInTests(IEnumerable<long> ids)
         {
             List<QuestionInTest> questions = new();
 
             foreach (var id in ids)
                 questions.Add(new QuestionInTest { Id = id });
 
-            _context.QuestionInTests.AttachRange(questions);
-            _context.QuestionInTests.RemoveRange(questions);
-            _context.SaveChanges();
+            Context.QuestionInTests.AttachRange(questions);
+            Context.QuestionInTests.RemoveRange(questions);
+            Context.SaveChanges();
         }
 
         public void DeleteQuestionsForTest(long testId)
         {
-            var questions = _context.QuestionInTests.Where(q => q.TestId == testId);
-            _context.RemoveRange(questions);
-            _context.SaveChanges();
+            var questions = Context.QuestionInTests.Where(q => q.TestId == testId);
+            Context.RemoveRange(questions);
+            Context.SaveChanges();
         }
     }
 }

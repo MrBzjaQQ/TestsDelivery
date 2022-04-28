@@ -54,9 +54,9 @@ namespace TestsDelivery.BL.UnitTests.Services.Questions.Essay
                 Type = (short)QuestionType.Essay
             };
 
-            _questionRepositoryMock.Setup(x => x.CreateQuestion(It.IsAny<Question>()))
+            _questionRepositoryMock.Setup(x => x.Create(It.IsAny<Question>()))
                 .Callback<Question>(x => x.Id = questionId);
-            _questionRepositoryMock.Setup(x => x.GetQuestion(questionId)).Returns(createdQuestion);
+            _questionRepositoryMock.Setup(x => x.GetById(questionId)).Returns(createdQuestion);
 
             // Act
             var resultQuestion = _service.CreateQuestion(inputQuestion);
@@ -68,8 +68,8 @@ namespace TestsDelivery.BL.UnitTests.Services.Questions.Essay
             Assert.Equal(inputQuestion.Text, resultQuestion.Text);
             Assert.Equal(inputQuestion.Type, resultQuestion.Type);
 
-            _questionRepositoryMock.Verify(x => x.CreateQuestion(It.IsAny<Question>()), Times.Once);
-            _questionRepositoryMock.Verify(x => x.GetQuestion(questionId), Times.Once);
+            _questionRepositoryMock.Verify(x => x.Create(It.IsAny<Question>()), Times.Once);
+            _questionRepositoryMock.Verify(x => x.GetById(questionId), Times.Once);
         }
 
         [Fact]
@@ -82,7 +82,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Questions.Essay
             _service.EditQuestion(question);
 
             // Assert
-            _questionRepositoryMock.Verify(x => x.EditQuestion(It.IsAny<Question>()), Times.Once);
+            _questionRepositoryMock.Verify(x => x.Update(It.IsAny<Question>()), Times.Once);
         }
 
         [Fact]

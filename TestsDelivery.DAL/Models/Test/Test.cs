@@ -1,12 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TestsDelivery.DAL.Models.Test
+﻿namespace TestsDelivery.DAL.Models.Test
 {
-    public record Test
+    public record Test : IdEntity<long>
     {
-        [Key]
-        public long Id { get; set; }
-
         public string Name { get; set; }
     }
 }

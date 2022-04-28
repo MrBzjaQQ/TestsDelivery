@@ -41,6 +41,7 @@ using TestsDelivery.Options.Tokens;
 using TestsDelivery.BL.Providers.Communication;
 using TestsDelivery.BL.Clients.Integration;
 using TestsDelivery.BL.Providers.Client;
+using TestsDelivery.DAL.Repositories.CandidateInScheduledTest;
 
 namespace AdminPanel
 {
@@ -139,6 +140,7 @@ namespace AdminPanel
             services.AddScoped<ITestRepository, TestRepository>();
             services.AddScoped<IQuestionInTestRepository, QuestionInTestRepository>();
             services.AddScoped<IScheduledTestRepository, ScheduledTestRepository>();
+            services.AddScoped<ICandidateInTestRepository, CandidateInTestRepository>();
 
             services.AddScoped<IScqModelValidator, ScqModelValidator>();
             services.AddScoped<IMcqModelValidator, McqModelValidator>();
@@ -168,8 +170,8 @@ namespace AdminPanel
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseAuthentication();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

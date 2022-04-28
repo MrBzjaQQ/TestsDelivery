@@ -39,10 +39,23 @@ namespace TestsDelivery.BL.Clients.Integration
             IDictionary<string, string> additionalHeaders = null)
             where TResponse : class
         {
-            var content = Serialize(url, body, "POST");
+            const string requestMethod = "POST";
+            var content = Serialize(url, body, requestMethod);
 
             using var httpClient = _httpClientProvider.Get(additionalHeaders);
             using var response = await httpClient.PostAsync(url, content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var exception = new IntegrationException(
+                    (int)response.StatusCode,
+                    requestMethod,
+                    url,
+                    response.ReasonPhrase);
+
+                _logger.LogError(exception.Message);
+                throw exception;
+            }
 
             return await DeserializeAsync<TResponse>(url, response);
         }
@@ -53,10 +66,23 @@ namespace TestsDelivery.BL.Clients.Integration
             IDictionary<string, string> additionalHeaders = null)
             where TResponse : class
         {
-            var content = Serialize(url, body, "PUT");
+            const string requestMethod = "PUT";
+            var content = Serialize(url, body, requestMethod);
 
             using var httpClient = _httpClientProvider.Get(additionalHeaders);
             using var response = await httpClient.PutAsync(url, content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var exception = new IntegrationException(
+                    (int)response.StatusCode,
+                    requestMethod,
+                    url,
+                    response.ReasonPhrase);
+
+                _logger.LogError(exception.Message);
+                throw exception;
+            }
 
             return await DeserializeAsync<TResponse>(url, response);
         }

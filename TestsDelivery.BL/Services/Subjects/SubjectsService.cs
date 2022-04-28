@@ -19,7 +19,7 @@ namespace TestsDelivery.BL.Services.Subjects
         {
             var subjectData = _mapper.Map<DAL.Models.Subject.Subject>(subject);
 
-            _subjectsRepository.CreateSubject(subjectData);
+            _subjectsRepository.Create(subjectData);
 
             var createdSubject = _mapper.Map<Subject>(subjectData);
 
@@ -28,14 +28,14 @@ namespace TestsDelivery.BL.Services.Subjects
 
         public Subject GetSubject(long id)
         {
-            return _mapper.Map<Subject>(_subjectsRepository.GetSubject(id));
+            return _mapper.Map<Subject>(_subjectsRepository.GetById(id));
         }
 
         public void EditSubject(Subject subject)
         {
             var subjectData = _mapper.Map<DAL.Models.Subject.Subject>(subject);
 
-            _subjectsRepository.EditSubject(subjectData);
+            _subjectsRepository.Update(subjectData);
         }
     }
 }
