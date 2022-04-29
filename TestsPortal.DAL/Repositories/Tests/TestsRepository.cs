@@ -3,19 +3,11 @@ using TestsPortal.DAL.Models.Tests;
 
 namespace TestsPortal.DAL.Repositories.Tests
 {
-    public class TestsRepository : ITestsRepository
+    public class TestsRepository : BaseRepository<Test>, ITestsRepository
     {
-        private readonly TestsPortalContext _context;
-
         public TestsRepository(TestsPortalContext context)
+            : base(context)
         {
-            _context = context;
-        }
-
-        public void CreateTest(Test test)
-        {
-            _context.Tests.Add(test);
-            _context.SaveChanges();
         }
     }
 }

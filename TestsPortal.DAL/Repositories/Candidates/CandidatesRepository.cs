@@ -2,35 +2,22 @@
 
 namespace TestsPortal.DAL.Repositories.Candidate
 {
-    public class CandidatesRepository : ICandidatesRepository
+    public class CandidatesRepository : BaseRepository<Models.Candidates.Candidate>, ICandidatesRepository
     {
-        private TestsPortalContext _context;
-
         public CandidatesRepository(TestsPortalContext context)
+            : base(context)
         {
-            _context = context;
         }
 
-        public void CreateCandidate(Models.Candidates.Candidate candidate)
+        public void Create(IEnumerable<Models.Candidates.Candidate> candidates)
         {
-            _context.Candidates.Add(candidate);
-            _context.SaveChanges();
+            Context.Candidates.AddRange(candidates);
+            Context.SaveChanges();
         }
 
-        public void CreateCandidates(IEnumerable<Models.Candidates.Candidate> candidates)
+        public IEnumerable<Models.Candidates.Candidate> GetByOriginalIds(params long[] originalIds)
         {
-            _context.Candidates.AddRange(candidates);
-            _context.SaveChanges();
-        }
-
-        public Models.Candidates.Candidate GetCandidate(long id)
-        {
-            return _context.Candidates.Single(candidate => candidate.Id == id);
-        }
-
-        public IEnumerable<Models.Candidates.Candidate> GetCandidatesByOriginalIds(params long[] originalIds)
-        {
-            return _context.Candidates.Where(candidate => originalIds.Contains(candidate.OriginalId)).ToList();
+            return Context.Candidates.Where(candidate => originalIds.Contains(candidate.OriginalId)).ToList();
         }
     }
 }

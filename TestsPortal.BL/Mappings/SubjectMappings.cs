@@ -10,6 +10,8 @@ namespace TestsPortal.BL.Mappings
         public SubjectMappings()
         {
             CreateMap<SubjectReadModel, DomainSubject>()
+                .ForMember(x => x.Id, x => x.Ignore())
+                .ForMember(x => x.OriginalId, x => x.MapFrom(x => x.Id))
                 .ReverseMap();
 
             CreateMap<DomainSubject, DALSubject>()

@@ -2,8 +2,10 @@
 
 namespace TestsDelivery.UserModels.AnswerOptions
 {
-    public record AnswerOptionInTestModel
+    public record AnswerOptionUnverified
     {
+        [Required]
+        [Range(1, long.MaxValue)]
         public long Id { get; set; }
 
         [Required]

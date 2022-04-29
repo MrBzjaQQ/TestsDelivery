@@ -4,11 +4,8 @@ using TestsPortal.DAL.Models.Questions;
 
 namespace TestsPortal.DAL.Models.Tests
 {
-    public record QuestionInTest
+    public record QuestionInTest : IdEntity<long>
     {
-        [Key]
-        public long Id { get; set; }
-
         [ForeignKey(nameof(Test))]
         public long TestId { get; set; }
 

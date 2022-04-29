@@ -3,18 +3,17 @@ using TestsPortal.DAL.Models.Questions;
 
 namespace TestsPortal.DAL.Repositories.AnswerOptions
 {
-    public class AnswerOptionsRepository : IAnswerOptionsRepository
+    public class AnswerOptionsRepository : BaseRepository<AnswerOption>, IAnswerOptionsRepository
     {
-        private readonly TestsPortalContext _context;
-
         public AnswerOptionsRepository(TestsPortalContext context)
+            : base(context)
         {
-            _context = context;
         }
+
         public void CreateAnswerOptions(IEnumerable<AnswerOption> options)
         {
-            _context.AnswerOptions.AddRange(options);
-            _context.SaveChanges();
+            Context.AnswerOptions.AddRange(options);
+            Context.SaveChanges();
         }
     }
 }

@@ -6,13 +6,8 @@ namespace TestsPortal.DAL.Models.Questions
     // TODO: problem here
     // Editing issue in admin panel
     // Probably versioning should solve the issue
-    public record Question
+    public record Question : IdEntity<long>
     {
-        [Key]
-        public long Id { get; set; }
-
-        public long OriginalId { get; set; }
-
         public string Name { get; set; } = string.Empty;
 
         public string Text { get; set; } = string.Empty;

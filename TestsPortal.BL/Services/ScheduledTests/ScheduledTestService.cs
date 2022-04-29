@@ -31,7 +31,7 @@ namespace TestsPortal.BL.Services.ScheduledTests
             var test = _testsService.CreateTest(scheduledTest.Test);
             var dalScheduledTest = _mapper.Map<DAL.Models.ScheduledTests.ScheduledTest>(scheduledTest);
 
-            _scheduledTestsRepository.CreateScheduledTest(dalScheduledTest);
+            _scheduledTestsRepository.Create(dalScheduledTest);
 
             var resultTest = _mapper.Map<ScheduledTest>(dalScheduledTest);
             resultTest.Candidates = candidates;

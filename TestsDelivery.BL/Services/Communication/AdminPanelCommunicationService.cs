@@ -24,7 +24,7 @@ namespace TestsDelivery.BL.Services.Communication
 
         public async Task ScheduleTest(ScheduledTestDetailedModel test)
         {
-            await _apiClient.PostAsync<ScheduledTestDetailedModel, ScheduledTestReadModel>($"{_instanceUrl}ScheduledTests", test);
+            await _apiClient.PostAsync<ScheduledTestDetailedModel, ScheduledTestReadModel>($"{_instanceUrl}api/ScheduledTests", test);
         }
     }
 }

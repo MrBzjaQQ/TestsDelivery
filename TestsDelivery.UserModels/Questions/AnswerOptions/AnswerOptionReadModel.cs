@@ -2,6 +2,6 @@
 {
     public record AnswerOptionReadModel : AnswerOptionModelBase
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
     }
 }

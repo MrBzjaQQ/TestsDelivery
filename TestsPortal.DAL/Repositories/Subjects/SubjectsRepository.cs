@@ -3,25 +3,17 @@ using TestsPortal.DAL.Models.Subject;
 
 namespace TestsPortal.DAL.Repositories.Subjects
 {
-    public class SubjectsRepository : ISubjectsRepository
+    public class SubjectsRepository : BaseRepository<Subject>, ISubjectsRepository
     {
-        private readonly TestsPortalContext _context;
-
         public SubjectsRepository(TestsPortalContext context)
+            : base(context)
         {
-            _context = context;
         }
 
-        public void CreateSubject(Subject subject)
+        public void Create(IEnumerable<Subject> subjects)
         {
-            _context.Subjects.Add(subject);
-            _context.SaveChanges();
-        }
-
-        public void CreateSubjects(IEnumerable<Subject> subjects)
-        {
-            _context.Subjects.AddRange(subjects);
-            _context.SaveChanges();
+            Context.Subjects.AddRange(subjects);
+            Context.SaveChanges();
         }
     }
 }

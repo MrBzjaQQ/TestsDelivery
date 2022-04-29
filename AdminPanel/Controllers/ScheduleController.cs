@@ -5,6 +5,7 @@ using TestsDelivery.UserModels.ScheduledTest;
 using TestsDelivery.DAL.Exceptions.Candidate;
 using TestsDelivery.DAL.Exceptions.ScheduledTest;
 using TestsDelivery.BL.Clients.Integration;
+using System.Threading.Tasks;
 
 namespace AdminPanel.Controllers
 {
@@ -20,15 +21,14 @@ namespace AdminPanel.Controllers
             _mediator = mediator;
         }
 
-        // TODO: Candidates: [ null ]
         [HttpPost]
-        public IActionResult ScheduleTest(ScheduledTestCreateModel model)
+        public async Task<IActionResult> ScheduleTest(ScheduledTestCreateModel model)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var test = _mediator.ScheduleTest(model);
+                    var test = await _mediator.ScheduleTest(model);
                     return CreatedAtRoute(nameof(GetScheduledTest), new { test.Id }, test);
                 }
                 catch(IntegrationException ex)

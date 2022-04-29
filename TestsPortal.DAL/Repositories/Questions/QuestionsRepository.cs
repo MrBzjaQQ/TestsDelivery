@@ -3,19 +3,17 @@ using TestsPortal.DAL.Models.Questions;
 
 namespace TestsPortal.DAL.Repositories.Questions
 {
-    public class QuestionsRepository : IQuestionsRepository
+    public class QuestionsRepository : BaseRepository<Question>, IQuestionsRepository
     {
-        private readonly TestsPortalContext _context;
-
         public QuestionsRepository(TestsPortalContext context)
+            :base(context)
         {
-            _context = context;
         }
 
         public void CreateQuestions(IEnumerable<Question> questions)
         {
-            _context.AddRange(questions);
-            _context.SaveChanges();
+            Context.AddRange(questions);
+            Context.SaveChanges();
         }
     }
 }

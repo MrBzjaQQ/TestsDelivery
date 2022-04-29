@@ -1,15 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TestsPortal.DAL.Models.Questions
 {
-    public record AnswerOption
+    public record AnswerOption : IdEntity<long>
     {
-        [Key]
-        public long Id { get; set; }
-
-        public long OriginalId { get; set; }
-
         [ForeignKey(nameof(Question))]
         public long QuestionId { get; set; }
 

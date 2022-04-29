@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using TestsDelivery.BL.Providers.Client;
 
@@ -43,6 +42,7 @@ namespace TestsDelivery.BL.Clients.Integration
             var content = Serialize(url, body, requestMethod);
 
             using var httpClient = _httpClientProvider.Get(additionalHeaders);
+
             using var response = await httpClient.PostAsync(url, content);
 
             if (!response.IsSuccessStatusCode)
@@ -94,15 +94,15 @@ namespace TestsDelivery.BL.Clients.Integration
         {
             var bodyType = body.GetType();
             var stringBody = bodyType.IsClass && bodyType != typeof(string)
-                ? JsonSerializer.Serialize(body, new JsonSerializerOptions
+                ? JsonConvert.SerializeObject(body, new JsonSerializerSettings
                 {
-                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                    TypeNameHandling = TypeNameHandling.All
                 })
                 : body.ToString();
 
             _logger.LogInformation($"Sending {requestType} request to {url} with body: {body}");
 
-            return new StringContent(stringBody, Encoding.UTF8);
+            return new StringContent(stringBody, Encoding.UTF8, "application/json");
         }
 
         private async Task<TResponse> DeserializeAsync<TResponse>(string url, HttpResponseMessage response)
@@ -110,7 +110,7 @@ namespace TestsDelivery.BL.Clients.Integration
         {
             var content = await response.Content.ReadAsStringAsync();
             _logger.LogInformation($"Response from URL = {url}: {content}");
-            return content.Length > 0 ? JsonSerializer.Deserialize<TResponse>(content) : default;
+            return content.Length > 0 ? JsonConvert.DeserializeObject<TResponse>(content) : default;
         }
     }
 }

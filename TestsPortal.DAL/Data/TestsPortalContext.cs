@@ -27,5 +27,7 @@ namespace TestsPortal.DAL.Data
         public DbSet<Test> Tests { get; set; }
 
         public DbSet<ScheduledTest> ScheduledTests { get; set; }
+
+        public DbSet<CandidateInScheduledTest> CandidatesInScheduledTest { get; set; }
     }
 }

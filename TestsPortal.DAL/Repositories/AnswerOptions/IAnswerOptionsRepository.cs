@@ -2,7 +2,7 @@
 
 namespace TestsPortal.DAL.Repositories.AnswerOptions
 {
-    public interface IAnswerOptionsRepository
+    public interface IAnswerOptionsRepository : IBaseRepository<AnswerOption>
     {
         void CreateAnswerOptions(IEnumerable<AnswerOption> options);
     }

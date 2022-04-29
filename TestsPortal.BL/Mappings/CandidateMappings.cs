@@ -11,6 +11,9 @@ namespace TestsPortal.BL.Mappings
             CreateMap<CandidateReadModel, Candidate>()
                 .ForMember(x => x.Id, y => y.Ignore())
                 .ForMember(x => x.OriginalId, x => x.MapFrom(y => y.Id));
+            CreateMap<Candidate, DAL.Models.Candidates.Candidate>();
+            CreateMap<DAL.Models.Candidates.Candidate, Candidate>();
+            CreateMap<Candidate, CandidateReadModel>();
         }
     }
 }

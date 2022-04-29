@@ -1,5 +1,4 @@
 ﻿using TestsDelivery.UserModels.Questions.BaseQuestion;
-using TestsDelivery.UserModels.Subject;
 
 namespace TestsDelivery.UserModels.Test
 {
@@ -9,6 +8,6 @@ namespace TestsDelivery.UserModels.Test
 
         public string Name { get; set; }
 
-        public IEnumerable<QuestionReadModel> Questions { get; set; }
+        public IEnumerable<QuestionDetailedReadModel> Questions { get; set; }
     }
 }

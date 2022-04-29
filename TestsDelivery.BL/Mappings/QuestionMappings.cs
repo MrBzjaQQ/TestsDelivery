@@ -72,6 +72,12 @@ namespace TestsDelivery.BL.Mappings
                 .ForMember(x => x.Type, x => x.MapFrom(y => y.Type))
                 .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
             CreateMap<QuestionBase, QuestionReadModel>();
+
+            CreateMap<SingleChoiceQuestion, ScqDetailedModel>();
+            CreateMap<MultipleChoiceQuestion, McqDetailedModel>();
+            CreateMap<EssayQuestion, EssayDetailedModel>();
+
+            CreateMap<QuestionType, UserModels.Questions.QuestionType>();
         }
     }
 }

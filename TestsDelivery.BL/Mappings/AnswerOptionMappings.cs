@@ -11,6 +11,7 @@ namespace TestsDelivery.BL.Mappings
             CreateMap<AnswerOptionCreateModel, AnswerOption>();
             CreateMap<AnswerOptionEditModel, AnswerOption>();
             CreateMap<AnswerOption, AnswerOptionReadModel>();
+            CreateMap<AnswerOption, AnswerOptionUnverified>();
 
             CreateMap<AnswerOption, DAL.Models.Questions.AnswerOption>();
             CreateMap<DAL.Models.Questions.AnswerOption, AnswerOption>();

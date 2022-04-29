@@ -1,14 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace TestsPortal.DAL.Models.Subject
+﻿namespace TestsPortal.DAL.Models.Subject
 {
-    public record Subject
+    public record Subject : IdEntity<long>
     {
-        [Key]
-        public long Id { get; set; }
-
-        public long OriginalId { get; set; }
-
         public string Name { get; set; } = string.Empty;
     }
 }

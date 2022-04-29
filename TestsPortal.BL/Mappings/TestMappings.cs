@@ -16,10 +16,13 @@ namespace TestsPortal.BL.Mappings
             CreateMap<TestDetailedModel, Test>()
                 .ForMember(x => x.Id, y => y.Ignore())
                 .ForMember(x => x.OriginalId, x => x.MapFrom(y => y.Id))
-                .ForMember(x => x.Questions, x => x.MapFrom<QuestionsResolver>());
+                .ForMember(x => x.Questions, x => x.MapFrom<QuestionsClientToDomainResolver>());
+
+            CreateMap<Test, DAL.Models.Tests.Test>();
+            CreateMap<DAL.Models.Tests.Test, Test>();
         }
 
-        private class QuestionsResolver : IValueResolver<TestDetailedModel, Test, IEnumerable<QuestionBase>>
+        private class QuestionsClientToDomainResolver : IValueResolver<TestDetailedModel, Test, IEnumerable<QuestionBase>>
         {
             public IEnumerable<QuestionBase> Resolve(TestDetailedModel source, Test destination, IEnumerable<QuestionBase> destMember, ResolutionContext context)
             {
@@ -28,12 +31,14 @@ namespace TestsPortal.BL.Mappings
                 {
                     var type = question.GetType();
 
-                    if (type.IsInstanceOfType(typeof(ScqReadModel)))
-                        dest.Add(MapQuestion<ScqReadModel, SingleChoiceQuestion>(question, context.Mapper));
-                    else if (type.IsInstanceOfType(typeof(McqReadModel)))
-                        dest.Add(MapQuestion<McqReadModel, MultipleChoiceQuestion>(question, context.Mapper));
-                    else if (type.IsInstanceOfType(typeof(EssayReadModel)))
-                        dest.Add(MapQuestion<EssayReadModel, EssayQuestion>(question, context.Mapper));
+                    if (type.IsAssignableTo(typeof(ScqDetailedModel)))
+                        dest.Add(MapQuestion<ScqDetailedModel, SingleChoiceQuestion>(question, context.Mapper));
+                    else if (type.IsAssignableTo(typeof(McqDetailedModel)))
+                        dest.Add(MapQuestion<McqDetailedModel, MultipleChoiceQuestion>(question, context.Mapper));
+                    else if (type.IsAssignableTo(typeof(EssayDetailedModel)))
+                        dest.Add(MapQuestion<EssayDetailedModel, EssayQuestion>(question, context.Mapper));
+                    else
+                        throw new ArgumentException("Unknown question type when mapping", nameof(question));
                 }
 
                 return dest;

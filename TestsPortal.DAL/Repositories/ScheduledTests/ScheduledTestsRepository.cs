@@ -3,19 +3,11 @@ using TestsPortal.DAL.Models.ScheduledTests;
 
 namespace TestsPortal.DAL.Repositories.ScheduledTests
 {
-    public class ScheduledTestsRepository : IScheduledTestsRepository
+    public class ScheduledTestsRepository : BaseRepository<ScheduledTest>, IScheduledTestsRepository
     {
-        private readonly TestsPortalContext _context;
-
         public ScheduledTestsRepository(TestsPortalContext context)
+            : base(context)
         {
-            _context = context;
-        }
-
-        public void CreateScheduledTest(ScheduledTest scheduledTest)
-        {
-            _context.ScheduledTests.Add(scheduledTest);
-            _context.SaveChanges();
         }
     }
 }

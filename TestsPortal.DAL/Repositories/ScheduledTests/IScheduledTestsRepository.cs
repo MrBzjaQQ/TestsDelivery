@@ -2,8 +2,7 @@
 
 namespace TestsPortal.DAL.Repositories.ScheduledTests
 {
-    public interface IScheduledTestsRepository
+    public interface IScheduledTestsRepository : IBaseRepository<ScheduledTest>
     {
-        void CreateScheduledTest(ScheduledTest scheduledTest);
     }
 }
