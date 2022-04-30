@@ -1,6 +1,6 @@
 ﻿namespace TestsPortal.DAL.Models.Tests
 {
-    public record Test : IdEntity<long>
+    public record Test : IdOriginalIdEntity<long>
     {
         public string Name { get; set; }
     }

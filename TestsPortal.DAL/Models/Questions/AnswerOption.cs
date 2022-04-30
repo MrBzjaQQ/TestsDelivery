@@ -2,7 +2,7 @@
 
 namespace TestsPortal.DAL.Models.Questions
 {
-    public record AnswerOption : IdEntity<long>
+    public record AnswerOption : IdOriginalIdEntity<long>
     {
         [ForeignKey(nameof(Question))]
         public long QuestionId { get; set; }

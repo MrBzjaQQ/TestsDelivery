@@ -8,11 +8,13 @@ using Newtonsoft.Json.Serialization;
 using System;
 using TestsDelivery.Infrastructure.Logging;
 using TestsPortal.BL.Mediators.ScheduledTests;
+using TestsPortal.BL.Mediators.TestProcesses;
 using TestsPortal.BL.Services.Candidates;
 using TestsPortal.BL.Services.EmailServices;
 using TestsPortal.BL.Services.Questions;
 using TestsPortal.BL.Services.ScheduledTests;
 using TestsPortal.BL.Services.Subjects;
+using TestsPortal.BL.Services.TestProcesses;
 using TestsPortal.BL.Services.Tests;
 using TestsPortal.DAL.Data;
 using TestsPortal.DAL.Repositories.AnswerOptions;
@@ -57,6 +59,7 @@ namespace TestsPortal
             services.AddScoped(typeof(IAppLogging<>), typeof(AppLogging<>));
 
             services.AddScoped<IScheduledTestMediator, ScheduledTestMediator>();
+            services.AddScoped<ITestProcessMediator, TestProcessMediator>();
 
             services.AddScoped<ITestsService, TestsService>();
             services.AddScoped<ICandidateService, CandidateService>();
@@ -65,6 +68,7 @@ namespace TestsPortal
             services.AddScoped<ISubjectsService, SubjectsService>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ICandidateNotificationService, CandidateNotificationService>();
+            services.AddScoped<ITestProcessService, TestProcessService>();
 
             services.AddScoped<IAnswerOptionsRepository, AnswerOptionsRepository>();
             services.AddScoped<ICandidatesRepository, CandidatesRepository>();

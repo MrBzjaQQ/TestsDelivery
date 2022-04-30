@@ -5,6 +5,8 @@ using TestsDelivery.UserModels.Questions.MultipleChoice;
 using TestsDelivery.UserModels.Questions.SingleChoice;
 using TestsPortal.DAL.Models.Questions;
 using TestsPortal.Domain.Questions;
+using DALShortQuestion = TestsPortal.DAL.Models.Questions.ShortQuestion;
+using DomainShortQuestion = TestsPortal.Domain.Questions.ShortQuestion;
 
 namespace TestsPortal.BL.Mappings
 {
@@ -62,6 +64,10 @@ namespace TestsPortal.BL.Mappings
             CreateMap<QuestionBase, McqReadModel>();
             CreateMap<QuestionBase, ScqReadModel>();
             CreateMap<QuestionWithOptionsBase, QuestionWithOptionsReadModel>();
+
+            CreateMap<Question, DALShortQuestion>();
+            CreateMap<DALShortQuestion, DomainShortQuestion>();
+            CreateMap<DomainShortQuestion, QuestionInListModel>();
         }
     }
 }

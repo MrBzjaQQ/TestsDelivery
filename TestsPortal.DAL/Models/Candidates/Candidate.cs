@@ -2,7 +2,7 @@
 
 namespace TestsPortal.DAL.Models.Candidates
 {
-    public record Candidate : IdEntity<long>
+    public record Candidate : IdOriginalIdEntity<long>
     {
         public string FirstName { get; set; } = string.Empty;
 

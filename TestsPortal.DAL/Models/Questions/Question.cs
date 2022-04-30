@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TestsPortal.DAL.Models.Questions
 {
     // TODO: problem here
     // Editing issue in admin panel
     // Probably versioning should solve the issue
-    public record Question : IdEntity<long>
+    public record Question : IdOriginalIdEntity<long>
     {
         public string Name { get; set; } = string.Empty;
 

@@ -90,5 +90,16 @@ namespace TestsPortal.BL.Services.Questions
             domainQuestion.AnswerOptions = _mapper.Map<IEnumerable<Domain.Questions.AnswerOption>>(options);
             return domainQuestion;
         }
+
+        public IEnumerable<Domain.Questions.ShortQuestion> GetByTestId(long testId)
+        {
+            return _mapper.Map<IEnumerable<Domain.Questions.ShortQuestion>>(_questionsRepository.GetByTestId(testId));
+        }
+
+        public QuestionBase GetById(long questionId)
+        {
+            // TODO: implement ITypedQuestionService
+            throw new NotImplementedException();
+        }
     }
 }

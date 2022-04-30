@@ -1,11 +1,12 @@
-﻿using TestsPortal.DAL.Data;
+﻿using AutoMapper;
+using TestsPortal.DAL.Data;
 
 namespace TestsPortal.DAL.Repositories.Candidate
 {
     public class CandidatesRepository : BaseRepository<Models.Candidates.Candidate>, ICandidatesRepository
     {
-        public CandidatesRepository(TestsPortalContext context)
-            : base(context)
+        public CandidatesRepository(TestsPortalContext context, IMapper mapper)
+            : base(context, mapper)
         {
         }
 

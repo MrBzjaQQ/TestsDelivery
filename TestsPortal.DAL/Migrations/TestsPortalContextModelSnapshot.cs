@@ -159,6 +159,9 @@ namespace TestsPortal.DAL.Migrations
                     b.Property<DateTime>("StartDateTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<short>("Status")
+                        .HasColumnType("smallint");
+
                     b.Property<long>("TestId")
                         .HasColumnType("bigint");
 

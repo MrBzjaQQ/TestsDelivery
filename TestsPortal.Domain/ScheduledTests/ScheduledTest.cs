@@ -16,6 +16,8 @@ namespace TestsPortal.Domain.ScheduledTests
 
         public string Pin { get; set; }
 
+        public TestStatus Status { get; set; }
+
         public int Duration { get; set; }
 
         public DateTime StartDateTime { get; set; }

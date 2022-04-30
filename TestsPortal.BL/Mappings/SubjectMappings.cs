@@ -2,6 +2,8 @@
 using DomainSubject = TestsPortal.Domain.Subjects.Subject;
 using DALSubject = TestsPortal.DAL.Models.Subject.Subject;
 using TestsDelivery.UserModels.Subject;
+using DALShortSubject = TestsPortal.DAL.Models.Subject.ShortSubject;
+using DomainShortSubject = TestsPortal.Domain.Subjects.ShortSubject;
 
 namespace TestsPortal.BL.Mappings
 {
@@ -16,6 +18,10 @@ namespace TestsPortal.BL.Mappings
 
             CreateMap<DomainSubject, DALSubject>()
                 .ReverseMap();
+
+            CreateMap<DALSubject, DALShortSubject>();
+            CreateMap<DALShortSubject, DomainShortSubject>();
+            CreateMap<DomainShortSubject, SubjectInListModel>();
         }
     }
 }

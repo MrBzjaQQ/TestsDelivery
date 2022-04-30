@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using TestsDelivery.DAL.Shared;
 
 namespace TestsPortal.DAL.Repositories
 {
@@ -14,5 +10,7 @@ namespace TestsPortal.DAL.Repositories
         void Create(TEntity entity);
 
         void Update(TEntity entity);
+
+        IList<TEntity> GetByFilter(GenericFilter<TEntity> filter);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace TestsPortal.DAL.Models.ScheduledTests
 {
-    public record ScheduledTest : IdEntity<long>
+    public record ScheduledTest : IdOriginalIdEntity<long>
     {
         [ForeignKey(nameof(Tests.Test))]
         public long TestId { get; set; }
@@ -14,6 +14,8 @@ namespace TestsPortal.DAL.Models.ScheduledTests
         public string Keycode { get; set; } = string.Empty;
 
         public string Pin { get; set; } = string.Empty;
+
+        public short Status { get; set; }
 
         public DateTime StartDateTime { get; set; }
 

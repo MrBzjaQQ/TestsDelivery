@@ -6,7 +6,5 @@ namespace TestsPortal.DAL.Models
     {
         [Key]
         public TKey Id { get; set; }
-
-        public TKey OriginalId { get; set; }
     }
 }
