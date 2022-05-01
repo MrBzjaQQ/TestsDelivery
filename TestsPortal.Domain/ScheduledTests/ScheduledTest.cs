@@ -12,12 +12,6 @@ namespace TestsPortal.Domain.ScheduledTests
 
         public IEnumerable<Candidate> Candidates { get; set; }
 
-        public string Keycode { get; set; }
-
-        public string Pin { get; set; }
-
-        public TestStatus Status { get; set; }
-
         public int Duration { get; set; }
 
         public DateTime StartDateTime { get; set; }

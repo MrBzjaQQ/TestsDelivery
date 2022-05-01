@@ -3,7 +3,7 @@ using TestsPortal.DAL.Models.Candidates;
 
 namespace TestsPortal.DAL.Models.ScheduledTests
 {
-    public record CandidateInScheduledTest : IdOriginalIdEntity<long>
+    public record ScheduledTestInstance : IdOriginalIdEntity<long>
     {
         [ForeignKey(nameof(Candidate))]
         public long CandidateId { get; set; }
@@ -14,5 +14,11 @@ namespace TestsPortal.DAL.Models.ScheduledTests
         public virtual Candidate Candidate { get; set; }
 
         public virtual ScheduledTest ScheduledTest { get; set; }
+
+        public string Keycode { get; set; } = string.Empty;
+
+        public string Pin { get; set; } = string.Empty;
+
+        public short Status { get; set; }
     }
 }

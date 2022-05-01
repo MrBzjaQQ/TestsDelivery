@@ -39,6 +39,7 @@ namespace TestsPortal.Controllers
         [HttpPost]
         public IActionResult StartTest(StartTestModel model)
         {
+            // TODO: candidate?
             // TODO: use PIN hash here
             // TODO: create token/guid for test
             // TODO: think about url format for test

@@ -33,6 +33,6 @@ namespace TestsDelivery.DAL.Data
 
         public DbSet<ScheduledTest> ScheduledTests { get; set; }
 
-        public DbSet<CandidateInScheduledTest> CandidatesInScheduledTest { get; set; }
+        public DbSet<ScheduledTestInstance> ScheduledTestInstances { get; set; }
     }
 }

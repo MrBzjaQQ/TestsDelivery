@@ -16,5 +16,10 @@ namespace TestsPortal.DAL.Repositories.AnswerOptions
             Context.AnswerOptions.AddRange(options);
             Context.SaveChanges();
         }
+
+        public IEnumerable<AnswerOption> GetAnswerOptionsByQuestionId(long questionId)
+        {
+            return Context.AnswerOptions.Where(x => x.QuestionId == questionId).ToList();
+        }
     }
 }

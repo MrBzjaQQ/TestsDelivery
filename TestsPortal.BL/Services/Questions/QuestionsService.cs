@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using TestsPortal.BL.Exceptions;
 using TestsPortal.BL.Services.Subjects;
 using TestsPortal.DAL.Models.Questions;
 using TestsPortal.DAL.Repositories.AnswerOptions;
@@ -51,6 +52,27 @@ namespace TestsPortal.BL.Services.Questions
             return MapQuestionsToDomainBase(dalQuestions, dalOptions);
         }
 
+        public IEnumerable<Domain.Questions.ShortQuestion> GetByTestId(long testId)
+        {
+            return _mapper.Map<IEnumerable<Domain.Questions.ShortQuestion>>(_questionsRepository.GetByTestId(testId));
+        }
+
+        public QuestionBase GetById(long questionId)
+        {
+            var question = _mapper.Map<QuestionBase>(_questionsRepository.GetById(questionId));
+            switch (question.Type)
+            {
+                case QuestionType.SingleChoice:
+                    return ProcessSingleChoice(question);
+                case QuestionType.MultipleChoice:
+                    return ProcessMultipleChoice(question);
+                case QuestionType.Essay:
+                    return ProcessEssay(question);
+                default:
+                    throw new QuestionTypeIsUnknown();
+            }
+        }
+
         private IEnumerable<TQuestionType> GetQuestionsOfType<TQuestionType>(IEnumerable<QuestionBase> questions)
             where TQuestionType : QuestionBase
         {
@@ -91,15 +113,25 @@ namespace TestsPortal.BL.Services.Questions
             return domainQuestion;
         }
 
-        public IEnumerable<Domain.Questions.ShortQuestion> GetByTestId(long testId)
+        private SingleChoiceQuestion ProcessSingleChoice(QuestionBase questionBase)
         {
-            return _mapper.Map<IEnumerable<Domain.Questions.ShortQuestion>>(_questionsRepository.GetByTestId(testId));
+            var singleChoice = _mapper.Map<SingleChoiceQuestion>(questionBase);
+            var answerOptions = _answerOptionsRepository.GetAnswerOptionsByQuestionId(questionBase.Id);
+            singleChoice.AnswerOptions = _mapper.Map<IEnumerable<Domain.Questions.AnswerOption>>(answerOptions);
+            return singleChoice;
         }
 
-        public QuestionBase GetById(long questionId)
+        private MultipleChoiceQuestion ProcessMultipleChoice(QuestionBase questionBase)
         {
-            // TODO: implement ITypedQuestionService
-            throw new NotImplementedException();
+            var multipleChoice = _mapper.Map<MultipleChoiceQuestion>(questionBase);
+            var answerOptions = _answerOptionsRepository.GetAnswerOptionsByQuestionId(questionBase.Id);
+            multipleChoice.AnswerOptions = _mapper.Map<IEnumerable<Domain.Questions.AnswerOption>>(answerOptions);
+            return multipleChoice;
+        }
+
+        private EssayQuestion ProcessEssay(QuestionBase questionBase)
+        {
+            return _mapper.Map<EssayQuestion>(questionBase);
         }
     }
 }

@@ -12,12 +12,6 @@ namespace TestsDelivery.DAL.Models.ScheduledTest
 
         public int Duration { get; set; }
 
-        public string Keycode { get; set; }
-
-        public string Pin { get; set; }
-
-        public short Status { get; set; }
-
         public DateTime StartDateTime { get; set; }
 
         public DateTime ExpirationDateTime { get; set; }

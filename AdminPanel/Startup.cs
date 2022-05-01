@@ -140,7 +140,7 @@ namespace AdminPanel
             services.AddScoped<ITestRepository, TestRepository>();
             services.AddScoped<IQuestionInTestRepository, QuestionInTestRepository>();
             services.AddScoped<IScheduledTestRepository, ScheduledTestRepository>();
-            services.AddScoped<ICandidateInTestRepository, CandidateInTestRepository>();
+            services.AddScoped<IScheduledTestInstancesRepository, ScheduledTestInstancesRepository>();
 
             services.AddScoped<IScqModelValidator, ScqModelValidator>();
             services.AddScoped<IMcqModelValidator, McqModelValidator>();

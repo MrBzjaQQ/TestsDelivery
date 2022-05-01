@@ -18,7 +18,7 @@ namespace TestsPortal.BL.Services.TestProcesses
         public void FinishTest(long testId)
         {
             var test = _scheduledTestsRepository.GetById(testId);
-            test.Status = (short)TestStatus.Completed;
+            // test.Status = (short)TestStatus.Completed;
             _scheduledTestsRepository.Update(test);
             // TODO: change test status in AdminPanel
         }
@@ -27,8 +27,8 @@ namespace TestsPortal.BL.Services.TestProcesses
         {
             var filter = new ScheduledTestsFilterBuilder()
                 .ByTestId(credentials.TestId)
-                .ByKeycode(credentials.Keycode)
-                .ByPin(credentials.Pin)
+                //.ByKeycode(credentials.Keycode)
+                //.ByPin(credentials.Pin)
                 .Build();
 
             var tests = _scheduledTestsRepository.GetByFilter(filter);
@@ -37,7 +37,7 @@ namespace TestsPortal.BL.Services.TestProcesses
                 throw new CandidateAuthenticationException();
 
             var test = tests.Single();
-            test.Status = (short)TestStatus.InProgress;
+            // test.Status = (short)TestStatus.InProgress;
             _scheduledTestsRepository.Update(test);
             // TODO: change test status in AdminPanel
         }

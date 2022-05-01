@@ -11,10 +11,7 @@ namespace TestsPortal.BL.Mappings
         {
             CreateMap<ScheduledTestDetailedModel, DomainScheduledTest>()
                 .ForMember(x => x.Id, y => y.Ignore())
-                .ForMember(x => x.OriginalId, x => x.MapFrom(y => y.Id))
-                // TODO: Fill keycode and password
-                .ForMember(x => x.Pin, x => x.MapFrom(y => "ABCDEF"))
-                .ForMember(x => x.Keycode, x => x.MapFrom(y => "ABCDEF"));
+                .ForMember(x => x.OriginalId, x => x.MapFrom(y => y.Id));
             CreateMap<DomainScheduledTest, DALScheduledTest>()
                 .ReverseMap();
             CreateMap<DomainScheduledTest, ScheduledTestReadModel>();

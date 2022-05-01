@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using TestsDelivery.UserModels.Candidate;
+﻿using TestsDelivery.UserModels.Candidate;
 
 namespace TestsDelivery.UserModels.ScheduledTest
 {
@@ -9,8 +7,6 @@ namespace TestsDelivery.UserModels.ScheduledTest
         public long Id { get; set; }
 
         public IEnumerable<CandidateReadModel> Candidates { get; set; }
-
-        public short TestStatus { get; set; }
 
         public int Duration { get; set; }
 

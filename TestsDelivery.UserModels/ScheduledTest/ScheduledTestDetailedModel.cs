@@ -9,8 +9,6 @@ namespace TestsDelivery.UserModels.ScheduledTest
 
         public IEnumerable<CandidateReadModel> Candidates { get; set; }
 
-        public short TestStatus { get; set; }
-
         public int Duration { get; set; }
 
         public DateTime StartDateTime { get; set; }

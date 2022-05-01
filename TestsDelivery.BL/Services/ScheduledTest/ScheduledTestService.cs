@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using TestsDelivery.DAL.Repositories.Candidate;
 using TestsDelivery.DAL.Repositories.ScheduledTest;
 using ScheduledTestDomain = TestsDelivery.Domain.ScheduledTest.ScheduledTest;
 using ScheduledTestData = TestsDelivery.DAL.Models.ScheduledTest.ScheduledTest;
@@ -9,6 +8,7 @@ using TestsDelivery.BL.Services.Test;
 using TestsDelivery.BL.Services.Candidates;
 using TestsDelivery.DAL.Models.ScheduledTest;
 using TestsDelivery.DAL.Repositories.CandidateInScheduledTest;
+using TestsDelivery.Domain.ScheduledTest;
 
 namespace TestsDelivery.BL.Services.ScheduledTest
 {
@@ -17,21 +17,21 @@ namespace TestsDelivery.BL.Services.ScheduledTest
         private readonly IScheduledTestRepository _scheduledTestRepository;
         private readonly ITestService _testService;
         private readonly IMapper _mapper;
-        private readonly ICandidateInTestRepository _candidateInTestRepository;
+        private readonly IScheduledTestInstancesRepository _scheduledTestInstancesRepository;
         private readonly ICandidateService _candidateService;
 
         public ScheduledTestService(
             ITestService testService,
             IScheduledTestRepository scheduledTestRepository,
             ICandidateService candidateService,
-            ICandidateInTestRepository candidateInTestRepository,
+            IScheduledTestInstancesRepository scheduledTestInstancesRepository,
             IMapper mapper)
         {
             _scheduledTestRepository = scheduledTestRepository;
             _candidateService = candidateService;
             _testService = testService;
             _mapper = mapper;
-            _candidateInTestRepository = candidateInTestRepository;
+            _scheduledTestInstancesRepository = scheduledTestInstancesRepository;
         }
 
         public ScheduledTestDomain ScheduleTest(ScheduledTestDomain test)
@@ -41,8 +41,8 @@ namespace TestsDelivery.BL.Services.ScheduledTest
             var testData = _mapper.Map<ScheduledTestData>(test);
             _scheduledTestRepository.Create(testData);
 
-            _candidateInTestRepository.Create(MapCandidatesInTests(testData.Id, candidates));
-            var candidatesInScheduledTests = _candidateInTestRepository.GetByTestId(testData.Id);
+            _scheduledTestInstancesRepository.Create(MapTestInstances(testData.Id, candidates));
+            var candidatesInScheduledTests = _scheduledTestInstancesRepository.GetByTestId(testData.Id);
 
             var testDomain = _mapper.Map<ScheduledTestDomain>(testData);
             testDomain.Test = _testService.GetFullTest(test.Test.Id);
@@ -56,14 +56,17 @@ namespace TestsDelivery.BL.Services.ScheduledTest
             return _mapper.Map<ScheduledTestDomain>(_scheduledTestRepository.GetById(id));
         }
 
-        private IEnumerable<CandidateInScheduledTest> MapCandidatesInTests(
+        private IEnumerable<ScheduledTestInstance> MapTestInstances(
             long testId,
             IEnumerable<Domain.Candidate.Candidate> candidates)
         {
-            return candidates.Select(x => new CandidateInScheduledTest
+            return candidates.Select(x => new ScheduledTestInstance
             {
                 CandidateId = x.Id,
-                ScheduledTestId = testId
+                ScheduledTestId = testId,
+                Status = (short)TestStatus.NotStarted,
+                Keycode = "ABCDEF",
+                Pin = "ABCDEF"
             });
         }
     }

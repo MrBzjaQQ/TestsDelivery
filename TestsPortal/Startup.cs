@@ -7,11 +7,13 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using System;
 using TestsDelivery.Infrastructure.Logging;
+using TestsPortal.BL.Mediators.Questions;
 using TestsPortal.BL.Mediators.ScheduledTests;
 using TestsPortal.BL.Mediators.TestProcesses;
 using TestsPortal.BL.Services.Candidates;
 using TestsPortal.BL.Services.EmailServices;
 using TestsPortal.BL.Services.Questions;
+using TestsPortal.BL.Services.Questions.TypedQuestion;
 using TestsPortal.BL.Services.ScheduledTests;
 using TestsPortal.BL.Services.Subjects;
 using TestsPortal.BL.Services.TestProcesses;
@@ -60,6 +62,9 @@ namespace TestsPortal
 
             services.AddScoped<IScheduledTestMediator, ScheduledTestMediator>();
             services.AddScoped<ITestProcessMediator, TestProcessMediator>();
+            services.AddScoped<IEssayMediator, EssayMediator>();
+            services.AddScoped<IMultipleChoiceService, MultipleChoiceService>();
+            services.AddScoped<ISingleChoiceService, SingleChoiceService>();
 
             services.AddScoped<ITestsService, TestsService>();
             services.AddScoped<ICandidateService, CandidateService>();
@@ -69,6 +74,9 @@ namespace TestsPortal
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<ICandidateNotificationService, CandidateNotificationService>();
             services.AddScoped<ITestProcessService, TestProcessService>();
+            services.AddScoped<IEssayService, EssayService>();
+            services.AddScoped<IMultipleChoiceService, MultipleChoiceService>();
+            services.AddScoped<ISingleChoiceService, SingleChoiceService>();
 
             services.AddScoped<IAnswerOptionsRepository, AnswerOptionsRepository>();
             services.AddScoped<ICandidatesRepository, CandidatesRepository>();

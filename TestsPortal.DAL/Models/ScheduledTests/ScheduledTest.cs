@@ -11,12 +11,6 @@ namespace TestsPortal.DAL.Models.ScheduledTests
 
         public int Duration { get; set; }
 
-        public string Keycode { get; set; } = string.Empty;
-
-        public string Pin { get; set; } = string.Empty;
-
-        public short Status { get; set; }
-
         public DateTime StartDateTime { get; set; }
 
         public DateTime ExpirationDateTime { get; set; }

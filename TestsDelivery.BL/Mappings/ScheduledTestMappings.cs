@@ -12,7 +12,6 @@ namespace TestsDelivery.BL.Mappings
         public ScheduledTestMappings()
         {
             CreateMap<ScheduledTestCreateModel, ScheduledTest>()
-                .ForMember(x => x.Status, x => x.MapFrom(y => TestStatus.NotStarted))
                 .ForMember(x => x.Test, x => x.MapFrom(y => new Test { Id = y.TestId }))
                 .ForMember(x => x.Candidates, y => y.MapFrom(y => y.CandidateIds.Select(x => new Candidate { Id = x })));
             CreateMap<ScheduledTest, ScheduledTestReadModel>();

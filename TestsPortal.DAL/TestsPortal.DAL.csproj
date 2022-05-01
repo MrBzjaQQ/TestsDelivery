@@ -26,4 +26,8 @@
     <ProjectReference Include="..\TestsPortal.Domain\TestsPortal.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\TestResults\" />
+  </ItemGroup>
+
 </Project>
