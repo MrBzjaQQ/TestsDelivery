@@ -11,6 +11,6 @@ namespace TestsPortal.BL.Mediators.TestProcesses
 
         void StartTest(StartTestModel model);
 
-        void FinishTest(long testId);
+        Task FinishTest(long testId);
     }
 }

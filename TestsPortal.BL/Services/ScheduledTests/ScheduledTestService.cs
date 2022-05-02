@@ -58,7 +58,8 @@ namespace TestsPortal.BL.Services.ScheduledTests
                 ScheduledTestId = testId,
                 Status = (short)TestStatus.NotStarted,
                 Keycode = "ABCDEF",
-                Pin = "ABCDEF"
+                Pin = "ABCDEF",
+                AdminPanelInstance = test.AdminPanelInstance
             });
         }
     }

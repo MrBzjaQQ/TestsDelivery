@@ -2,6 +2,6 @@
 {
     public record AnsweredEssay : AnsweredQuestionBase
     {
-        public string SelectedAnswer { get; set; }
+        public string Text { get; set; }
     }
 }

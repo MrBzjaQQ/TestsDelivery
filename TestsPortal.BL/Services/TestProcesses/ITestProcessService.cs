@@ -1,4 +1,5 @@
-﻿using TestsPortal.Domain.TestProcesses;
+﻿using TestsPortal.Domain.AnsweredTests;
+using TestsPortal.Domain.TestProcesses;
 
 namespace TestsPortal.BL.Services.TestProcesses
 {
@@ -6,6 +7,6 @@ namespace TestsPortal.BL.Services.TestProcesses
     {
         void StartTest(TestCredentials credentials);
 
-        void FinishTest(long testId);
+        AnsweredTest FinishTest(long testId);
     }
 }

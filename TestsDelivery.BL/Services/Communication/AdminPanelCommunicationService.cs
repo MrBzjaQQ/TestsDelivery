@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Threading.Tasks;
-using TestsDelivery.BL.Clients.Integration;
+using TestsDelivery.BL.Shared.Clients.Integration;
 using TestsDelivery.UserModels.ScheduledTest;
 
 namespace TestsDelivery.BL.Services.Communication

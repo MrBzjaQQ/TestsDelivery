@@ -4,7 +4,7 @@ using TestsDelivery.BL.Mediators.ScheduledTest;
 using TestsDelivery.UserModels.ScheduledTest;
 using TestsDelivery.DAL.Exceptions.Candidate;
 using TestsDelivery.DAL.Exceptions.ScheduledTest;
-using TestsDelivery.BL.Clients.Integration;
+using TestsDelivery.BL.Shared.Clients.Integration;
 using System.Threading.Tasks;
 
 namespace AdminPanel.Controllers

@@ -1,6 +1,7 @@
-﻿using TestsDelivery.BL.Clients.Integration;
-using TestsDelivery.BL.Factories;
+﻿using TestsDelivery.BL.Shared.Clients.Integration;
+using TestsDelivery.BL.Shared.Factories;
 using TestsDelivery.BL.Services.TestPortalInstances;
+using TestsDelivery.BL.Shared.Providers.Communication;
 
 namespace TestsDelivery.BL.Providers.Communication
 {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TestsDelivery.BL.Clients.Integration
+﻿namespace TestsDelivery.BL.Shared.Clients.Integration
 {
     public class IntegrationException : Exception
     {

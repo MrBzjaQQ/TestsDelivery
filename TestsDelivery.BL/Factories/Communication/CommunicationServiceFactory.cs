@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using System;
-using System.Linq;
-using TestsDelivery.BL.Clients.Integration;
+using TestsDelivery.BL.Shared.Clients.Integration;
 using TestsDelivery.BL.Services.Communication;
+using TestsDelivery.BL.Shared.Factories;
 
 namespace TestsDelivery.BL.Factories
 {

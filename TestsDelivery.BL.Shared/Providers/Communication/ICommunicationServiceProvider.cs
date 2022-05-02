@@ -1,4 +1,4 @@
-﻿namespace TestsDelivery.BL.Providers.Communication
+﻿namespace TestsDelivery.BL.Shared.Providers.Communication
 {
     public interface ICommunicationServiceProvider
     {

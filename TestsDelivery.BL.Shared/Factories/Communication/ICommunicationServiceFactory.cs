@@ -1,6 +1,6 @@
-﻿using TestsDelivery.BL.Clients.Integration;
+﻿using TestsDelivery.BL.Shared.Clients.Integration;
 
-namespace TestsDelivery.BL.Factories
+namespace TestsDelivery.BL.Shared.Factories
 {
     public interface ICommunicationServiceFactory
     {

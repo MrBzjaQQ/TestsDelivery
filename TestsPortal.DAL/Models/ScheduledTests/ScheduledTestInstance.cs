@@ -20,5 +20,7 @@ namespace TestsPortal.DAL.Models.ScheduledTests
         public string Pin { get; set; } = string.Empty;
 
         public short Status { get; set; }
+
+        public string AdminPanelInstance { get; set; } = string.Empty;
     }
 }

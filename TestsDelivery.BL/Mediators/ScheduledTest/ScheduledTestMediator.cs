@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using TestsDelivery.UserModels.ScheduledTest;
-using TestsDelivery.BL.Providers.Communication;
+using TestsDelivery.BL.Shared.Providers.Communication;
 using TestsDelivery.BL.Services.Communication;
 using TestsDelivery.BL.Services.ScheduledTest;
-using TestsDelivery.BL.Clients.Integration;
+using TestsDelivery.BL.Shared.Clients.Integration;
 using System.Threading.Tasks;
 
 namespace TestsDelivery.BL.Mediators.ScheduledTest

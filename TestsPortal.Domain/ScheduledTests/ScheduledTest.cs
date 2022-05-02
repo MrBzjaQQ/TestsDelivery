@@ -10,6 +10,8 @@ namespace TestsPortal.Domain.ScheduledTests
 
         public Tests.Test Test { get; set; }
 
+        public string AdminPanelInstance { get; set; }
+
         public IEnumerable<Candidate> Candidates { get; set; }
 
         public int Duration { get; set; }

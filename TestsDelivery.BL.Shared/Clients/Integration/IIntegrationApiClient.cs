@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace TestsDelivery.BL.Clients.Integration
+﻿namespace TestsDelivery.BL.Shared.Clients.Integration
 {
     public interface IIntegrationApiClient
     {

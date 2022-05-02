@@ -39,9 +39,11 @@ using TestsDelivery.DAL.Repositories.Subjects;
 using TestsDelivery.DAL.Repositories.Test;
 using TestsDelivery.Options.Tokens;
 using TestsDelivery.BL.Providers.Communication;
-using TestsDelivery.BL.Clients.Integration;
-using TestsDelivery.BL.Providers.Client;
 using TestsDelivery.DAL.Repositories.CandidateInScheduledTest;
+using TestsDelivery.BL.Shared.Factories;
+using TestsDelivery.BL.Shared.Providers.Communication;
+using TestsDelivery.BL.Shared.Clients.Integration;
+using TestsDelivery.BL.Shared.Providers.Client;
 
 namespace AdminPanel
 {
@@ -149,7 +151,7 @@ namespace AdminPanel
             services.AddScoped<ICommunicationServiceFactory, CommunicationServiceFactory>();
             services.AddScoped<ICommunicationServiceProvider, CommunicationServiceProvider>();
             services.AddScoped<IIntegrationApiClient, IntegrationApiClient>();
-            services.AddScoped<IHttpClientProvider, TestsPotralClientProvider>();
+            services.AddScoped<IHttpClientProvider, HttpClientProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,6 +7,8 @@ namespace TestsDelivery.UserModels.ScheduledTest
     {
         public long Id { get; set; }
 
+        public string AdminPanelInstance { get; set; }
+
         public IEnumerable<CandidateReadModel> Candidates { get; set; }
 
         public int Duration { get; set; }

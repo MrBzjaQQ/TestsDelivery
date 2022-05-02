@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TestsDelivery.BL.Shared\TestsDelivery.BL.Shared.csproj" />
     <ProjectReference Include="..\TestsDelivery.DAL\TestsDelivery.DAL.csproj" />
     <ProjectReference Include="..\TestsDelivery.Domain\TestsDelivery.Domain.csproj" />
     <ProjectReference Include="..\TestsDelivery.UserModels\TestsDelivery.UserModels.csproj" />

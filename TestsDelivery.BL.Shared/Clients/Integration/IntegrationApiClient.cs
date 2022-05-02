@@ -1,12 +1,9 @@
 ﻿using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
-using TestsDelivery.BL.Providers.Client;
+using TestsDelivery.BL.Shared.Providers.Client;
 
-namespace TestsDelivery.BL.Clients.Integration
+namespace TestsDelivery.BL.Shared.Clients.Integration
 {
     public class IntegrationApiClient : IIntegrationApiClient
     {

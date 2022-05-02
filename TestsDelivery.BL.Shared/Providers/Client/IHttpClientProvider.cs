@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-
-namespace TestsDelivery.BL.Providers.Client
+﻿namespace TestsDelivery.BL.Shared.Providers.Client
 {
     public interface IHttpClientProvider
     {

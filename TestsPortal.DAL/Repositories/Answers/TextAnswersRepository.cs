@@ -10,5 +10,12 @@ namespace TestsPortal.DAL.Repositories.Answers
             : base(context, mapper)
         {
         }
+
+        public IEnumerable<TextAnswer> GetByTestId(long testId)
+        {
+            return Context.TextAnswers
+                .Where(x => x.ScheduledTestId == testId)
+                .ToList();
+        }
     }
 }

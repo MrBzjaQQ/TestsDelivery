@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using TestsDelivery.UserModels.TestProcess;
 using TestsPortal.BL.Mediators.TestProcesses;
 
@@ -40,10 +41,10 @@ namespace TestsPortal.Controllers
         }
 
         [HttpPost]
-        public IActionResult FinishTest(long testId)
+        public async Task<IActionResult> FinishTest(long testId)
         {
             // TODO: create token/guid for test (?)
-            _testProcessMediator.FinishTest(testId);
+            await _testProcessMediator.FinishTest(testId);
             return Ok();
         }
     }

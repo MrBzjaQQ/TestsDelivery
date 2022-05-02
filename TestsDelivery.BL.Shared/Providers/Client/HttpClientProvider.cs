@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Net.Http;
-
-namespace TestsDelivery.BL.Providers.Client
+﻿namespace TestsDelivery.BL.Shared.Providers.Client
 {
-    public class TestsPotralClientProvider : IHttpClientProvider
+    public class HttpClientProvider : IHttpClientProvider
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public TestsPotralClientProvider(IHttpClientFactory httpClientFactory)
+        public HttpClientProvider(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }

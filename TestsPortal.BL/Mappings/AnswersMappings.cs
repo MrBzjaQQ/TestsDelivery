@@ -15,6 +15,10 @@ namespace TestsPortal.BL.Mappings
 
             CreateMap<EssayAnswer, TextAnswer>();
             CreateMap<SingleChoiceAnswerCreateModel, ChoiceAnswer>();
+
+            CreateMap<EssayAnswer, EssayAnswerReadModel>();
+            CreateMap<SingleChoiceAnswer, SingleChoiceAnswerReadModel>();
+            CreateMap<MultipleChoiceAnswerCreateModel, MultipleChoiceAnswerReadModel>();
         }
     }
 }

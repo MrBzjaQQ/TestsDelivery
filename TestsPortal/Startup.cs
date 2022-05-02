@@ -10,7 +10,9 @@ using TestsDelivery.Infrastructure.Logging;
 using TestsPortal.BL.Mediators.Questions;
 using TestsPortal.BL.Mediators.ScheduledTests;
 using TestsPortal.BL.Mediators.TestProcesses;
+using TestsPortal.BL.Services.AdminPanelInstances;
 using TestsPortal.BL.Services.Candidates;
+using TestsPortal.BL.Services.Communication;
 using TestsPortal.BL.Services.EmailServices;
 using TestsPortal.BL.Services.Questions;
 using TestsPortal.BL.Services.Questions.TypedQuestion;
@@ -79,6 +81,8 @@ namespace TestsPortal
             services.AddScoped<IEssayService, EssayService>();
             services.AddScoped<IMultipleChoiceService, MultipleChoiceService>();
             services.AddScoped<ISingleChoiceService, SingleChoiceService>();
+            services.AddScoped<ITestsPortalCommunicationService, TestsPortalCommunicationService>();
+            services.AddScoped<IAdminPanelInstancesService, AdminPanelInstancesService>();
 
             services.AddScoped<IAnswerOptionsRepository, AnswerOptionsRepository>();
             services.AddScoped<ICandidatesRepository, CandidatesRepository>();
