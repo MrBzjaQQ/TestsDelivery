@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using TestsDelivery.UserModels.TestProcess;
 using TestsPortal.BL.Mediators.TestProcesses;
 
@@ -31,15 +30,8 @@ namespace TestsPortal.Controllers
         }
 
         [HttpPost]
-        public IActionResult PostAnswer()
-        {
-            throw new NotImplementedException();
-        }
-
-        [HttpPost]
         public IActionResult StartTest(StartTestModel model)
         {
-            // TODO: candidate?
             // TODO: use PIN hash here
             // TODO: create token/guid for test
             // TODO: think about url format for test

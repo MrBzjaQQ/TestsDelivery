@@ -4,6 +4,8 @@
     {
         public long TestId { get; set; }
 
+        public long CandidateId { get; set; }
+
         public string Keycode { get; set; }
 
         public string Pin { get; set; }

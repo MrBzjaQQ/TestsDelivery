@@ -1,18 +1,25 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TestsPortal.DAL.Models.Questions;
+using TestsPortal.DAL.Repositories.Answers;
 using TestsPortal.Domain.AnsweredQuestions.Answers;
 
 namespace TestsPortal.BL.Services.Questions.TypedQuestion
 {
-    public class EssayService : TypedQuestionService<EssayAnswer>, IEssayService
+    public class EssayService : IEssayService
     {
-        public EssayService(IMapper mapper)
-            : base(mapper)
+        private readonly IMapper _mapper;
+        private readonly ITextAnswersRepository _answersRepository;
+
+        public EssayService(ITextAnswersRepository answersRepository, IMapper mapper)
         {
+            _mapper = mapper;
+            _answersRepository = answersRepository;
+        }
+
+        public void PostAnswer(EssayAnswer answer)
+        {
+            var dalAnswer = _mapper.Map<TextAnswer>(answer);
+            _answersRepository.Create(dalAnswer);
         }
     }
 }

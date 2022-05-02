@@ -7,5 +7,7 @@
         public long ScheduledTestId { get; set; }
 
         public long CandidateId { get; set; }
+
+        public long QuestionId { get; set; }
     }
 }

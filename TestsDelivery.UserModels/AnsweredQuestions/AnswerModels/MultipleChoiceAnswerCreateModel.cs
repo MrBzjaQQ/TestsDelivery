@@ -1,11 +1,13 @@
 ﻿namespace TestsDelivery.UserModels.AnsweredQuestions.AnswerModels
 {
-    public class EssayAnswerModel
+    public class MultipleChoiceAnswerCreateModel
     {
-        public string Text { get; set; }
+        public IEnumerable<long> SelectedAnswerIds { get; set; }
 
         public long ScheduledTestId { get; set; }
 
         public long CandidateId { get; set; }
+
+        public long QuestionId { get; set; }
     }
 }

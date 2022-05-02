@@ -8,7 +8,7 @@ namespace TestsPortal.DAL.Repositories
 {
     // TODO: generalize and move to TestsDelivery.DAL.Shared
     public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
-        where TEntity : IdOriginalIdEntity<long>
+        where TEntity : IdEntity<long>
     {
         protected readonly TestsPortalContext Context;
         protected readonly IMapper Mapper;
@@ -24,6 +24,25 @@ namespace TestsPortal.DAL.Repositories
         public virtual void Create(TEntity entity)
         {
             _dbSet.Add(entity);
+            Context.SaveChanges();
+        }
+
+        public void Create(IEnumerable<TEntity> entities)
+        {
+            _dbSet.AddRange(entities);
+            Context.SaveChanges();
+        }
+
+        public void Update(IEnumerable<TEntity> entities)
+        {
+            _dbSet.UpdateRange(entities);
+            Context.SaveChanges();
+        }
+
+        public void Delete(long id)
+        {
+            var entity = _dbSet.Single(e => e.Id == id);
+            _dbSet.Remove(entity);
             Context.SaveChanges();
         }
 

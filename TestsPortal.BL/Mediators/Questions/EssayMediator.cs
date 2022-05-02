@@ -5,7 +5,7 @@ using TestsPortal.Domain.AnsweredQuestions.Answers;
 
 namespace TestsPortal.BL.Mediators.Questions
 {
-    public class EssayMediator : QuestionMediatorBase<EssayAnswerModel, EssayAnswer>, IEssayMediator
+    public class EssayMediator : QuestionMediatorBase<EssayAnswerCreateModel, EssayAnswer>, IEssayMediator
     {
         public EssayMediator(IEssayService service, IMapper mapper)
             : base(service, mapper)

@@ -3,9 +3,9 @@ using TestsPortal.BL.Mediators.Questions;
 
 namespace TestsPortal.Controllers.Questions
 {
-    public class MultipleChoiceController : QuestionControllerBase<MultipleChoiceAnswerModel>
+    public class MultipleChoiceController : QuestionControllerBase<MultipleChoiceAnswerCreateModel>
     {
-        public MultipleChoiceController(IQuestionMediatorBase<MultipleChoiceAnswerModel> mediator)
+        public MultipleChoiceController(IQuestionMediatorBase<MultipleChoiceAnswerCreateModel> mediator)
             : base(mediator)
         {
         }

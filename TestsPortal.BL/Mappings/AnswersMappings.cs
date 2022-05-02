@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TestsDelivery.UserModels.AnsweredQuestions.AnswerModels;
+using TestsPortal.DAL.Models.Questions;
 using TestsPortal.Domain.AnsweredQuestions.Answers;
 
 namespace TestsPortal.BL.Mappings
@@ -8,9 +9,12 @@ namespace TestsPortal.BL.Mappings
     {
         public AnswersMappings()
         {
-            CreateMap<EssayAnswerModel, EssayAnswer>();
-            CreateMap<SingleChoiceAnswerModel, SingleChoiceAnswer>();
-            CreateMap<MultipleChoiceAnswerModel, MultipleChoiceAnswer>();
+            CreateMap<EssayAnswerCreateModel, EssayAnswer>();
+            CreateMap<SingleChoiceAnswerCreateModel, SingleChoiceAnswer>();
+            CreateMap<MultipleChoiceAnswerCreateModel, MultipleChoiceAnswer>();
+
+            CreateMap<EssayAnswer, TextAnswer>();
+            CreateMap<SingleChoiceAnswerCreateModel, ChoiceAnswer>();
         }
     }
 }

@@ -5,9 +5,9 @@ using TestsPortal.Domain.AnsweredQuestions.Answers;
 
 namespace TestsPortal.BL.Mediators.Questions
 {
-    public class SingleChoiceMediator : QuestionMediatorBase<SingleChoiceAnswerModel, SingleChoiceAnswer>, ISingleChoiceMediator
+    public class SingleChoiceMediator : QuestionMediatorBase<SingleChoiceAnswerCreateModel, SingleChoiceAnswer>, ISingleChoiceMediator
     {
-        public SingleChoiceMediator(ITypedQuestionService<SingleChoiceAnswer> service, IMapper mapper)
+        public SingleChoiceMediator(ISingleChoiceService service, IMapper mapper)
             : base(service, mapper)
         {
         }

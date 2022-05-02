@@ -1,5 +1,6 @@
 ﻿using TestsPortal.BL.Exceptions;
 using TestsPortal.BL.FilterBuilders;
+using TestsPortal.DAL.Repositories.ScheduledTestInstances;
 using TestsPortal.DAL.Repositories.ScheduledTests;
 using TestsPortal.Domain.ScheduledTests;
 using TestsPortal.Domain.TestProcesses;
@@ -8,37 +9,38 @@ namespace TestsPortal.BL.Services.TestProcesses
 {
     public class TestProcessService : ITestProcessService
     {
-        private readonly IScheduledTestsRepository _scheduledTestsRepository;
+        private readonly IScheduledTestInstancesRepository _instancesRepository;
 
-        public TestProcessService(IScheduledTestsRepository scheduledTestsRepository)
+        public TestProcessService(IScheduledTestInstancesRepository instancesRepository)
         {
-            _scheduledTestsRepository = scheduledTestsRepository;
+            _instancesRepository = instancesRepository;
         }
 
         public void FinishTest(long testId)
         {
-            var test = _scheduledTestsRepository.GetById(testId);
-            // test.Status = (short)TestStatus.Completed;
-            _scheduledTestsRepository.Update(test);
+            var test = _instancesRepository.GetById(testId);
+            test.Status = (short)TestStatus.Completed;
+            _instancesRepository.Update(test);
             // TODO: change test status in AdminPanel
         }
 
         public void StartTest(TestCredentials credentials)
         {
-            var filter = new ScheduledTestsFilterBuilder()
+            var filter = new ScheduledTestsInstancesFilterBuilder()
                 .ByTestId(credentials.TestId)
-                //.ByKeycode(credentials.Keycode)
-                //.ByPin(credentials.Pin)
+                .ByCandidateId(credentials.CandidateId)
+                .ByKeycode(credentials.Keycode)
+                .ByPin(credentials.Pin)
                 .Build();
 
-            var tests = _scheduledTestsRepository.GetByFilter(filter);
+            var tests = _instancesRepository.GetByFilter(filter);
 
             if (tests.Count == 0)
                 throw new CandidateAuthenticationException();
 
             var test = tests.Single();
-            // test.Status = (short)TestStatus.InProgress;
-            _scheduledTestsRepository.Update(test);
+            test.Status = (short)TestStatus.InProgress;
+            _instancesRepository.Update(test);
             // TODO: change test status in AdminPanel
         }
     }

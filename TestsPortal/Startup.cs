@@ -20,8 +20,10 @@ using TestsPortal.BL.Services.TestProcesses;
 using TestsPortal.BL.Services.Tests;
 using TestsPortal.DAL.Data;
 using TestsPortal.DAL.Repositories.AnswerOptions;
+using TestsPortal.DAL.Repositories.Answers;
 using TestsPortal.DAL.Repositories.Candidate;
 using TestsPortal.DAL.Repositories.Questions;
+using TestsPortal.DAL.Repositories.ScheduledTestInstances;
 using TestsPortal.DAL.Repositories.ScheduledTests;
 using TestsPortal.DAL.Repositories.Subjects;
 using TestsPortal.DAL.Repositories.Tests;
@@ -83,7 +85,10 @@ namespace TestsPortal
             services.AddScoped<IQuestionsRepository, QuestionsRepository>();
             services.AddScoped<IScheduledTestsRepository, ScheduledTestsRepository>();
             services.AddScoped<ISubjectsRepository, SubjectsRepository>();
+            services.AddScoped<IScheduledTestInstancesRepository, ScheduledTestInstancesRepository>();
             services.AddScoped<ITestsRepository, TestsRepository>();
+            services.AddScoped<ITextAnswersRepository, TextAnswersRepository>();
+            services.AddScoped<IChoiceAnswersRepository, ChoiceAnswersRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -3,9 +3,9 @@ using TestsPortal.BL.Mediators.Questions;
 
 namespace TestsPortal.Controllers.Questions
 {
-    public class EssayController : QuestionControllerBase<EssayAnswerModel>
+    public class EssayController : QuestionControllerBase<EssayAnswerCreateModel>
     {
-        public EssayController(IQuestionMediatorBase<EssayAnswerModel> mediator)
+        public EssayController(IQuestionMediatorBase<EssayAnswerCreateModel> mediator)
             : base(mediator)
         {
         }

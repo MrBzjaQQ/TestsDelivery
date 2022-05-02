@@ -9,7 +9,13 @@ namespace TestsPortal.DAL.Repositories
 
         void Create(TEntity entity);
 
+        void Create(IEnumerable<TEntity> entities);
+
         void Update(TEntity entity);
+
+        void Update(IEnumerable<TEntity> entities);
+
+        void Delete(long id);
 
         IList<TEntity> GetByFilter(GenericFilter<TEntity> filter);
     }

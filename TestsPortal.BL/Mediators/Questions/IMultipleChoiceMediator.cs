@@ -2,7 +2,7 @@
 
 namespace TestsPortal.BL.Mediators.Questions
 {
-    public interface IMultipleChoiceMediator : IQuestionMediatorBase<MultipleChoiceAnswerModel>
+    public interface IMultipleChoiceMediator : IQuestionMediatorBase<MultipleChoiceAnswerCreateModel>
     {
     }
 }
