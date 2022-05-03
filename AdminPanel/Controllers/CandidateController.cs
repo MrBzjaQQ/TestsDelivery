@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.Candidate;
 using TestsDelivery.UserModels.Candidate;
 using TestsDelivery.DAL.Exceptions.Candidate;
+using TestsDelivery.UserModels.Lists;
 
 namespace AdminPanel.Controllers
 {
@@ -62,6 +63,12 @@ namespace AdminPanel.Controllers
             }
 
             return BadRequest(ModelState);
+        }
+
+        [HttpPost]
+        public IActionResult GetCandidatesList(ListModel model)
+        {
+            return Ok(_mediator.GetList(model));
         }
     }
 }

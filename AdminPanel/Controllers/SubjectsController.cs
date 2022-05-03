@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.Subjects;
 using TestsDelivery.UserModels.Subject;
 using TestsDelivery.DAL.Exceptions.Subjects;
+using TestsDelivery.UserModels.Lists;
 
 namespace AdminPanel.Controllers
 {
@@ -65,6 +66,12 @@ namespace AdminPanel.Controllers
             }
 
             return BadRequest(ModelState);
+        }
+
+        [HttpPost]
+        public IActionResult GetSubjectsList(ListModel listModel)
+        {
+            return Ok(_subjectsMediator.GetList(listModel));
         }
     }
 }

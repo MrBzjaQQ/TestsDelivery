@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
+using System.Collections.Generic;
+using TestsDelivery.BL.FilterBuilders.Subjects;
 using TestsDelivery.DAL.Repositories.Subjects;
+using TestsDelivery.Domain.Lists;
 using TestsDelivery.Domain.Subject;
 
 namespace TestsDelivery.BL.Services.Subjects
 {
-    public class SubjectsService: ISubjectsService
+    public class SubjectsService : ISubjectsService
     {
         private readonly ISubjectsRepository _subjectsRepository;
         private readonly IMapper _mapper;
@@ -36,6 +39,24 @@ namespace TestsDelivery.BL.Services.Subjects
             var subjectData = _mapper.Map<DAL.Models.Subject.Subject>(subject);
 
             _subjectsRepository.Update(subjectData);
+        }
+
+        public IEnumerable<SubjectInListDto> GetList(ListFilter filter)
+        {
+            var filterBuilder = new SubjectsFilterBuilder();
+
+            if (filter.SearchText != null)
+                filterBuilder.ByName(filter.SearchText);
+
+            if (filter.Take.HasValue)
+                filterBuilder.Take(filter.Take.Value);
+
+            if (filter.Skip.HasValue)
+                filterBuilder.Skip(filter.Skip.Value);
+
+            var genericFilter = filterBuilder.Build();
+
+            return _mapper.Map<IList<SubjectInListDto>>(_subjectsRepository.GetWithProjection<DAL.Models.Subject.SubjectInList>(genericFilter));
         }
     }
 }

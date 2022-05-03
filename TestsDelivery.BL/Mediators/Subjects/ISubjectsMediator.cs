@@ -1,4 +1,6 @@
-﻿using TestsDelivery.UserModels.Subject;
+﻿using System.Collections.Generic;
+using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.Subject;
 
 namespace TestsDelivery.BL.Mediators.Subjects
 {
@@ -9,5 +11,7 @@ namespace TestsDelivery.BL.Mediators.Subjects
         SubjectReadModel GetSubject(long id);
 
         void EditSubject(SubjectEditModel model);
+
+        IEnumerable<SubjectInListModel> GetList(ListModel listModel);
     }
 }

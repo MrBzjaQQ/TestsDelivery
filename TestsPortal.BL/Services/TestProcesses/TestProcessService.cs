@@ -55,7 +55,7 @@ namespace TestsPortal.BL.Services.TestProcesses
 
             var tests = _instancesRepository.GetByFilter(filter);
 
-            if (tests.Count == 0)
+            if (tests.Count() == 0)
                 throw new CandidateAuthenticationException();
 
             var test = tests.Single();

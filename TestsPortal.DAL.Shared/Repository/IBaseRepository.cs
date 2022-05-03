@@ -15,6 +15,8 @@
 
         void Delete(long id);
 
-        IList<TEntity> GetByFilter(GenericFilter<TEntity> filter);
+        IEnumerable<TEntity> GetByFilter(GenericFilter<TEntity> filter);
+
+        IEnumerable<TProjection> GetWithProjection<TProjection>(GenericFilter<TEntity> filter);
     }
 }

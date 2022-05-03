@@ -49,7 +49,7 @@ namespace TestsDelivery.DAL.Shared.Repository
             return DbSet.Single(x => x.Id == id);
         }
 
-        public virtual IList<TEntity> GetByFilter(GenericFilter<TEntity> filter)
+        public virtual IEnumerable<TEntity> GetByFilter(GenericFilter<TEntity> filter)
         {
             return ApplyFilter(DbSet, filter).ToList();
         }
@@ -58,6 +58,11 @@ namespace TestsDelivery.DAL.Shared.Repository
         {
             Context.Update(entity);
             Context.SaveChanges();
+        }
+
+        public IEnumerable<TProjection> GetWithProjection<TProjection>(GenericFilter<TEntity> filter)
+        {
+            return Mapper.ProjectTo<TProjection>(ApplyFilter(DbSet, filter)).ToList();
         }
 
         protected IQueryable<TEntityType> ApplyFilter<TEntityType>(IQueryable<TEntityType> query, GenericFilter<TEntityType> filter)

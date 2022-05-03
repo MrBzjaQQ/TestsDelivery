@@ -9,6 +9,8 @@ using TestsDelivery.BL.Services.Candidates;
 using TestsDelivery.DAL.Models.ScheduledTest;
 using TestsDelivery.DAL.Repositories.CandidateInScheduledTest;
 using TestsDelivery.Domain.ScheduledTest;
+using TestsDelivery.Domain.Lists;
+using TestsDelivery.BL.FilterBuilders.ScheduledTests;
 
 namespace TestsDelivery.BL.Services.ScheduledTest
 {
@@ -54,6 +56,24 @@ namespace TestsDelivery.BL.Services.ScheduledTest
         public ScheduledTestDomain GetTest(long id)
         {
             return _mapper.Map<ScheduledTestDomain>(_scheduledTestRepository.GetById(id));
+        }
+
+        public IEnumerable<ScheduledTestInListDto> GetList(ListFilter filter)
+        {
+            var filterBuilder = new ScheduledTestsFilterBuilder();
+
+            if (filter.SearchText != null)
+                filterBuilder.ByTestOrCandidateName(filter.SearchText);
+
+            if (filter.Take.HasValue)
+                filterBuilder.Take(filter.Take.Value);
+
+            if (filter.Skip.HasValue)
+                filterBuilder.Skip(filter.Skip.Value);
+
+            var genericFilter = filterBuilder.Build();
+
+            return _mapper.Map<IEnumerable<ScheduledTestInListDto>>(_scheduledTestRepository.GetList(genericFilter));
         }
 
         private IEnumerable<ScheduledTestInstance> MapTestInstances(

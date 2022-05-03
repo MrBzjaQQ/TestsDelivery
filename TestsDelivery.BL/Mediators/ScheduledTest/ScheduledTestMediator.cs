@@ -3,8 +3,10 @@ using TestsDelivery.UserModels.ScheduledTest;
 using TestsDelivery.BL.Shared.Providers.Communication;
 using TestsDelivery.BL.Services.Communication;
 using TestsDelivery.BL.Services.ScheduledTest;
-using TestsDelivery.BL.Shared.Clients.Integration;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using TestsDelivery.UserModels.Lists;
+using TestsDelivery.Domain.Lists;
 
 namespace TestsDelivery.BL.Mediators.ScheduledTest
 {
@@ -38,6 +40,12 @@ namespace TestsDelivery.BL.Mediators.ScheduledTest
         public ScheduledTestReadModel GetTest(long id)
         {
             return _mapper.Map<ScheduledTestReadModel>(_scheduledTestService.GetTest(id));
+        }
+
+        public IEnumerable<ScheduledTestInListModel> GetList(ListModel model)
+        {
+            var filter = _mapper.Map<ListFilter>(model);
+            return _mapper.Map<IEnumerable<ScheduledTestInListModel>>(_scheduledTestService.GetList(filter));
         }
     }
 }

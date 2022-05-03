@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TestsDelivery.BL.FilterBuilders.Candidates;
 using TestsDelivery.DAL.Exceptions.Candidate;
 using TestsDelivery.DAL.Repositories.Candidate;
 using TestsDelivery.Domain.Candidate;
+using TestsDelivery.Domain.Lists;
 
 namespace TestsDelivery.BL.Services.Candidates
 {
@@ -57,6 +59,24 @@ namespace TestsDelivery.BL.Services.Candidates
         {
             var candidateData = _mapper.Map<DAL.Models.Candidate.Candidate>(candidate);
             _repository.Update(candidateData);
+        }
+
+        public IEnumerable<Candidate> GetList(ListFilter filter)
+        {
+            var filterBuilder = new CandidatesFilterBuilder();
+
+            if (filter.SearchText != null)
+                filterBuilder.ByName(filter.SearchText);
+
+            if (filter.Take.HasValue)
+                filterBuilder.Take(filter.Take.Value);
+
+            if (filter.Skip.HasValue)
+                filterBuilder.Skip(filter.Skip.Value);
+
+            var genericFilter = filterBuilder.Build();
+
+            return _mapper.Map<IEnumerable<Candidate>>(_repository.GetByFilter(genericFilter));
         }
     }
 }

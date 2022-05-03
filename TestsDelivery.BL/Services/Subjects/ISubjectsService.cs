@@ -1,4 +1,6 @@
-﻿using TestsDelivery.Domain.Subject;
+﻿using System.Collections.Generic;
+using TestsDelivery.Domain.Lists;
+using TestsDelivery.Domain.Subject;
 
 namespace TestsDelivery.BL.Services.Subjects
 {
@@ -9,5 +11,7 @@ namespace TestsDelivery.BL.Services.Subjects
         Subject GetSubject(long id);
 
         void EditSubject(Subject subject);
+
+        IEnumerable<SubjectInListDto> GetList(ListFilter filter);
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using TestsDelivery.UserModels.Lists;
 using TestsDelivery.UserModels.ScheduledTest;
 
 namespace TestsDelivery.BL.Mediators.ScheduledTest
@@ -8,5 +10,7 @@ namespace TestsDelivery.BL.Mediators.ScheduledTest
         Task<ScheduledTestReadModel> ScheduleTest(ScheduledTestCreateModel model);
 
         ScheduledTestReadModel GetTest(long id);
+
+        IEnumerable<ScheduledTestInListModel> GetList(ListModel model);
     }
 }

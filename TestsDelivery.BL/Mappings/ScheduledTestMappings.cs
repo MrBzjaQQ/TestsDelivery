@@ -20,6 +20,9 @@ namespace TestsDelivery.BL.Mappings
             CreateMap<DAL.Models.ScheduledTest.ScheduledTest, ScheduledTest>()
                 .ForMember(x => x.Test, x => x.MapFrom(y => y.Test));
             CreateMap<ScheduledTest, ScheduledTestDetailedModel>();
+
+            CreateMap<ScheduledTestInListModel, ScheduledTestInListDto>();
+            CreateMap<ScheduledTestInListDto, DAL.Models.ScheduledTest.ScheduledTestInList>();
         }
     }
 }

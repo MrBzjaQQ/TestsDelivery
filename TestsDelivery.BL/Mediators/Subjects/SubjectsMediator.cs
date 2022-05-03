@@ -2,6 +2,9 @@
 using TestsDelivery.UserModels.Subject;
 using TestsDelivery.BL.Services.Subjects;
 using TestsDelivery.Domain.Subject;
+using System.Collections.Generic;
+using TestsDelivery.UserModels.Lists;
+using TestsDelivery.Domain.Lists;
 
 namespace TestsDelivery.BL.Mediators.Subjects
 {
@@ -33,6 +36,12 @@ namespace TestsDelivery.BL.Mediators.Subjects
             var subject = _mapper.Map<Subject>(model);
 
             _subjectsService.EditSubject(subject);
+        }
+
+        public IEnumerable<SubjectInListModel> GetList(ListModel listModel)
+        {
+            var subjectsInList = _subjectsService.GetList(_mapper.Map<ListFilter>(listModel));
+            return _mapper.Map<IEnumerable<SubjectInListModel>>(subjectsInList);
         }
     }
 }

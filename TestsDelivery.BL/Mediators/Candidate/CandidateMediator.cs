@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
 using TestsDelivery.UserModels.Candidate;
 using TestsDelivery.BL.Services.Candidates;
+using System.Collections.Generic;
+using TestsDelivery.UserModels.Lists;
+using TestsDelivery.Domain.Lists;
 
 namespace TestsDelivery.BL.Mediators.Candidate
 {
@@ -32,6 +35,12 @@ namespace TestsDelivery.BL.Mediators.Candidate
             var candidate = _mapper.Map<Domain.Candidate.Candidate>(model);
 
             _service.EditCandidate(candidate);
+        }
+
+        public IEnumerable<CandidateReadModel> GetList(ListModel model)
+        {
+            var filter = _mapper.Map<ListFilter>(model);
+            return _mapper.Map<IEnumerable<CandidateReadModel>>(_service.GetList(filter));
         }
     }
 }

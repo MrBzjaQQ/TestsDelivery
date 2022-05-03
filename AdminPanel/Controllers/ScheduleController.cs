@@ -6,6 +6,7 @@ using TestsDelivery.DAL.Exceptions.Candidate;
 using TestsDelivery.DAL.Exceptions.ScheduledTest;
 using TestsDelivery.BL.Shared.Clients.Integration;
 using System.Threading.Tasks;
+using TestsDelivery.UserModels.Lists;
 
 namespace AdminPanel.Controllers
 {
@@ -65,6 +66,12 @@ namespace AdminPanel.Controllers
                 ModelState.TryAddModelError(nameof(CandidateException), ex.Message);
                 return BadRequest(ModelState);
             }
+        }
+
+        [HttpPost]
+        public IActionResult GetScheduledTestsList(ListModel model)
+        {
+            return Ok(_mediator.GetList(model));
         }
     }
 }
