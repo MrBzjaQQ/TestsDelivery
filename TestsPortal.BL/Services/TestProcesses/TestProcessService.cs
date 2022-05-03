@@ -39,6 +39,11 @@ namespace TestsPortal.BL.Services.TestProcesses
             return answeredTest;
         }
 
+        public string GetAdminInstanceForTest(long testId)
+        {
+            return _instancesRepository.GetAdminInstanceForTest(testId);
+        }
+
         public void StartTest(TestCredentials credentials)
         {
             var filter = new ScheduledTestsInstancesFilterBuilder()

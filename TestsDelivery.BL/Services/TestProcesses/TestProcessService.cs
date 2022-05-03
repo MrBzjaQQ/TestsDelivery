@@ -108,5 +108,12 @@ namespace TestsDelivery.BL.Services.TestProcesses
                 ScheduledTestId = test.Id
             };
         }
+
+        public void StartTest(long testId)
+        {
+            var instance = _instancesRepository.GetById(testId);
+            instance.Status = (short)TestStatus.InProgress;
+            _instancesRepository.Update(instance);
+        }
     }
 }

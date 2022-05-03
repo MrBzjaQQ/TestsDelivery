@@ -12,10 +12,12 @@ namespace TestsPortal.DAL.Repositories.ScheduledTestInstances
         {
         }
 
-        public void Create(IEnumerable<ScheduledTestInstance> scheduledTests)
+        public string GetAdminInstanceForTest(long testId)
         {
-            Context.ScheduledTestInstances.AddRange(scheduledTests);
-            Context.SaveChanges();
+            return DbSet
+                .Where(x => x.Id == testId)
+                .Select(x => x.AdminPanelInstance)
+                .Single();
         }
     }
 }

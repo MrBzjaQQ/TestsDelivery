@@ -21,5 +21,10 @@ namespace TestsDelivery.BL.Mediators.TestProcesses
             var answerDomain = _mapper.Map<AnsweredTest>(answeredTest);
             _testProcessService.FinishTest(answerDomain);
         }
+
+        public void StartTest(long testId)
+        {
+            _testProcessService.StartTest(testId);
+        }
     }
 }

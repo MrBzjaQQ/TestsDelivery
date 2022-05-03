@@ -22,5 +22,12 @@ namespace AdminPanel.Controllers
             _testProcessMediator.FinishTest(model);
             return Ok();
         }
+
+        [HttpPost]
+        public IActionResult StartTest(long testId)
+        {
+            _testProcessMediator.StartTest(testId);
+            return Ok();
+        }
     }
 }

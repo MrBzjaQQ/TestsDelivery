@@ -5,6 +5,6 @@ namespace TestsPortal.DAL.Repositories.ScheduledTestInstances
 {
     public interface IScheduledTestInstancesRepository : IBaseRepository<ScheduledTestInstance>
     {
-        void Create(IEnumerable<ScheduledTestInstance> scheduledTests);
+        string GetAdminInstanceForTest(long testId);
     }
 }

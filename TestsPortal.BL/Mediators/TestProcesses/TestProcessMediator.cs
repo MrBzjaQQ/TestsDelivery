@@ -52,6 +52,9 @@ namespace TestsPortal.BL.Mediators.TestProcesses
         public void StartTest(StartTestModel model)
         {
             _testProcessService.StartTest(_mapper.Map<TestCredentials>(model));
+            var instance = _testProcessService.GetAdminInstanceForTest(model.TestId);
+            var instanceUrl = _instancesService.GetInstanceUrl(instance);
+            // TODO: 
         }
     }
 }

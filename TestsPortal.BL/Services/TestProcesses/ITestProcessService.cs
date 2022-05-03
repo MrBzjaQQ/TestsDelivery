@@ -7,6 +7,8 @@ namespace TestsPortal.BL.Services.TestProcesses
     {
         void StartTest(TestCredentials credentials);
 
+        string GetAdminInstanceForTest(long testId);
+
         AnsweredTest FinishTest(long testId);
     }
 }

@@ -14,7 +14,12 @@ namespace TestsPortal.BL.Services.Communication
 
         public async Task FinishTest(AnsweredTestCreateModel test, string instanceUrl)
         {
-            await _apiClient.PostAsync<AnsweredTestCreateModel, object>(instanceUrl, test);
+            await _apiClient.PostAsync<AnsweredTestCreateModel, object>($"{instanceUrl}/api/ScheduledTests/FinishTest", test);
+        }
+
+        public async Task StartTest(long testId, string instanceUrl)
+        {
+            await _apiClient.PostAsync<long, object>($"{instanceUrl}/api/ScheduledTests/StartTest", testId);
         }
     }
 }
