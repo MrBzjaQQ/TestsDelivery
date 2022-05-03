@@ -1,59 +1,57 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using TestsDelivery.DAL.Shared;
-using TestsPortal.DAL.Data;
-using TestsPortal.DAL.Models;
+using TestsDelivery.DAL.Shared.Models;
 
-namespace TestsPortal.DAL.Repositories
+namespace TestsDelivery.DAL.Shared.Repository
 {
-    // TODO: generalize and move to TestsDelivery.DAL.Shared
-    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity>
+    public abstract class BaseRepository<TDbContext, TEntity> : IBaseRepository<TEntity>
+        where TDbContext : DbContext
         where TEntity : IdEntity<long>
     {
-        protected readonly TestsPortalContext Context;
+        protected readonly TDbContext Context;
         protected readonly IMapper Mapper;
-        private readonly DbSet<TEntity> _dbSet;
+        protected readonly DbSet<TEntity> DbSet;
 
-        public BaseRepository(TestsPortalContext context, IMapper mapper)
+        public BaseRepository(TDbContext context, IMapper mapper)
         {
             Context = context;
             Mapper = mapper;
-            _dbSet = Context.Set<TEntity>();
+            DbSet = Context.Set<TEntity>();
         }
 
         public virtual void Create(TEntity entity)
         {
-            _dbSet.Add(entity);
+            DbSet.Add(entity);
             Context.SaveChanges();
         }
 
         public void Create(IEnumerable<TEntity> entities)
         {
-            _dbSet.AddRange(entities);
+            DbSet.AddRange(entities);
             Context.SaveChanges();
         }
 
         public void Update(IEnumerable<TEntity> entities)
         {
-            _dbSet.UpdateRange(entities);
+            DbSet.UpdateRange(entities);
             Context.SaveChanges();
         }
 
         public void Delete(long id)
         {
-            var entity = _dbSet.Single(e => e.Id == id);
-            _dbSet.Remove(entity);
+            var entity = DbSet.Single(e => e.Id == id);
+            DbSet.Remove(entity);
             Context.SaveChanges();
         }
 
         public virtual TEntity GetById(long id)
         {
-            return _dbSet.Single(x => x.Id == id);
+            return DbSet.Single(x => x.Id == id);
         }
 
         public virtual IList<TEntity> GetByFilter(GenericFilter<TEntity> filter)
         {
-            return ApplyFilter(_dbSet, filter).ToList();
+            return ApplyFilter(DbSet, filter).ToList();
         }
 
         public virtual void Update(TEntity entity)

@@ -1,4 +1,5 @@
-﻿using TestData = TestsDelivery.DAL.Models.Test.Test;
+﻿using TestsDelivery.DAL.Shared.Repository;
+using TestData = TestsDelivery.DAL.Models.Test.Test;
 
 namespace TestsDelivery.DAL.Repositories.Test
 {

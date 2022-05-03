@@ -1,4 +1,5 @@
-﻿using TestsPortal.DAL.Models.Subject;
+﻿using TestsDelivery.DAL.Shared.Models;
+using TestsPortal.DAL.Models.Subject;
 
 namespace TestsPortal.DAL.Models.Questions
 {

@@ -1,4 +1,6 @@
-﻿namespace TestsDelivery.DAL.Models.Test
+﻿using TestsDelivery.DAL.Shared.Models;
+
+namespace TestsDelivery.DAL.Models.Test
 {
     public record Test : IdEntity<long>
     {

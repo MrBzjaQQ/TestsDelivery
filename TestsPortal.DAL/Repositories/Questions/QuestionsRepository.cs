@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using AutoMapper.QueryableExtensions;
+using TestsDelivery.DAL.Shared.Repository;
 using TestsPortal.DAL.Data;
 using TestsPortal.DAL.Models.Questions;
 
 namespace TestsPortal.DAL.Repositories.Questions
 {
-    public class QuestionsRepository : BaseRepository<Question>, IQuestionsRepository
+    public class QuestionsRepository : BaseRepository<TestsPortalContext, Question>, IQuestionsRepository
     {
         public QuestionsRepository(TestsPortalContext context, IMapper mapper)
             :base(context, mapper)

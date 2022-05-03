@@ -1,16 +1,14 @@
-﻿using System;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using TestsDelivery.DAL.Data;
-using TestsDelivery.DAL.Exceptions.Subjects;
 using TestsDelivery.DAL.Models.Subject;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.Subjects
 {
-    public class SubjectsRepository : BaseRepository<Subject>, ISubjectsRepository
+    public class SubjectsRepository : BaseRepository<TestsDeliveryContext, Subject>, ISubjectsRepository
     {
-        public SubjectsRepository(TestsDeliveryContext context)
-            : base(context)
+        public SubjectsRepository(TestsDeliveryContext context, IMapper mapper)
+            : base(context, mapper)
         {
         }
     }

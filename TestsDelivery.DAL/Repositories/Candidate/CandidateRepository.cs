@@ -1,14 +1,16 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TestsDelivery.DAL.Data;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.Candidate
 {
-    public class CandidateRepository : BaseRepository<Models.Candidate.Candidate>, ICandidateRepository
+    public class CandidateRepository : BaseRepository<TestsDeliveryContext, Models.Candidate.Candidate>, ICandidateRepository
     {
-        public CandidateRepository(TestsDeliveryContext context)
-            : base(context)
+        public CandidateRepository(TestsDeliveryContext context, IMapper mapper)
+            : base(context, mapper)
         {
         }
 

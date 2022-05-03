@@ -1,4 +1,5 @@
-﻿using TestsPortal.DAL.Models.Tests;
+﻿using TestsDelivery.DAL.Shared.Repository;
+using TestsPortal.DAL.Models.Tests;
 
 namespace TestsPortal.DAL.Repositories.Tests
 {

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TestsDelivery.DAL.Shared.Models;
 
 namespace TestsDelivery.DAL.Models.Candidate
 {

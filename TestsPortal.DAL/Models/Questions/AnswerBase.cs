@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using TestsDelivery.DAL.Shared.Models;
 using TestsPortal.DAL.Models.Candidates;
 using TestsPortal.DAL.Models.ScheduledTests;
 

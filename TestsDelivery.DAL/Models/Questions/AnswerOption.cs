@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using TestsDelivery.DAL.Shared.Models;
 
 namespace TestsDelivery.DAL.Models.Questions
 {

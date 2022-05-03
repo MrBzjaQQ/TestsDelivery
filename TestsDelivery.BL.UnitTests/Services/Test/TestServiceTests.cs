@@ -91,7 +91,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Test
                 Assert.Equal(question.Id, resultQuestion.Id);
             }
 
-            _questionInTestRepoMock.Verify(x => x.CreateQuestionsInTests(It.IsAny<List<QuestionInTest>>()), Times.Once);
+            _questionInTestRepoMock.Verify(x => x.Create(It.IsAny<List<QuestionInTest>>()), Times.Once);
             _testRepoMock.Verify(x => x.Create(It.IsAny<TestDAL>()), Times.Once);
             _questionsRepoMock.Verify(x => x.GetQuestionsByTestId(testId), Times.Once);
         }
@@ -149,7 +149,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Test
             // Assert
             _testRepoMock.Verify(x => x.Update(It.IsAny<TestDAL>()), Times.Once);
             _questionInTestRepoMock.Verify(x => x.DeleteQuestionsForTest(test.Id), Times.Once);
-            _questionInTestRepoMock.Verify(x => x.CreateQuestionsInTests(It.IsAny<IEnumerable<QuestionInTest>>()), Times.Once);
+            _questionInTestRepoMock.Verify(x => x.Create(It.IsAny<IEnumerable<QuestionInTest>>()), Times.Once);
         }
     }
 }

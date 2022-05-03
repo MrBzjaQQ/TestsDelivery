@@ -1,4 +1,6 @@
-﻿namespace TestsPortal.DAL.Repositories.Candidate
+﻿using TestsDelivery.DAL.Shared.Repository;
+
+namespace TestsPortal.DAL.Repositories.Candidate
 {
     public interface ICandidatesRepository : IBaseRepository<Models.Candidates.Candidate>
     {

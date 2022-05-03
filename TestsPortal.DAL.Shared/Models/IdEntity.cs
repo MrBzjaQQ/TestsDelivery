@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace TestsDelivery.DAL.Models
+namespace TestsDelivery.DAL.Shared.Models
 {
     public record IdEntity<TKey>
     {

@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
+using TestsDelivery.DAL.Shared.Repository;
 using TestsPortal.DAL.Data;
 using TestsPortal.DAL.Models.Questions;
 
 namespace TestsPortal.DAL.Repositories.AnswerOptions
 {
-    public class AnswerOptionsRepository : BaseRepository<AnswerOption>, IAnswerOptionsRepository
+    public class AnswerOptionsRepository : BaseRepository<TestsPortalContext, AnswerOption>, IAnswerOptionsRepository
     {
         public AnswerOptionsRepository(TestsPortalContext context, IMapper mapper)
             : base(context, mapper)

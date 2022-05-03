@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Data;
 using TestsDelivery.DAL.Exceptions.Questions;
 using TestsDelivery.DAL.Models.Questions;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.Questions
 {
-    public class QuestionsRepository : BaseRepository<Question>, IQuestionsRepository
+    public class QuestionsRepository : BaseRepository<TestsDeliveryContext, Question>, IQuestionsRepository
     {
-        public QuestionsRepository(TestsDeliveryContext context)
-            : base(context)
+        public QuestionsRepository(TestsDeliveryContext context, IMapper mapper)
+            : base(context, mapper)
         {
-        }
-
-        public override void Create(Question question)
-        {
-            Context.Questions.Add(question);
-            Context.SaveChanges();
         }
 
         public override void Update(Question question)

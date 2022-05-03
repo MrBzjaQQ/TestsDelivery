@@ -1,6 +1,4 @@
-﻿using TestsDelivery.DAL.Shared;
-
-namespace TestsPortal.DAL.Repositories
+﻿namespace TestsDelivery.DAL.Shared.Repository
 {
     public interface IBaseRepository<TEntity>
         where TEntity : class

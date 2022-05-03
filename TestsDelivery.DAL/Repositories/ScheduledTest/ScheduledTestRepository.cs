@@ -1,15 +1,13 @@
-﻿using System;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
 using TestsDelivery.DAL.Data;
-using TestsDelivery.DAL.Exceptions.ScheduledTest;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.ScheduledTest
 {
-    public class ScheduledTestRepository : BaseRepository<Models.ScheduledTest.ScheduledTest>, IScheduledTestRepository
+    public class ScheduledTestRepository : BaseRepository<TestsDeliveryContext, Models.ScheduledTest.ScheduledTest>, IScheduledTestRepository
     {
-        public ScheduledTestRepository(TestsDeliveryContext context)
-            : base(context)
+        public ScheduledTestRepository(TestsDeliveryContext context, IMapper mapper)
+            : base(context, mapper)
         {
         }
     }

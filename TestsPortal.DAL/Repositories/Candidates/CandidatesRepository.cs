@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
+using TestsDelivery.DAL.Shared.Repository;
 using TestsPortal.DAL.Data;
 
 namespace TestsPortal.DAL.Repositories.Candidate
 {
-    public class CandidatesRepository : BaseRepository<Models.Candidates.Candidate>, ICandidatesRepository
+    public class CandidatesRepository : BaseRepository<TestsPortalContext, Models.Candidates.Candidate>, ICandidatesRepository
     {
         public CandidatesRepository(TestsPortalContext context, IMapper mapper)
             : base(context, mapper)

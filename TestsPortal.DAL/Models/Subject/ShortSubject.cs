@@ -1,4 +1,6 @@
-﻿namespace TestsPortal.DAL.Models.Subject
+﻿using TestsDelivery.DAL.Shared.Models;
+
+namespace TestsPortal.DAL.Models.Subject
 {
     public record ShortSubject : IdEntity<long>
     {

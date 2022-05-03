@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TestsDelivery.Domain\TestsDelivery.Domain.csproj" />
+    <ProjectReference Include="..\TestsPortal.DAL.Shared\TestsDelivery.DAL.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using TestsDelivery.DAL.Models.Questions;
+using TestsDelivery.DAL.Shared.Models;
 
 namespace TestsDelivery.DAL.Models.Test
 {

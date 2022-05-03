@@ -1,15 +1,14 @@
-﻿using System;
-using System.Linq;
+﻿using AutoMapper;
 using TestsDelivery.DAL.Data;
-using TestsDelivery.DAL.Exceptions.Test;
+using TestsDelivery.DAL.Shared.Repository;
 using TestData = TestsDelivery.DAL.Models.Test.Test;
 
 namespace TestsDelivery.DAL.Repositories.Test
 {
-    public class TestRepository : BaseRepository<TestData>, ITestRepository
+    public class TestRepository : BaseRepository<TestsDeliveryContext, TestData>, ITestRepository
     {
-        public TestRepository(TestsDeliveryContext context)
-            : base(context)
+        public TestRepository(TestsDeliveryContext context, IMapper mapper)
+            : base(context, mapper)
         {
         }
     }

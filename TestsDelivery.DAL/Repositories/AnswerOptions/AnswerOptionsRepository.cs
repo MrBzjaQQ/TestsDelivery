@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Data;
 using TestsDelivery.DAL.Exceptions.AnswerOptions;
 using TestsDelivery.DAL.Models.Questions;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.AnswerOptions
 {
-    public class AnswerOptionsRepository : BaseRepository<AnswerOption>, IAnswerOptionsRepository
+    public class AnswerOptionsRepository : BaseRepository<TestsDeliveryContext, AnswerOption>, IAnswerOptionsRepository
     {
-        public AnswerOptionsRepository(TestsDeliveryContext context)
-            : base(context)
+        public AnswerOptionsRepository(TestsDeliveryContext context, IMapper mapper)
+            : base(context, mapper)
         {
         }
 

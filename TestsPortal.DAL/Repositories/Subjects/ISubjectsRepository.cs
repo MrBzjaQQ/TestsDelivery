@@ -1,4 +1,5 @@
-﻿using TestsPortal.DAL.Models.Subject;
+﻿using TestsDelivery.DAL.Shared.Repository;
+using TestsPortal.DAL.Models.Subject;
 
 namespace TestsPortal.DAL.Repositories.Subjects
 {

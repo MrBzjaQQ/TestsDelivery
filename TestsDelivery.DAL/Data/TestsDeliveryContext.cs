@@ -34,5 +34,9 @@ namespace TestsDelivery.DAL.Data
         public DbSet<ScheduledTest> ScheduledTests { get; set; }
 
         public DbSet<ScheduledTestInstance> ScheduledTestInstances { get; set; }
+
+        public DbSet<TextAnswer> TextAnswers { get; set; }
+
+        public DbSet<ChoiceAnswer> ChoiceAnswers { get; set; }
     }
 }

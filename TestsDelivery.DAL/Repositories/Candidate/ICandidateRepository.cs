@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.Candidate
 {

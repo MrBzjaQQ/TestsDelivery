@@ -1,21 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using System.Collections.Generic;
 using System.Linq;
 using TestsDelivery.DAL.Data;
 using TestsDelivery.DAL.Models.Test;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.QuestionInTests
 {
-    public class QuestionInTestRepository : BaseRepository<QuestionInTest>, IQuestionInTestRepository
+    public class QuestionInTestRepository : BaseRepository<TestsDeliveryContext, QuestionInTest>, IQuestionInTestRepository
     {
-        public QuestionInTestRepository(TestsDeliveryContext context)
-            : base(context)
+        public QuestionInTestRepository(TestsDeliveryContext context, IMapper mapper)
+            : base(context, mapper)
         {
-        }
-
-        public void CreateQuestionsInTests(IEnumerable<QuestionInTest> questions)
-        {
-            Context.AddRange(questions);
-            Context.SaveChanges();
         }
 
         public void DeleteQuestionsInTests(IEnumerable<long> ids)
