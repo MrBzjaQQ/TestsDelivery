@@ -78,6 +78,9 @@ namespace TestsDelivery.BL.Mappings
             CreateMap<EssayQuestion, EssayDetailedModel>();
 
             CreateMap<QuestionType, UserModels.Questions.QuestionType>();
+
+            CreateMap<QuestionInListModel, QuestionInListDto>()
+                .ReverseMap();
         }
     }
 }

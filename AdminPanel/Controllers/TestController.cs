@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.Test;
 using TestsDelivery.UserModels.Test;
 using TestsDelivery.DAL.Exceptions.Test;
+using TestsDelivery.UserModels.Lists;
 
 namespace AdminPanel.Controllers
 {
@@ -64,6 +65,11 @@ namespace AdminPanel.Controllers
             }
 
             return BadRequest(ModelState);
+        }
+
+        public IActionResult GetTestsList(ListModel model)
+        {
+            return Ok(_mediator.GetList(model));
         }
     }
 }

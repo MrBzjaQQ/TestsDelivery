@@ -1,4 +1,6 @@
-﻿using TestsDelivery.UserModels.Test;
+﻿using System.Collections.Generic;
+using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.Test;
 
 namespace TestsDelivery.BL.Mediators.Test
 {
@@ -9,5 +11,7 @@ namespace TestsDelivery.BL.Mediators.Test
         TestReadModel GetTest(long id);
 
         void EditTest(TestEditModel model);
+
+        IEnumerable<TestInListModel> GetList(ListModel model);
     }
 }

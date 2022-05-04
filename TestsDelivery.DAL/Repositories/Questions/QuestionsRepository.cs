@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Data;
 using TestsDelivery.DAL.Exceptions.Questions;
 using TestsDelivery.DAL.Models.Questions;
+using TestsDelivery.DAL.Shared;
 using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.Questions
@@ -100,6 +101,12 @@ namespace TestsDelivery.DAL.Repositories.Questions
 
                 Context.Questions.Remove(question);
             }
+        }
+
+        public IEnumerable<TDomain> GetQuestionsInSubjects<TDomain>(GenericFilter<Question> filter)
+        {
+            var query = ApplyFilter(Context.Questions.Include(x => x.Subject), filter);
+            return Mapper.ProjectTo<TDomain>(query);
         }
     }
 }

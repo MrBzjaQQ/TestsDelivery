@@ -1,4 +1,7 @@
-﻿using TestDomainModel = TestsDelivery.Domain.Test.Test;
+﻿using System.Collections.Generic;
+using TestsDelivery.Domain.Lists;
+using TestsDelivery.Domain.Test;
+using TestDomainModel = TestsDelivery.Domain.Test.Test;
 
 namespace TestsDelivery.BL.Services.Test
 {
@@ -11,5 +14,7 @@ namespace TestsDelivery.BL.Services.Test
         TestDomainModel GetFullTest(long id);
 
         void EditTest(TestDomainModel test);
+
+        IEnumerable<TestInListDto> GetList(ListFilter filter);
     }
 }

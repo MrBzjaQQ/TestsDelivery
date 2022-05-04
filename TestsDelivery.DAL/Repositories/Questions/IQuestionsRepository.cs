@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using TestsDelivery.DAL.Models.Questions;
+using TestsDelivery.DAL.Shared;
 using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.Questions
@@ -13,5 +14,7 @@ namespace TestsDelivery.DAL.Repositories.Questions
         IEnumerable<long> GetQuestionIdsByTestId(long testId);
 
         void DeleteQuestion(long id, short questionType);
+
+        IEnumerable<TDomain> GetQuestionsInSubjects<TDomain>(GenericFilter<Question> filter);
     }
 }

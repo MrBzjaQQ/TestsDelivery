@@ -46,6 +46,8 @@ using TestsDelivery.BL.Shared.Clients.Integration;
 using TestsDelivery.BL.Shared.Providers.Client;
 using TestsDelivery.BL.Mediators.TestProcesses;
 using TestsDelivery.BL.Services.TestProcesses;
+using TestsDelivery.BL.Mediators.Questions.Lists;
+using TestsDelivery.BL.Services.Questions;
 
 namespace AdminPanel
 {
@@ -127,6 +129,7 @@ namespace AdminPanel
             services.AddScoped<ITestMediator, TestMediator>();
             services.AddScoped<IScheduledTestMediator, ScheduledTestMediator>();
             services.AddScoped<ITestProcessMediator, TestProcessMediator>();
+            services.AddScoped<IQuestionListsMediator, QuestionListsMediator>();
 
             services.AddScoped<ISubjectsService, SubjectsService>();
             services.AddScoped<IScqService, ScqService>();
@@ -138,6 +141,7 @@ namespace AdminPanel
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITestPortalInstancesService, TestPortalInstancesService>();
             services.AddScoped<ITestProcessService, TestProcessService>();
+            services.AddScoped<IQuestionListsService, QuestionListsService>();
 
             services.AddScoped<ISubjectsRepository, SubjectsRepository>();
             services.AddScoped<IQuestionsRepository, QuestionsRepository>();

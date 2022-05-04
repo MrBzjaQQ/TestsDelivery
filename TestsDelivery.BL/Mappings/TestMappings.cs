@@ -27,6 +27,9 @@ namespace TestsDelivery.BL.Mappings
             CreateMap<DAL.Models.Test.Test, Test>();
             CreateMap<Test, TestDetailedModel>()
                 .ForMember(x => x.Questions, x => x.MapFrom<QuestionsDomainToClientResolver>());
+
+            CreateMap<TestInListModel, TestInListDto>()
+                .ReverseMap();
         }
 
         private class QuestionsDomainToClientResolver : IValueResolver<Test, TestDetailedModel, IEnumerable<QuestionDetailedReadModel>>

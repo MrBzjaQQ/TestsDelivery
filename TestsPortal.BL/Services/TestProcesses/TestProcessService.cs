@@ -61,7 +61,6 @@ namespace TestsPortal.BL.Services.TestProcesses
             var test = tests.Single();
             test.Status = (short)TestStatus.InProgress;
             _instancesRepository.Update(test);
-            // TODO: change test status in AdminPanel
         }
 
         private IEnumerable<AnsweredQuestionBase> GetAnsweredQuestions(long testId)
