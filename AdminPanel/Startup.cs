@@ -117,7 +117,7 @@ namespace AdminPanel
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+                    spa.UseProxyToSpaDevelopmentServer("https://localhost:3000");
                 }
             });
         }
