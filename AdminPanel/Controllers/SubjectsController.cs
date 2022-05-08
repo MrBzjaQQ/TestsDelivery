@@ -68,7 +68,7 @@ namespace AdminPanel.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpPost]
+        [HttpPost("GetList")]
         public IActionResult GetSubjectsList(ListModel listModel)
         {
             return Ok(_subjectsMediator.GetList(listModel));

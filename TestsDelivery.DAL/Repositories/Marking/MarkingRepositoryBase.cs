@@ -6,7 +6,7 @@ using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.Marking
 {
-    public class MarkingRepositoryBase<TMark> : BaseRepository<TestsDeliveryContext, TMark>, IMarkingRepositoryBase<TMark>
+    public abstract class MarkingRepositoryBase<TMark> : BaseRepository<TestsDeliveryContext, TMark>, IMarkingRepositoryBase<TMark>
         where TMark : MarkBase
     {
         public MarkingRepositoryBase(TestsDeliveryContext context, IMapper mapper)

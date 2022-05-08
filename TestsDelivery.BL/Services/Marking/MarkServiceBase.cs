@@ -6,7 +6,7 @@ using TestsDelivery.Domain.Marking.FilterModels;
 
 namespace TestsDelivery.BL.Services.Marking
 {
-    public class MarkServiceBase<TDomainModel, TDataModel> : IMarkServiceBase<TDomainModel>
+    public abstract class MarkServiceBase<TDomainModel, TDataModel> : IMarkServiceBase<TDomainModel>
         where TDomainModel : MarkedQuestionBase
         where TDataModel : MarkBase
     {

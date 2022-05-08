@@ -5,7 +5,7 @@ using TestsDelivery.UserModels.Marking.FilterModels;
 
 namespace TestsDelivery.BL.Mediators.Marking
 {
-    public class MarkMediatorBase<TMarkCreateModel, TMarkReadModel, TMarkDomainModel> : IMarkMediatorBase<TMarkCreateModel, TMarkReadModel>
+    public abstract class MarkMediatorBase<TMarkCreateModel, TMarkReadModel, TMarkDomainModel> : IMarkMediatorBase<TMarkCreateModel, TMarkReadModel>
     {
         protected readonly IMarkServiceBase<TMarkDomainModel> MarkService;
         protected readonly IMapper Mapper;

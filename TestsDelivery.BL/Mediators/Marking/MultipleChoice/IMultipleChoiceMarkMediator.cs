@@ -2,7 +2,7 @@
 
 namespace TestsDelivery.BL.Mediators.Marking.MultipleChoice
 {
-    public interface IMultipleChoiceMediator : IMarkMediatorBase<McqMarkCreateModel, McqMarkReadModel>
+    public interface IMultipleChoiceMarkMediator : IMarkMediatorBase<McqMarkCreateModel, McqMarkReadModel>
     {
     }
 }

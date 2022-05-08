@@ -15,14 +15,14 @@ namespace AdminPanel.Controllers
             _testProcessMediator = testProcessMediator;
         }
 
-        [HttpPost]
+        [HttpPost(nameof(FinishTest))]
         public IActionResult FinishTest(AnsweredTestCreateModel model)
         {
             _testProcessMediator.FinishTest(model);
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost(nameof(StartTest))]
         public IActionResult StartTest(long testId)
         {
             _testProcessMediator.StartTest(testId);

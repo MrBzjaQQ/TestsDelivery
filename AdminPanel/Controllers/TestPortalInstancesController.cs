@@ -14,7 +14,7 @@ namespace AdminPanel.Controllers
             _service = service;
         }
 
-        [HttpGet("api/[controller]")]
+        [HttpGet]
         public IActionResult GetInstances()
         {
             return Ok(_service.GetInstances());

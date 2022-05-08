@@ -55,6 +55,7 @@ namespace AdminPanel.Controllers
             }
         }
 
+        [HttpPut]
         public IActionResult EditTest(TestEditModel model)
         {
             if (ModelState.IsValid)
@@ -67,6 +68,7 @@ namespace AdminPanel.Controllers
             return BadRequest(ModelState);
         }
 
+        [HttpPost("GetList")]
         public IActionResult GetTestsList(ListModel model)
         {
             return Ok(_mediator.GetList(model));

@@ -68,7 +68,7 @@ namespace AdminPanel.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("GetList")]
         public IActionResult GetScheduledTestsList(ListModel model)
         {
             return Ok(_mediator.GetList(model));

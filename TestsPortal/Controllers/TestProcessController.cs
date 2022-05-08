@@ -16,21 +16,21 @@ namespace TestsPortal.Controllers
             _testProcessMediator = testProcessMediator;
         }
 
-        [HttpGet]
-        public IActionResult GetQuestionsForTest(long testId)
+        [HttpGet(nameof(QuestionsForTest))]
+        public IActionResult QuestionsForTest(long testId)
         {
             // TODO: check test is started
             return Ok(_testProcessMediator.GetQuestionsByTestId(testId));
         }
 
-        [HttpGet]
-        public IActionResult GetQuestionDetails(long questionId)
+        [HttpGet(nameof(QuestionDetails))]
+        public IActionResult QuestionDetails(long questionId)
         {
             // TODO: check test is started
             return Ok(_testProcessMediator.GetQuestionById(questionId));
         }
 
-        [HttpPost]
+        [HttpPost(nameof(StartTest))]
         public IActionResult StartTest(StartTestModel model)
         {
             // TODO: use PIN hash here
@@ -40,7 +40,7 @@ namespace TestsPortal.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost(nameof(FinishTest))]
         public async Task<IActionResult> FinishTest(long testId)
         {
             // TODO: create token/guid for test (?)

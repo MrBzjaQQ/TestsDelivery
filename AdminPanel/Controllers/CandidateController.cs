@@ -65,7 +65,7 @@ namespace AdminPanel.Controllers
             return BadRequest(ModelState);
         }
 
-        [HttpPost]
+        [HttpPost("GetList")]
         public IActionResult GetCandidatesList(ListModel model)
         {
             return Ok(_mediator.GetList(model));

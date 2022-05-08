@@ -2,7 +2,7 @@
 
 namespace TestsDelivery.BL.Mediators.Marking.Essay
 {
-    public interface IMarkEssayMedaitorBase : IMarkMediatorBase<EssayMarkCreateModel, EssayMarkReadModel>
+    public interface IEssayMarkMediator : IMarkMediatorBase<EssayMarkCreateModel, EssayMarkReadModel>
     {
     }
 }

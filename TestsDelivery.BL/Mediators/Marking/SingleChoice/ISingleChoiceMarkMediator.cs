@@ -2,7 +2,7 @@
 
 namespace TestsDelivery.BL.Mediators.Marking.SingleChoice
 {
-    public interface ISingleChoiceMediator : IMarkMediatorBase<ScqMarkCreateModel, ScqMarkReadModel>
+    public interface ISingleChoiceMarkMediator : IMarkMediatorBase<ScqMarkCreateModel, ScqMarkReadModel>
     {
     }
 }

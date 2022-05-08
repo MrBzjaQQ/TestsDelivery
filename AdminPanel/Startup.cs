@@ -48,6 +48,15 @@ using TestsDelivery.BL.Mediators.TestProcesses;
 using TestsDelivery.BL.Services.TestProcesses;
 using TestsDelivery.BL.Mediators.Questions.Lists;
 using TestsDelivery.BL.Services.Questions;
+using TestsDelivery.BL.Mediators.Marking.Essay;
+using TestsDelivery.BL.Mediators.Marking.MultipleChoice;
+using TestsDelivery.BL.Mediators.Marking.SingleChoice;
+using TestsDelivery.BL.Services.Marking.Essay;
+using TestsDelivery.BL.Services.Marking.MultipleChoice;
+using TestsDelivery.BL.Services.Marking.SingleChoice;
+using TestsDelivery.DAL.Repositories.Marking.Choice;
+using TestsDelivery.DAL.Repositories.Marking.Essay;
+using TestsDelivery.DAL.Repositories.Answers;
 
 namespace AdminPanel
 {
@@ -67,6 +76,8 @@ namespace AdminPanel
             {
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
+
+            services.AddSwaggerGen();
 
             services.AddDbContext<TestsDeliveryContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection"),
@@ -130,6 +141,9 @@ namespace AdminPanel
             services.AddScoped<IScheduledTestMediator, ScheduledTestMediator>();
             services.AddScoped<ITestProcessMediator, TestProcessMediator>();
             services.AddScoped<IQuestionListsMediator, QuestionListsMediator>();
+            services.AddScoped<IEssayMarkMediator, EssayMarkMediator>();
+            services.AddScoped<IMultipleChoiceMarkMediator, MultipleChoiceMarkMediator>();
+            services.AddScoped<ISingleChoiceMarkMediator, SingleChoiceMarkMediator>();
 
             services.AddScoped<ISubjectsService, SubjectsService>();
             services.AddScoped<IScqService, ScqService>();
@@ -142,6 +156,9 @@ namespace AdminPanel
             services.AddScoped<ITestPortalInstancesService, TestPortalInstancesService>();
             services.AddScoped<ITestProcessService, TestProcessService>();
             services.AddScoped<IQuestionListsService, QuestionListsService>();
+            services.AddScoped<IEssayMarkService, EssayMarkService>();
+            services.AddScoped<IMultipleChoiceMarkService, MultipleChoiceMarkService>();
+            services.AddScoped<ISingleChoiceMarkService, SingleChoiceMarkService>();
 
             services.AddScoped<ISubjectsRepository, SubjectsRepository>();
             services.AddScoped<IQuestionsRepository, QuestionsRepository>();
@@ -151,6 +168,10 @@ namespace AdminPanel
             services.AddScoped<IQuestionInTestRepository, QuestionInTestRepository>();
             services.AddScoped<IScheduledTestRepository, ScheduledTestRepository>();
             services.AddScoped<IScheduledTestInstancesRepository, ScheduledTestInstancesRepository>();
+            services.AddScoped<IChoiceMarkingRepository, ChoiceMarkingRepository>();
+            services.AddScoped<IEssayMarkingRepository, EssayMarkingRepository>();
+            services.AddScoped<IChoiceAnswersRepository, ChoiceAnswersRepository>();
+            services.AddScoped<ITextAnswersRepository, TextAnswersRepository>();
 
             services.AddScoped<IScqModelValidator, ScqModelValidator>();
             services.AddScoped<IMcqModelValidator, McqModelValidator>();
@@ -168,6 +189,8 @@ namespace AdminPanel
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
             else
             {

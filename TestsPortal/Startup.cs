@@ -6,7 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using System;
+using TestsDelivery.BL.Shared.Clients.Integration;
+using TestsDelivery.BL.Shared.Factories;
+using TestsDelivery.BL.Shared.Providers.Client;
 using TestsDelivery.Infrastructure.Logging;
+using TestsPortal.BL.Factories.Communication;
 using TestsPortal.BL.Mediators.Questions;
 using TestsPortal.BL.Mediators.ScheduledTests;
 using TestsPortal.BL.Mediators.TestProcesses;
@@ -50,6 +54,8 @@ namespace TestsPortal
                 s.SerializerSettings.TypeNameHandling = Newtonsoft.Json.TypeNameHandling.All;
             });
 
+            services.AddSwaggerGen();
+
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -61,6 +67,8 @@ namespace TestsPortal
                 optAction => optAction.MigrationsAssembly("TestsPortal.DAL")));
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            services.AddHttpClient();
 
             services.AddScoped(typeof(IAppLogging<>), typeof(AppLogging<>));
 
@@ -93,6 +101,10 @@ namespace TestsPortal
             services.AddScoped<ITestsRepository, TestsRepository>();
             services.AddScoped<ITextAnswersRepository, TextAnswersRepository>();
             services.AddScoped<IChoiceAnswersRepository, ChoiceAnswersRepository>();
+
+            services.AddScoped<IIntegrationApiClient, IntegrationApiClient>();
+            services.AddScoped<ICommunicationServiceFactory, CommunicationServiceFactory>();
+            services.AddScoped<IHttpClientProvider, HttpClientProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -101,6 +113,8 @@ namespace TestsPortal
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI();
             }
             else
             {
