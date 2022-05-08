@@ -18,7 +18,7 @@ namespace AdminPanel.Controllers
         [HttpPost]
         public IActionResult GetList(ListModel model)
         {
-            return Ok(_mediator.GetList(model));
+            return Ok(_mediator.GetQuestionsInSubjects(model));
         }
     }
 }

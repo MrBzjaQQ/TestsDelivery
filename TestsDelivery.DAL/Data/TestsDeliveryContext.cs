@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Models.Candidate;
 using TestsDelivery.DAL.Models.Identity;
+using TestsDelivery.DAL.Models.Marking;
 using TestsDelivery.DAL.Models.Questions;
 using TestsDelivery.DAL.Models.ScheduledTest;
 using TestsDelivery.DAL.Models.Subject;
@@ -38,5 +39,9 @@ namespace TestsDelivery.DAL.Data
         public DbSet<TextAnswer> TextAnswers { get; set; }
 
         public DbSet<ChoiceAnswer> ChoiceAnswers { get; set; }
+
+        public DbSet<EssayMark> EssayMarks { get; set; }
+
+        public DbSet<ChoiceMark> ChoiceMarks { get; set; }
     }
 }
