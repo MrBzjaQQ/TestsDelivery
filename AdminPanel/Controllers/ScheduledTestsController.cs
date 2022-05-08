@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.TestProcesses;
 using TestsDelivery.UserModels.AnsweredTests;
 
@@ -6,6 +7,7 @@ namespace AdminPanel.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ScheduledTestsController : ControllerBase
     {
         private readonly ITestProcessMediator _testProcessMediator;

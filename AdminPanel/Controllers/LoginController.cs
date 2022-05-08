@@ -6,7 +6,6 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.UserModels.Login;
-using TestsDelivery.BL.Services;
 using TestsDelivery.BL.Services.Users;
 
 namespace AdminPanel.Controllers

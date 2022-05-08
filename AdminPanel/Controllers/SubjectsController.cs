@@ -10,6 +10,7 @@ namespace AdminPanel.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SubjectsController : ControllerBase
     {
         private readonly ISubjectsMediator _subjectsMediator;
@@ -20,7 +21,6 @@ namespace AdminPanel.Controllers
         }
 
         [HttpGet("{id}", Name = "GetSubject")]
-        [Authorize]
         public IActionResult GetSubject(long id)
         {
             if (id < 1)
@@ -41,7 +41,6 @@ namespace AdminPanel.Controllers
         }
 
         [HttpPut]
-        [Authorize]
         public IActionResult EditSubject(SubjectEditModel model)
         {
             if (ModelState.IsValid)
@@ -55,7 +54,6 @@ namespace AdminPanel.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public IActionResult CreateSubject(SubjectCreateModel model)
         {
             if (ModelState.IsValid)

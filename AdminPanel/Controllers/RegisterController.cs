@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using TestsDelivery.Infrastructure.Logging;
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.UserModels.Register;
-using TestsDelivery.BL.Services;
 using TestsDelivery.BL.Services.Users;
 
 namespace AdminPanel.Controllers

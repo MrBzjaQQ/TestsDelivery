@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Services.TestPortalInstances;
 
 namespace AdminPanel.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TestPortalInstancesController : ControllerBase
     {
         private readonly ITestPortalInstancesService _service;

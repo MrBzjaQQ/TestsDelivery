@@ -12,7 +12,7 @@ namespace AdminPanel.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    // [Authorize]
+    [Authorize]
     public class ScheduleController : ControllerBase
     {
         private readonly IScheduledTestMediator _mediator;

@@ -5,11 +5,12 @@ namespace TestsDelivery.Options.Tokens
 {
     public class AuthOptions
     {
-        private readonly string _key;
+        private readonly string _issuerSigningKey;
+        private readonly string _tokenValidationKey;
 
-        public AuthOptions(string key)
+        public AuthOptions(string issuerSigningKey)
         {
-            _key = key;
+            _issuerSigningKey = issuerSigningKey;
         }
 
         public string Issuer { get; set; }
@@ -18,9 +19,9 @@ namespace TestsDelivery.Options.Tokens
 
         public int Lifetime { get; set; }
         
-        public SymmetricSecurityKey GetSymmetricSecurityKey()
+        public SymmetricSecurityKey GetIssuerSigningKey()
         {
-            return new(Encoding.ASCII.GetBytes(_key));
+            return new(Encoding.ASCII.GetBytes(_issuerSigningKey));
         }
     }
 }
