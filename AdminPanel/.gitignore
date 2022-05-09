@@ -239,3 +239,4 @@ ClientApp/.idea
 Logs*.txt
 
 appsettings.json
+.vscode

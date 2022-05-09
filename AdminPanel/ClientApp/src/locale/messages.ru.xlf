@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="login">
+        <source>Login</source>
+        <target>Вход</target>
+      </trans-unit>
+      <trans-unit id="register">
+        <source>Register</source>
+        <target>Регистрация</target>
+      </trans-unit>
+      <trans-unit id="userName">
+        <source>User Name</source>
+        <target>Имя пользователя</target>
+      </trans-unit>
+      <trans-unit id="password">
+        <source>Password</source>
+        <target>Пароль</target>
+      </trans-unit>
+      <trans-unit id="passwordConfirm">
+        <source>Password Confirm</source>
+        <target>Подтвердите пароль</target>
+      </trans-unit>
+      <trans-unit id="email">
+        <source>E-Mail</source>
+        <target>Электронная почта</target>
+      </trans-unit>
+      <trans-unit id="submitLogin">
+        <source>Submit</source>
+        <target>Войти</target>
+      </trans-unit>
+      <trans-unit id="submitRegistration">
+        <source>Submit</source>
+        <target>Зарегистрироваться</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
