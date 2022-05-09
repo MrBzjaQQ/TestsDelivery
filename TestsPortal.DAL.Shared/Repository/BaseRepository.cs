@@ -79,6 +79,9 @@ namespace TestsDelivery.DAL.Shared.Repository
             if (query == null)
                 throw new ArgumentNullException(nameof(query));
 
+            if (filter.Specification == null)
+                return query;
+
             return filter.Specification.SatisfyingEntitiesFrom(query);
         }
 
@@ -107,6 +110,11 @@ namespace TestsDelivery.DAL.Shared.Repository
                 targetQuery = targetQuery.Skip(filter.Skip.Value);
 
             return targetQuery;
+        }
+
+        public int Count()
+        {
+            return DbSet.Count();
         }
     }
 }

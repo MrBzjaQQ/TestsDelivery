@@ -5,10 +5,10 @@ export interface LoginRequestModel {
 
 export interface LoginSucceedResponseModel {
     userName: string,
-    authenticationToken: string
+    accessToken: string
 }
 
 export interface AuthenticationInfo {
     userName: string,
-    authenticationToken: string
+    accessToken: string
 }

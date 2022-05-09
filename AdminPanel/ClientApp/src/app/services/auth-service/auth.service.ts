@@ -32,7 +32,7 @@ export class AuthService {
   public LogIn(requestModel: LoginRequestModel): void {
     this.http.post<LoginSucceedResponseModel>(login, requestModel)
       .subscribe(response => {
-        this._token = response.authenticationToken;
+        this._token = response.accessToken;
         this._userName = response.userName;
 
         this.localStorageService.setAuthenticationInfo(response);

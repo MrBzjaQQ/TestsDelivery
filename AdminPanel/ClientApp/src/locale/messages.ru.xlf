@@ -34,6 +34,38 @@
         <source>Submit</source>
         <target>Зарегистрироваться</target>
       </trans-unit>
+      <trans-unit id="firstName">
+        <source>First Name</source>
+        <target>Имя</target>
+      </trans-unit>
+      <trans-unit id="lastName">
+        <source>Last Name</source>
+        <target>Фамилия</target>
+      </trans-unit>
+      <trans-unit id="pagination_selectPageOfCandidates">
+        <source>Select page of candidates</source>
+        <target>Выберите страницу кандидатов</target>
+      </trans-unit>
+      <trans-unit id="actions">
+        <source>Actions</source>
+        <target>Действия</target>
+      </trans-unit>
+      <trans-unit id="edit">
+        <source>Edit</source>
+        <target>Редактировать</target>
+      </trans-unit>
+      <trans-unit id="delete">
+        <source>Delete</source>
+        <target>Удалить</target>
+      </trans-unit>
+      <trans-unit id="candidate">
+        <source>Candidate</source>
+        <target>Кандидат</target>
+      </trans-unit>
+      <trans-unit id="createCandidate">
+        <source>Create Candidate</source>
+        <target>Зарегистрировать кандидата</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

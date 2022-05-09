@@ -14,6 +14,8 @@ namespace TestsDelivery.BL.Mappings
 
             CreateMap<Candidate, DAL.Models.Candidate.Candidate>();
             CreateMap<DAL.Models.Candidate.Candidate, Candidate>();
+
+            CreateMap<CandidatesList, CandidatesListModel>();
         }
     }
 }

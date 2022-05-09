@@ -1,4 +1,5 @@
 export const candidate = '/api/Candidate/';
+export const candidatesList = '/api/Candidate/GetList';
 export const essay = '/api/Essay/';
 export const essayMark = '/api/EssayMark/';
 export const login = '/api/login/';
@@ -17,6 +18,7 @@ export const testsList = '/api/Test/GetList/';
 
 export default {
     candidate,
+    candidatesList,
     essay,
     essayMark,
     login,

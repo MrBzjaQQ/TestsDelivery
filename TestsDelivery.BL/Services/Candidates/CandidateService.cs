@@ -61,7 +61,7 @@ namespace TestsDelivery.BL.Services.Candidates
             _repository.Update(candidateData);
         }
 
-        public IEnumerable<Candidate> GetList(ListFilter filter)
+        public CandidatesList GetList(ListFilter filter)
         {
             var filterBuilder = new CandidatesFilterBuilder();
 
@@ -76,7 +76,11 @@ namespace TestsDelivery.BL.Services.Candidates
 
             var genericFilter = filterBuilder.Build();
 
-            return _mapper.Map<IEnumerable<Candidate>>(_repository.GetByFilter(genericFilter));
+            return new CandidatesList
+            {
+                Candidates = _mapper.Map<IEnumerable<Candidate>>(_repository.GetByFilter(genericFilter)),
+                TotalCount = _repository.Count()
+            };
         }
     }
 }

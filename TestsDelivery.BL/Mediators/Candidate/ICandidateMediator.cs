@@ -12,6 +12,6 @@ namespace TestsDelivery.BL.Mediators.Candidate
 
         void EditCandidate(CandidateEditModel model);
 
-        IEnumerable<CandidateReadModel> GetList(ListModel model);
+        CandidatesListModel GetList(ListModel model);
     }
 }

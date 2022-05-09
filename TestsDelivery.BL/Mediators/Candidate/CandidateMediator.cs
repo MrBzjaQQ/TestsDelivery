@@ -37,10 +37,10 @@ namespace TestsDelivery.BL.Mediators.Candidate
             _service.EditCandidate(candidate);
         }
 
-        public IEnumerable<CandidateReadModel> GetList(ListModel model)
+        public CandidatesListModel GetList(ListModel model)
         {
             var filter = _mapper.Map<ListFilter>(model);
-            return _mapper.Map<IEnumerable<CandidateReadModel>>(_service.GetList(filter));
+            return _mapper.Map<CandidatesListModel>(_service.GetList(filter));
         }
     }
 }

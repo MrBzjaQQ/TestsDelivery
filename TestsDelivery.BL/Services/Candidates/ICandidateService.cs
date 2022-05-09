@@ -14,6 +14,6 @@ namespace TestsDelivery.BL.Services.Candidates
 
         void EditCandidate(Candidate candidate);
 
-        IEnumerable<Candidate> GetList(ListFilter filter);
+        CandidatesList GetList(ListFilter filter);
     }
 }
