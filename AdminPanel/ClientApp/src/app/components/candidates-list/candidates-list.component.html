@@ -1,7 +1,7 @@
 <div class="candidates">
-    <h2 i18n="@@candidate">Candidates</h2>
-    <button mat-raised-button i18n="@@createCandidate" color="primary">Create Candidate</button>
-    <table mat-table [dataSource]="candidates">
+    <h2 class="candidates__header" i18n="@@candidates">Candidates</h2>
+    <button class="candidates__create-button" mat-raised-button i18n="@@createCandidate" color="primary" (click)="openCreateDialog()">Create Candidate</button>
+    <table class="candidates__table" mat-table [dataSource]="candidates">
         <ng-container matColumnDef="firstName">
             <th mat-header-cell *matHeaderCellDef i18n="@@firstName">First Name</th>
             <td mat-cell *matCellDef="let element">{{element.firstName}}</td>
@@ -20,7 +20,7 @@
         <ng-container matColumnDef="controls">
             <th mat-header-cell *matHeaderCellDef i18n="@@actions">Actions</th>
             <td mat-cell *matCellDef="let element">
-                <button mat-button color="primary" type="button" i18n="@@edit">Edit</button>
+                <button mat-button color="primary" type="button" i18n="@@edit" (click)="openEditDialog(element)">Edit</button>
                 <button mat-button color="warn" type="button" i18n="@@delete">Delete</button>
             </td>
         </ng-container>
@@ -30,6 +30,7 @@
     </table>
 
     <mat-paginator
+        class="candidates__paging"
         [length]="totalCount"
         [pageSizeOptions]="pageSizeOptions"
         (page)="onPageEventChanged($event)"

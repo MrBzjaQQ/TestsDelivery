@@ -66,6 +66,22 @@
         <source>Create Candidate</source>
         <target>Зарегистрировать кандидата</target>
       </trans-unit>
+      <trans-unit id="candidates">
+        <source>Candidates</source>
+        <target>Кандидаты</target>
+      </trans-unit>
+      <trans-unit id="close">
+        <source>Close</source>
+        <target>Закрыть</target>
+      </trans-unit>
+      <trans-unit id="create">
+        <source>Create</source>
+        <target>Создать</target>
+      </trans-unit>
+      <trans-unit id="edit">
+        <source>Edit</source>
+        <target>Редактировать</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

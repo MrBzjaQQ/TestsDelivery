@@ -1,0 +1,28 @@
+.candidates {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3fr 3fr 2fr;
+  grid-template-rows: 50px 40px auto 30px;
+
+  &__header {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  &__create-button {
+    max-width: 250px;
+    grid-column: 3;
+    grid-row: 2;
+  }
+
+  &__table {
+    grid-column: 1 / 4;
+    grid-row: 3;
+  }
+
+  &__paging {
+    grid-column: 2 / 4;
+    grid-row: 4;
+  }
+}

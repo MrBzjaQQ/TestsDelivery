@@ -9,6 +9,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { SidePanelComponent } from './components/side-panel/side-panel.component';
 import { CandidatesListComponent } from './components/candidates-list/candidates-list.component'
+import { AuthTokenInterceptor } from './interceptors/auth-token.interceptor';
+import { ManageCandidateDialogComponent } from './components/manage-candidate-dialog/manage-candidate-dialog.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -18,8 +20,8 @@ import {MatCardModule} from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { AuthTokenInterceptor } from './interceptors/auth-token.interceptor';
-import { ManageCandidateDialogComponent } from './components/manage-candidate-dialog/manage-candidate-dialog.component';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -37,16 +39,20 @@ import { ManageCandidateDialogComponent } from './components/manage-candidate-di
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    
     MatFormFieldModule,
     MatButtonModule,
-    HttpClientModule,
     MatCardModule,
     MatInputModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatDividerModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false} }
   ],
   bootstrap: [AppComponent]
 })
