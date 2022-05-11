@@ -82,6 +82,30 @@
         <source>Edit</source>
         <target>Редактировать</target>
       </trans-unit>
+      <trans-unit id="subjects">
+        <source>Subjects</source>
+        <target>Предметы</target>
+      </trans-unit>
+      <trans-unit id="subjectName">
+        <source>Subject Name</source>
+        <target>Название предмета</target>
+      </trans-unit>
+      <trans-unit id="manageQuestions">
+        <source>Manage questions</source>
+        <target>Редактировать вопросы</target>
+      </trans-unit>
+      <trans-unit id="pagination_selectPageOfSubjects">
+        <source>Select page of subjects</source>
+        <target>Выбрать страницу предметов</target>
+      </trans-unit>
+      <trans-unit id="createSubject">
+        <source>Create subject</source>
+        <target>Создать предмет</target>
+      </trans-unit>
+      <trans-unit id="editSubject">
+        <source>Edit subject</source>
+        <target>Редактировать предмет</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

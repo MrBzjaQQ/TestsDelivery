@@ -22,6 +22,9 @@ namespace TestsDelivery.BL.Mappings
                 .ReverseMap();
 
             CreateMap<SubjectInListDto, SubjectWithQuestionsModel>();
+            CreateMap<SubjectsList, SubjectsListModel>();
+            CreateMap<DAL.Models.Subject.Subject, DAL.Models.Subject.SubjectInList>();
+            CreateMap<DAL.Models.Subject.SubjectInList, SubjectInListDto>();
         }
     }
 }

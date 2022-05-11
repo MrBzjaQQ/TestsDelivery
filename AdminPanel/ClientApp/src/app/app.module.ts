@@ -22,6 +22,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import { SubjectsListComponent } from './components/subjects-list/subjects-list.component';
+import { ManageSubjectDialogComponent } from './components/manage-subject-dialog/manage-subject-dialog.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { MatDividerModule } from '@angular/material/divider';
     RegisterFormComponent,
     SidePanelComponent,
     CandidatesListComponent,
-    ManageCandidateDialogComponent
+    ManageCandidateDialogComponent,
+    SubjectsListComponent,
+    ManageSubjectDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,7 @@ import { MatDividerModule } from '@angular/material/divider';
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false} }
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
-import { CandiadteEditModel, CandidateCreateModel, CandidateReadModel } from 'src/app/models/candidates';
 import { CandidatesDialogData, DialogType } from 'src/app/models/dialogs';
 import { CandidatesService } from 'src/app/services/candidates-service/candidates.service';
 
@@ -18,7 +16,7 @@ export class ManageCandidateDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: CandidatesDialogData,
     private candidateService: CandidatesService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     const { candidate } = this.data;
     if (candidate)
       this.form.setValue({
@@ -28,7 +26,7 @@ export class ManageCandidateDialogComponent implements OnInit {
       });
   }
 
-  form = new FormGroup({
+  public form = new FormGroup({
     firstName: new FormControl('', [
       Validators.required
     ]),
@@ -49,11 +47,11 @@ export class ManageCandidateDialogComponent implements OnInit {
 
     switch (this.data.type) {
       case 'create': {
-        this.createCandidate({
+        this.candidateService.createCandidate({
           firstName: this.form.value.firstName,
           lastName: this.form.value.lastName,
           email: this.form.value.email
-        }).subscribe(this.onRequestEnded.bind(this));
+        }).subscribe(this._onRequestEnded.bind(this));
 
         break;
       }
@@ -63,12 +61,12 @@ export class ManageCandidateDialogComponent implements OnInit {
         if (!candidate)
           throw new Error('Candidate is required for editing');
 
-        this.editCandidate({
+        this.candidateService.editCandidate({
           id: candidate.id,
           email: this.form.value.email,
           firstName: this.form.value.firstName,
           lastName: this.form.value.lastName
-        }).subscribe(this.onRequestEnded.bind(this));
+        }).subscribe(this._onRequestEnded.bind(this));
 
         break;
       }
@@ -77,15 +75,7 @@ export class ManageCandidateDialogComponent implements OnInit {
     }
   }
 
-  private createCandidate(candidateModel: CandidateCreateModel): Observable<CandidateReadModel> {
-    return this.candidateService.createCandidate(candidateModel);
-  }
-
-  private editCandidate(candidateModel: CandiadteEditModel): Observable<any> {
-    return this.candidateService.editCandidate(candidateModel);
-  }
-
-  private onRequestEnded() {
+  private _onRequestEnded() {
     this.dialogRef.close();
   }
 

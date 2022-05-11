@@ -6,5 +6,7 @@ namespace TestsDelivery.BL.FilterBuilders.Subjects
     public interface ISubjectsFilterBuilder : IFilterBuilderBase<Subject>
     {
         ISubjectsFilterBuilder ByName(string nameFilter);
+
+        ISubjectsFilterBuilder ByIsRetired(bool isRetired);
     }
 }

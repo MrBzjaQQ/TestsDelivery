@@ -38,10 +38,10 @@ namespace TestsDelivery.BL.Mediators.Subjects
             _subjectsService.EditSubject(subject);
         }
 
-        public IEnumerable<SubjectInListModel> GetList(ListModel listModel)
+        public SubjectsListModel GetList(ListModel listModel)
         {
             var subjectsInList = _subjectsService.GetList(_mapper.Map<ListFilter>(listModel));
-            return _mapper.Map<IEnumerable<SubjectInListModel>>(subjectsInList);
+            return _mapper.Map<SubjectsListModel>(subjectsInList);
         }
     }
 }

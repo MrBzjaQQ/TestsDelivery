@@ -2,9 +2,10 @@
 
 namespace TestsDelivery.UserModels.Subject
 {
+    // TODO: something wrong with these models.
+    // It needs to get rid of unnecessary ones.
     public record SubjectBaseModel
     {
-        // TODO: LONG
         [Range(1, int.MaxValue)]
         public long Id { get; set; }
 

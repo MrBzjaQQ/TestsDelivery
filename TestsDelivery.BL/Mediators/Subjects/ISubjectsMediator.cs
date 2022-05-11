@@ -12,6 +12,6 @@ namespace TestsDelivery.BL.Mediators.Subjects
 
         void EditSubject(SubjectEditModel model);
 
-        IEnumerable<SubjectInListModel> GetList(ListModel listModel);
+        SubjectsListModel GetList(ListModel listModel);
     }
 }

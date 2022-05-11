@@ -79,7 +79,7 @@ namespace TestsDelivery.BL.Services.Candidates
             return new CandidatesList
             {
                 Candidates = _mapper.Map<IEnumerable<Candidate>>(_repository.GetByFilter(genericFilter)),
-                TotalCount = _repository.Count()
+                TotalCount = _repository.Count(genericFilter)
             };
         }
     }

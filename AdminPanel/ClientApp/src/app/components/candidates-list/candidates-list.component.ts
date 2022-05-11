@@ -39,19 +39,11 @@ export class CandidatesListComponent implements OnInit {
   public onPageEventChanged(value: PageEvent) : void {
     this._listFilter.take = value.pageSize;
     this._listFilter.skip = value.pageSize * value.pageIndex;
-    this.loadCandidates();
+    this._loadCandidates();
   }
 
   ngOnInit(): void {
-    this.loadCandidates();
-  }
-
-  public loadCandidates(): void {
-    this.candidateService.getCandidates(this._listFilter)
-    .subscribe(response => {
-      this._candidates = [...response.candidates];
-      this._totalCount = response.totalCount;
-    });
+    this._loadCandidates();
   }
 
   public openCreateDialog() : void {
@@ -61,7 +53,7 @@ export class CandidatesListComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe(this.loadCandidates.bind(this));
+    dialogRef.afterClosed().subscribe(this._loadCandidates.bind(this));
   }
 
   public openEditDialog(candidate : CandidateReadModel) : void {
@@ -72,7 +64,15 @@ export class CandidatesListComponent implements OnInit {
       } 
     });
 
-    dialogRef.afterClosed().subscribe(this.loadCandidates.bind(this));
+    dialogRef.afterClosed().subscribe(this._loadCandidates.bind(this));
+  }
+
+  private _loadCandidates(): void {
+    this.candidateService.getCandidates(this._listFilter)
+    .subscribe(response => {
+      this._candidates = [...response.candidates];
+      this._totalCount = response.totalCount;
+    });
   }
 
 }

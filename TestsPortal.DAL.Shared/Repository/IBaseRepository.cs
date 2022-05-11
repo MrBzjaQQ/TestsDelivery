@@ -19,6 +19,6 @@
 
         IEnumerable<TProjection> GetWithProjection<TProjection>(GenericFilter<TEntity> filter);
 
-        int Count();
+        int Count(GenericFilter<TEntity> filter);
     }
 }

@@ -41,7 +41,7 @@ namespace TestsDelivery.BL.Services.Subjects
             _subjectsRepository.Update(subjectData);
         }
 
-        public IEnumerable<SubjectInListDto> GetList(ListFilter filter)
+        public SubjectsList GetList(ListFilter filter)
         {
             var filterBuilder = new SubjectsFilterBuilder();
 
@@ -54,9 +54,15 @@ namespace TestsDelivery.BL.Services.Subjects
             if (filter.Skip.HasValue)
                 filterBuilder.Skip(filter.Skip.Value);
 
+            filterBuilder.ByIsRetired(false);
+
             var genericFilter = filterBuilder.Build();
 
-            return _mapper.Map<IList<SubjectInListDto>>(_subjectsRepository.GetWithProjection<DAL.Models.Subject.SubjectInList>(genericFilter));
+            return new SubjectsList
+            {
+                Subjects = _mapper.Map<IList<SubjectInListDto>>(_subjectsRepository.GetWithProjection<DAL.Models.Subject.SubjectInList>(genericFilter)),
+                TotalCount = _subjectsRepository.Count(genericFilter),
+            };
         }
     }
 }

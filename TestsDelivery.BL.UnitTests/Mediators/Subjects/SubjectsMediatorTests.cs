@@ -50,8 +50,7 @@ namespace TestsDelivery.BL.UnitTests.Mediators.Subjects
             var editModel = new SubjectEditModel
             {
                 Id = 1,
-                Name = "Name 1",
-                Retired = false
+                Name = "Name 1"
             };
 
             _serviceMock.Setup(x => x.EditSubject(It.IsAny<Subject>()));

@@ -1,4 +1,10 @@
-﻿namespace TestsDelivery.UserModels.Subject
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace TestsDelivery.UserModels.Subject
 {
-    public record SubjectCreateModel : SubjectBaseModel;
+    public record SubjectCreateModel
+    {
+        [Required]
+        public string Name { get; set; }
+    }
 }

@@ -112,9 +112,9 @@ namespace TestsDelivery.DAL.Shared.Repository
             return targetQuery;
         }
 
-        public int Count()
+        public int Count(GenericFilter<TEntity> filter)
         {
-            return DbSet.Count();
+            return ApplySpecification(DbSet, filter).Count();
         }
     }
 }

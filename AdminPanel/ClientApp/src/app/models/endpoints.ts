@@ -13,6 +13,7 @@ export const scheduledTestsList = '/api/Schedule/GetList/';
 export const singleChoiceMark = '/api/SingleChoiceMark/';
 export const singleChoiceQuestion = '/api/SingleChoiceQuestion/';
 export const subjects = '/api/Subjects/';
+export const subjectsList = '/api/Subjects/GetList/';
 export const test = '/api/Test/';
 export const testsList = '/api/Test/GetList/';
 
@@ -32,6 +33,7 @@ export default {
     singleChoiceMark,
     singleChoiceQuestion,
     subjects,
+    subjectsList,
     test,
     testsList
 };

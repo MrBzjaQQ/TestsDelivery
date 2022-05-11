@@ -12,6 +12,6 @@ namespace TestsDelivery.BL.Services.Subjects
 
         void EditSubject(Subject subject);
 
-        IEnumerable<SubjectInListDto> GetList(ListFilter filter);
+        SubjectsList GetList(ListFilter filter);
     }
 }
