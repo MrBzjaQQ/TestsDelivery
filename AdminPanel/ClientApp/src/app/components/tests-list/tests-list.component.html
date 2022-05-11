@@ -1,0 +1,30 @@
+<div class="tests">
+  <h2 class="tests__header" i18n="@@tests">Tests</h2>
+  <button class="tests__create-button" mat-raised-button i18n="@@createTest" color="primary" (click)="openCreatePage()">Create test</button>
+  <table class="tests__table" mat-table [dataSource]="tests">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef i18n="@@tests_Name">Name</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="controls">
+      <th mat-header-cell *matHeaderCellDef i18n="@@actions">Actions</th>
+      <td mat-cell *matCellDef="let element">
+          <button mat-button color="primary" type="button" i18n="@@edit" (click)="openEditPage(element)">Edit</button>
+          <button mat-button color="warn" type="button" i18n="@@delete">Delete</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+  </table>
+
+  <mat-paginator
+    class="tests__paging"
+    [length]="totalCount"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageEventChanged($event)"
+    showFirstLastButtons
+    i18n-aria-label="@@pagination_selectPageOfTests"
+    aria-label="Select page of tests"></mat-paginator>
+</div>

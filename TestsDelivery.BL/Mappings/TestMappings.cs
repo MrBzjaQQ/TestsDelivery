@@ -30,6 +30,9 @@ namespace TestsDelivery.BL.Mappings
 
             CreateMap<TestInListModel, TestInListDto>()
                 .ReverseMap();
+
+            CreateMap<TestsList, TestsListModel>();
+            CreateMap<DAL.Models.Test.Test, TestInListDto>();
         }
 
         private class QuestionsDomainToClientResolver : IValueResolver<Test, TestDetailedModel, IEnumerable<QuestionDetailedReadModel>>

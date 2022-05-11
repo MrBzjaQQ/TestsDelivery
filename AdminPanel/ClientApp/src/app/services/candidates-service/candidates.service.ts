@@ -10,6 +10,7 @@ import { ListFilter } from 'src/app/models/filters';
 })
 export class CandidatesService {
 
+  // TODO: use underscore for private fields
   constructor(private http: HttpClient) { }
 
   public getCandidates(filter: ListFilter) : Observable<CandidatesList> {

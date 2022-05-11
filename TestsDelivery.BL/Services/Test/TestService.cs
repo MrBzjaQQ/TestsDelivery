@@ -12,6 +12,7 @@ using System.Linq;
 using TestsDelivery.DAL.Exceptions.Questions;
 using TestsDelivery.Domain.Lists;
 using TestsDelivery.BL.FilterBuilders.Tests;
+using TestsDelivery.Domain.Test;
 
 namespace TestsDelivery.BL.Services.Test
 {
@@ -73,7 +74,7 @@ namespace TestsDelivery.BL.Services.Test
             _questionInTestRepository.Create(questionsInTest);
         }
 
-        public IEnumerable<Domain.Test.TestInListDto> GetList(ListFilter filter)
+        public TestsList GetList(ListFilter filter)
         {
             var filterBuilder = new TestsFilterBuilder();
 
@@ -88,7 +89,11 @@ namespace TestsDelivery.BL.Services.Test
 
             var genericFilter = filterBuilder.Build();
 
-            return _testRepository.GetWithProjection<Domain.Test.TestInListDto>(genericFilter);
+            return new TestsList
+            {
+                Tests = _testRepository.GetWithProjection<TestInListDto>(genericFilter),
+                TotalCount = _testRepository.Count(genericFilter)
+            };
         }
 
         private List<QuestionInTest> MapQuestionsToQuestionsInTest(IEnumerable<QuestionBase> questions, long testId)

@@ -12,6 +12,6 @@ namespace TestsDelivery.BL.Mediators.Test
 
         void EditTest(TestEditModel model);
 
-        IEnumerable<TestInListModel> GetList(ListModel model);
+        TestsListModel GetList(ListModel model);
     }
 }

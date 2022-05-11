@@ -15,6 +15,6 @@ namespace TestsDelivery.BL.Services.Test
 
         void EditTest(TestDomainModel test);
 
-        IEnumerable<TestInListDto> GetList(ListFilter filter);
+        TestsList GetList(ListFilter filter);
     }
 }

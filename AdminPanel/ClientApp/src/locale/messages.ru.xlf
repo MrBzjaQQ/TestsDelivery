@@ -106,6 +106,22 @@
         <source>Edit subject</source>
         <target>Редактировать предмет</target>
       </trans-unit>
+      <trans-unit id="tests">
+        <source>Tests</source>
+        <target>Тесты</target>
+      </trans-unit>
+      <trans-unit id="pagination_selectPageOfTests">
+        <source>Select page of tests</source>
+        <target>Выбрать страницу тестов</target>
+      </trans-unit>
+      <trans-unit id="createTest">
+        <source>Create test</source>
+        <target>Создать тест</target>
+      </trans-unit>
+      <trans-unit id="tests_Name">
+        <source>Name</source>
+        <target>Название теста</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

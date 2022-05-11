@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using TestsDelivery.UserModels.Test;
 using TestsDelivery.BL.Services.Test;
-using System.Collections.Generic;
 using TestsDelivery.Domain.Lists;
 using TestsDelivery.UserModels.Lists;
 
@@ -35,10 +34,10 @@ namespace TestsDelivery.BL.Mediators.Test
             _service.EditTest(test);
         }
 
-        public IEnumerable<TestInListModel> GetList(ListModel model)
+        public TestsListModel GetList(ListModel model)
         {
             var filter = _mapper.Map<ListFilter>(model);
-            return _mapper.Map<IEnumerable<TestInListModel>>(_service.GetList(filter));
+            return _mapper.Map<TestsListModel>(_service.GetList(filter));
         }
     }
 }
