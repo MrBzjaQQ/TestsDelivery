@@ -6,7 +6,7 @@ using TestsDelivery.DAL.Exceptions.Candidate;
 using TestsDelivery.DAL.Exceptions.ScheduledTest;
 using TestsDelivery.BL.Shared.Clients.Integration;
 using System.Threading.Tasks;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 
 namespace AdminPanel.Controllers
 {
@@ -69,7 +69,7 @@ namespace AdminPanel.Controllers
         }
 
         [HttpPost("GetList")]
-        public IActionResult GetScheduledTestsList(ListModel model)
+        public IActionResult GetScheduledTestsList(ListFilterModel model)
         {
             return Ok(_mediator.GetList(model));
         }

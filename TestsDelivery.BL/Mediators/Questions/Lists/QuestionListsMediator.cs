@@ -4,7 +4,7 @@ using System.Linq;
 using TestsDelivery.BL.Services.Questions;
 using TestsDelivery.Domain.Lists;
 using TestsDelivery.Domain.Questions;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 using TestsDelivery.UserModels.Questions;
 using TestsDelivery.UserModels.Subject;
 
@@ -21,7 +21,13 @@ namespace TestsDelivery.BL.Mediators.Questions.Lists
             _mapper = mapper;
         }
 
-        public IEnumerable<SubjectWithQuestionsModel> GetQuestionsInSubjects(ListModel model)
+        public QuestionsListModel GetQuestionsForSubject(QuestionsInSubjectListFilterModel model)
+        {
+            var filter = _mapper.Map<QuestionsInSubjectListFilter>(model);
+            return _mapper.Map<QuestionsListModel>(_service.GetQuestionsForSubject(filter));
+        }
+
+        public IEnumerable<SubjectWithQuestionsModel> GetQuestionsInSubjects(ListFilterModel model)
         {
             var list = _service.GetList(_mapper.Map<ListFilter>(model));
             return MapQuestionsToSubjectsWithQuestions(list);

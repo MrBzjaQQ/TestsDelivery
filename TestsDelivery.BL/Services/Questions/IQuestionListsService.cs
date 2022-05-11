@@ -7,5 +7,7 @@ namespace TestsDelivery.BL.Services.Questions
     public interface IQuestionListsService
     {
         IEnumerable<QuestionInListDto> GetList(ListFilter filter);
+
+        QuestionsList GetQuestionsForSubject(QuestionsInSubjectListFilter model);
     }
 }

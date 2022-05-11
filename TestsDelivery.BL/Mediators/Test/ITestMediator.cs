@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 using TestsDelivery.UserModels.Test;
 
 namespace TestsDelivery.BL.Mediators.Test
@@ -12,6 +12,6 @@ namespace TestsDelivery.BL.Mediators.Test
 
         void EditTest(TestEditModel model);
 
-        TestsListModel GetList(ListModel model);
+        TestsListModel GetList(ListFilterModel model);
     }
 }

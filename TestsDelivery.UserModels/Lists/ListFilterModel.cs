@@ -1,6 +1,6 @@
-﻿namespace TestsDelivery.UserModels.Lists
+﻿namespace TestsDelivery.UserModels.ListFilters
 {
-    public record ListModel
+    public record ListFilterModel
     {
         public int? Take { get; set; }
 

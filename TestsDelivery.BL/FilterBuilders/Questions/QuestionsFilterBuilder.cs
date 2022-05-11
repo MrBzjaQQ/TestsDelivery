@@ -13,5 +13,12 @@ namespace TestsDelivery.BL.FilterBuilders.Questions
             And(byName);
             return this;
         }
+
+        public IQuestionsFilterBuilder BySubjectId(long subjectId)
+        {
+            Expression<Func<Question, bool>> bySubjectId = x => x.SubjectId == subjectId;
+            And(bySubjectId);
+            return this;
+        }
     }
 }

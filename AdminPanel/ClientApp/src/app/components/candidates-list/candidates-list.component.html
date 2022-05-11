@@ -1,4 +1,4 @@
-<div class="candidates">
+<section class="candidates">
     <h2 class="candidates__header" i18n="@@candidates">Candidates</h2>
     <button class="candidates__create-button" mat-raised-button i18n="@@createCandidate" color="primary" (click)="openCreateDialog()">Create Candidate</button>
     <table class="candidates__table" mat-table [dataSource]="candidates">
@@ -37,4 +37,4 @@
         showFirstLastButtons
         i18n-aria-label="@@pagination_selectPageOfCandidates"
         aria-label="Select page of candidates"></mat-paginator>
-</div>
+</section>

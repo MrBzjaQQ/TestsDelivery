@@ -3,7 +3,7 @@ using TestsDelivery.UserModels.Subject;
 using TestsDelivery.BL.Services.Subjects;
 using TestsDelivery.Domain.Subject;
 using System.Collections.Generic;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 using TestsDelivery.Domain.Lists;
 
 namespace TestsDelivery.BL.Mediators.Subjects
@@ -38,7 +38,7 @@ namespace TestsDelivery.BL.Mediators.Subjects
             _subjectsService.EditSubject(subject);
         }
 
-        public SubjectsListModel GetList(ListModel listModel)
+        public SubjectsListModel GetList(ListFilterModel listModel)
         {
             var subjectsInList = _subjectsService.GetList(_mapper.Map<ListFilter>(listModel));
             return _mapper.Map<SubjectsListModel>(subjectsInList);

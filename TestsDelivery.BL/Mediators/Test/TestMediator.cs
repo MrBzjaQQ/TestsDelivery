@@ -2,7 +2,7 @@
 using TestsDelivery.UserModels.Test;
 using TestsDelivery.BL.Services.Test;
 using TestsDelivery.Domain.Lists;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 
 namespace TestsDelivery.BL.Mediators.Test
 {
@@ -34,7 +34,7 @@ namespace TestsDelivery.BL.Mediators.Test
             _service.EditTest(test);
         }
 
-        public TestsListModel GetList(ListModel model)
+        public TestsListModel GetList(ListFilterModel model)
         {
             var filter = _mapper.Map<ListFilter>(model);
             return _mapper.Map<TestsListModel>(_service.GetList(filter));

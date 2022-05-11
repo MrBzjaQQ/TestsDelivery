@@ -5,7 +5,7 @@ using TestsDelivery.BL.Services.Communication;
 using TestsDelivery.BL.Services.ScheduledTest;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 using TestsDelivery.Domain.Lists;
 
 namespace TestsDelivery.BL.Mediators.ScheduledTest
@@ -42,7 +42,7 @@ namespace TestsDelivery.BL.Mediators.ScheduledTest
             return _mapper.Map<ScheduledTestReadModel>(_scheduledTestService.GetTest(id));
         }
 
-        public ScheduledTestsListModel GetList(ListModel model)
+        public ScheduledTestsListModel GetList(ListFilterModel model)
         {
             var filter = _mapper.Map<ListFilter>(model);
             return _mapper.Map<ScheduledTestsListModel>(_scheduledTestService.GetList(filter));

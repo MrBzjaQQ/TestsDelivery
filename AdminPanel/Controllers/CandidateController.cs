@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.Candidate;
 using TestsDelivery.UserModels.Candidate;
 using TestsDelivery.DAL.Exceptions.Candidate;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 
 namespace AdminPanel.Controllers
 {
@@ -66,7 +66,7 @@ namespace AdminPanel.Controllers
         }
 
         [HttpPost("GetList")]
-        public IActionResult GetCandidatesList(ListModel model)
+        public IActionResult GetCandidatesList(ListFilterModel model)
         {
             return Ok(_mediator.GetList(model));
         }

@@ -5,7 +5,8 @@ export const essayMark = '/api/EssayMark/';
 export const login = '/api/login/';
 export const multipleChoiceMark = '/api/MultipleChoiceMark/';
 export const multipleChoiceQuestion = '/api/MultipleChoiceQuestion/';
-export const questionList = '/api/QuestionList/';
+export const questionsList = '/api/QuestionList/GetQuestionsForSubject';
+export const questionsInSubjectsList = '/api/QuestionList/GetQuestionsInSubjects';
 export const register = '/api/Register/';
 export const schedule = '/api/Schedule/';
 export const scheduleTest = '/api/Schedule/Test/';
@@ -25,7 +26,8 @@ export default {
     login,
     multipleChoiceMark,
     multipleChoiceQuestion,
-    questionList,
+    questionsList,
+    questionsInSubjectsList,
     register,
     schedule,
     scheduleTest,

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.Subjects;
 using TestsDelivery.UserModels.Subject;
 using TestsDelivery.DAL.Exceptions.Subjects;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 
 namespace AdminPanel.Controllers
 {
@@ -67,7 +67,7 @@ namespace AdminPanel.Controllers
         }
 
         [HttpPost("GetList")]
-        public IActionResult GetSubjectsList(ListModel listModel)
+        public IActionResult GetSubjectsList(ListFilterModel listModel)
         {
             return Ok(_subjectsMediator.GetList(listModel));
         }

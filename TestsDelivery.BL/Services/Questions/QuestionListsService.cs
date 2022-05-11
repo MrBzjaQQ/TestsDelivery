@@ -32,5 +32,29 @@ namespace TestsDelivery.BL.Services.Questions
 
             return _questionsRepository.GetQuestionsInSubjects<QuestionInListDto>(genericFilter);
         }
+
+        public QuestionsList GetQuestionsForSubject(QuestionsInSubjectListFilter filter)
+        {
+            var filterBuilder = new QuestionsFilterBuilder();
+
+            filterBuilder.BySubjectId(filter.SubjectId);
+
+            if (filter.SearchText != null)
+                filterBuilder.ByName(filter.SearchText);
+
+            if (filter.Take.HasValue)
+                filterBuilder.Take(filter.Take.Value);
+
+            if (filter.Skip.HasValue)
+                filterBuilder.Skip(filter.Skip.Value);
+
+            var genericFilter = filterBuilder.Build();
+
+            return new QuestionsList
+            {
+                Questions = _questionsRepository.GetWithProjection<ShortQuestion>(genericFilter),
+                TotalCount = _questionsRepository.Count(genericFilter)
+            };
+        }
     }
 }

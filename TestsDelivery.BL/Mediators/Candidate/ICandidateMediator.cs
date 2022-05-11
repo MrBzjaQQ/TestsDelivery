@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using TestsDelivery.UserModels.Candidate;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 
 namespace TestsDelivery.BL.Mediators.Candidate
 {
@@ -12,6 +12,6 @@ namespace TestsDelivery.BL.Mediators.Candidate
 
         void EditCandidate(CandidateEditModel model);
 
-        CandidatesListModel GetList(ListModel model);
+        CandidatesListModel GetList(ListFilterModel model);
     }
 }

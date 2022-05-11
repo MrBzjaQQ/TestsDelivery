@@ -1,0 +1,8 @@
+<section class="manage-questions">
+  <h2>Subject Name</h2>
+  <mat-selection-list>
+    <mat-list-option *ngFor="let question in questionsList" [value]="question">
+      {{question.name || question.type}}
+    </mat-list-option>
+  </mat-selection-list>
+</section>

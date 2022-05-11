@@ -6,5 +6,7 @@ namespace TestsDelivery.BL.FilterBuilders.Questions
     public interface IQuestionsFilterBuilder : IFilterBuilderBase<Question>
     {
         IQuestionsFilterBuilder ByName(string searchCriteria);
+
+        IQuestionsFilterBuilder BySubjectId(long subjectId);
     }
 }

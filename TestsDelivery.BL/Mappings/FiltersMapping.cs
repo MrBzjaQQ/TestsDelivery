@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using TestsDelivery.Domain.Lists;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 
 namespace TestsDelivery.BL.Mappings
 {
@@ -8,7 +8,8 @@ namespace TestsDelivery.BL.Mappings
     {
         public FiltersMapping()
         {
-            CreateMap<ListModel, ListFilter>();
+            CreateMap<ListFilterModel, ListFilter>();
+            CreateMap<QuestionsInSubjectListFilterModel, QuestionsInSubjectListFilter>();
         }
     }
 }

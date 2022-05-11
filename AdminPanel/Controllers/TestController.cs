@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.Test;
 using TestsDelivery.UserModels.Test;
 using TestsDelivery.DAL.Exceptions.Test;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 
 namespace AdminPanel.Controllers
 {
@@ -69,7 +69,7 @@ namespace AdminPanel.Controllers
         }
 
         [HttpPost("GetList")]
-        public IActionResult GetTestsList(ListModel model)
+        public IActionResult GetTestsList(ListFilterModel model)
         {
             return Ok(_mediator.GetList(model));
         }

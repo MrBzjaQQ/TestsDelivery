@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,6 +26,11 @@ import { SubjectsListComponent } from './components/subjects-list/subjects-list.
 import { ManageSubjectDialogComponent } from './components/manage-subject-dialog/manage-subject-dialog.component';
 import { TestsListComponent } from './components/tests-list/tests-list.component';
 import { ScheduledTestsListComponent } from './components/scheduled-tests-list/scheduled-tests-list.component';
+import { ManageQuestionsComponent } from './components/manage-questions/manage-questions.component';
+import { ManageEssayComponent } from './components/manage-essay/manage-essay.component';
+import { ManageSingleChoiceComponent } from './components/manage-single-choice/manage-single-choice.component';
+import { ManageMultipleChoiceComponent } from './components/manage-multiple-choice/manage-multiple-choice.component';
+import { QuestionWizardComponent } from './components/question-wizard/question-wizard.component';
 
 
 @NgModule({
@@ -39,7 +45,12 @@ import { ScheduledTestsListComponent } from './components/scheduled-tests-list/s
     SubjectsListComponent,
     ManageSubjectDialogComponent,
     TestsListComponent,
-    ScheduledTestsListComponent
+    ScheduledTestsListComponent,
+    ManageQuestionsComponent,
+    ManageEssayComponent,
+    ManageSingleChoiceComponent,
+    ManageMultipleChoiceComponent,
+    QuestionWizardComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +66,8 @@ import { ScheduledTestsListComponent } from './components/scheduled-tests-list/s
     MatTableModule,
     MatPaginatorModule,
     MatDialogModule,
-    MatDividerModule
+    MatDividerModule,
+    MatListModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },

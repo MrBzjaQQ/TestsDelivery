@@ -72,6 +72,7 @@ namespace TestsDelivery.BL.Mappings
                 .ForMember(x => x.Type, x => x.MapFrom(y => y.Type))
                 .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
             CreateMap<QuestionBase, QuestionReadModel>();
+            CreateMap<Question, ShortQuestion>();
 
             CreateMap<SingleChoiceQuestion, ScqDetailedModel>();
             CreateMap<MultipleChoiceQuestion, McqDetailedModel>();
@@ -81,6 +82,8 @@ namespace TestsDelivery.BL.Mappings
 
             CreateMap<QuestionInListModel, QuestionInListDto>()
                 .ReverseMap();
+
+            CreateMap<QuestionsList, UserModels.Questions.QuestionsListModel>();
         }
     }
 }

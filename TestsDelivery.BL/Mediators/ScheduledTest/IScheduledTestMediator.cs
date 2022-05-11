@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 using TestsDelivery.UserModels.ScheduledTest;
 
 namespace TestsDelivery.BL.Mediators.ScheduledTest
@@ -10,6 +10,6 @@ namespace TestsDelivery.BL.Mediators.ScheduledTest
 
         ScheduledTestReadModel GetTest(long id);
 
-        ScheduledTestsListModel GetList(ListModel model);
+        ScheduledTestsListModel GetList(ListFilterModel model);
     }
 }

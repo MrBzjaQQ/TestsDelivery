@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.Questions.Lists;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 
 namespace AdminPanel.Controllers
 {
@@ -18,7 +18,13 @@ namespace AdminPanel.Controllers
         }
 
         [HttpPost]
-        public IActionResult GetList(ListModel model)
+        public IActionResult GetQuestionsForSubject(QuestionsInSubjectListFilterModel model)
+        {
+            return Ok(_mediator.GetQuestionsForSubject(model));
+        }
+
+        [HttpPost(nameof(GetQuestionsInSubjects))]
+        public IActionResult GetQuestionsInSubjects(ListFilterModel model)
         {
             return Ok(_mediator.GetQuestionsInSubjects(model));
         }

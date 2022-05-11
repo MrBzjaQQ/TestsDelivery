@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TestsDelivery.UserModels.Lists;
+using TestsDelivery.UserModels.ListFilters;
 using TestsDelivery.UserModels.Subject;
 
 namespace TestsDelivery.BL.Mediators.Subjects
@@ -12,6 +12,6 @@ namespace TestsDelivery.BL.Mediators.Subjects
 
         void EditSubject(SubjectEditModel model);
 
-        SubjectsListModel GetList(ListModel listModel);
+        SubjectsListModel GetList(ListFilterModel listModel);
     }
 }
