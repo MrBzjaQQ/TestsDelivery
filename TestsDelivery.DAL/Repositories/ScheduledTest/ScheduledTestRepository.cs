@@ -18,7 +18,17 @@ namespace TestsDelivery.DAL.Repositories.ScheduledTest
 
         public IEnumerable<ScheduledTestInList> GetList(GenericFilter<ScheduledTestInList> filter)
         {
-            return ApplyFilter(Context.ScheduledTestInstances
+            return ApplyFilter(GetScheduledTestsInList(), filter).ToList();
+        }
+
+        public int GetScheduledTestsCount(GenericFilter<ScheduledTestInList> filter)
+        {
+            return ApplySpecification(GetScheduledTestsInList(), filter).Count();
+        }
+
+        private IQueryable<ScheduledTestInList> GetScheduledTestsInList()
+        {
+            return Context.ScheduledTestInstances
                 .Include(x => x.Candidate)
                 .Join(Context.ScheduledTests.Include(x => x.Test),
                 instance => instance.ScheduledTestId,
@@ -33,7 +43,7 @@ namespace TestsDelivery.DAL.Repositories.ScheduledTest
                     Pin = instance.Pin,
                     StartDateTime = test.StartDateTime,
                     TestName = test.Test.Name
-                }), filter).ToList();
+                });
         }
     }
 }

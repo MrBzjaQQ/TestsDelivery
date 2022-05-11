@@ -13,11 +13,21 @@ namespace TestsDelivery.DAL.Data
     /// <summary>
     /// TestsDeliveryContext represents database context
     /// </summary>
-    public class TestsDeliveryContext: IdentityDbContext<User>
+    public class TestsDeliveryContext : IdentityDbContext<User>
     {
         public TestsDeliveryContext(DbContextOptions<TestsDeliveryContext> options)
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<ChoiceAnswer>()
+                .HasOne(x => x.AnswerOption)
+                .WithMany()
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         public DbSet<Subject> Subjects { get; set; }

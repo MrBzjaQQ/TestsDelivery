@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using TestsDelivery.Domain.Lists;
+﻿using TestsDelivery.Domain.Lists;
 using TestsDelivery.Domain.ScheduledTest;
 using ScheduledTestDomain = TestsDelivery.Domain.ScheduledTest.ScheduledTest;
 
@@ -11,6 +10,6 @@ namespace TestsDelivery.BL.Services.ScheduledTest
 
         ScheduledTestDomain GetTest(long id);
 
-        IEnumerable<ScheduledTestInListDto> GetList(ListFilter filter);
+        ScheduledTestsList GetList(ListFilter filter);
     }
 }

@@ -42,7 +42,7 @@ export class CandidatesListComponent implements OnInit {
     this._loadCandidates();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this._loadCandidates();
   }
 

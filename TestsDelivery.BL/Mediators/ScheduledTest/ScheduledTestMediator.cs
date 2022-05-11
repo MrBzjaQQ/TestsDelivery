@@ -42,10 +42,10 @@ namespace TestsDelivery.BL.Mediators.ScheduledTest
             return _mapper.Map<ScheduledTestReadModel>(_scheduledTestService.GetTest(id));
         }
 
-        public IEnumerable<ScheduledTestInListModel> GetList(ListModel model)
+        public ScheduledTestsListModel GetList(ListModel model)
         {
             var filter = _mapper.Map<ListFilter>(model);
-            return _mapper.Map<IEnumerable<ScheduledTestInListModel>>(_scheduledTestService.GetList(filter));
+            return _mapper.Map<ScheduledTestsListModel>(_scheduledTestService.GetList(filter));
         }
     }
 }

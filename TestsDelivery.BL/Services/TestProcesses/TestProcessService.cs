@@ -73,7 +73,7 @@ namespace TestsDelivery.BL.Services.TestProcesses
             return new ChoiceAnswer
             {
                 QuestionId = typedAnswer.QuestionId,
-                AnswerId = typedAnswer.SelectedAnswerId,
+                AnswerOptionId = typedAnswer.SelectedAnswerId,
                 CandidateId = test.CandidateId,
                 ScheduledTestId = test.Id
             };
@@ -88,7 +88,7 @@ namespace TestsDelivery.BL.Services.TestProcesses
             return typedAnswer.SelectedAnswerIds.Select(answerId => new ChoiceAnswer
             {
                 QuestionId = typedAnswer.QuestionId,
-                AnswerId = answerId,
+                AnswerOptionId = answerId,
                 CandidateId = test.CandidateId,
                 ScheduledTestId = test.Id
             });

@@ -24,6 +24,7 @@ import { ManageCandidateDialogComponent } from './components/manage-candidate-di
 import { SubjectsListComponent } from './components/subjects-list/subjects-list.component';
 import { ManageSubjectDialogComponent } from './components/manage-subject-dialog/manage-subject-dialog.component';
 import { TestsListComponent } from './components/tests-list/tests-list.component';
+import { ScheduledTestsListComponent } from './components/scheduled-tests-list/scheduled-tests-list.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { TestsListComponent } from './components/tests-list/tests-list.component
     ManageCandidateDialogComponent,
     SubjectsListComponent,
     ManageSubjectDialogComponent,
-    TestsListComponent
+    TestsListComponent,
+    ScheduledTestsListComponent
   ],
   imports: [
     BrowserModule,

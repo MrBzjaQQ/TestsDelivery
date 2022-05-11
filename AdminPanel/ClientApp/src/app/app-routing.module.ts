@@ -4,6 +4,7 @@ import { CandidatesListComponent } from './components/candidates-list/candidates
 import { HomeComponent } from './components/home-component/home.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { ScheduledTestsListComponent } from './components/scheduled-tests-list/scheduled-tests-list.component';
 import { SubjectsListComponent } from './components/subjects-list/subjects-list.component';
 import { TestsListComponent } from './components/tests-list/tests-list.component';
 
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'candidates', component: CandidatesListComponent },
   { path: 'subjects', component: SubjectsListComponent },
   { path: 'tests', component: TestsListComponent },
+  { path: 'scheduledTests', component: ScheduledTestsListComponent },
   { path: '', component: HomeComponent },
 ];
 

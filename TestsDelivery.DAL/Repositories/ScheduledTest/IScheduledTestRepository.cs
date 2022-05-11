@@ -8,5 +8,7 @@ namespace TestsDelivery.DAL.Repositories.ScheduledTest
     public interface IScheduledTestRepository : IBaseRepository<Models.ScheduledTest.ScheduledTest>
     {
         IEnumerable<ScheduledTestInList> GetList(GenericFilter<ScheduledTestInList> filter);
+
+        int GetScheduledTestsCount(GenericFilter<ScheduledTestInList> filter);
     }
 }

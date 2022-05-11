@@ -122,6 +122,58 @@
         <source>Name</source>
         <target>Название теста</target>
       </trans-unit>
+      <trans-unit id="scheduleTests">
+        <source>Schedule tests</source>
+        <target>Назначить тесты</target>
+      </trans-unit>
+      <trans-unit id="testName">
+        <source>Test Name</source>
+        <target>Название теста</target>
+      </trans-unit>
+      <trans-unit id="keycode">
+        <source>Keycode</source>
+        <target>Ключевое слово</target>
+      </trans-unit>
+      <trans-unit id="pin">
+        <source>Pin</source>
+        <target>Pin-код</target>
+      </trans-unit>
+      <trans-unit id="candidateName">
+        <source>Candidate Name</source>
+        <target>Имя кандидата</target>
+      </trans-unit>
+      <trans-unit id="duration">
+        <source>Duration</source>
+        <target>Продолжительность теста</target>
+      </trans-unit>
+      <trans-unit id="startDate">
+        <source>Start Date</source>
+        <target>Дата начала теста</target>
+      </trans-unit>
+      <trans-unit id="expirationDate">
+        <source>Expiration Date</source>
+        <target>Дата закрытия теста</target>
+      </trans-unit>
+      <trans-unit id="void">
+        <source>Void</source>
+        <target>Отменить тест</target>
+      </trans-unit>
+      <trans-unit id="mark">
+        <source>Mark</source>
+        <target>Оценить</target>
+      </trans-unit>
+      <trans-unit id="viewResults">
+        <source>View Results</source>
+        <target>Посмотреть результаты</target>
+      </trans-unit>
+      <trans-unit id="downloadResults">
+        <source>Download Results</source>
+        <target>Скачать результаты</target>
+      </trans-unit>
+      <trans-unit id="scheduledTests">
+        <source>Scheduled Tests</source>
+        <target>Назначенные тесты</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

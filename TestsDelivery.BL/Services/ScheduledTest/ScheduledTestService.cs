@@ -58,7 +58,7 @@ namespace TestsDelivery.BL.Services.ScheduledTest
             return _mapper.Map<ScheduledTestDomain>(_scheduledTestRepository.GetById(id));
         }
 
-        public IEnumerable<ScheduledTestInListDto> GetList(ListFilter filter)
+        public ScheduledTestsList GetList(ListFilter filter)
         {
             var filterBuilder = new ScheduledTestsFilterBuilder();
 
@@ -73,7 +73,11 @@ namespace TestsDelivery.BL.Services.ScheduledTest
 
             var genericFilter = filterBuilder.Build();
 
-            return _mapper.Map<IEnumerable<ScheduledTestInListDto>>(_scheduledTestRepository.GetList(genericFilter));
+            return new ScheduledTestsList
+            {
+                ScheduledTests = _mapper.Map<IEnumerable<ScheduledTestInListDto>>(_scheduledTestRepository.GetList(genericFilter)),
+                TotalCount = _scheduledTestRepository.GetScheduledTestsCount(genericFilter)
+            };
         }
 
         private IEnumerable<ScheduledTestInstance> MapTestInstances(
