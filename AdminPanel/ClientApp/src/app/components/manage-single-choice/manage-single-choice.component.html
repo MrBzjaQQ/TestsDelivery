@@ -1,1 +1,15 @@
-<p>manage-single-choice works!</p>
+<section class="manage-single-choice">
+  <mat-radio-group>
+    <div *ngFor="let option of answerOptions, let i = index">
+      <mat-form-field appearance="standard">
+        <mat-label i18n="@@answer">Answer {{ i + 1 }}</mat-label>
+        <input matInput type="text">
+      </mat-form-field>
+      <mat-radio-button i18n="@@isCorrect" (change)="onChange($event, i)">
+        Is Correct
+      </mat-radio-button>
+      <button class="manage-subjects__button" mat-raised-button color="primary" type="submit" i18n="@@delete" (click)="deleteAnswerOption(i)">Delete</button>
+    </div>
+  </mat-radio-group>
+  <button class="manage-subjects__button" mat-raised-button color="primary" type="submit" i18n="@@addAnswerOption" (click)="addAnswerOption()">Add answer option</button>
+</section>

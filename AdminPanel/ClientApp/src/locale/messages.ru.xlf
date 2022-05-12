@@ -174,6 +174,42 @@
         <source>Scheduled Tests</source>
         <target>Назначенные тесты</target>
       </trans-unit>
+      <trans-unit id="pagination_selectPageOfQuesitons">
+        <source>Select page of questions</source>
+        <target>Выбрать страницу вопросов</target>
+      </trans-unit>
+      <trans-unit id="search">
+        <source>Search</source>
+        <target>Поиск</target>
+      </trans-unit>
+      <trans-unit id="isCorrect">
+        <source>Is Correct</source>
+        <target>Верный ответ</target>
+      </trans-unit>
+      <trans-unit id="answer">
+        <source>Answer</source>
+        <target>Ответ</target>
+      </trans-unit>
+      <trans-unit id="discard">
+        <source>Discard</source>
+        <target>Отменить изменения</target>
+      </trans-unit>
+      <trans-unit id="name">
+        <source>Name</source>
+        <target>Название</target>
+      </trans-unit>
+      <trans-unit id="question">
+        <source>Question</source>
+        <target>Вопрос</target>
+      </trans-unit>
+      <trans-unit id="saveChanges">
+        <source>Save changes</source>
+        <target>Сохранить изменения</target>
+      </trans-unit>
+      <trans-unit id="addAnswerOption">
+        <source>Add answer option</source>
+        <target>Добавить вариант ответа</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

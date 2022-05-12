@@ -83,6 +83,7 @@ namespace TestsDelivery.BL.Mappings
             CreateMap<QuestionInListModel, QuestionInListDto>()
                 .ReverseMap();
 
+            CreateMap<ShortQuestion, ShortQuestionModel>();
             CreateMap<QuestionsList, UserModels.Questions.QuestionsListModel>();
         }
     }

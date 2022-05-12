@@ -98,16 +98,16 @@ namespace TestsDelivery.DAL.Shared.Repository
             if (query == null)
                 throw new ArgumentNullException(nameof(query));
 
-            var targetQuery = query;
-
             if (filter == null)
                 return query;
 
-            if (filter.Take.HasValue)
-                targetQuery = targetQuery.Take(filter.Take.Value);
+            var targetQuery = query;
 
             if (filter.Skip.HasValue)
                 targetQuery = targetQuery.Skip(filter.Skip.Value);
+
+            if (filter.Take.HasValue)
+                targetQuery = targetQuery.Take(filter.Take.Value);
 
             return targetQuery;
         }

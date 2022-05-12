@@ -11,6 +11,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +33,7 @@ import { ManageEssayComponent } from './components/manage-essay/manage-essay.com
 import { ManageSingleChoiceComponent } from './components/manage-single-choice/manage-single-choice.component';
 import { ManageMultipleChoiceComponent } from './components/manage-multiple-choice/manage-multiple-choice.component';
 import { QuestionWizardComponent } from './components/question-wizard/question-wizard.component';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 
 @NgModule({
@@ -50,7 +53,8 @@ import { QuestionWizardComponent } from './components/question-wizard/question-w
     ManageEssayComponent,
     ManageSingleChoiceComponent,
     ManageMultipleChoiceComponent,
-    QuestionWizardComponent
+    QuestionWizardComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,9 @@ import { QuestionWizardComponent } from './components/question-wizard/question-w
     MatPaginatorModule,
     MatDialogModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },

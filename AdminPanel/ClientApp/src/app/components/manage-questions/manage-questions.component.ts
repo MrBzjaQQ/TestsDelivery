@@ -1,4 +1,7 @@
+import { debounce } from 'lodash';
 import { Component, OnInit } from '@angular/core';
+import { MatSelectionListChange } from '@angular/material/list';
+import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { ListFilter, QuestionsInSubjectListFilterModel } from 'src/app/models/filters';
 import { ShortQuestionModel } from 'src/app/models/questions';
@@ -18,25 +21,50 @@ export class ManageQuestionsComponent implements OnInit {
     skip: 0,
     searchText: undefined
   };
+  private _selectedQuestion?: ShortQuestionModel;
+
+  public readonly pageSizeOptions = [ 25, 50, 100 ];
 
   constructor(
     private _route: ActivatedRoute,
-    private _location: Location,
     private _questionsService: QuestionsService) {}
 
   public ngOnInit(): void {
-    this.loadQuestionsForSubject();
+    this._loadQuestionsForSubject();
   }
 
   public get questionsList() : ShortQuestionModel[] {
     return this._questionsList;
   }
 
-  private get _subjectId() : number {
-    return Number(this._route.snapshot.paramMap.get('id'));
+  public get totalCount() : number {
+    return this._totalCount;
   }
 
-  private loadQuestionsForSubject() : void {
+  public get selectedQuestion() : ShortQuestionModel {
+    return this.selectedQuestion;
+  }
+
+  public onPageEventChanged(value: PageEvent) : void {
+    this._questionsListFilter.take = value.pageSize;
+    this._questionsListFilter.skip = value.pageSize * value.pageIndex;
+    this._loadQuestionsForSubject();
+  }
+
+  public onQuestionSelected(event: MatSelectionListChange) {
+    this._selectedQuestion = event.source.selectedOptions.selected[0]?.value as ShortQuestionModel;
+  }
+
+  public onTextChanged = debounce((text: string) : void => {
+    this._questionsListFilter.searchText = text;
+    this._loadQuestionsForSubject();
+  }, 500);
+
+  private get _subjectId() : number {
+    return Number(this._route.snapshot.paramMap.get('subjectId'));
+  }
+
+  private _loadQuestionsForSubject() : void {
     this._questionsService.getQuestionsForSubject({
       ...this._questionsListFilter,
       subjectId: this._subjectId

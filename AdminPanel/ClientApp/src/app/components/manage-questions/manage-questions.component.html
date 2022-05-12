@@ -1,8 +1,21 @@
 <section class="manage-questions">
   <h2>Subject Name</h2>
-  <mat-selection-list>
-    <mat-list-option *ngFor="let question in questionsList" [value]="question">
-      {{question.name || question.type}}
-    </mat-list-option>
-  </mat-selection-list>
+  <aside class="manage-questions__list">
+    <app-search-bar (textChanged)="onTextChanged($event)"></app-search-bar>
+    <mat-selection-list [multiple]="false" (selectionChange)="onQuestionSelected($event)">
+      <mat-list-option *ngFor="let question of questionsList" [value]="question">
+        {{question.name + ' | ' + question.type}}
+      </mat-list-option>
+    </mat-selection-list>
+
+    <mat-paginator
+      class="manage-questions__paging"
+      [length]="totalCount"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="onPageEventChanged($event)"
+      showFirstLastButtons
+      i18n-aria-label="@@pagination_selectPageOfQuesitons"
+      aria-label="Select page of questions"></mat-paginator>
+  </aside>
+  <app-question-wizard></app-question-wizard>
 </section>

@@ -1,1 +1,9 @@
-<p>manage-multiple-choice works!</p>
+<section class="">
+  <ng-template *ngFor="let option of answerOptions, let i = index">
+    <mat-form-field appearance="standard">
+      <mat-label i18n="@@answer">Answer {{ i + 1 }}</mat-label>
+      <input matInput type="text">
+    </mat-form-field>
+    <mat-checkbox i18n="@@isCorrect">Is Correct</mat-checkbox>
+  </ng-template>
+</section>

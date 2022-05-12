@@ -1,1 +1,22 @@
-<p>question-wizard works!</p>
+<section class="question-wizard">
+  <mat-form-field appearance="standard">
+    <mat-label i18n="@@name">Name</mat-label>
+    <input matInput type="text">
+  </mat-form-field>
+  <div class="essay-wizard__control-buttons">
+    <button mat-raised-button color="primary" type="submit" i18n="@@saveChanges">Save changes</button>
+    <button mat-raised-button color="basic" type="submit" i18n="@@discard">Discard</button>
+  </div>
+
+  <div class="question-wizard__content">
+    <mat-form-field appearance="standard">
+      <mat-label i18n="@@question">Question</mat-label>
+      <input matInput type="text">
+    </mat-form-field>
+
+    <app-manage-single-choice *ngIf="type == 0; else multipleChoice"></app-manage-single-choice>
+    <ng-template #multipleChoice>
+      <app-manage-multiple-choice></app-manage-multiple-choice>
+    </ng-template>
+  </div>
+</section>

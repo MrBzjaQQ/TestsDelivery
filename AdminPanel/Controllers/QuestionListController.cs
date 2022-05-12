@@ -17,7 +17,7 @@ namespace AdminPanel.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost(nameof(GetQuestionsForSubject))]
         public IActionResult GetQuestionsForSubject(QuestionsInSubjectListFilterModel model)
         {
             return Ok(_mediator.GetQuestionsForSubject(model));
