@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { AnswerOption } from 'src/app/models/answerOptions';
+import { ComponentType } from 'src/app/models/components';
+import { ScqModel } from 'src/app/models/questions';
+import { QuestionsService } from 'src/app/services/questions-service/questions.service';
 
+// TODO: CRITICAL - USE FORM!
 @Component({
   selector: 'app-manage-single-choice',
   templateUrl: './manage-single-choice.component.html',
@@ -9,8 +13,11 @@ import { AnswerOption } from 'src/app/models/answerOptions';
 })
 export class ManageSingleChoiceComponent implements OnInit {
 
+  @Input() editModel?: ScqModel;
+  @Input() componentType: ComponentType = 'create';
+  @Output() save: EventEmitter<ScqModel> = new EventEmitter<ScqModel>();
+
   private _answerOptions : AnswerOption[] = [];
-  public selectedIndex = 0;
   private readonly _defaultAnswerOptions : AnswerOption[] = [
     {
       isCorrect: true,
@@ -21,20 +28,25 @@ export class ManageSingleChoiceComponent implements OnInit {
       text: ''
     }
   ];
+  
+  private _name: string = '';
+  private _text: string = '';
 
-  constructor() {
-    this.discardChanges();
+  public constructor(private questionsService: QuestionsService) {
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.discardChanges();
   }
 
   public get answerOptions() {
     return this._answerOptions;
   }
 
-  public onChange(event: MatRadioChange, index: number) {
-    this.answerOptions[index].isCorrect = event.value;
+  public onCorrectOptionChange(event: MatRadioChange) {
+    this.answerOptions.forEach(x => x.isCorrect = false);
+    const option = event.value as AnswerOption;
+    option.isCorrect = event.source._inputElement.nativeElement.checked;
   }
 
   public discardChanges() : void {
@@ -48,8 +60,26 @@ export class ManageSingleChoiceComponent implements OnInit {
     });
   }
 
-  public deleteAnswerOption(idx: number) {
+  public onNameChanged(event: InputEvent) : void {
+    const element = event.target as HTMLInputElement;
+    this._name = element.value;
+  }
+
+  public onTextChanged(event: InputEvent) : void {
+    const element = event.target as HTMLInputElement;
+    this._text = element.value;
+  }
+
+  public deleteAnswerOption(idx: number) : void {
     this._answerOptions.splice(idx, 1);
+  }
+
+  public saveChanges() : void {
+    this.save.emit({
+      name: this._name,
+      text: this._text,
+      answerOptions: this.answerOptions
+    });
   }
 
 }

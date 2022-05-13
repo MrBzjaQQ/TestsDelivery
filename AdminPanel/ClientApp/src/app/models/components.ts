@@ -1,14 +1,14 @@
 import { CandidateReadModel } from "./candidates";
 import { SubjectReadModel } from "./subjects";
 
-export type DialogType = 'create' | 'edit';
+export type ComponentType = 'create' | 'edit';
 
 export interface CandidatesDialogData {
-    type: DialogType,
-    candidate?: CandidateReadModel
+  type: ComponentType,
+  candidate?: CandidateReadModel
 }
 
 export interface SubjectsDialogData {
-    type: DialogType,
-    subject?: SubjectReadModel
+  type: ComponentType,
+  subject?: SubjectReadModel
 }
