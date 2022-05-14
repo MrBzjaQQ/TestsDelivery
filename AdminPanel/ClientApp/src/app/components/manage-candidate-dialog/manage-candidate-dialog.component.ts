@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { CandidatesDialogData } from 'src/app/models/components';
+import { CandidatesDialogData } from 'src/app/models/components/candidates-dialog';
 import { CandidatesService } from 'src/app/services/candidates-service/candidates.service';
 
 @Component({

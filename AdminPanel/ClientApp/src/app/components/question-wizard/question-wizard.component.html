@@ -1,8 +1,0 @@
-<section class="question-wizard">
-  <div class="question-wizard__content">
-    <app-manage-single-choice *ngIf="type == 0; else multipleChoice"></app-manage-single-choice>
-    <ng-template #multipleChoice>
-      <app-manage-multiple-choice></app-manage-multiple-choice>
-    </ng-template>
-  </div>
-</section>

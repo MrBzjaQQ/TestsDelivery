@@ -3,9 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatSelectionListChange } from '@angular/material/list';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
-import { ListFilter, QuestionsInSubjectListFilterModel } from 'src/app/models/filters';
-import { ShortQuestionModel } from 'src/app/models/questions';
+import { ListFilter } from 'src/app/models/filters';
+import { QuestionType, ShortQuestionModel } from 'src/app/models/questions';
 import { QuestionsService } from 'src/app/services/questions-service/questions.service';
+import { EssayModel, McqModel, ScqModel } from 'src/app/models/components/questions-wizard';
 
 @Component({
   selector: 'app-manage-questions',
@@ -21,7 +22,11 @@ export class ManageQuestionsComponent implements OnInit {
     skip: 0,
     searchText: undefined
   };
-  private _selectedQuestion?: ShortQuestionModel;
+  private _selectedQuestion: ShortQuestionModel = {
+    id: 0,
+    name: '',
+    type: QuestionType.SingleChoice
+  };
 
   public readonly pageSizeOptions = [ 25, 50, 100 ];
 
@@ -31,6 +36,7 @@ export class ManageQuestionsComponent implements OnInit {
 
   public ngOnInit(): void {
     this._loadQuestionsForSubject();
+    this._selectedQuestion = this._questionsList[0];
   }
 
   public get questionsList() : ShortQuestionModel[] {
@@ -42,7 +48,11 @@ export class ManageQuestionsComponent implements OnInit {
   }
 
   public get selectedQuestion() : ShortQuestionModel {
-    return this.selectedQuestion;
+    return this._selectedQuestion;
+  }
+
+  public get type() : QuestionType {
+    return this.selectedQuestion.type;
   }
 
   public onPageEventChanged(value: PageEvent) : void {
@@ -59,6 +69,38 @@ export class ManageQuestionsComponent implements OnInit {
     this._questionsListFilter.searchText = text;
     this._loadQuestionsForSubject();
   }, 500);
+
+  public onSingleChoiceSaved(model: ScqModel) : void {
+    this._questionsService.createSingleChoice({
+      subjectId: this._subjectId,
+      answerOptions: model.answerOptions,
+      name: model.name,
+      text: model.text
+    }).subscribe(result => {
+      // TODO:
+    });
+  }
+
+  public onMultipleChoiceSaved(model: McqModel) : void {
+    this._questionsService.createMultipleChoice({
+      subjectId: this._subjectId,
+      answerOptions: model.answerOptions,
+      name: model.name,
+      text: model.text
+    }).subscribe(result => {
+      // TODO:
+    });
+  }
+
+  public onEssaySaved(model: EssayModel) : void {
+    this._questionsService.createEssay({
+      subjectId: this._subjectId,
+      name: model.name,
+      text: model.text
+    }).subscribe(result => {
+      // TODO:
+    });
+  }
 
   private get _subjectId() : number {
     return Number(this._route.snapshot.paramMap.get('subjectId'));

@@ -32,7 +32,6 @@ import { ManageQuestionsComponent } from './components/manage-questions/manage-q
 import { ManageEssayComponent } from './components/manage-essay/manage-essay.component';
 import { ManageSingleChoiceComponent } from './components/manage-single-choice/manage-single-choice.component';
 import { ManageMultipleChoiceComponent } from './components/manage-multiple-choice/manage-multiple-choice.component';
-import { QuestionWizardComponent } from './components/question-wizard/question-wizard.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 
@@ -53,7 +52,6 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     ManageEssayComponent,
     ManageSingleChoiceComponent,
     ManageMultipleChoiceComponent,
-    QuestionWizardComponent,
     SearchBarComponent
   ],
   imports: [

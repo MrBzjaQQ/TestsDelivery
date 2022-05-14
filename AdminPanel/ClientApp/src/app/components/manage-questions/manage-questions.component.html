@@ -17,5 +17,10 @@
       i18n-aria-label="@@pagination_selectPageOfQuesitons"
       aria-label="Select page of questions"></mat-paginator>
   </aside>
-  <app-question-wizard></app-question-wizard>
+  <div *ngIf="selectedQuestion" class="question-wizard__content" [ngSwitch]="type">
+    <app-manage-single-choice *ngSwitchCase="0" (save)="onSingleChoiceSaved($event)"></app-manage-single-choice>
+    <app-manage-multiple-choice *ngSwitchCase="1" (save)="onMultipleChoiceSaved($event)"></app-manage-multiple-choice>
+    <app-manage-essay *ngSwitchCase="2" (save)="onEssaySaved($event)"></app-manage-essay>
+    <span *ngSwitchDefault>Unknown question type</span>
+  </div>
 </section>

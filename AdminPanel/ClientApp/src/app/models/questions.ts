@@ -4,7 +4,8 @@ import { SubjectReadModel } from './subjects';
 export enum QuestionType {
   SingleChoice,
   MultipleChoice,
-  Essay
+  Essay,
+  Unknown = 99
 }
 
 export interface ShortQuestionModel {
@@ -39,12 +40,6 @@ export interface ScqEditModel {
   text: string,
   subjectId: number,
   answerOptions: AnswerOptionEditModel[]
-}
-
-export interface ScqModel {
-  name: string,
-  text: string,
-  answerOptions: AnswerOption[]
 }
 
 export interface McqCreateModel {

@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { questionsList, singleChoiceQuestion } from 'src/app/models/endpoints';
+import { questionsList, singleChoiceQuestion, multipleChoiceQuestion, essay } from 'src/app/models/endpoints';
 import { QuestionsInSubjectListFilterModel } from 'src/app/models/filters';
-import { QuestionsListModel, ScqCreateModel, ScqReadModel } from 'src/app/models/questions';
+import { EssayCreateModel, EssayReadModel, McqCreateModel, McqReadModel, QuestionsListModel, ScqCreateModel, ScqReadModel } from 'src/app/models/questions';
 
 @Injectable({
   providedIn: 'root'
@@ -20,12 +20,12 @@ export class QuestionsService {
     return this._http.post<ScqReadModel>(singleChoiceQuestion, question);
   }
 
-  public createMultipleChoice(question: ScqCreateModel) : Observable<ScqReadModel> {
-    return this._http.post<ScqReadModel>(singleChoiceQuestion, question);
+  public createMultipleChoice(question: McqCreateModel) : Observable<McqReadModel> {
+    return this._http.post<McqReadModel>(multipleChoiceQuestion, question);
   }
 
-  public createEssay() {
-    
+  public createEssay(question: EssayCreateModel) : Observable<EssayReadModel> {
+    return this._http.post<EssayReadModel>(essay, question);
   }
 
 }

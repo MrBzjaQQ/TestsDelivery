@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { AnswerOption } from 'src/app/models/answerOptions';
 import { ComponentType } from 'src/app/models/components';
-import { ScqModel } from 'src/app/models/questions';
+import { ScqModel } from 'src/app/models/components/questions-wizard';
 import { QuestionsService } from 'src/app/services/questions-service/questions.service';
 
 // TODO: CRITICAL - USE FORM!
@@ -32,7 +32,7 @@ export class ManageSingleChoiceComponent implements OnInit {
   private _name: string = '';
   private _text: string = '';
 
-  public constructor(private questionsService: QuestionsService) {
+  public constructor() {
   }
 
   public ngOnInit(): void {
@@ -60,14 +60,19 @@ export class ManageSingleChoiceComponent implements OnInit {
     });
   }
 
-  public onNameChanged(event: InputEvent) : void {
+  public onNameChanged(event: Event) : void {
     const element = event.target as HTMLInputElement;
     this._name = element.value;
   }
 
-  public onTextChanged(event: InputEvent) : void {
+  public onTextChanged(event: Event) : void {
     const element = event.target as HTMLInputElement;
     this._text = element.value;
+  }
+
+  public onAnswerTextChanged(event: Event, index: number) : void {
+    const element = event.target as HTMLInputElement;
+    this._answerOptions[index].text = element.value;
   }
 
   public deleteAnswerOption(idx: number) : void {
