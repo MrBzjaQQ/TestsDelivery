@@ -13,7 +13,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatMenuModule } from '@angular/material/menu'
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTreeModule } from '@angular/material/tree';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { ManageEssayComponent } from './components/manage-essay/manage-essay.com
 import { ManageSingleChoiceComponent } from './components/manage-single-choice/manage-single-choice.component';
 import { ManageMultipleChoiceComponent } from './components/manage-multiple-choice/manage-multiple-choice.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { ManageTestComponent } from './components/manage-test/manage-test.component';
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     ManageEssayComponent,
     ManageSingleChoiceComponent,
     ManageMultipleChoiceComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ManageTestComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +76,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     MatListModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTreeModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },

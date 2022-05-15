@@ -84,3 +84,22 @@ export interface EssayEditModel {
   text: string,
   subjectId: number,
 }
+
+export interface QuestionReadModel {
+  id: number,
+  name: string,
+  text: string,
+  subject: SubjectReadModel
+}
+
+export interface QuestionInSubjectModel {
+  id: number,
+  name: string,
+  type: QuestionType
+}
+
+export interface SubjectWithQuestionsModel {
+  id: number,
+  name: string,
+  questions: QuestionInSubjectModel
+}

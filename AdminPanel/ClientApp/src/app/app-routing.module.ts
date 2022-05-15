@@ -4,6 +4,7 @@ import { CandidatesListComponent } from './components/candidates-list/candidates
 import { HomeComponent } from './components/home-component/home.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { ManageQuestionsComponent } from './components/manage-questions/manage-questions.component';
+import { ManageTestComponent } from './components/manage-test/manage-test.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
 import { ScheduledTestsListComponent } from './components/scheduled-tests-list/scheduled-tests-list.component';
 import { SubjectsListComponent } from './components/subjects-list/subjects-list.component';
@@ -19,6 +20,8 @@ const routes: Routes = [
   { path: 'scheduledTests', component: ScheduledTestsListComponent },
   // TODO: probably should be child of subjects with :id
   { path: 'subjects/:subjectId', component: ManageQuestionsComponent },
+  // TODO: it should be /test/{id}
+  { path: 'test', component: ManageTestComponent },
   { path: '', component: HomeComponent },
 ];
 

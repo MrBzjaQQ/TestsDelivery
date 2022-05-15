@@ -1,3 +1,5 @@
+import { QuestionReadModel } from "./questions"
+
 export interface TestInListModel {
   id: number,
   name: string
@@ -17,7 +19,7 @@ export interface TestEditModel {
 export interface TestReadModel {
   id: number,
   name: string,
-  questionIds: number[]
+  questionIds: QuestionReadModel[]
 }
 
 export interface TestsList {
