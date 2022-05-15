@@ -4,7 +4,7 @@ import { MatSelectionListChange } from '@angular/material/list';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
 import { ListFilter } from 'src/app/models/filters';
-import { EssayReadModel, McqReadModel, QuestionType, ScqCreateModel, ScqReadModel, ShortQuestionModel } from 'src/app/models/questions';
+import { EssayReadModel, McqReadModel, QuestionType, ScqReadModel, ShortQuestionModel } from 'src/app/models/questions';
 import { QuestionsService } from 'src/app/services/questions-service/questions.service';
 import { EssayModel, McqModel, ScqModel } from 'src/app/models/components/questions-wizard';
 import { ComponentType } from 'src/app/models/components';
@@ -59,11 +59,7 @@ export class ManageQuestionsComponent implements OnInit {
     searchText: undefined
   };
 
-  private _selectedQuestion: ShortQuestionModel = {
-    id: 0,
-    name: '',
-    type: QuestionType.SingleChoice
-  };
+  private _selectedQuestion?: ShortQuestionModel;
 
   public readonly pageSizeOptions = [ 25, 50, 100 ];
 
@@ -73,7 +69,6 @@ export class ManageQuestionsComponent implements OnInit {
 
   public ngOnInit(): void {
     this._loadQuestionsForSubject();
-    this._selectedQuestion = this._questionsList[0];
   }
 
   public get questionsList() : ShortQuestionModel[] {
@@ -84,11 +79,13 @@ export class ManageQuestionsComponent implements OnInit {
     return this._totalCount;
   }
 
-  public get selectedQuestion() : ShortQuestionModel {
+  public get selectedQuestion() : ShortQuestionModel | undefined {
     return this._selectedQuestion;
   }
 
   public get type() : QuestionType {
+    if (!this.selectedQuestion)
+      throw new Error('Cannot get type when there are no question selected');
     return this.selectedQuestion.type;
   }
 
@@ -118,7 +115,7 @@ export class ManageQuestionsComponent implements OnInit {
   }
 
   public onQuestionSelected(event: MatSelectionListChange) {
-    this._selectedQuestion = event.source.selectedOptions.selected[0]?.value as ShortQuestionModel;
+    this._selectedQuestion = event.options[0].value as ShortQuestionModel;
     switch(this._selectedQuestion.type) {
       case QuestionType.SingleChoice: {
         this._questionsService.getSingleChoice(this._selectedQuestion.id)
@@ -155,51 +152,75 @@ export class ManageQuestionsComponent implements OnInit {
   }, 500);
 
   public onSingleChoiceSaved(model: ScqModel) : void {
-    this._questionsService.createSingleChoice({
-      subjectId: this._subjectId,
-      answerOptions: model.answerOptions,
-      name: model.name,
-      text: model.text
-    }).subscribe(result => {
-      this._selectedScq = result;
-      this._setShortModel({
-        id: result.id,
-        name: result.name,
-        type: QuestionType.SingleChoice
-      });
-    });
+    switch(this._componentType) {
+      case 'create': {
+        this._createSingleChoice(model);
+        break;
+      }
+      case 'edit': {
+        this._editSingleChoice(model);
+        break;
+      }
+      default:
+        throw new Error('Unknown component type');
+    }
   }
 
   public onMultipleChoiceSaved(model: McqModel) : void {
-    this._questionsService.createMultipleChoice({
-      subjectId: this._subjectId,
-      answerOptions: model.answerOptions,
-      name: model.name,
-      text: model.text
-    }).subscribe(result => {
-      this._selectedMcq = result;
-      this._setShortModel({
-        id: result.id,
-        name: result.name,
-        type: QuestionType.MultipleChoice
-      });
-    });
+    switch(this._componentType) {
+      case 'create': {
+        this._createMultipleChoice(model);
+        break;
+      }
+      case 'edit': {
+        this._editMultipleChoice(model);
+        break;
+      }
+      default:
+        throw new Error('Unknown component type');
+    }
   }
 
-  // TODO: it creates new essay instead of editing it
   public onEssaySaved(model: EssayModel) : void {
-    this._questionsService.createEssay({
-      subjectId: this._subjectId,
-      name: model.name,
-      text: model.text
-    }).subscribe(result => {
-      this._selectedEssay = result;
-      this._setShortModel({
-        id: result.id,
-        name: result.name,
-        type: QuestionType.Essay
-      });
-    });
+    switch(this._componentType) {
+      case 'create': {
+        this._createEssay(model);
+        break;
+      }
+      case 'edit': {
+        this._editEssay(model);
+        break;
+      }
+      default:
+        throw new Error('Unknown component type');
+    }
+  }
+
+  public openCreateScqEditor() : void {
+    this._selectedQuestion = {
+      id: 0,
+      name: '',
+      type: QuestionType.SingleChoice
+    };
+    this._componentType = 'create';
+  }
+
+  public openCreateMcqEditor() : void {
+    this._selectedQuestion = {
+      id: 0,
+      name: '',
+      type: QuestionType.MultipleChoice
+    };
+    this._componentType = 'create';
+  }
+
+  public openCreateEssayEditor() : void {
+    this._selectedQuestion = {
+      id: 0,
+      name: '',
+      type: QuestionType.Essay
+    };
+    this._componentType = 'create';
   }
 
   private get _subjectId() : number {
@@ -216,6 +237,138 @@ export class ManageQuestionsComponent implements OnInit {
     });
   }
 
+  private _createSingleChoice(model: ScqModel) : void {
+    this._questionsService.createSingleChoice({
+      subjectId: this._subjectId,
+      answerOptions: model.answerOptions,
+      name: model.name,
+      text: model.text
+    }).subscribe(result => {
+      this._selectedScq = result;
+      this._setShortModel({
+        id: result.id,
+        name: result.name,
+        type: QuestionType.SingleChoice
+      });
+    });
+  }
+
+  private _editSingleChoice(model: ScqModel) : void {
+    if (!this._selectedQuestion)
+      throw new Error('Selected question should be not null');
+
+    this._questionsService.editSingleChoice({
+      id: this._selectedQuestion.id,
+      subjectId: this._subjectId,
+      answerOptions: model.answerOptions,
+      name: model.name,
+      text: model.text
+    }).subscribe(() => {
+      if (!this._selectedQuestion)
+        throw new Error('Selected question should be not null');
+
+      this._selectedScq = {
+        id: this._selectedQuestion.id,
+        name: model.name,
+        text: model.text,
+        subject: this._selectedScq.subject,
+        answerOptions: this._selectedScq.answerOptions
+      };
+      this._setShortModel({
+        id: this._selectedQuestion.id,
+        name: model.name,
+        type: QuestionType.SingleChoice
+      });
+    });
+  }
+
+  private _createMultipleChoice(model: McqModel) : void {
+    this._questionsService.createMultipleChoice({
+      subjectId: this._subjectId,
+      answerOptions: model.answerOptions,
+      name: model.name,
+      text: model.text
+    }).subscribe(result => {
+      this._selectedMcq = result;
+      this._setShortModel({
+        id: result.id,
+        name: result.name,
+        type: QuestionType.MultipleChoice
+      });
+    });
+  }
+
+  private _editMultipleChoice(model: McqModel) : void {
+    if (!this._selectedQuestion)
+      throw new Error('Selected question should be not null');
+
+    this._questionsService.editMultipleChoice({
+      id: this._selectedQuestion.id,
+      subjectId: this._subjectId,
+      answerOptions: model.answerOptions,
+      name: model.name,
+      text: model.text
+    }).subscribe(() => {
+      if (!this._selectedQuestion)
+        throw new Error('Selected question should be not null');
+
+      this._selectedMcq = {
+        id: this._selectedQuestion.id,
+        name: model.name,
+        text: model.text,
+        subject: this._selectedMcq.subject,
+        answerOptions: this._selectedMcq.answerOptions
+      };
+      this._setShortModel({
+        id: this._selectedQuestion.id,
+        name: model.name,
+        type: QuestionType.MultipleChoice
+      });
+    });
+  }
+
+  private _createEssay(model: EssayModel) : void {
+    this._questionsService.createEssay({
+      subjectId: this._subjectId,
+      name: model.name,
+      text: model.text
+    }).subscribe(result => {
+      this._selectedEssay = result;
+      this._setShortModel({
+        id: result.id,
+        name: result.name,
+        type: QuestionType.Essay
+      });
+    });
+  }
+
+  private _editEssay(model: EssayModel) : void {
+    if (!this._selectedQuestion)
+      throw new Error('Selected question should be not null');
+
+    this._questionsService.editEssay({
+      id: this._selectedQuestion.id,
+      subjectId: this._subjectId,
+      name: model.name,
+      text: model.text
+    }).subscribe(() => {
+      if (!this._selectedQuestion)
+        throw new Error('Selected question should be not null');
+
+      this._selectedEssay = {
+        id: this._selectedQuestion.id,
+        name: model.name,
+        text: model.text,
+        subject: this._selectedEssay.subject
+      };
+      this._setShortModel({
+        id: this._selectedQuestion.id,
+        name: model.name,
+        type: QuestionType.Essay
+      });
+    });
+  }
+
   private _setShortModel(shortModel: ShortQuestionModel) : void {
     switch (this._componentType) {
       case 'create': {
@@ -225,7 +378,7 @@ export class ManageQuestionsComponent implements OnInit {
         break;
       }
       case 'edit': {
-        const [ question ] = this._questionsList.filter(x => x.id == this._selectedQuestion.id);
+        const [ question ] = this._questionsList.filter(x => x.id == this._selectedQuestion?.id);
         const index = this._questionsList.indexOf(question);
         this._questionsList[index] = shortModel;
         break;

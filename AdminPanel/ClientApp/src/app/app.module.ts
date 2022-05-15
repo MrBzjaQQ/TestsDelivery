@@ -13,6 +13,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatMenuModule } from '@angular/material/menu'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -71,7 +72,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     MatDividerModule,
     MatListModule,
     MatCheckboxModule,
-    MatRadioModule
+    MatRadioModule,
+    MatMenuModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },

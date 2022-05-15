@@ -210,6 +210,22 @@
         <source>Add answer option</source>
         <target>Добавить вариант ответа</target>
       </trans-unit>
+      <trans-unit id="createQuestion">
+        <source>Create question</source>
+        <target>Создать вопрос</target>
+      </trans-unit>
+      <trans-unit id="singleChoiceQuestion">
+        <source>Single Choice Question</source>
+        <target>Вопрос с единственным вариантом ответа</target>
+      </trans-unit>
+      <trans-unit id="multipleChoiceQuestion">
+        <source>Multiple Choice Question</source>
+        <target>Вопрос с множественными вариантами ответа</target>
+      </trans-unit>
+      <trans-unit id="essayQuestion">
+        <source>Essay Question</source>
+        <target>Вопрос со свободным ответом (эссе)</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

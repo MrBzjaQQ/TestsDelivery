@@ -1,5 +1,11 @@
 <section class="manage-questions">
   <h2>Subject Name</h2>
+  <button mat-button [matMenuTriggerFor]="createMenu" i18n="@@createQuestion">Create question</button>
+  <mat-menu #createMenu="matMenu">
+    <button mat-menu-item i18n="@@singleChoiceQuestion" (click)="openCreateScqEditor()">Single Choice Question</button>
+    <button mat-menu-item i18n="@@multipleChoiceQuestion" (click)="openCreateMcqEditor()">Multiple Choice Question</button>
+    <button mat-menu-item i18n="@@essayQuestion" (click)="openCreateEssayEditor()">Essay Question</button>
+  </mat-menu>
   <aside class="manage-questions__list">
     <app-search-bar (textChanged)="onTextChanged($event)"></app-search-bar>
     <mat-selection-list [multiple]="false" (selectionChange)="onQuestionSelected($event)">
