@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { questionsList, singleChoiceQuestion, multipleChoiceQuestion, essay } from 'src/app/models/endpoints';
 import { QuestionsInSubjectListFilterModel } from 'src/app/models/filters';
-import { EssayCreateModel, EssayReadModel, McqCreateModel, McqReadModel, QuestionsListModel, ScqCreateModel, ScqReadModel } from 'src/app/models/questions';
+import { EssayCreateModel, EssayEditModel, EssayReadModel, McqCreateModel, McqEditModel, McqReadModel, QuestionsListModel, ScqCreateModel, ScqEditModel, ScqReadModel } from 'src/app/models/questions';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,30 @@ export class QuestionsService {
 
   public createEssay(question: EssayCreateModel) : Observable<EssayReadModel> {
     return this._http.post<EssayReadModel>(essay, question);
+  }
+
+  public getSingleChoice(id: number) : Observable<ScqReadModel> {
+    return this._http.get<ScqReadModel>(`${singleChoiceQuestion}${id}`);
+  }
+
+  public getMultipleChoice(id: number) : Observable<McqReadModel> {
+    return this._http.get<McqReadModel>(`${multipleChoiceQuestion}${id}`);
+  }
+
+  public getEssay(id: number) : Observable<EssayReadModel> {
+    return this._http.get<EssayReadModel>(`${essay}${id}`);
+  }
+
+  public editSingleChoice(question: ScqEditModel) : Observable<any> {
+    return this._http.put<any>(singleChoiceQuestion, question);
+  }
+
+  public editMultipleChoice(question: McqEditModel) : Observable<any> {
+    return this._http.put<any>(multipleChoiceQuestion, question);
+  }
+
+  public editEssay(question: EssayEditModel) : Observable<any> {
+    return this._http.put<any>(essay, question);
   }
 
 }

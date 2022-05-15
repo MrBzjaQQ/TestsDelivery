@@ -18,9 +18,9 @@
       aria-label="Select page of questions"></mat-paginator>
   </aside>
   <div *ngIf="selectedQuestion" class="question-wizard__content" [ngSwitch]="type">
-    <app-manage-single-choice *ngSwitchCase="0" (save)="onSingleChoiceSaved($event)"></app-manage-single-choice>
-    <app-manage-multiple-choice *ngSwitchCase="1" (save)="onMultipleChoiceSaved($event)"></app-manage-multiple-choice>
-    <app-manage-essay *ngSwitchCase="2" (save)="onEssaySaved($event)"></app-manage-essay>
+    <app-manage-single-choice *ngSwitchCase="0" [componentType]="componentType" [editModel]="selectedScq" (save)="onSingleChoiceSaved($event)"></app-manage-single-choice>
+    <app-manage-multiple-choice *ngSwitchCase="1" [componentType]="componentType" [editModel]="selectedMcq" (save)="onMultipleChoiceSaved($event)"></app-manage-multiple-choice>
+    <app-manage-essay *ngSwitchCase="2" [componentType]="componentType" [editModel]="selectedEssay" (save)="onEssaySaved($event)"></app-manage-essay>
     <span *ngSwitchDefault>Unknown question type</span>
   </div>
 </section>

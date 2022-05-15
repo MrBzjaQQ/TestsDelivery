@@ -1,9 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { AnswerOption } from 'src/app/models/answerOptions';
 import { ComponentType } from 'src/app/models/components';
 import { ScqModel } from 'src/app/models/components/questions-wizard';
-import { QuestionsService } from 'src/app/services/questions-service/questions.service';
 
 // TODO: CRITICAL - USE FORM!
 @Component({
@@ -11,7 +10,7 @@ import { QuestionsService } from 'src/app/services/questions-service/questions.s
   templateUrl: './manage-single-choice.component.html',
   styleUrls: ['./manage-single-choice.component.scss']
 })
-export class ManageSingleChoiceComponent implements OnInit {
+export class ManageSingleChoiceComponent implements OnInit, OnChanges {
 
   @Input() editModel?: ScqModel;
   @Input() componentType: ComponentType = 'create';
@@ -39,8 +38,20 @@ export class ManageSingleChoiceComponent implements OnInit {
     this.discardChanges();
   }
 
-  public get answerOptions() {
+  public ngOnChanges(changes: SimpleChanges): void {
+    this.discardChanges();
+  }
+
+  public get answerOptions() : AnswerOption[] {
     return this._answerOptions;
+  }
+
+  public get name() : string {
+    return this._name;
+  }
+
+  public get text() : string {
+    return this._text;
   }
 
   public onCorrectOptionChange(event: MatRadioChange) {
@@ -50,7 +61,18 @@ export class ManageSingleChoiceComponent implements OnInit {
   }
 
   public discardChanges() : void {
-    this._answerOptions = [...this._defaultAnswerOptions];
+    switch(this.componentType) {
+      case 'create': {
+        this._discardCreateChanges();
+        break;
+      }
+      case 'edit': {
+        this._discardEditChanges();
+        break;
+      }
+      default: 
+        throw new Error('Unknown component type');
+    }
   }
 
   public addAnswerOption() : void {
@@ -85,6 +107,23 @@ export class ManageSingleChoiceComponent implements OnInit {
       text: this._text,
       answerOptions: this.answerOptions
     });
+  }
+
+  private _discardCreateChanges() : void {
+    this._text = '';
+    this._name = '';
+    this._answerOptions = [...this._defaultAnswerOptions];
+  }
+
+  private _discardEditChanges() : void {
+    if (!this.editModel) {
+      console.error('Edit model should be passed for edit mode');
+      return;
+    }
+      
+    this._text = this.editModel.text;
+    this._name = this.editModel.name;
+    this._answerOptions = this.editModel.answerOptions;
   }
 
 }
