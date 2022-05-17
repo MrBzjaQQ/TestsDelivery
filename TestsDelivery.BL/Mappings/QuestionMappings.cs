@@ -85,6 +85,8 @@ namespace TestsDelivery.BL.Mappings
 
             CreateMap<ShortQuestion, ShortQuestionModel>();
             CreateMap<QuestionsList, UserModels.Questions.QuestionsListModel>();
+            CreateMap<Question, QuestionInListDto>();
+            CreateMap<QuestionInListDto, UserModels.Questions.QuestionInSubjectModel>();
         }
     }
 }

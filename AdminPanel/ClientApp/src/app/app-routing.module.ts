@@ -21,7 +21,8 @@ const routes: Routes = [
   // TODO: probably should be child of subjects with :id
   { path: 'subjects/:subjectId', component: ManageQuestionsComponent },
   // TODO: it should be /test/{id}
-  { path: 'test', component: ManageTestComponent },
+  { path: 'tests/new', component: ManageTestComponent },
+  { path: 'tests/:id', component: ManageTestComponent },
   { path: '', component: HomeComponent },
 ];
 

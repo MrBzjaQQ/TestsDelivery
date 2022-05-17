@@ -101,5 +101,5 @@ export interface QuestionInSubjectModel {
 export interface SubjectWithQuestionsModel {
   id: number,
   name: string,
-  questions: QuestionInSubjectModel
+  questions: QuestionInSubjectModel[]
 }
