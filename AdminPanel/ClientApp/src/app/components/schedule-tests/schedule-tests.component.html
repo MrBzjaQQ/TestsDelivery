@@ -1,0 +1,28 @@
+<section class="schedule-test">
+  <h2 i18n="@@scheduleTest">Schedule Test</h2>
+  <form class="schedule-test__form">
+    <mat-label i18n="@@test">Test</mat-label>
+    <mat-select (valueChange)="onTestChange($event)">
+      <mat-option *ngFor="let test of tests.tests" [value]="test.id">
+        {{test.name}}
+      </mat-option>
+    </mat-select>
+    <mat-label i18n="@@testsPortalInstance">Tests Portal instance</mat-label>
+    <mat-select (valueChange)="onInstanceChange($event)">
+      <mat-option *ngFor="let instance of instances" [value]="instance">
+        {{ instance }}
+      </mat-option>
+    </mat-select>
+    <mat-label i18n="@@candidates">Candidates</mat-label>
+    <mat-selection-list (selectionChange)="onCandidateSelected($event)">
+      <mat-list-option *ngFor="let candidate of candidates.candidates" [value]="candidate.id">
+        {{candidate.firstName + ' ' + candidate.lastName}}
+      </mat-list-option>
+    </mat-selection-list>
+    <!--TODO: add paging for candidates-->
+    <!--<mat-paginator class="schedule-test__paging" [length]="candidates.totalCount" [pageSizeOptions]="pageSizeOptions"
+      (page)="onPageEventChanged($event)" showFirstLastButtons i18n-aria-label="@@pagination_selectPageOfSubjects"
+      aria-label="Select page of subjects"></mat-paginator>-->
+    <button mat-raised-button color="primary" type="button" i18n="@@schedule" (click)="submit()">Schedule</button>
+  </form>
+</section>

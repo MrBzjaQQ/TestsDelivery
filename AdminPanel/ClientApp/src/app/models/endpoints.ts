@@ -17,6 +17,7 @@ export const subjects = '/api/Subjects/';
 export const subjectsList = '/api/Subjects/GetList/';
 export const test = '/api/Test/';
 export const testsList = '/api/Test/GetList/';
+export const portalInstances = '/api/TestPortalInstances/';
 
 export default {
     candidate,

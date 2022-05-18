@@ -15,3 +15,20 @@ export interface ScheduledTestsListModel {
   scheduledTests: ScheduledTestInList[],
   totalCount: number;
 }
+
+export interface ScheduledTestCreateModel {
+  testId: number,
+  startDateTime: string,
+  expirationDateTime: string,
+  duration: number,
+  candidateIds: number[],
+  destinationInstance: string
+}
+
+export interface ScheduledTestReadModel {
+  id: number,
+  candidates: CandidateReadModel[],
+  duration: number,
+  startDateTime: string,
+  expirationDateTime: string
+}

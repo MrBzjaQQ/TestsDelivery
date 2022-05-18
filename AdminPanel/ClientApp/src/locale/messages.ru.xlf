@@ -226,6 +226,22 @@
         <source>Essay Question</source>
         <target>Вопрос со свободным ответом (эссе)</target>
       </trans-unit>
+      <trans-unit id="test">
+        <source>Test</source>
+        <target>Тест</target>
+      </trans-unit>
+      <trans-unit id="testsPortalInstance">
+        <source>Tests Portal instance</source>
+        <target>Тестовый портал</target>
+      </trans-unit>
+      <trans-unit id="scheduleTest">
+        <source>Schedule Test</source>
+        <target>Назначить тест</target>
+      </trans-unit>
+      <trans-unit id="schedule">
+        <source>Schedule</source>
+        <target>Назначить</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

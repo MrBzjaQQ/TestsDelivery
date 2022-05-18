@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { scheduledTestsList as scheduledTestsListUrl } from 'src/app/models/endpoints';
 import { ListFilter } from 'src/app/models/filters';
-import { ScheduledTestsListModel } from 'src/app/models/scheduledTests';
+import { ScheduledTestsListModel } from 'src/app/models/scheduled-tests';
 
 @Injectable({
   providedIn: 'root'

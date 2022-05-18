@@ -6,6 +6,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { ManageQuestionsComponent } from './components/manage-questions/manage-questions.component';
 import { ManageTestComponent } from './components/manage-test/manage-test.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { ScheduleTestsComponent } from './components/schedule-tests/schedule-tests.component';
 import { ScheduledTestsListComponent } from './components/scheduled-tests-list/scheduled-tests-list.component';
 import { SubjectsListComponent } from './components/subjects-list/subjects-list.component';
 import { TestsListComponent } from './components/tests-list/tests-list.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   // TODO: it should be /test/{id}
   { path: 'tests/new', component: ManageTestComponent },
   { path: 'tests/:id', component: ManageTestComponent },
+  { path: 'schedule', component: ScheduleTestsComponent },
   { path: '', component: HomeComponent },
 ];
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ListFilter } from 'src/app/models/filters';
-import { ScheduledTestInList } from 'src/app/models/scheduledTests';
+import { ScheduledTestInList } from 'src/app/models/scheduled-tests';
 import { ScheduledTestsService } from 'src/app/services/scheduled-tests-service/scheduled-tests.service';
 
 @Component({

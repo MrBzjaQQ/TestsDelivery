@@ -16,6 +16,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -37,6 +38,7 @@ import { ManageSingleChoiceComponent } from './components/manage-single-choice/m
 import { ManageMultipleChoiceComponent } from './components/manage-multiple-choice/manage-multiple-choice.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { ManageTestComponent } from './components/manage-test/manage-test.component';
+import { ScheduleTestsComponent } from './components/schedule-tests/schedule-tests.component';
 
 
 @NgModule({
@@ -57,7 +59,8 @@ import { ManageTestComponent } from './components/manage-test/manage-test.compon
     ManageSingleChoiceComponent,
     ManageMultipleChoiceComponent,
     SearchBarComponent,
-    ManageTestComponent
+    ManageTestComponent,
+    ScheduleTestsComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +82,8 @@ import { ManageTestComponent } from './components/manage-test/manage-test.compon
     MatRadioModule,
     MatMenuModule,
     MatTreeModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },
