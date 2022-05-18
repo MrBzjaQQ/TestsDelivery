@@ -25,6 +25,6 @@ export class TestsService {
   }
 
   public editTest(testModel: TestEditModel) : Observable<any> {
-    return this._http.post<any>(testUrl, testModel);
+    return this._http.put<any>(testUrl, testModel);
   }
 }

@@ -19,7 +19,7 @@ export interface TestEditModel {
 export interface TestReadModel {
   id: number,
   name: string,
-  questionIds: QuestionReadModel[]
+  questions: QuestionReadModel[]
 }
 
 export interface TestsList {

@@ -1,15 +1,19 @@
 import { NestedTreeControl } from '@angular/cdk/tree';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ComponentType } from 'src/app/models/components';
 import { QuestionsTreeNode } from 'src/app/models/components/manage-test';
 import { QuestionInSubjectModel, SubjectWithQuestionsModel } from 'src/app/models/questions';
-import { TestCreateModel, TestEditModel } from 'src/app/models/tests';
+import { TestCreateModel, TestEditModel, TestReadModel } from 'src/app/models/tests';
 import { QuestionsService } from 'src/app/services/questions-service/questions.service';
 import { TestsService } from 'src/app/services/tests-service/tests.service';
+import { cloneDeep, xorBy } from 'lodash';
 
+// TODO: There are a lot of .find in forEach.
+// Refactor it because of performance loss.
+// TODO: optimize using lodash
 @Component({
   selector: 'app-manage-test',
   templateUrl: './manage-test.component.html',
@@ -18,19 +22,19 @@ import { TestsService } from 'src/app/services/tests-service/tests.service';
 export class ManageTestComponent implements OnInit {
 
   private _name: string = '';
-  private _subjectsWithQuestions: SubjectWithQuestionsModel[] = [];
-  private _searchText: string = '';
-  private _selectedSubjectsWithQuestions: QuestionsTreeNode[] = [];
+
+  private _defaultName: string = '';
+  private _destinationTree: QuestionsTreeNode[] = [];
+  private _sourceTree: QuestionsTreeNode[] = [];
 
   constructor(
     private _testsService: TestsService,
     private _route: ActivatedRoute,
     private _questionsService: QuestionsService,
-    private _cdr: ChangeDetectorRef,
     private _location: Location) { }
 
   ngOnInit(): void {
-    this.getQuestionsTree();
+    this._initCreateDialog();
   }
 
   public sourceTreeControl = new NestedTreeControl<QuestionsTreeNode>(node => node.children);
@@ -38,19 +42,6 @@ export class ManageTestComponent implements OnInit {
 
   public destinationTreeControl = new NestedTreeControl<QuestionsTreeNode>(node => node.children);
   public destinationDataSource = new MatTreeNestedDataSource<QuestionsTreeNode>();
-
-  public getQuestionsTree(): void {
-    this._questionsService.getQuestionsInSubjects({
-      searchText: this._searchText
-    }).subscribe(response => {
-      this._subjectsWithQuestions = [...response];
-      this.sourceDataSource.data = this._mapToQuestionsTreeNode([...response]);
-    });
-  }
-
-  public get subjectsWithQuesitons(): SubjectWithQuestionsModel[] {
-    return this._subjectsWithQuestions;
-  }
 
   public get name() : string {
     return this._name;
@@ -80,16 +71,24 @@ export class ManageTestComponent implements OnInit {
   }
 
   public saveChanges() : void {
-    const createModel = this._getCreateTestData();
-    this._testsService.createTest(createModel).subscribe(x => {
-      this._location.replaceState(`/tests/${x.id}`);
-    });
+    switch(this._componentType) {
+      case 'create': {
+        this._saveCreateModel();
+        break;
+      }
+      case 'edit': {
+        this._saveEditModel();
+        break;
+      }
+      default:
+        throw new Error('Unknown component type.');
+    }
   }
 
   public discardChanges() : void {
-    this._name = '';
-    this.sourceDataSource.data = this._mapToQuestionsTreeNode(this._subjectsWithQuestions);
-    this.destinationDataSource.data = [];
+    this._name = this._defaultName;
+    this.sourceDataSource.data = cloneDeep(this._sourceTree);
+    this.destinationDataSource.data = cloneDeep(this._destinationTree);
   }
 
   private get _componentType(): ComponentType {
@@ -97,7 +96,7 @@ export class ManageTestComponent implements OnInit {
   }
 
   private get _testId(): number | null {
-    return Number(this._route.snapshot.paramMap.get('subjectId')) || null;
+    return Number(this._route.snapshot.paramMap.get('id')) || null;
   }
 
   private _mapToQuestionsTreeNode(subjectsWithQuestions: SubjectWithQuestionsModel[]): QuestionsTreeNode[] {
@@ -177,11 +176,95 @@ export class ManageTestComponent implements OnInit {
     };
   }
 
-  private _saveCreateModel(model: TestCreateModel) {
+  private _getEditTestData() : TestEditModel {
+    const questions : QuestionsTreeNode[] = [];
+    this.destinationDataSource.data.forEach(x => questions.push(...x.children));
+    const id = this._testId;
+    if (!id)
+      throw new Error('Id should be set in location state for editing test');
 
+    return {
+      id,
+      name: this._name,
+      questionIds: questions.map(x => x.id)
+    };
   }
 
-  private _saveEditModel(model: TestEditModel) {
-    
+  private _saveCreateModel(): void {
+    const createModel = this._getCreateTestData();
+    this._testsService.createTest(createModel).subscribe(x => {
+      this._location.replaceState(`/tests/${x.id}`);
+    });
+  }
+
+  private _saveEditModel(): void {
+    const editModel = this._getEditTestData();
+    this._testsService.editTest(editModel).subscribe(x => {
+      this._location.replaceState(`/tests/${x.id}`);
+    });
+  }
+  
+  private _initCreateDialog(): void {
+    this._questionsService.getQuestionsInSubjects({}).subscribe(response => {
+      this.sourceDataSource.data = this._mapToQuestionsTreeNode([...response]);
+      this._sourceTree = cloneDeep(this.sourceDataSource.data);
+
+      if (this._componentType === 'edit')
+        this._initEditDialog();
+    });
+  }
+
+  private _initEditDialog(): void {
+    const id = this._testId;
+    if (!id)
+      throw new Error('Id is required for getting test details.');
+    this._testsService.getTestDetails(id)
+      .subscribe((response) => {
+        this._defaultName = response.name;
+        this._name = response.name;
+        this._initEditTreeInternal(response);
+        this._filterSourceTree();
+        this._sourceTree = cloneDeep(this.sourceDataSource.data);
+        this._destinationTree = cloneDeep(this.destinationDataSource.data);
+      });
+  }
+
+  private _initEditTreeInternal(model: TestReadModel): void {
+    const tree: QuestionsTreeNode[] = [];
+    model.questions.forEach(question => {
+      // TODO: .find
+      let subject = tree.find(subject => subject.id === question.subject.id);
+      if (!subject) {
+        subject = {
+          id: question.subject.id,
+          name: question.subject.name,
+          level: 0,
+          children: []
+        };
+
+        tree.push(subject);
+      }
+
+      subject.children.push({
+        id: question.id,
+        name: question.name,
+        level: 1,
+        children: []
+      });
+    });
+
+    this.destinationDataSource.data = tree;
+  }
+
+  private _filterSourceTree(): void {
+    this.destinationDataSource.data.forEach(subject => {
+      const sourceSubject = this.sourceDataSource.data.find(x => x.id === subject.id);
+      if (!sourceSubject)
+        throw new Error('Source subject should be in tree');
+      
+      sourceSubject.children = sourceSubject.children.filter(x => subject.children.findIndex(y => y.id === x.id) === -1)
+    });
+
+    this.sourceDataSource.data = cloneDeep(this.sourceDataSource.data);
   }
 }
