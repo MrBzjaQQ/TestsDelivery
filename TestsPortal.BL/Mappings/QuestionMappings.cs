@@ -71,6 +71,8 @@ namespace TestsPortal.BL.Mappings
             CreateMap<Question, DALShortQuestion>();
             CreateMap<DALShortQuestion, DomainShortQuestion>();
             CreateMap<DomainShortQuestion, QuestionInListModel>();
+
+            CreateMap<Question, QuestionBase>();
         }
     }
 }

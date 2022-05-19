@@ -4,6 +4,6 @@ namespace TestsPortal.BL.Mediators.ScheduledTests
 {
     public interface IScheduledTestMediator
     {
-        public ScheduledTestReadModel ScheduleTest(ScheduledTestDetailedModel model, string host);
+        IEnumerable<ScheduledTestInstanceReadModel> ScheduleTest(ScheduledTestDetailedModel model, string host);
     }
 }

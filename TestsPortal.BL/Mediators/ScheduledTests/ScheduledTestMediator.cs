@@ -22,13 +22,13 @@ namespace TestsPortal.BL.Mediators.ScheduledTests
             _mapper = mapper;
         }
 
-        public ScheduledTestReadModel ScheduleTest(ScheduledTestDetailedModel model, string host)
+        public IEnumerable<ScheduledTestInstanceReadModel> ScheduleTest(ScheduledTestDetailedModel model, string host)
         {
             var inputModel = _mapper.Map<ScheduledTest>(model);
             inputModel.AdminPanelInstance = host;
-            var outputModel = _scheduledTestService.ScheduleTest(inputModel);
-            _notificationService.NotifyCandidates(outputModel.Candidates, "TODO: think about building a message");
-            return _mapper.Map<ScheduledTestReadModel>(outputModel);
+            var outputModels = _scheduledTestService.ScheduleTest(inputModel);
+            _notificationService.NotifyCandidates(outputModels.Select(x => x.Candidate), "TODO: think about building a message");
+            return _mapper.Map<IEnumerable<ScheduledTestInstanceReadModel>>(outputModels);
         }
     }
 }

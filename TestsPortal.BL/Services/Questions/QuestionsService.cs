@@ -27,11 +27,14 @@ namespace TestsPortal.BL.Services.Questions
             _mapper = mapper;
         }
 
+        // TODO: answer option question id is 0
         public IEnumerable<QuestionBase> CreateQuestions(IEnumerable<QuestionBase> questions)
         {
-            var subjects = _subjectsService.CreateSubjects(questions
+            var subjects = _subjectsService.CreateSubjects(
+                questions
                 .Select(x => x.Subject)
-                .Distinct());
+                .Distinct()
+                .ToArray());
 
             var questionsWithOptions = GetQuestionsOfType<QuestionWithOptionsBase>(
                 questions.Where(
@@ -41,6 +44,7 @@ namespace TestsPortal.BL.Services.Questions
             var dalQuestions = _mapper.Map<IEnumerable<Question>>(questions);
             _questionsRepository.CreateQuestions(dalQuestions);
 
+            // TODO: Domain AnswerOption hasn't QuestionId
             var options = questionsWithOptions.Aggregate(new List<Domain.Questions.AnswerOption>(), (accumulator, question) =>
             {
                 return accumulator.Concat(question.AnswerOptions).ToList();
@@ -108,7 +112,7 @@ namespace TestsPortal.BL.Services.Questions
             where TQuestionType : QuestionWithOptionsBase
         {
             var domainQuestion = _mapper.Map<TQuestionType>(question);
-            var options = answerOptions.Where(x => x.QuestionId == domainQuestion.OriginalId);
+            var options = answerOptions.Where(x => x.QuestionId == domainQuestion.Id);
             domainQuestion.AnswerOptions = _mapper.Map<IEnumerable<Domain.Questions.AnswerOption>>(options);
             return domainQuestion;
         }
