@@ -5,5 +5,7 @@ namespace TestsPortal.BL.Services.ScheduledTests
     public interface IScheduledTestService
     {
         ScheduledTest ScheduleTest(ScheduledTest scheduledTest);
+
+        long GetInstanceOriginalId(long testId);
     }
 }

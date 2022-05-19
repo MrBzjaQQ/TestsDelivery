@@ -47,6 +47,11 @@ namespace TestsPortal.BL.Services.ScheduledTests
             return resultTest;
         }
 
+        public long GetInstanceOriginalId(long testId)
+        {
+            return _scheduledTestInstancesRepository.GetInstanceOriginalId(testId);
+        }
+
         private IEnumerable<ScheduledTestInstance> MapTestInstances(
             long testId,
             ScheduledTestDomain test,
@@ -57,9 +62,9 @@ namespace TestsPortal.BL.Services.ScheduledTests
                 CandidateId = x.Id,
                 ScheduledTestId = testId,
                 Status = (short)TestStatus.NotStarted,
+                // TODO: fill these fields
                 Keycode = "ABCDEF",
-                Pin = "ABCDEF",
-                AdminPanelInstance = test.AdminPanelInstance
+                Pin = "ABCDEF"
             });
         }
     }

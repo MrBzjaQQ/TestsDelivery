@@ -11,6 +11,8 @@ namespace TestsPortal.DAL.Models.ScheduledTests
 
         public int Duration { get; set; }
 
+        public string AdminPanelInstance { get; set; }
+
         public DateTime StartDateTime { get; set; }
 
         public DateTime ExpirationDateTime { get; set; }

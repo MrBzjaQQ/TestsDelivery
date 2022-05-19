@@ -22,6 +22,7 @@ using TestsPortal.DAL.Repositories.AnswerOptions;
 using TestsPortal.DAL.Repositories.Answers;
 using TestsPortal.DAL.Repositories.Candidate;
 using TestsPortal.DAL.Repositories.Questions;
+using TestsPortal.DAL.Repositories.QuestionsInTest;
 using TestsPortal.DAL.Repositories.ScheduledTestInstances;
 using TestsPortal.DAL.Repositories.ScheduledTests;
 using TestsPortal.DAL.Repositories.Subjects;
@@ -66,6 +67,7 @@ namespace TestsPortal
             services.AddScoped<ITestsRepository, TestsRepository>();
             services.AddScoped<ITextAnswersRepository, TextAnswersRepository>();
             services.AddScoped<IChoiceAnswersRepository, ChoiceAnswersRepository>();
+            services.AddScoped<IQuestionsInTestRepository, QuestionsInTestRepository>();
 
             services.AddScoped<IIntegrationApiClient, IntegrationApiClient>();
             services.AddScoped<ICommunicationServiceFactory, CommunicationServiceFactory>();

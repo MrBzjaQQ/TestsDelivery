@@ -108,7 +108,7 @@ namespace TestsPortal.BL.Services.Questions
             where TQuestionType : QuestionWithOptionsBase
         {
             var domainQuestion = _mapper.Map<TQuestionType>(question);
-            var options = answerOptions.Where(x => x.QuestionId == domainQuestion.Id);
+            var options = answerOptions.Where(x => x.QuestionId == domainQuestion.OriginalId);
             domainQuestion.AnswerOptions = _mapper.Map<IEnumerable<Domain.Questions.AnswerOption>>(options);
             return domainQuestion;
         }

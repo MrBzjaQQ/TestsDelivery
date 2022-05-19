@@ -25,7 +25,7 @@ namespace TestsPortal.Controllers
         public IActionResult ScheduleTest(ScheduledTestDetailedModel detailedModel)
         {
             _logger.LogAppInformation($"Received data from {Request.Host}: {JsonSerializer.Serialize(detailedModel)}");
-            return Ok(_mediator.ScheduleTest(detailedModel));
+            return Ok(_mediator.ScheduleTest(detailedModel, Request.Host.Value));
         }
     }
 }

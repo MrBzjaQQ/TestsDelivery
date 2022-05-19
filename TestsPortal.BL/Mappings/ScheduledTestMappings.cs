@@ -11,7 +11,8 @@ namespace TestsPortal.BL.Mappings
         {
             CreateMap<ScheduledTestDetailedModel, DomainScheduledTest>()
                 .ForMember(x => x.Id, y => y.Ignore())
-                .ForMember(x => x.OriginalId, x => x.MapFrom(y => y.Id));
+                .ForMember(x => x.OriginalId, x => x.MapFrom(y => y.Id))
+                .ForMember(x => x.AdminPanelInstance, x => x.Ignore());
             CreateMap<DomainScheduledTest, DALScheduledTest>()
                 .ReverseMap();
             CreateMap<DomainScheduledTest, ScheduledTestReadModel>();

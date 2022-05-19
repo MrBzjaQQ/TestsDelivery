@@ -5,6 +5,7 @@ using TestsDelivery.UserModels.TestProcess;
 using TestsPortal.BL.Services.AdminPanelInstances;
 using TestsPortal.BL.Services.Communication;
 using TestsPortal.BL.Services.Questions;
+using TestsPortal.BL.Services.ScheduledTests;
 using TestsPortal.BL.Services.TestProcesses;
 using TestsPortal.Domain.TestProcesses;
 
@@ -16,6 +17,7 @@ namespace TestsPortal.BL.Mediators.TestProcesses
         private readonly ITestProcessService _testProcessService;
         private readonly IQuestionsService _questionsService;
         private readonly IAdminPanelInstancesService _instancesService;
+        private readonly IScheduledTestService _scheduledTestService;
         private readonly IMapper _mapper;
 
         public TestProcessMediator(
@@ -23,12 +25,14 @@ namespace TestsPortal.BL.Mediators.TestProcesses
             IQuestionsService questionsService,
             ITestsPortalCommunicationService communicationService,
             IAdminPanelInstancesService instancesService,
+            IScheduledTestService scheduledTestService,
             IMapper mapper)
         {
             _communicationService = communicationService;
             _testProcessService = testProcessService;
             _questionsService = questionsService;
             _instancesService = instancesService;
+            _scheduledTestService = scheduledTestService;
             _mapper = mapper;
         }
 
@@ -49,12 +53,12 @@ namespace TestsPortal.BL.Mediators.TestProcesses
             return _mapper.Map<IEnumerable<QuestionInListModel>>(_questionsService.GetByTestId(testId));
         }
 
-        public void StartTest(StartTestModel model)
+        public async void StartTest(StartTestModel model)
         {
             _testProcessService.StartTest(_mapper.Map<TestCredentials>(model));
-            var instance = _testProcessService.GetAdminInstanceForTest(model.TestId);
-            var instanceUrl = _instancesService.GetInstanceUrl(instance);
-            // TODO: 
+            var instanceUrl = _testProcessService.GetAdminInstanceForTest(model.TestId);
+            var testId = _scheduledTestService.GetInstanceOriginalId(model.TestId);
+            await _communicationService.StartTest(testId, instanceUrl);
         }
     }
 }

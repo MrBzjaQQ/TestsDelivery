@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Shared.Repository;
 using TestsPortal.DAL.Data;
 using TestsPortal.DAL.Models.Questions;
@@ -18,8 +19,15 @@ namespace TestsPortal.DAL.Repositories.Questions
             Context.SaveChanges();
         }
 
-        public IEnumerable<ShortQuestion> GetByTestId(long testId)
+        public IEnumerable<ShortQuestion> GetByTestId(long testInstanceId)
         {
+            var testId = Context.ScheduledTestInstances
+                .Where(x => x.Id == testInstanceId)
+                .Include(x => x.ScheduledTest)
+                .Include(x => x.ScheduledTest.Test)
+                .Select(x => x.ScheduledTest.Test.Id)
+                .Single();
+
             return Mapper.ProjectTo<ShortQuestion>(
                 Context.QuestionInTests
                 .Where(x => x.TestId == testId)
