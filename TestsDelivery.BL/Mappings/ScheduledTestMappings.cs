@@ -24,6 +24,8 @@ namespace TestsDelivery.BL.Mappings
             CreateMap<ScheduledTestInListDto, ScheduledTestInListModel>();
             CreateMap<DAL.Models.ScheduledTest.ScheduledTestInList, ScheduledTestInListDto>();
             CreateMap<ScheduledTestsList, ScheduledTestsListModel>();
+            CreateMap<ScheduledTestToCreate, ScheduledTestDetailedModel>();
+            CreateMap<DAL.Models.ScheduledTest.ScheduledTest, ScheduledTestToCreate>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using TestsDelivery.UserModels.TestProcess;
 using TestsPortal.Domain.TestProcesses;
 
 namespace TestsPortal.BL.Mappings
@@ -7,7 +8,7 @@ namespace TestsPortal.BL.Mappings
     {
         public TestProcessMappings()
         {
-            CreateMap<StartTestInfo, TestCredentials>();
+            CreateMap<StartTestModel, TestCredentials>();
         }
     }
 }

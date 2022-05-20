@@ -10,7 +10,5 @@ namespace TestsPortal.BL.FilterBuilders
         IScheduledTestsFilterBuilder ByKeycode(string keycode);
 
         IScheduledTestsFilterBuilder ByPin(string pin);
-
-        IScheduledTestsFilterBuilder ByCandidateId(long candidateId);
     }
 }

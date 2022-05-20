@@ -6,7 +6,7 @@ namespace TestsDelivery.BL.Services.ScheduledTest
 {
     public interface IScheduledTestService
     {
-        ScheduledTestDomain ScheduleTest(ScheduledTestDomain test);
+        ScheduledTestToCreate ScheduleTest(ScheduledTestDomain test);
 
         ScheduledTestDomain GetTest(long id);
 

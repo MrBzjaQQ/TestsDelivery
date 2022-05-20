@@ -48,7 +48,6 @@ namespace TestsPortal.BL.Services.TestProcesses
         {
             var filter = new ScheduledTestsInstancesFilterBuilder()
                 .ByTestId(credentials.TestId)
-                .ByCandidateId(credentials.CandidateId)
                 .ByKeycode(credentials.Keycode)
                 .ByPin(credentials.Pin)
                 .Build();

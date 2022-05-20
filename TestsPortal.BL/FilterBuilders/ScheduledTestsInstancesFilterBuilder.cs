@@ -6,13 +6,6 @@ namespace TestsPortal.BL.FilterBuilders
 {
     public class ScheduledTestsInstancesFilterBuilder : FilterBuilderBase<ScheduledTestInstance>, IScheduledTestsFilterBuilder
     {
-        public IScheduledTestsFilterBuilder ByCandidateId(long candidateId)
-        {
-            Expression<Func<ScheduledTestInstance, bool>> expression = x => x.CandidateId == candidateId;
-            And(expression);
-            return this;
-        }
-
         public IScheduledTestsFilterBuilder ByKeycode(string keycode)
         {
             Expression<Func<ScheduledTestInstance, bool>> expression = x => x.Keycode == keycode;

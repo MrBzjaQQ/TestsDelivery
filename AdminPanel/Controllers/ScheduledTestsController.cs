@@ -2,12 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.TestProcesses;
 using TestsDelivery.UserModels.AnsweredTests;
+using TestsDelivery.UserModels.Communication;
 
 namespace AdminPanel.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    [Authorize]
     public class ScheduledTestsController : ControllerBase
     {
         private readonly ITestProcessMediator _testProcessMediator;
@@ -25,9 +25,9 @@ namespace AdminPanel.Controllers
         }
 
         [HttpPost(nameof(StartTest))]
-        public IActionResult StartTest(long testId)
+        public IActionResult StartTest(IdModel model)
         {
-            _testProcessMediator.StartTest(testId);
+            _testProcessMediator.StartTest(model.Id);
             return Ok();
         }
     }

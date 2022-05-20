@@ -36,19 +36,20 @@ namespace TestsDelivery.BL.Services.ScheduledTest
             _scheduledTestInstancesRepository = scheduledTestInstancesRepository;
         }
 
-        public ScheduledTestDomain ScheduleTest(ScheduledTestDomain test)
+        public ScheduledTestToCreate ScheduleTest(ScheduledTestDomain test)
         {
             var candidates = _candidateService.GetCandidates(test.Candidates.Select(x => x.Id));
 
             var testData = _mapper.Map<ScheduledTestData>(test);
             _scheduledTestRepository.Create(testData);
 
-            _scheduledTestInstancesRepository.Create(MapTestInstances(testData.Id, candidates));
+            var instances = MapTestInstances(testData.Id, candidates).ToArray();
+            _scheduledTestInstancesRepository.Create(instances);
             var candidatesInScheduledTests = _scheduledTestInstancesRepository.GetByTestId(testData.Id);
 
-            var testDomain = _mapper.Map<ScheduledTestDomain>(testData);
+            var testDomain = _mapper.Map<ScheduledTestToCreate>(testData);
             testDomain.Test = _testService.GetFullTest(test.Test.Id);
-            testDomain.Candidates = _mapper.Map<IEnumerable<Domain.Candidate.Candidate>>(candidatesInScheduledTests.Select(x => x.Candidate));
+            testDomain.Instances = _mapper.Map<IEnumerable<ScheduledTestInstanceToCreate>>(instances);
 
             return testDomain;
         }
@@ -80,11 +81,11 @@ namespace TestsDelivery.BL.Services.ScheduledTest
             };
         }
 
-        private IEnumerable<ScheduledTestInstance> MapTestInstances(
+        private IEnumerable<DAL.Models.ScheduledTest.ScheduledTestInstance> MapTestInstances(
             long testId,
             IEnumerable<Domain.Candidate.Candidate> candidates)
         {
-            return candidates.Select(x => new ScheduledTestInstance
+            return candidates.Select(x => new DAL.Models.ScheduledTest.ScheduledTestInstance
             {
                 CandidateId = x.Id,
                 ScheduledTestId = testId,

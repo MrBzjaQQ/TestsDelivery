@@ -24,7 +24,7 @@ namespace TestsPortal.BL.Mediators.ScheduledTests
 
         public IEnumerable<ScheduledTestInstanceReadModel> ScheduleTest(ScheduledTestDetailedModel model, string host)
         {
-            var inputModel = _mapper.Map<ScheduledTest>(model);
+            var inputModel = _mapper.Map<ScheduledTestToCreate>(model);
             inputModel.AdminPanelInstance = host;
             var outputModels = _scheduledTestService.ScheduleTest(inputModel);
             _notificationService.NotifyCandidates(outputModels.Select(x => x.Candidate), "TODO: think about building a message");
