@@ -34,5 +34,12 @@ namespace TestsPortal.DAL.Repositories.Questions
                 .Select(x => x.Question))
                 .ToList();
         }
+
+        public override Question GetById(long id)
+        {
+            return DbSet
+                .Include(x => x.Subject)
+                .Single(x => x.Id == id);
+        }
     }
 }

@@ -56,10 +56,13 @@ namespace TestsPortal.BL.Mappings
                 .ForMember(x => x.OriginalId, x => x.MapFrom(y => y.Id));
 
             CreateMap<SingleChoiceQuestion, Question>()
+                .ForMember(x => x.Subject, x => x.Ignore())
                 .ReverseMap();
             CreateMap<MultipleChoiceQuestion, Question>()
+                .ForMember(x => x.Subject, x => x.Ignore())
                 .ReverseMap();
             CreateMap<EssayQuestion, Question>()
+                .ForMember(x => x.Subject, x => x.Ignore())
                 .ReverseMap();
 
             CreateMap<QuestionBase, QuestionReadModel>();
@@ -67,6 +70,10 @@ namespace TestsPortal.BL.Mappings
             CreateMap<QuestionBase, McqReadModel>();
             CreateMap<QuestionBase, ScqReadModel>();
             CreateMap<QuestionWithOptionsBase, QuestionWithOptionsReadModel>();
+
+            CreateMap<SingleChoiceQuestion, ScqReadModel>();
+            CreateMap<MultipleChoiceQuestion, McqReadModel>();
+            CreateMap<EssayQuestion, EssayReadModel>();
 
             CreateMap<Question, DALShortQuestion>();
             CreateMap<DALShortQuestion, DomainShortQuestion>();

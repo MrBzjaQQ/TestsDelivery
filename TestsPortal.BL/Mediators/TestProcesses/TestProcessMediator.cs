@@ -49,8 +49,7 @@ namespace TestsPortal.BL.Mediators.TestProcesses
 
         public QuestionReadModel GetQuestionById(long questionId)
         {
-            var question = _questionsService.GetById(questionId);
-            return MapQuestion(question);
+            return MapQuestion(_questionsService.GetById(questionId));
         }
 
         public IEnumerable<QuestionInListModel> GetQuestionsByTestId(long testId)
@@ -70,11 +69,11 @@ namespace TestsPortal.BL.Mediators.TestProcesses
         {
             var type = question.GetType();
             if (type.IsAssignableFrom(typeof(SingleChoiceQuestion)))
-                return _mapper.Map<ScqReadModel>(question);
+                return _mapper.Map<SingleChoiceQuestion, ScqReadModel>((SingleChoiceQuestion)question);
             if (type.IsAssignableFrom(typeof(MultipleChoiceQuestion)))
-                return _mapper.Map<McqReadModel>(question);
+                return _mapper.Map<MultipleChoiceQuestion, McqReadModel>((MultipleChoiceQuestion)question);
             if (type.IsAssignableFrom(typeof(EssayQuestion)))
-                return _mapper.Map<EssayReadModel>(question);
+                return _mapper.Map<EssayQuestion, EssayReadModel>((EssayQuestion)question);
             throw new ArgumentException("Unknown type of question", nameof(question));
         }
     }

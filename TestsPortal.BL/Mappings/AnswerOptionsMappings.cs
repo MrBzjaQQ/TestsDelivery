@@ -12,7 +12,8 @@ namespace TestsPortal.BL.Mappings
             CreateMap<AnswerOptionUnverified, AnswerOptionDomain>()
                 .ForMember(x => x.Id, x => x.Ignore())
                 .ForMember(x => x.OriginalId, x => x.MapFrom(y => y.Id));
-            CreateMap<AnswerOptionDomain, AnswerOptionData>();
+            CreateMap<AnswerOptionDomain, AnswerOptionData>()
+                .ReverseMap();
             CreateMap<AnswerOptionDomain, AnswerOptionReadModel>();
         }
     }

@@ -27,33 +27,50 @@ namespace TestsPortal.BL.Services.Questions
             _mapper = mapper;
         }
 
-        // TODO: answer option question id is 0
         public IEnumerable<QuestionBase> CreateQuestions(IEnumerable<QuestionBase> questions)
         {
-            var subjects = _subjectsService.CreateSubjects(
-                questions
-                .Select(x => x.Subject)
-                .Distinct()
-                .ToArray());
+            var questionGroups = questions.GroupBy(x => x.Subject);
 
-            var questionsWithOptions = GetQuestionsOfType<QuestionWithOptionsBase>(
-                questions.Where(
+            var resultQuestions = new List<Question>();
+            var resultOptions = new List<DAL.Models.Questions.AnswerOption>();
+
+            foreach (var questionGroup in questionGroups)
+            {
+                var subject = _subjectsService.CreateSubject(questionGroup.Key);
+
+                foreach(var question in questionGroup) 
+                    question.Subject = subject;
+
+                var questionsWithOptions = GetQuestionsOfType<QuestionWithOptionsBase>(
+                questionGroup.Where(
                     x => x.Type == QuestionType.MultipleChoice
                     || x.Type == QuestionType.SingleChoice));
 
-            var dalQuestions = _mapper.Map<IEnumerable<Question>>(questions);
-            _questionsRepository.CreateQuestions(dalQuestions);
+                var dalQuestions = _mapper.Map<IEnumerable<Question>>(questionGroup.ToArray());
+                _questionsRepository.CreateQuestions(dalQuestions);
 
-            // TODO: Domain AnswerOption hasn't QuestionId
-            var options = questionsWithOptions.Aggregate(new List<Domain.Questions.AnswerOption>(), (accumulator, question) =>
-            {
-                return accumulator.Concat(question.AnswerOptions).ToList();
-            });
+                var dalOptions = questionsWithOptions.Aggregate(new List<DAL.Models.Questions.AnswerOption>(), (accumulator, question) =>
+                {
+                    return accumulator
+                        .Concat(question.AnswerOptions.Select(x =>
+                        {
+                            var dalQuestion = dalQuestions.Single(x => x.OriginalId == question.OriginalId);
+                            return new DAL.Models.Questions.AnswerOption()
+                            {
+                                Text = x.Text,
+                                OriginalId = x.OriginalId,
+                                QuestionId = dalQuestion.Id
+                            };
+                        })).ToList();
+                });
 
-            var dalOptions = _mapper.Map<IEnumerable<DAL.Models.Questions.AnswerOption>>(options);
-            _answerOptionsRepository.CreateAnswerOptions(dalOptions);
+                _answerOptionsRepository.CreateAnswerOptions(dalOptions);
 
-            return MapQuestionsToDomainBase(dalQuestions, dalOptions);
+                resultQuestions.AddRange(dalQuestions);
+                resultOptions.AddRange(dalOptions);
+            }
+
+            return MapQuestionsToDomainBase(resultQuestions, resultOptions);
         }
 
         public IEnumerable<Domain.Questions.ShortQuestion> GetByTestId(long testId)
@@ -63,7 +80,8 @@ namespace TestsPortal.BL.Services.Questions
 
         public QuestionBase GetById(long questionId)
         {
-            var question = _mapper.Map<QuestionBase>(_questionsRepository.GetById(questionId));
+            var dalQuestion = _questionsRepository.GetById(questionId);
+            var question = _mapper.Map<QuestionBase>(dalQuestion);
             switch (question.Type)
             {
                 case QuestionType.SingleChoice:
