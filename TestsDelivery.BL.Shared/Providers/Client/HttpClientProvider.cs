@@ -11,7 +11,11 @@
 
         public HttpClient Get(IDictionary<string, string> additionalHeaders = null)
         {
-            var httpClient = _httpClientFactory.CreateClient();
+            // TODO: SECURITY RISK. TEMPORARY SOLUTION FOR DEVELOPMENT PURPOSES
+            // var httpClient = _httpClientFactory.CreateClient();
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+            var httpClient = new HttpClient(handler);
 
             if (additionalHeaders != null)
             {

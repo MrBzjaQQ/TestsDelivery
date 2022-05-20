@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using TestsDelivery.BL.Shared.Clients.Integration;
 using TestsDelivery.UserModels.ScheduledTest;
@@ -24,7 +25,7 @@ namespace TestsDelivery.BL.Services.Communication
 
         public async Task ScheduleTest(ScheduledTestDetailedModel test)
         {
-            await _apiClient.PostAsync<ScheduledTestDetailedModel, ScheduledTestReadModel>($"{_instanceUrl}api/ScheduledTests", test);
+            await _apiClient.PostAsync<ScheduledTestDetailedModel, IEnumerable<ScheduledTestInstanceReadModel>>($"{_instanceUrl}api/ScheduledTests", test);
         }
     }
 }
