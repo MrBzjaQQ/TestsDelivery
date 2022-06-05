@@ -2,6 +2,7 @@
 {
     public record McqMarkCreateModel : MarkCreateModelBase
     {
-        public int AmountOfCorrectAnswers { get; set; }
+        // TODO: Delete
+        public IEnumerable<long> CorrectAnswerIds { get; set; }
     }
 }
