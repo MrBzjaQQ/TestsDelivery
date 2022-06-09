@@ -1,7 +1,3 @@
-using System;
-using AdminPanel.Logging;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -9,40 +5,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Serialization;
-using TestsDelivery.BL.Mediators;
-using TestsDelivery.BL.Mediators.Candidate;
-using TestsDelivery.BL.Mediators.Questions.Essay;
-using TestsDelivery.BL.Mediators.Questions.MultipleChoice;
-using TestsDelivery.BL.Mediators.Questions.SingleChoice;
-using TestsDelivery.BL.Mediators.ScheduledTest;
-using TestsDelivery.BL.Mediators.Test;
-using TestsDelivery.BL.Services.Candidates;
-using TestsDelivery.BL.Services.Questions.Essay;
-using TestsDelivery.BL.Services.Questions.MultipleChoice;
-using TestsDelivery.BL.Services.Questions.SingleChoice;
-using TestsDelivery.BL.Services.ScheduledTest;
-using TestsDelivery.BL.Services.Subjects;
-using TestsDelivery.BL.Services.Test;
-using TestsDelivery.BL.Services.Users;
-using TestsDelivery.BL.Validators.Questions;
+using System.Net;
 using TestsDelivery.DAL.Data;
 using TestsDelivery.DAL.Models.Identity;
-using TestsDelivery.DAL.Repositories.AnswerOptions;
-using TestsDelivery.DAL.Repositories.Candidate;
-using TestsDelivery.DAL.Repositories.QuestionInTests;
-using TestsDelivery.DAL.Repositories.Questions;
-using TestsDelivery.DAL.Repositories.ScheduledTest;
-using TestsDelivery.DAL.Repositories.Subjects;
-using TestsDelivery.DAL.Repositories.Test;
-using TestsDelivery.Options.Tokens;
 
 namespace AdminPanel
 {
+    // TODO: Get rid of Startup.cs
     public class Startup
     {
         private IConfiguration Configuration { get; }
-        
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -56,84 +31,54 @@ namespace AdminPanel
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
 
-            services.AddDbContext<TestsDeliveryContext>(
-                options => options.UseSqlServer(Configuration.GetConnectionString("TestsDeliveryConnection"),
-                    optAction => optAction.MigrationsAssembly("TestsDelivery.DAL")));
-
-            var authOptions = new AuthOptions(Configuration.GetValue<string>("TokenSecretKey"))
+            services.AddSwaggerGen(options =>
             {
-                Issuer = Configuration.GetValue<string>("TokenIssuer"),
-                Audience = Configuration.GetValue<string>("TokenAudience"),
-                Lifetime = Configuration.GetValue<int>("TokenLifetime")
-            };
-
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.RequireHttpsMetadata = false;
-                    options.TokenValidationParameters = new()
+                options.SwaggerDoc("v1",
+                    new OpenApiInfo
                     {
-                        ValidateIssuer = true,
-                        ValidIssuer = authOptions.Issuer,
-                        ValidateAudience = true,
-                        ValidAudience = authOptions.Audience,
-                        ValidateLifetime = true,
-                        IssuerSigningKey = authOptions.GetSymmetricSecurityKey(),
-                        ValidateIssuerSigningKey = true,
-                    };
-                });
+                        Title = "Admin Panel",
+                        Version = "v1",
+                    });
 
-            services.AddAuthorization(options =>
-            {
-                options.DefaultPolicy = new AuthorizationPolicyBuilder()
-                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-                    .RequireAuthenticatedUser()
-                    .Build();
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please enter a valid token",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    Scheme = "Bearer"
+                });
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
             });
+
+            services.AddDbContext<TestsDeliveryContext>(
+                options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection"),
+                optAction => optAction.MigrationsAssembly("TestsDelivery.DAL")));
 
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<TestsDeliveryContext>();
 
-            // In production, the React files will be served from this directory
+            // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/build";
+                configuration.RootPath = "ClientApp";
             });
 
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-            services.AddSingleton(new IdentityErrorDescriber());
-            services.AddSingleton(authOptions);
-
-            services.AddScoped(typeof(IAppLogging<>), typeof(AppLogging<>));
-            services.AddScoped<ISubjectsMediator, SubjectsMediator>();
-            services.AddScoped<IScqMediator, ScqMediator>();
-            services.AddScoped<IMcqMediator, McqMediator>();
-            services.AddScoped<IEssayMediator, EssayMediator>();
-            services.AddScoped<ICandidateMediator, CandidateMediator>();
-            services.AddScoped<ITestMediator, TestMediator>();
-            services.AddScoped<IScheduledTestMediator, ScheduledTestMediator>();
-
-            services.AddScoped<ISubjectsService, SubjectsService>();
-            services.AddScoped<IScqService, ScqService>();
-            services.AddScoped<IMcqService, McqService>();
-            services.AddScoped<IEssayService, EssayService>();
-            services.AddScoped<ICandidateService, CandidateService>();
-            services.AddScoped<ITestService, TestService>();
-            services.AddScoped<IScheduledTestService, ScheduledTestService>();
-            services.AddScoped<IUserService, UserService>();
-
-            services.AddScoped<ISubjectsRepository, SubjectsRepository>();
-            services.AddScoped<IQuestionsRepository, QuestionsRepository>();
-            services.AddScoped<IAnswerOptionsRepository, AnswerOptionsRepository>();
-            services.AddScoped<ICandidateRepository, CandidateRepository>();
-            services.AddScoped<ITestRepository, TestRepository>();
-            services.AddScoped<IQuestionInTestRepository, QuestionInTestRepository>();
-            services.AddScoped<IScheduledTestRepository, ScheduledTestRepository>();
-
-            services.AddScoped<IScqModelValidator, ScqModelValidator>();
-            services.AddScoped<IMcqModelValidator, McqModelValidator>();
-            services.AddScoped<IEssayValidator, EssayValidator>();
+            services.RegisterDependencies(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -150,12 +95,15 @@ namespace AdminPanel
                 app.UseHsts();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
-            app.UseAuthentication();
             app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -171,7 +119,7 @@ namespace AdminPanel
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
+                    spa.UseProxyToSpaDevelopmentServer("https://localhost:3000");
                 }
             });
         }

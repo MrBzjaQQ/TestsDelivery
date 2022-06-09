@@ -1,9 +1,14 @@
-﻿namespace TestsDelivery.DAL.Repositories.ScheduledTest
-{
-    public interface IScheduledTestRepository
-    {
-        void ScheduleTest(Models.ScheduledTest.ScheduledTest test);
+﻿using System.Collections.Generic;
+using TestsDelivery.DAL.Models.ScheduledTest;
+using TestsDelivery.DAL.Shared;
+using TestsDelivery.DAL.Shared.Repository;
 
-        Models.ScheduledTest.ScheduledTest GetTest(long id);
+namespace TestsDelivery.DAL.Repositories.ScheduledTest
+{
+    public interface IScheduledTestRepository : IBaseRepository<Models.ScheduledTest.ScheduledTest>
+    {
+        IEnumerable<ScheduledTestInList> GetList(GenericFilter<ScheduledTestInList> filter);
+
+        int GetScheduledTestsCount(GenericFilter<ScheduledTestInList> filter);
     }
 }

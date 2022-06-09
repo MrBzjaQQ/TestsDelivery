@@ -1,20 +1,20 @@
 ﻿using System.Collections.Generic;
 using TestsDelivery.DAL.Models.Questions;
+using TestsDelivery.DAL.Shared;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.Questions
 {
-    public interface IQuestionsRepository
+    public interface IQuestionsRepository : IBaseRepository<Question>
     {
-        void CreateQuestion(Question question);
-
-        void EditQuestion(Question question);
-
-        Question GetQuestion(long id);
-
         Question GetQuestion(long id, short questionType);
 
         IEnumerable<Question> GetQuestionsByTestId(long testId);
 
         IEnumerable<long> GetQuestionIdsByTestId(long testId);
+
+        void DeleteQuestion(long id, short questionType);
+
+        IEnumerable<TDomain> GetQuestionsInSubjects<TDomain>(GenericFilter<Question> filter);
     }
 }

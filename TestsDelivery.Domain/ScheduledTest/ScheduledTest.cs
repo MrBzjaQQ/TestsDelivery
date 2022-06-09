@@ -1,5 +1,5 @@
 ﻿using System;
-using TestsDelivery.Domain.Test;
+using System.Collections.Generic;
 
 namespace TestsDelivery.Domain.ScheduledTest
 {
@@ -9,13 +9,7 @@ namespace TestsDelivery.Domain.ScheduledTest
 
         public Test.Test Test { get; set; }
 
-        public Candidate.Candidate Candidate { get; set; }
-
-        public TestStatus Status { get; set; }
-
-        public string Keycode { get; set; }
-
-        public string Pin { get; set; }
+        public IEnumerable<Candidate.Candidate> Candidates { get; set; }
 
         public int Duration { get; set; }
 

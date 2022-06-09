@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TestsDelivery.BL.Models.Subject;
+using TestsDelivery.UserModels.Subject;
 using TestsDelivery.Domain.Subject;
 
 namespace TestsDelivery.BL.Mappings
@@ -15,6 +15,17 @@ namespace TestsDelivery.BL.Mappings
 
             CreateMap<Subject, DAL.Models.Subject.Subject>();
             CreateMap<DAL.Models.Subject.Subject, Subject>();
+
+            CreateMap<SubjectInListModel, SubjectInListDto>()
+                .ReverseMap();
+            CreateMap<SubjectInListDto, DAL.Models.Subject.SubjectInList>()
+                .ReverseMap();
+
+            CreateMap<SubjectInListDto, SubjectWithQuestionsModel>();
+            CreateMap<SubjectsList, SubjectsListModel>();
+            CreateMap<DAL.Models.Subject.Subject, DAL.Models.Subject.SubjectInList>();
+            CreateMap<DAL.Models.Subject.SubjectInList, SubjectInListDto>();
+            CreateMap<DAL.Models.Subject.Subject, SubjectInListDto>();
         }
     }
 }

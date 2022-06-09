@@ -1,14 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using TestsDelivery.DAL.Models.Questions;
+using TestsDelivery.DAL.Shared.Models;
 
 namespace TestsDelivery.DAL.Models.Test
 {
-    public record QuestionInTest
+    public record QuestionInTest : IdEntity<long>
     {
-        [Key]
-        public long Id { get; set; }
-
         [ForeignKey(nameof(Test))]
         public long TestId { get; set; }
 

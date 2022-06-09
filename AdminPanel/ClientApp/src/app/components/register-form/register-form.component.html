@@ -1,0 +1,30 @@
+<mat-card>
+    <mat-card-title i18n="@@register">Register</mat-card-title>
+    <form class="register-form" [formGroup]="form" (ngSubmit)="submit()">
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label i18n="@@userName">User Name</mat-label>
+                <input matNativeControl formControlName="userName" type="text">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label i18n="@@email">E-Mail</mat-label>
+                <input matNativeControl formControlName="email" type="text">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label i18n="@@password">Password</mat-label>
+                <input matNativeControl formControlName="password" type="password">
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="standard">
+                <mat-label i18n="@@passwordConfirm">Confirm Password</mat-label>
+                <input matNativeControl formControlName="passwordConfirm" type="password">
+            </mat-form-field>
+        </p>
+        <button mat-raised-button color="primary" type="submit" i18n="@@submitRegistration">Submit</button>
+    </form>
+</mat-card>

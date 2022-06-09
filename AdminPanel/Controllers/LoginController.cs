@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using AdminPanel.Logging;
+using TestsDelivery.Infrastructure.Logging;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TestsDelivery.BL.Models;
-using TestsDelivery.BL.Services;
+using TestsDelivery.UserModels.Login;
 using TestsDelivery.BL.Services.Users;
 
 namespace AdminPanel.Controllers

@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestsDelivery.BL.Shared\TestsDelivery.BL.Shared.csproj" />
+    <ProjectReference Include="..\TestsDelivery.Infrastructure\TestsDelivery.Infrastructure.csproj" />
+    <ProjectReference Include="..\TestsDelivery.UserModels\TestsDelivery.UserModels.csproj" />
+    <ProjectReference Include="..\TestsPortal.DAL.Shared\TestsDelivery.DAL.Shared.csproj" />
+    <ProjectReference Include="..\TestsPortal.DAL\TestsPortal.DAL.csproj" />
+    <ProjectReference Include="..\TestsPortal.Domain\TestsPortal.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

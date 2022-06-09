@@ -1,13 +1,9 @@
-﻿using TestData = TestsDelivery.DAL.Models.Test.Test;
+﻿using TestsDelivery.DAL.Shared.Repository;
+using TestData = TestsDelivery.DAL.Models.Test.Test;
 
 namespace TestsDelivery.DAL.Repositories.Test
 {
-    public interface ITestRepository
+    public interface ITestRepository : IBaseRepository<TestData>
     {
-        void CreateTest(TestData test);
-
-        void EditTest(TestData test);
-
-        TestData GetTest(long id);
     }
 }

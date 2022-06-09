@@ -1,18 +1,18 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using TestsDelivery.BL.Exceptions.Validation;
+using TestsDelivery.UserModels.Exceptions.Validation;
 using TestsDelivery.BL.Mediators.Questions;
-using TestsDelivery.BL.Models.Questions.BaseQuestion;
+using TestsDelivery.UserModels.Questions.BaseQuestion;
 using TestsDelivery.DAL.Exceptions.Questions;
 
 namespace AdminPanel.Controllers.Questions
 {
     [Route("api/[controller]")]
     [ApiController]
-    public abstract class QuestionControllerBase <TCreateModel, TEditModel, TReadModel> : ControllerBase
-        where TCreateModel: BaseQuestionCreateModel
-        where TEditModel: BaseQuestionEditModel
-        where TReadModel: BaseQuestionReadModel
+    public abstract class QuestionControllerBase<TCreateModel, TEditModel, TReadModel> : ControllerBase
+        where TCreateModel : QuestionCreateModel
+        where TEditModel : QuestionEditModel
+        where TReadModel : QuestionReadModel
     {
         private readonly IBaseMediator<TCreateModel, TEditModel, TReadModel> _mediator;
 
@@ -33,6 +33,27 @@ namespace AdminPanel.Controllers.Questions
                 var question = _mediator.GetQuestion(id);
 
                 return Ok(question);
+            }
+            catch (QuestionException ex)
+            {
+                ModelState.AddModelError("QuestionException", ex.Message);
+
+                return BadRequest(ModelState);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        [ActionName(nameof(DeleteQuestion))]
+        public IActionResult DeleteQuestion(long id)
+        {
+            if (id < 1)
+                return BadRequest(new ArgumentException(nameof(id)));
+
+            try
+            {
+                _mediator.DeleteQuestion(id);
+
+                return Ok();
             }
             catch (QuestionException ex)
             {

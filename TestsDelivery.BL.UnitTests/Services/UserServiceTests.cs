@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Moq;
-using TestsDelivery.BL.Models;
+using TestsDelivery.UserModels.Login;
+using TestsDelivery.UserModels.Register;
 using TestsDelivery.BL.Services.Users;
 using TestsDelivery.BL.UnitTests.Services.Mocks;
 using TestsDelivery.DAL.Models.Identity;
@@ -95,7 +96,7 @@ namespace TestsDelivery.BL.UnitTests.Services
                 issuer: _authOptions.Issuer,
                 audience: _authOptions.Audience,
                 expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(_authOptions.Lifetime)),
-                signingCredentials: new SigningCredentials(_authOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha512),
+                signingCredentials: new SigningCredentials(_authOptions.GetIssuerSigningKey(), SecurityAlgorithms.HmacSha512),
                 claims: new Claim[]
                 {
                     new("Id", user.Id),

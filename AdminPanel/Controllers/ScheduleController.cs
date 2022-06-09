@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.ScheduledTest;
-using TestsDelivery.BL.Models.ScheduledTest;
+using TestsDelivery.UserModels.ScheduledTest;
 using TestsDelivery.DAL.Exceptions.Candidate;
 using TestsDelivery.DAL.Exceptions.ScheduledTest;
+using TestsDelivery.BL.Shared.Clients.Integration;
+using System.Threading.Tasks;
+using TestsDelivery.UserModels.ListFilters;
 
 namespace AdminPanel.Controllers
 {
@@ -20,13 +23,20 @@ namespace AdminPanel.Controllers
         }
 
         [HttpPost]
-        public IActionResult ScheduleTest(ScheduledTestCreateModel model)
+        public async Task<IActionResult> ScheduleTest(ScheduledTestCreateModel model)
         {
             if (ModelState.IsValid)
             {
-                var test = _mediator.ScheduleTest(model);
-
-                return CreatedAtRoute(nameof(GetScheduledTest), new {test.Id}, test);
+                try
+                {
+                    var test = await _mediator.ScheduleTest(model);
+                    return CreatedAtRoute(nameof(GetScheduledTest), new { test.Id }, test);
+                }
+                catch(IntegrationException ex)
+                {
+                    ModelState.AddModelError("IntegrationException", ex.Message);
+                    return Problem(detail: ex.Message);
+                }
             }
 
             return BadRequest(ModelState);
@@ -56,6 +66,12 @@ namespace AdminPanel.Controllers
                 ModelState.TryAddModelError(nameof(CandidateException), ex.Message);
                 return BadRequest(ModelState);
             }
+        }
+
+        [HttpPost("GetList")]
+        public IActionResult GetScheduledTestsList(ListFilterModel model)
+        {
+            return Ok(_mediator.GetList(model));
         }
     }
 }

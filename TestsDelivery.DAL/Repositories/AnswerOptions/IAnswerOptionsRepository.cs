@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using TestsDelivery.DAL.Models.Questions;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.AnswerOptions
 {
-    public interface IAnswerOptionsRepository
+    public interface IAnswerOptionsRepository : IBaseRepository<AnswerOption>
     {
         void CreateAnswerOption(AnswerOption answerOption);
 
@@ -18,5 +19,9 @@ namespace TestsDelivery.DAL.Repositories.AnswerOptions
         AnswerOption GetAnswerOption(long id);
 
         IEnumerable<AnswerOption> GetAnswerOptionsForQuestion(long questionId);
+
+        IEnumerable<AnswerOption> GetAnswerOptionsForQuestionIds(IEnumerable<long> questionIds);
+
+        void DeleteAnswerOptionsByQuestionId(long questionId);
     }
 }

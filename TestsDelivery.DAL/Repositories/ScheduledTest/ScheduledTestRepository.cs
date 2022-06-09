@@ -1,38 +1,49 @@
-﻿using System;
-using System.Linq;
+﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using TestsDelivery.DAL.Data;
-using TestsDelivery.DAL.Exceptions.ScheduledTest;
+using TestsDelivery.DAL.Models.ScheduledTest;
+using TestsDelivery.DAL.Shared;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.ScheduledTest
 {
-    public class ScheduledTestRepository : IScheduledTestRepository
+    public class ScheduledTestRepository : BaseRepository<TestsDeliveryContext, Models.ScheduledTest.ScheduledTest>, IScheduledTestRepository
     {
-        private readonly TestsDeliveryContext _context;
-
-        public ScheduledTestRepository(TestsDeliveryContext context)
+        public ScheduledTestRepository(TestsDeliveryContext context, IMapper mapper)
+            : base(context, mapper)
         {
-            _context = context;
         }
 
-        public void ScheduleTest(Models.ScheduledTest.ScheduledTest test)
+        public IEnumerable<ScheduledTestInList> GetList(GenericFilter<ScheduledTestInList> filter)
         {
-            _context.ScheduledTests.Add(test);
-            _context.SaveChanges();
+            return ApplyFilter(GetScheduledTestsInList(), filter).ToList();
         }
 
-        public Models.ScheduledTest.ScheduledTest GetTest(long id)
+        public int GetScheduledTestsCount(GenericFilter<ScheduledTestInList> filter)
         {
-            try
-            {
-                return _context.ScheduledTests
-                    .Include(x => x.Candidate)
-                    .Single(test => test.Id == id);
-            }
-            catch (InvalidOperationException)
-            {
-                throw new ScheduledTestNotFoundException(id);
-            }
+            return ApplySpecification(GetScheduledTestsInList(), filter).Count();
+        }
+
+        private IQueryable<ScheduledTestInList> GetScheduledTestsInList()
+        {
+            return Context.ScheduledTestInstances
+                .Include(x => x.Candidate)
+                .Join(Context.ScheduledTests.Include(x => x.Test),
+                instance => instance.ScheduledTestId,
+                test => test.Id,
+                (instance, test) => new ScheduledTestInList
+                {
+                    Id = instance.Id,
+                    Candidate = instance.Candidate,
+                    Duration = test.Duration,
+                    ExpirationDateTime = test.ExpirationDateTime,
+                    Keycode = instance.Keycode,
+                    Pin = instance.Pin,
+                    StartDateTime = test.StartDateTime,
+                    TestName = test.Test.Name
+                });
         }
     }
 }

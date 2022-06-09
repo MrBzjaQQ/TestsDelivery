@@ -1,4 +1,6 @@
-﻿using TestsDelivery.Domain.Candidate;
+﻿using System.Collections.Generic;
+using TestsDelivery.Domain.Candidate;
+using TestsDelivery.Domain.Lists;
 
 namespace TestsDelivery.BL.Services.Candidates
 {
@@ -8,6 +10,10 @@ namespace TestsDelivery.BL.Services.Candidates
 
         Candidate GetCandidate(long id);
 
+        IEnumerable<Candidate> GetCandidates(IEnumerable<long> candidateIds);
+
         void EditCandidate(Candidate candidate);
+
+        CandidatesList GetList(ListFilter filter);
     }
 }

@@ -29,7 +29,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Subjects
             _service.CreateSubject(new Domain.Subject.Subject());
 
             // Assert
-            _repositoryMock.Verify(x => x.CreateSubject(It.IsAny<Subject>()), Times.Once);
+            _repositoryMock.Verify(x => x.Create(It.IsAny<Subject>()), Times.Once);
         }
 
         [Fact]
@@ -39,7 +39,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Subjects
             _service.EditSubject(new Domain.Subject.Subject());
 
             // Assert
-            _repositoryMock.Verify(x => x.EditSubject(It.IsAny<Subject>()), Times.Once);
+            _repositoryMock.Verify(x => x.Update(It.IsAny<Subject>()), Times.Once);
         }
 
         [Fact]
@@ -55,7 +55,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Subjects
                 Retired = true
             };
 
-            _repositoryMock.Setup(x => x.GetSubject(providedId))
+            _repositoryMock.Setup(x => x.GetById(providedId))
                 .Returns(expectedResult);
 
             // Act
@@ -66,7 +66,7 @@ namespace TestsDelivery.BL.UnitTests.Services.Subjects
             Assert.Equal(subject.Name, expectedResult.Name);
             Assert.Equal(subject.Retired, expectedResult.Retired);
 
-            _repositoryMock.Verify(x => x.GetSubject(providedId), Times.Once);
+            _repositoryMock.Verify(x => x.GetById(providedId), Times.Once);
         }
     }
 }

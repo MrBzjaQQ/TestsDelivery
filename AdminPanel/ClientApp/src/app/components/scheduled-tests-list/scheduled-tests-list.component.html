@@ -1,0 +1,62 @@
+<section class="scheduled-tests">
+  <h2 class="scheduled-tests__header" i18n="@@scheduledTests">Scheduled Tests</h2>
+  <div class="scheduled-tests__top-buttons">
+    <button class="scheduled-tests__create-button" mat-raised-button i18n="@@createTest" color="primary"
+      (click)="openCreateTestPage()">Create test</button>
+    <button class="scheduled-tests__create-button" mat-raised-button i18n="@@scheduleTests" color="primary"
+      (click)="openScheduleTestsPage()">Schedule tests</button>
+  </div>
+  <table class="scheduled-tests__table" mat-table [dataSource]="scheduledTests">
+    <ng-container matColumnDef="testName">
+      <th mat-header-cell *matHeaderCellDef i18n="@@testName">Test Name</th>
+      <td mat-cell *matCellDef="let element">{{element.testName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="keycode">
+      <th mat-header-cell *matHeaderCellDef i18n="@@keycode">Keycode</th>
+      <td mat-cell *matCellDef="let element">{{element.keycode}}</td>
+    </ng-container>
+    <ng-container matColumnDef="pin">
+      <th mat-header-cell *matHeaderCellDef i18n="@@pin">Pin</th>
+      <td mat-cell *matCellDef="let element">{{element.pin}}</td>
+    </ng-container>
+    <ng-container matColumnDef="candidate">
+      <th mat-header-cell *matHeaderCellDef i18n="@@candidateName">Candidate Name</th>
+      <td mat-cell *matCellDef="let element">{{element.candidate.firstName + ' ' + element.candidate.lastName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="duration">
+      <th mat-header-cell *matHeaderCellDef i18n="@@duration">Duration</th>
+      <td mat-cell *matCellDef="let element">{{element.duration + ' min'}}</td>
+    </ng-container>
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef i18n="@@startDate">Start Date</th>
+      <td mat-cell *matCellDef="let element">{{element.startDateTime}}</td>
+    </ng-container>
+    <ng-container matColumnDef="expirationDate">
+      <th mat-header-cell *matHeaderCellDef i18n="@@expirationDate">Expiration Date</th>
+      <td mat-cell *matCellDef="let element">{{element.expirationDateTime}}</td>
+    </ng-container>
+    <ng-container matColumnDef="controls">
+      <th mat-header-cell *matHeaderCellDef i18n="@@actions">Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-button color="primary" type="button" i18n="@@mark" (click)="markTest(element)">Mark</button>
+        <button mat-button color="primary" type="button" i18n="@@viewResults" (click)="viewResults(element)">View
+          Results</button>
+        <button mat-button color="primary" type="button" i18n="@@downloadResults"
+          (click)="downloadResults(element)">Download Results</button>
+        <button mat-button color="warn" type="button" i18n="@@void" (click)="voidTest(element)">Void</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+
+    <mat-paginator
+        class="candidates__paging"
+        [length]="totalCount"
+        [pageSizeOptions]="pageSizeOptions"
+        (page)="onPageEventChanged($event)"
+        showFirstLastButtons
+        i18n-aria-label="@@pagination_selectPageOfCandidates"
+        aria-label="Select page of candidates"></mat-paginator>
+  </table>
+</section>

@@ -1,11 +1,10 @@
-﻿namespace TestsDelivery.DAL.Repositories.Candidate
+﻿using System.Collections.Generic;
+using TestsDelivery.DAL.Shared.Repository;
+
+namespace TestsDelivery.DAL.Repositories.Candidate
 {
-    public interface ICandidateRepository
+    public interface ICandidateRepository: IBaseRepository<Models.Candidate.Candidate>
     {
-        Models.Candidate.Candidate GetCandidate(long id);
-
-        void CreateCandidate(Models.Candidate.Candidate candidate);
-
-        void EditCandidate(Models.Candidate.Candidate candidate);
+        IEnumerable<Models.Candidate.Candidate> GetCandidates(IEnumerable<long> ids);
     }
 }

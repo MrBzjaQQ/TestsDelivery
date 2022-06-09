@@ -1,4 +1,4 @@
-﻿using TestsDelivery.BL.Models.Questions.Essay;
+﻿using TestsDelivery.UserModels.Questions.Essay;
 
 namespace TestsDelivery.BL.Mediators.Questions.Essay
 {

@@ -1,0 +1,16 @@
+<section class="essay-wizard">
+  <mat-form-field appearance="standard">
+    <mat-label i18n="@@name">Name</mat-label>
+    <input matInput type="text" [value]="name" (input)="onNameChanged($event)">
+  </mat-form-field>
+
+  <mat-form-field appearance="standard">
+    <mat-label i18n="@@question">Question</mat-label>
+    <input matInput type="text" [value]="text" (input)="onTextChanged($event)">
+  </mat-form-field>
+
+  <div class="question-wizard__control-buttons">
+    <button mat-raised-button color="primary" type="submit" i18n="@@saveChanges" (click)="saveChanges()">Save changes</button>
+    <button mat-raised-button color="basic" type="submit" i18n="@@discard" (click)="discardChanges()">Discard</button>
+  </div>
+</section>

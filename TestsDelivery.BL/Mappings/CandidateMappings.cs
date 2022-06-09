@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TestsDelivery.BL.Models.Candidate;
+using TestsDelivery.UserModels.Candidate;
 using TestsDelivery.Domain.Candidate;
 
 namespace TestsDelivery.BL.Mappings
@@ -14,6 +14,8 @@ namespace TestsDelivery.BL.Mappings
 
             CreateMap<Candidate, DAL.Models.Candidate.Candidate>();
             CreateMap<DAL.Models.Candidate.Candidate, Candidate>();
+
+            CreateMap<CandidatesList, CandidatesListModel>();
         }
     }
 }

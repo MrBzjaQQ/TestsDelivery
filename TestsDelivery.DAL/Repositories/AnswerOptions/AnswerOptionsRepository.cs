@@ -1,44 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Data;
 using TestsDelivery.DAL.Exceptions.AnswerOptions;
 using TestsDelivery.DAL.Models.Questions;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.AnswerOptions
 {
-    public class AnswerOptionsRepository : IAnswerOptionsRepository
+    public class AnswerOptionsRepository : BaseRepository<TestsDeliveryContext, AnswerOption>, IAnswerOptionsRepository
     {
-        private readonly TestsDeliveryContext _context;
-
-        public AnswerOptionsRepository(TestsDeliveryContext context)
+        public AnswerOptionsRepository(TestsDeliveryContext context, IMapper mapper)
+            : base(context, mapper)
         {
-            _context = context;
         }
 
         public void CreateAnswerOption(AnswerOption answerOption)
         {
-            _context.AnswerOptions.Add(answerOption);
-            _context.SaveChanges();
+            Context.AnswerOptions.Add(answerOption);
+            Context.SaveChanges();
         }
 
         public void CreateAnswerOptions(IEnumerable<AnswerOption> answerOptions)
         {
-            _context.AnswerOptions.AddRange(answerOptions);
-            _context.SaveChanges();
+            Context.AnswerOptions.AddRange(answerOptions);
+            Context.SaveChanges();
         }
 
         public void EditAnswerOption(AnswerOption answerOption)
         {
-            _context.AnswerOptions.Update(answerOption);
-            _context.SaveChanges();
+            Context.AnswerOptions.Update(answerOption);
+            Context.SaveChanges();
         }
 
         public void EditAnswerOptions(IEnumerable<AnswerOption> answerOptions)
         {
-            _context.AnswerOptions.UpdateRange(answerOptions);
-            _context.SaveChanges();
+            Context.AnswerOptions.UpdateRange(answerOptions);
+            Context.SaveChanges();
         }
 
         public void DeleteAnswerOptions(IEnumerable<long> ids)
@@ -49,17 +49,17 @@ namespace TestsDelivery.DAL.Repositories.AnswerOptions
             var options = new List<AnswerOption>();
             foreach (var id in ids)
                 options.Add(new AnswerOption { Id = id });
-            
-            _context.AttachRange(options);
-            _context.RemoveRange(options);
-            _context.SaveChanges();
+
+            Context.AttachRange(options);
+            Context.RemoveRange(options);
+            Context.SaveChanges();
         }
 
         public AnswerOption GetAnswerOption(long id)
         {
             try
             {
-                return _context.AnswerOptions.Single(x => x.Id == id);
+                return Context.AnswerOptions.Single(x => x.Id == id);
             }
             catch(InvalidOperationException)
             {
@@ -69,7 +69,18 @@ namespace TestsDelivery.DAL.Repositories.AnswerOptions
 
         public IEnumerable<AnswerOption> GetAnswerOptionsForQuestion(long questionId)
         {
-            return _context.AnswerOptions.Where(x => x.QuestionId == questionId).AsNoTracking().ToList();
+            return Context.AnswerOptions.Where(x => x.QuestionId == questionId).AsNoTracking().ToList();
+        }
+
+        public IEnumerable<AnswerOption> GetAnswerOptionsForQuestionIds(IEnumerable<long> questionIds)
+        {
+            return Context.AnswerOptions.Where(x => questionIds.Contains(x.QuestionId)).AsNoTracking().ToList();
+        }
+
+        public void DeleteAnswerOptionsByQuestionId(long questionId)
+        {
+            var optionsToRemove = Context.AnswerOptions.Where(option => option.QuestionId == questionId);
+            Context.RemoveRange(optionsToRemove);
         }
     }
 }

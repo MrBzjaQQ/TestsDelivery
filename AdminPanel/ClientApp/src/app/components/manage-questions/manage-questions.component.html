@@ -1,0 +1,32 @@
+<section class="manage-questions">
+  <h2>Subject Name</h2>
+  <button mat-button [matMenuTriggerFor]="createMenu" i18n="@@createQuestion">Create question</button>
+  <mat-menu #createMenu="matMenu">
+    <button mat-menu-item i18n="@@singleChoiceQuestion" (click)="openCreateScqEditor()">Single Choice Question</button>
+    <button mat-menu-item i18n="@@multipleChoiceQuestion" (click)="openCreateMcqEditor()">Multiple Choice Question</button>
+    <button mat-menu-item i18n="@@essayQuestion" (click)="openCreateEssayEditor()">Essay Question</button>
+  </mat-menu>
+  <aside class="manage-questions__list">
+    <app-search-bar (textChanged)="onTextChanged($event)"></app-search-bar>
+    <mat-selection-list [multiple]="false" (selectionChange)="onQuestionSelected($event)">
+      <mat-list-option *ngFor="let question of questionsList" [value]="question">
+        {{question.name + ' | ' + question.type}}
+      </mat-list-option>
+    </mat-selection-list>
+
+    <mat-paginator
+      class="manage-questions__paging"
+      [length]="totalCount"
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="onPageEventChanged($event)"
+      showFirstLastButtons
+      i18n-aria-label="@@pagination_selectPageOfQuesitons"
+      aria-label="Select page of questions"></mat-paginator>
+  </aside>
+  <div *ngIf="selectedQuestion" class="question-wizard__content" [ngSwitch]="type">
+    <app-manage-single-choice *ngSwitchCase="0" [componentType]="componentType" [editModel]="selectedScq" (save)="onSingleChoiceSaved($event)"></app-manage-single-choice>
+    <app-manage-multiple-choice *ngSwitchCase="1" [componentType]="componentType" [editModel]="selectedMcq" (save)="onMultipleChoiceSaved($event)"></app-manage-multiple-choice>
+    <app-manage-essay *ngSwitchCase="2" [componentType]="componentType" [editModel]="selectedEssay" (save)="onEssaySaved($event)"></app-manage-essay>
+    <span *ngSwitchDefault>Unknown question type</span>
+  </div>
+</section>

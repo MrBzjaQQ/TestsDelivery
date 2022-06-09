@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AdminPanel.Logging;
+using TestsDelivery.Infrastructure.Logging;
 using Microsoft.AspNetCore.Mvc;
-using TestsDelivery.BL.Models;
-using TestsDelivery.BL.Services;
+using TestsDelivery.UserModels.Register;
 using TestsDelivery.BL.Services.Users;
 
 namespace AdminPanel.Controllers

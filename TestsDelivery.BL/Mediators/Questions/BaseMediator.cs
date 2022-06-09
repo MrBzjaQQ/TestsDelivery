@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
-using TestsDelivery.BL.Models.Questions.BaseQuestion;
+using TestsDelivery.UserModels.Questions.BaseQuestion;
 using TestsDelivery.BL.Services.Questions;
 using TestsDelivery.Domain.Questions;
 
 namespace TestsDelivery.BL.Mediators.Questions
 {
     public abstract class BaseMediator<TCreateModel, TEditModel, TReadModel, TDomainModel> : IBaseMediator<TCreateModel, TEditModel, TReadModel>
-        where TCreateModel : BaseQuestionCreateModel
-        where TEditModel: BaseQuestionEditModel
-        where TReadModel: BaseQuestionReadModel
+        where TCreateModel : QuestionCreateModel
+        where TEditModel: QuestionEditModel
+        where TReadModel: QuestionReadModel
         where TDomainModel: QuestionBase
     {
         private readonly IBaseQuestionService<TDomainModel> _service;
@@ -27,6 +27,11 @@ namespace TestsDelivery.BL.Mediators.Questions
             var question = _mapper.Map<TDomainModel>(model);
             var createdQuestion = _service.CreateQuestion(question);
             return _mapper.Map<TReadModel>(createdQuestion);
+        }
+
+        public void DeleteQuestion(long id)
+        {
+            _service.DeleteQuestion(id);
         }
 
         public virtual void EditQuestion(TEditModel model)

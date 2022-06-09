@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.Test;
-using TestsDelivery.BL.Models.Test;
+using TestsDelivery.UserModels.Test;
 using TestsDelivery.DAL.Exceptions.Test;
+using TestsDelivery.UserModels.ListFilters;
 
 namespace AdminPanel.Controllers
 {
@@ -54,6 +55,7 @@ namespace AdminPanel.Controllers
             }
         }
 
+        [HttpPut]
         public IActionResult EditTest(TestEditModel model)
         {
             if (ModelState.IsValid)
@@ -64,6 +66,12 @@ namespace AdminPanel.Controllers
             }
 
             return BadRequest(ModelState);
+        }
+
+        [HttpPost("GetList")]
+        public IActionResult GetTestsList(ListFilterModel model)
+        {
+            return Ok(_mediator.GetList(model));
         }
     }
 }

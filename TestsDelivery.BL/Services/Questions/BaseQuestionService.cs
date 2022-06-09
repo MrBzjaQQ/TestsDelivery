@@ -1,44 +1,47 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
 using TestsDelivery.DAL.Models.Questions;
 using TestsDelivery.DAL.Repositories.Questions;
 using TestsDelivery.Domain.Questions;
 
 namespace TestsDelivery.BL.Services.Questions
 {
-    public abstract class BaseQuestionService<TDomainQuestion, TDataQuestion> : IBaseQuestionService<TDomainQuestion>
+    public abstract class BaseQuestionService<TDomainQuestion> : IBaseQuestionService<TDomainQuestion>
         where TDomainQuestion : QuestionBase
-        where TDataQuestion: Question
     {
-        private readonly IQuestionsRepository _repository;
-        private readonly IMapper _mapper;
-        private readonly QuestionType _questionType;
+        protected readonly IQuestionsRepository QuestionsRepository;
+        protected readonly IMapper Mapper;
+        protected readonly QuestionType QuestionType;
 
         protected BaseQuestionService(IQuestionsRepository repository, IMapper mapper, QuestionType questionType)
         {
-            _repository = repository;
-            _mapper = mapper;
-            _questionType = questionType;
+            QuestionsRepository = repository;
+            Mapper = mapper;
+            QuestionType = questionType;
         }
 
-        public TDomainQuestion CreateQuestion(TDomainQuestion question)
+        public virtual TDomainQuestion CreateQuestion(TDomainQuestion question)
         {
-            var questionData = _mapper.Map<TDataQuestion>(question);
-            _repository.CreateQuestion(questionData);
+            var questionData = Mapper.Map<Question>(question);
+            QuestionsRepository.Create(questionData);
 
-            var questionResult = _mapper.Map<TDomainQuestion>(_repository.GetQuestion(questionData.Id));
+            var questionResult = Mapper.Map<TDomainQuestion>(QuestionsRepository.GetById(questionData.Id));
             return questionResult;
         }
 
-        public void EditQuestion(TDomainQuestion question)
+        public virtual void DeleteQuestion(long id)
         {
-            var questionData = _mapper.Map<TDataQuestion>(question);
-            _repository.EditQuestion(questionData);
+            QuestionsRepository.DeleteQuestion(id, (short)QuestionType);
         }
 
-        public TDomainQuestion GetQuestion(long id)
+        public virtual void EditQuestion(TDomainQuestion question)
         {
-            return _mapper.Map<TDomainQuestion>(_repository.GetQuestion(id, (short)_questionType));
+            var questionData = Mapper.Map<Question>(question);
+            QuestionsRepository.Update(questionData);
+        }
+
+        public virtual TDomainQuestion GetQuestion(long id)
+        {
+            return Mapper.Map<TDomainQuestion>(QuestionsRepository.GetQuestion(id, (short)QuestionType));
         }
     }
 }

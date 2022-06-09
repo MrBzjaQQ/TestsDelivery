@@ -2,8 +2,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TestsDelivery.BL.Mediators.Candidate;
-using TestsDelivery.BL.Models.Candidate;
+using TestsDelivery.UserModels.Candidate;
 using TestsDelivery.DAL.Exceptions.Candidate;
+using TestsDelivery.UserModels.ListFilters;
 
 namespace AdminPanel.Controllers
 {
@@ -62,6 +63,12 @@ namespace AdminPanel.Controllers
             }
 
             return BadRequest(ModelState);
+        }
+
+        [HttpPost("GetList")]
+        public IActionResult GetCandidatesList(ListFilterModel model)
+        {
+            return Ok(_mediator.GetList(model));
         }
     }
 }

@@ -1,13 +1,9 @@
 ﻿using TestsDelivery.DAL.Models.Subject;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.Subjects
 {
-    public interface ISubjectsRepository
+    public interface ISubjectsRepository : IBaseRepository<Subject>
     {
-        void CreateSubject(Subject subject);
-
-        Subject GetSubject(long id);
-
-        void EditSubject(Subject subject);
     }
 }

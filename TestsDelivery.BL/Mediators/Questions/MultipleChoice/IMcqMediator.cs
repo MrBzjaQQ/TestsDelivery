@@ -1,4 +1,4 @@
-﻿using TestsDelivery.BL.Models.Questions.MultipleChoice;
+﻿using TestsDelivery.UserModels.Questions.MultipleChoice;
 
 namespace TestsDelivery.BL.Mediators.Questions.MultipleChoice
 {

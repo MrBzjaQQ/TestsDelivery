@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
-using TestsDelivery.BL.Models;
+using TestsDelivery.UserModels.Register;
 
 namespace TestsDelivery.Infrastructure.User
 {

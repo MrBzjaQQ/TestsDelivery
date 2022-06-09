@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TestsDelivery.DAL.Data;
 
+#nullable disable
+
 namespace TestsDelivery.DAL.Migrations
 {
     [DbContext(typeof(TestsDeliveryContext))]
@@ -15,9 +17,10 @@ namespace TestsDelivery.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.11")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("ProductVersion", "6.0.4")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -43,15 +46,16 @@ namespace TestsDelivery.DAL.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("AspNetRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -67,15 +71,16 @@ namespace TestsDelivery.DAL.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
@@ -91,7 +96,7 @@ namespace TestsDelivery.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -113,7 +118,7 @@ namespace TestsDelivery.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -128,7 +133,7 @@ namespace TestsDelivery.DAL.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("AspNetUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -147,15 +152,16 @@ namespace TestsDelivery.DAL.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("TestsDelivery.DAL.Models.Candidate.Candidate", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -233,15 +239,75 @@ namespace TestsDelivery.DAL.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("TestsDelivery.DAL.Models.Marking.ChoiceMark", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Mark")
+                        .HasColumnType("float");
+
+                    b.Property<long>("QuestionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("TestInstanceId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ChoiceMarks");
+                });
+
+            modelBuilder.Entity("TestsDelivery.DAL.Models.Marking.EssayMark", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Content")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Grammar")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Mechanics")
+                        .HasColumnType("real");
+
+                    b.Property<long>("QuestionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("TestInstanceId")
+                        .HasColumnType("bigint");
+
+                    b.Property<float>("Vocabulary")
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EssayMarks");
                 });
 
             modelBuilder.Entity("TestsDelivery.DAL.Models.Questions.AnswerOption", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<bool>("IsCorrect")
                         .HasColumnType("bit");
@@ -259,12 +325,46 @@ namespace TestsDelivery.DAL.Migrations
                     b.ToTable("AnswerOptions");
                 });
 
+            modelBuilder.Entity("TestsDelivery.DAL.Models.Questions.ChoiceAnswer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long>("AnswerOptionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("CandidateId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("QuestionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ScheduledTestId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AnswerOptionId");
+
+                    b.HasIndex("CandidateId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("ScheduledTestId");
+
+                    b.ToTable("ChoiceAnswers");
+                });
+
             modelBuilder.Entity("TestsDelivery.DAL.Models.Questions.Question", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -285,15 +385,44 @@ namespace TestsDelivery.DAL.Migrations
                     b.ToTable("Questions");
                 });
 
+            modelBuilder.Entity("TestsDelivery.DAL.Models.Questions.TextAnswer", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long>("CandidateId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("QuestionId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ScheduledTestId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
+
+                    b.HasIndex("QuestionId");
+
+                    b.HasIndex("ScheduledTestId");
+
+                    b.ToTable("TextAnswers");
+                });
+
             modelBuilder.Entity("TestsDelivery.DAL.Models.ScheduledTest.ScheduledTest", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("CandidateId")
                         .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<int>("Duration")
                         .HasColumnType("int");
@@ -301,36 +430,58 @@ namespace TestsDelivery.DAL.Migrations
                     b.Property<DateTime>("ExpirationDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Keycode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Pin")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("StartDateTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<short>("Status")
-                        .HasColumnType("smallint");
 
                     b.Property<long>("TestId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CandidateId");
-
                     b.HasIndex("TestId");
 
                     b.ToTable("ScheduledTests");
+                });
+
+            modelBuilder.Entity("TestsDelivery.DAL.Models.ScheduledTest.ScheduledTestInstance", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long>("CandidateId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Keycode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Pin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("ScheduledTestId")
+                        .HasColumnType("bigint");
+
+                    b.Property<short>("Status")
+                        .HasColumnType("smallint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CandidateId");
+
+                    b.HasIndex("ScheduledTestId");
+
+                    b.ToTable("ScheduledTestInstances");
                 });
 
             modelBuilder.Entity("TestsDelivery.DAL.Models.Subject.Subject", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -347,8 +498,9 @@ namespace TestsDelivery.DAL.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<long>("QuestionId")
                         .HasColumnType("bigint");
@@ -369,8 +521,9 @@ namespace TestsDelivery.DAL.Migrations
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -442,6 +595,41 @@ namespace TestsDelivery.DAL.Migrations
                     b.Navigation("Question");
                 });
 
+            modelBuilder.Entity("TestsDelivery.DAL.Models.Questions.ChoiceAnswer", b =>
+                {
+                    b.HasOne("TestsDelivery.DAL.Models.Questions.AnswerOption", "AnswerOption")
+                        .WithMany()
+                        .HasForeignKey("AnswerOptionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("TestsDelivery.DAL.Models.Candidate.Candidate", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TestsDelivery.DAL.Models.Questions.Question", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TestsDelivery.DAL.Models.ScheduledTest.ScheduledTest", "ScheduledTest")
+                        .WithMany()
+                        .HasForeignKey("ScheduledTestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AnswerOption");
+
+                    b.Navigation("Candidate");
+
+                    b.Navigation("Question");
+
+                    b.Navigation("ScheduledTest");
+                });
+
             modelBuilder.Entity("TestsDelivery.DAL.Models.Questions.Question", b =>
                 {
                     b.HasOne("TestsDelivery.DAL.Models.Subject.Subject", "Subject")
@@ -453,7 +641,7 @@ namespace TestsDelivery.DAL.Migrations
                     b.Navigation("Subject");
                 });
 
-            modelBuilder.Entity("TestsDelivery.DAL.Models.ScheduledTest.ScheduledTest", b =>
+            modelBuilder.Entity("TestsDelivery.DAL.Models.Questions.TextAnswer", b =>
                 {
                     b.HasOne("TestsDelivery.DAL.Models.Candidate.Candidate", "Candidate")
                         .WithMany()
@@ -461,15 +649,53 @@ namespace TestsDelivery.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TestsDelivery.DAL.Models.Questions.Question", "Question")
+                        .WithMany()
+                        .HasForeignKey("QuestionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TestsDelivery.DAL.Models.ScheduledTest.ScheduledTest", "ScheduledTest")
+                        .WithMany()
+                        .HasForeignKey("ScheduledTestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Candidate");
+
+                    b.Navigation("Question");
+
+                    b.Navigation("ScheduledTest");
+                });
+
+            modelBuilder.Entity("TestsDelivery.DAL.Models.ScheduledTest.ScheduledTest", b =>
+                {
                     b.HasOne("TestsDelivery.DAL.Models.Test.Test", "Test")
                         .WithMany()
                         .HasForeignKey("TestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Test");
+                });
+
+            modelBuilder.Entity("TestsDelivery.DAL.Models.ScheduledTest.ScheduledTestInstance", b =>
+                {
+                    b.HasOne("TestsDelivery.DAL.Models.Candidate.Candidate", "Candidate")
+                        .WithMany()
+                        .HasForeignKey("CandidateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TestsDelivery.DAL.Models.ScheduledTest.ScheduledTest", "ScheduledTest")
+                        .WithMany()
+                        .HasForeignKey("ScheduledTestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Candidate");
 
-                    b.Navigation("Test");
+                    b.Navigation("ScheduledTest");
                 });
 
             modelBuilder.Entity("TestsDelivery.DAL.Models.Test.QuestionInTest", b =>

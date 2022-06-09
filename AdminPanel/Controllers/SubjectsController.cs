@@ -1,14 +1,16 @@
 ﻿using System;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TestsDelivery.BL.Mediators;
-using TestsDelivery.BL.Models.Subject;
+using TestsDelivery.BL.Mediators.Subjects;
+using TestsDelivery.UserModels.Subject;
 using TestsDelivery.DAL.Exceptions.Subjects;
+using TestsDelivery.UserModels.ListFilters;
 
 namespace AdminPanel.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class SubjectsController : ControllerBase
     {
         private readonly ISubjectsMediator _subjectsMediator;
@@ -19,7 +21,6 @@ namespace AdminPanel.Controllers
         }
 
         [HttpGet("{id}", Name = "GetSubject")]
-        [Authorize]
         public IActionResult GetSubject(long id)
         {
             if (id < 1)
@@ -40,7 +41,6 @@ namespace AdminPanel.Controllers
         }
 
         [HttpPut]
-        [Authorize]
         public IActionResult EditSubject(SubjectEditModel model)
         {
             if (ModelState.IsValid)
@@ -54,7 +54,6 @@ namespace AdminPanel.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public IActionResult CreateSubject(SubjectCreateModel model)
         {
             if (ModelState.IsValid)
@@ -65,6 +64,12 @@ namespace AdminPanel.Controllers
             }
 
             return BadRequest(ModelState);
+        }
+
+        [HttpPost("GetList")]
+        public IActionResult GetSubjectsList(ListFilterModel listModel)
+        {
+            return Ok(_subjectsMediator.GetList(listModel));
         }
     }
 }

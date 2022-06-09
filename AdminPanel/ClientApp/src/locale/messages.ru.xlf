@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="login">
+        <source>Login</source>
+        <target>Вход</target>
+      </trans-unit>
+      <trans-unit id="register">
+        <source>Register</source>
+        <target>Регистрация</target>
+      </trans-unit>
+      <trans-unit id="userName">
+        <source>User Name</source>
+        <target>Имя пользователя</target>
+      </trans-unit>
+      <trans-unit id="password">
+        <source>Password</source>
+        <target>Пароль</target>
+      </trans-unit>
+      <trans-unit id="passwordConfirm">
+        <source>Password Confirm</source>
+        <target>Подтвердите пароль</target>
+      </trans-unit>
+      <trans-unit id="email">
+        <source>E-Mail</source>
+        <target>Электронная почта</target>
+      </trans-unit>
+      <trans-unit id="submitLogin">
+        <source>Submit</source>
+        <target>Войти</target>
+      </trans-unit>
+      <trans-unit id="submitRegistration">
+        <source>Submit</source>
+        <target>Зарегистрироваться</target>
+      </trans-unit>
+      <trans-unit id="firstName">
+        <source>First Name</source>
+        <target>Имя</target>
+      </trans-unit>
+      <trans-unit id="lastName">
+        <source>Last Name</source>
+        <target>Фамилия</target>
+      </trans-unit>
+      <trans-unit id="pagination_selectPageOfCandidates">
+        <source>Select page of candidates</source>
+        <target>Выберите страницу кандидатов</target>
+      </trans-unit>
+      <trans-unit id="actions">
+        <source>Actions</source>
+        <target>Действия</target>
+      </trans-unit>
+      <trans-unit id="edit">
+        <source>Edit</source>
+        <target>Редактировать</target>
+      </trans-unit>
+      <trans-unit id="delete">
+        <source>Delete</source>
+        <target>Удалить</target>
+      </trans-unit>
+      <trans-unit id="candidate">
+        <source>Candidate</source>
+        <target>Кандидат</target>
+      </trans-unit>
+      <trans-unit id="createCandidate">
+        <source>Create Candidate</source>
+        <target>Зарегистрировать кандидата</target>
+      </trans-unit>
+      <trans-unit id="candidates">
+        <source>Candidates</source>
+        <target>Кандидаты</target>
+      </trans-unit>
+      <trans-unit id="close">
+        <source>Close</source>
+        <target>Закрыть</target>
+      </trans-unit>
+      <trans-unit id="create">
+        <source>Create</source>
+        <target>Создать</target>
+      </trans-unit>
+      <trans-unit id="edit">
+        <source>Edit</source>
+        <target>Редактировать</target>
+      </trans-unit>
+      <trans-unit id="subjects">
+        <source>Subjects</source>
+        <target>Предметы</target>
+      </trans-unit>
+      <trans-unit id="subjectName">
+        <source>Subject Name</source>
+        <target>Название предмета</target>
+      </trans-unit>
+      <trans-unit id="manageQuestions">
+        <source>Manage questions</source>
+        <target>Редактировать вопросы</target>
+      </trans-unit>
+      <trans-unit id="pagination_selectPageOfSubjects">
+        <source>Select page of subjects</source>
+        <target>Выбрать страницу предметов</target>
+      </trans-unit>
+      <trans-unit id="createSubject">
+        <source>Create subject</source>
+        <target>Создать предмет</target>
+      </trans-unit>
+      <trans-unit id="editSubject">
+        <source>Edit subject</source>
+        <target>Редактировать предмет</target>
+      </trans-unit>
+      <trans-unit id="tests">
+        <source>Tests</source>
+        <target>Тесты</target>
+      </trans-unit>
+      <trans-unit id="pagination_selectPageOfTests">
+        <source>Select page of tests</source>
+        <target>Выбрать страницу тестов</target>
+      </trans-unit>
+      <trans-unit id="createTest">
+        <source>Create test</source>
+        <target>Создать тест</target>
+      </trans-unit>
+      <trans-unit id="tests_Name">
+        <source>Name</source>
+        <target>Название теста</target>
+      </trans-unit>
+      <trans-unit id="scheduleTests">
+        <source>Schedule tests</source>
+        <target>Назначить тесты</target>
+      </trans-unit>
+      <trans-unit id="testName">
+        <source>Test Name</source>
+        <target>Название теста</target>
+      </trans-unit>
+      <trans-unit id="keycode">
+        <source>Keycode</source>
+        <target>Ключевое слово</target>
+      </trans-unit>
+      <trans-unit id="pin">
+        <source>Pin</source>
+        <target>Pin-код</target>
+      </trans-unit>
+      <trans-unit id="candidateName">
+        <source>Candidate Name</source>
+        <target>Имя кандидата</target>
+      </trans-unit>
+      <trans-unit id="duration">
+        <source>Duration</source>
+        <target>Продолжительность теста</target>
+      </trans-unit>
+      <trans-unit id="startDate">
+        <source>Start Date</source>
+        <target>Дата начала теста</target>
+      </trans-unit>
+      <trans-unit id="expirationDate">
+        <source>Expiration Date</source>
+        <target>Дата закрытия теста</target>
+      </trans-unit>
+      <trans-unit id="void">
+        <source>Void</source>
+        <target>Отменить тест</target>
+      </trans-unit>
+      <trans-unit id="mark">
+        <source>Mark</source>
+        <target>Оценить</target>
+      </trans-unit>
+      <trans-unit id="viewResults">
+        <source>View Results</source>
+        <target>Посмотреть результаты</target>
+      </trans-unit>
+      <trans-unit id="downloadResults">
+        <source>Download Results</source>
+        <target>Скачать результаты</target>
+      </trans-unit>
+      <trans-unit id="scheduledTests">
+        <source>Scheduled Tests</source>
+        <target>Назначенные тесты</target>
+      </trans-unit>
+      <trans-unit id="pagination_selectPageOfQuesitons">
+        <source>Select page of questions</source>
+        <target>Выбрать страницу вопросов</target>
+      </trans-unit>
+      <trans-unit id="search">
+        <source>Search</source>
+        <target>Поиск</target>
+      </trans-unit>
+      <trans-unit id="isCorrect">
+        <source>Is Correct</source>
+        <target>Верный ответ</target>
+      </trans-unit>
+      <trans-unit id="answer">
+        <source>Answer</source>
+        <target>Ответ</target>
+      </trans-unit>
+      <trans-unit id="discard">
+        <source>Discard</source>
+        <target>Отменить изменения</target>
+      </trans-unit>
+      <trans-unit id="name">
+        <source>Name</source>
+        <target>Название</target>
+      </trans-unit>
+      <trans-unit id="question">
+        <source>Question</source>
+        <target>Вопрос</target>
+      </trans-unit>
+      <trans-unit id="saveChanges">
+        <source>Save changes</source>
+        <target>Сохранить изменения</target>
+      </trans-unit>
+      <trans-unit id="addAnswerOption">
+        <source>Add answer option</source>
+        <target>Добавить вариант ответа</target>
+      </trans-unit>
+      <trans-unit id="createQuestion">
+        <source>Create question</source>
+        <target>Создать вопрос</target>
+      </trans-unit>
+      <trans-unit id="singleChoiceQuestion">
+        <source>Single Choice Question</source>
+        <target>Вопрос с единственным вариантом ответа</target>
+      </trans-unit>
+      <trans-unit id="multipleChoiceQuestion">
+        <source>Multiple Choice Question</source>
+        <target>Вопрос с множественными вариантами ответа</target>
+      </trans-unit>
+      <trans-unit id="essayQuestion">
+        <source>Essay Question</source>
+        <target>Вопрос со свободным ответом (эссе)</target>
+      </trans-unit>
+      <trans-unit id="test">
+        <source>Test</source>
+        <target>Тест</target>
+      </trans-unit>
+      <trans-unit id="testsPortalInstance">
+        <source>Tests Portal instance</source>
+        <target>Тестовый портал</target>
+      </trans-unit>
+      <trans-unit id="scheduleTest">
+        <source>Schedule Test</source>
+        <target>Назначить тест</target>
+      </trans-unit>
+      <trans-unit id="schedule">
+        <source>Schedule</source>
+        <target>Назначить</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

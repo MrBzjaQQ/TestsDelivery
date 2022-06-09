@@ -1,44 +1,98 @@
 ﻿using AutoMapper;
-using TestsDelivery.DAL.Repositories.Candidate;
 using TestsDelivery.DAL.Repositories.ScheduledTest;
-using TestsDelivery.Domain.Candidate;
 using ScheduledTestDomain = TestsDelivery.Domain.ScheduledTest.ScheduledTest;
 using ScheduledTestData = TestsDelivery.DAL.Models.ScheduledTest.ScheduledTest;
+using System.Linq;
+using System.Collections.Generic;
+using TestsDelivery.BL.Services.Test;
+using TestsDelivery.BL.Services.Candidates;
+using TestsDelivery.DAL.Models.ScheduledTest;
+using TestsDelivery.DAL.Repositories.CandidateInScheduledTest;
+using TestsDelivery.Domain.ScheduledTest;
+using TestsDelivery.Domain.Lists;
+using TestsDelivery.BL.FilterBuilders.ScheduledTests;
 
 namespace TestsDelivery.BL.Services.ScheduledTest
 {
     public class ScheduledTestService : IScheduledTestService
     {
         private readonly IScheduledTestRepository _scheduledTestRepository;
+        private readonly ITestService _testService;
         private readonly IMapper _mapper;
-        private readonly ICandidateRepository _candidateRepository;
+        private readonly IScheduledTestInstancesRepository _scheduledTestInstancesRepository;
+        private readonly ICandidateService _candidateService;
 
         public ScheduledTestService(
+            ITestService testService,
             IScheduledTestRepository scheduledTestRepository,
-            ICandidateRepository candidateRepository,
+            ICandidateService candidateService,
+            IScheduledTestInstancesRepository scheduledTestInstancesRepository,
             IMapper mapper)
         {
             _scheduledTestRepository = scheduledTestRepository;
-            _candidateRepository = candidateRepository;
+            _candidateService = candidateService;
+            _testService = testService;
             _mapper = mapper;
+            _scheduledTestInstancesRepository = scheduledTestInstancesRepository;
         }
 
-        public ScheduledTestDomain ScheduleTest(ScheduledTestDomain test)
+        public ScheduledTestToCreate ScheduleTest(ScheduledTestDomain test)
         {
-            var candidate = _candidateRepository.GetCandidate(test.Candidate.Id);
+            var candidates = _candidateService.GetCandidates(test.Candidates.Select(x => x.Id));
 
             var testData = _mapper.Map<ScheduledTestData>(test);
-            _scheduledTestRepository.ScheduleTest(testData);
+            _scheduledTestRepository.Create(testData);
 
-            var testDomain = _mapper.Map<ScheduledTestDomain>(testData);
-            testDomain.Candidate = _mapper.Map<Candidate>(candidate);
+            var instances = MapTestInstances(testData.Id, candidates).ToArray();
+            _scheduledTestInstancesRepository.Create(instances);
+            var candidatesInScheduledTests = _scheduledTestInstancesRepository.GetByTestId(testData.Id);
+
+            var testDomain = _mapper.Map<ScheduledTestToCreate>(testData);
+            testDomain.Test = _testService.GetFullTest(test.Test.Id);
+            testDomain.Instances = _mapper.Map<IEnumerable<ScheduledTestInstanceToCreate>>(instances);
 
             return testDomain;
         }
 
         public ScheduledTestDomain GetTest(long id)
         {
-            return _mapper.Map<ScheduledTestDomain>(_scheduledTestRepository.GetTest(id));
+            return _mapper.Map<ScheduledTestDomain>(_scheduledTestRepository.GetById(id));
+        }
+
+        public ScheduledTestsList GetList(ListFilter filter)
+        {
+            var filterBuilder = new ScheduledTestsFilterBuilder();
+
+            if (filter.SearchText != null)
+                filterBuilder.ByTestOrCandidateName(filter.SearchText);
+
+            if (filter.Take.HasValue)
+                filterBuilder.Take(filter.Take.Value);
+
+            if (filter.Skip.HasValue)
+                filterBuilder.Skip(filter.Skip.Value);
+
+            var genericFilter = filterBuilder.Build();
+
+            return new ScheduledTestsList
+            {
+                ScheduledTests = _mapper.Map<IEnumerable<ScheduledTestInListDto>>(_scheduledTestRepository.GetList(genericFilter)),
+                TotalCount = _scheduledTestRepository.GetScheduledTestsCount(genericFilter)
+            };
+        }
+
+        private IEnumerable<DAL.Models.ScheduledTest.ScheduledTestInstance> MapTestInstances(
+            long testId,
+            IEnumerable<Domain.Candidate.Candidate> candidates)
+        {
+            return candidates.Select(x => new DAL.Models.ScheduledTest.ScheduledTestInstance
+            {
+                CandidateId = x.Id,
+                ScheduledTestId = testId,
+                Status = (short)TestStatus.NotStarted,
+                Keycode = "ABCDEF",
+                Pin = "ABCDEF"
+            });
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using TestsDelivery.BL.Models.Questions.BaseQuestion;
-using TestsDelivery.BL.Models.Questions.Essay;
-using TestsDelivery.BL.Models.Questions.MultipleChoice;
-using TestsDelivery.BL.Models.Questions.SingleChoice;
+using TestsDelivery.UserModels.Questions.BaseQuestion;
+using TestsDelivery.UserModels.Questions.Essay;
+using TestsDelivery.UserModels.Questions.MultipleChoice;
+using TestsDelivery.UserModels.Questions.SingleChoice;
 using TestsDelivery.DAL.Models.Questions;
 using TestsDelivery.Domain.Questions;
 using TestsDelivery.Domain.Subject;
@@ -71,7 +71,22 @@ namespace TestsDelivery.BL.Mappings
             CreateMap<Question, QuestionBase>()
                 .ForMember(x => x.Type, x => x.MapFrom(y => y.Type))
                 .ForMember(x => x.Subject, x => x.MapFrom(y => y.Subject));
-            CreateMap<QuestionBase, BaseQuestionReadModel>();
+            CreateMap<QuestionBase, QuestionReadModel>();
+            CreateMap<Question, ShortQuestion>();
+
+            CreateMap<SingleChoiceQuestion, ScqDetailedModel>();
+            CreateMap<MultipleChoiceQuestion, McqDetailedModel>();
+            CreateMap<EssayQuestion, EssayDetailedModel>();
+
+            CreateMap<QuestionType, UserModels.Questions.QuestionType>();
+
+            CreateMap<QuestionInListModel, QuestionInListDto>()
+                .ReverseMap();
+
+            CreateMap<ShortQuestion, ShortQuestionModel>();
+            CreateMap<QuestionsList, UserModels.Questions.QuestionsListModel>();
+            CreateMap<Question, QuestionInListDto>();
+            CreateMap<QuestionInListDto, UserModels.Questions.QuestionInSubjectModel>();
         }
     }
 }

@@ -1,40 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using TestsDelivery.DAL.Data;
 using TestsDelivery.DAL.Exceptions.Questions;
 using TestsDelivery.DAL.Models.Questions;
+using TestsDelivery.DAL.Shared;
+using TestsDelivery.DAL.Shared.Repository;
 
 namespace TestsDelivery.DAL.Repositories.Questions
 {
-    public class QuestionsRepository : IQuestionsRepository
+    public class QuestionsRepository : BaseRepository<TestsDeliveryContext, Question>, IQuestionsRepository
     {
-        private readonly TestsDeliveryContext _context;
-
-        public QuestionsRepository(TestsDeliveryContext context)
+        public QuestionsRepository(TestsDeliveryContext context, IMapper mapper)
+            : base(context, mapper)
         {
-            _context = context;
         }
 
-        public void CreateQuestion(Question question)
-        {
-            _context.Questions.Add(question);
-            _context.SaveChanges();
-        }
-
-        public void EditQuestion(Question question)
+        public override void Update(Question question)
         {
             try
             {
-                var existingQuestion = _context.Questions
+                var existingQuestion = Context.Questions
                     .Single(x => x.Id == question.Id);
 
                 if (existingQuestion.Type != question.Type)
                     throw new QuestionIncorrectTypeException(question.Type, existingQuestion.Type);
 
                 ApplyChangesToDestination(question, existingQuestion);
-                _context.SaveChanges();
+                Context.SaveChanges();
             }
             catch (InvalidOperationException)
             {
@@ -44,7 +39,7 @@ namespace TestsDelivery.DAL.Repositories.Questions
 
         public Question GetQuestion(long id, short questionType)
         {
-            var question = GetQuestion(id);
+            var question = GetById(id);
             if (question.Type != questionType)
                 throw new QuestionIncorrectTypeException(questionType, question.Type);
 
@@ -64,11 +59,11 @@ namespace TestsDelivery.DAL.Repositories.Questions
                 .ToList();
         }
 
-        public Question GetQuestion(long id)
+        public override Question GetById(long id)
         {
             try
             {
-                return _context.Questions
+                return Context.Questions
                     .Include(x => x.Subject)
                     .Single(x => x.Id == id);
             }
@@ -86,14 +81,32 @@ namespace TestsDelivery.DAL.Repositories.Questions
 
         private IQueryable<Question> GetQuestionsByTestIdInternal(long testId)
         {
-            return _context.QuestionInTests
+            return Context.QuestionInTests
                 .Where(questionInTest => questionInTest.TestId == testId)
                 .Join(
-                    _context.Questions,
+                    Context.Questions,
                     questionInTest => questionInTest.QuestionId,
                     question => question.Id,
                     (questionInTest, question) => question)
                 .Include(x => x.Subject);
+        }
+
+        public void DeleteQuestion(long id, short questionType)
+        {
+            var question = Context.Questions.Find(id);
+            if (question != null)
+            {
+                if (question.Type != questionType)
+                    throw new QuestionIncorrectTypeException(questionType, question.Type);
+
+                Context.Questions.Remove(question);
+            }
+        }
+
+        public IEnumerable<TDomain> GetQuestionsInSubjects<TDomain>(GenericFilter<Question> filter)
+        {
+            var query = ApplyFilter(Context.Questions.Include(x => x.Subject), filter);
+            return Mapper.ProjectTo<TDomain>(query);
         }
     }
 }

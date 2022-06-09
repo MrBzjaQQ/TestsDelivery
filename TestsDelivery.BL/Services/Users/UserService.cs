@@ -5,7 +5,8 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
-using TestsDelivery.BL.Models;
+using TestsDelivery.UserModels.Login;
+using TestsDelivery.UserModels.Register;
 using TestsDelivery.Infrastructure.User;
 using TestsDelivery.Options.Tokens;
 // TODO: Create Domain model for User
@@ -54,18 +55,22 @@ namespace TestsDelivery.BL.Services.Users
                 return result;
             }
 
-            var jwt = new JwtSecurityToken(
+            var handler = new JwtSecurityTokenHandler();
+
+            var token = handler.CreateJwtSecurityToken(
                 issuer: _authOptions.Issuer,
                 audience: _authOptions.Audience,
                 expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(_authOptions.Lifetime)),
-                signingCredentials: new SigningCredentials(_authOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha512),
-                claims: new Claim[]
+                signingCredentials: new SigningCredentials(_authOptions.GetIssuerSigningKey(), SecurityAlgorithms.HmacSha256),
+                subject: new ClaimsIdentity(new []
                 {
-                    new(nameof(User.Id), user.Id),
-                    new(nameof(User.UserName), user.UserName)
-                });
+                    new Claim(nameof(User.Id), user.Id),
+                    new Claim(nameof(User.UserName), user.UserName)
+                }),
+                notBefore: DateTime.Now,
+                issuedAt: DateTime.Now);
 
-            var accessToken = new JwtSecurityTokenHandler().WriteToken(jwt);
+            var accessToken = handler.WriteToken(token);
 
             result.LoginResponse = new LoginSucceedResponseModel
             {

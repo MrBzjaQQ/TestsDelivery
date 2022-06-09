@@ -1,0 +1,15 @@
+.manage-questions {
+  display: grid;
+  grid-template-columns: 300px auto;
+  grid-template-rows: 50px auto;
+
+  &__list {
+    grid-row: 2;
+    grid-column: 1;
+  }
+
+  .question-wizard {
+    grid-row: 2;
+    grid-column: 2;
+  }
+}

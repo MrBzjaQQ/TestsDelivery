@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using TestsDelivery.DAL.Shared.Models;
 
 namespace TestsDelivery.DAL.Models.Subject
 {
-    public record Subject
+    public record Subject : IdEntity<long>
     {
-        [Key]
-        public long Id { get; set; }
-
         public string Name { get; set; }
 
         public bool Retired { get; set; }
