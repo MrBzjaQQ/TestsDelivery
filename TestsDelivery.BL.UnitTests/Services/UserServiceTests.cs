@@ -92,25 +92,29 @@ namespace TestsDelivery.BL.UnitTests.Services
 
             _signInManagerMock.SetupSignInResult(SignInResult.Success);
 
-            JwtSecurityToken expectedJwt = new(
+            var handler = new JwtSecurityTokenHandler();
+
+            var token = handler.CreateJwtSecurityToken(
                 issuer: _authOptions.Issuer,
                 audience: _authOptions.Audience,
                 expires: DateTime.UtcNow.Add(TimeSpan.FromMinutes(_authOptions.Lifetime)),
-                signingCredentials: new SigningCredentials(_authOptions.GetIssuerSigningKey(), SecurityAlgorithms.HmacSha512),
-                claims: new Claim[]
+                signingCredentials: new SigningCredentials(_authOptions.GetIssuerSigningKey(), SecurityAlgorithms.HmacSha256),
+                subject: new ClaimsIdentity(new[]
                 {
-                    new("Id", user.Id),
-                    new("UserName", user.UserName)
-                });
+                    new Claim(nameof(User.Id), user.Id),
+                    new Claim(nameof(User.UserName), user.UserName)
+                }),
+                notBefore: DateTime.Now,
+                issuedAt: DateTime.Now);
 
-            string expectedToken = new JwtSecurityTokenHandler().WriteToken(expectedJwt);
+            var expectedJwt = handler.WriteToken(token);
 
             // Act
             var loginResult = await _service.LoginUser(loginModel);
 
             // Assert
             Assert.True(loginResult.IsLoginSucceed);
-            Assert.Equal(expectedToken, loginResult.LoginResponse.AccessToken);
+            Assert.Equal(expectedJwt, loginResult.LoginResponse.AccessToken);
             Assert.Equal(user.UserName, loginResult.LoginResponse.UserName);
         }
 
