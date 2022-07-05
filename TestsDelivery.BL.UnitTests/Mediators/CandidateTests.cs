@@ -6,7 +6,7 @@ using TestsDelivery.UserModels.Candidate;
 using TestsDelivery.BL.Services.Candidates;
 using Xunit;
 
-namespace TestsDelivery.BL.UnitTests.Mediators.Candidate
+namespace TestsDelivery.BL.UnitTests.Mediators
 {
     public class CandidateTests
     {

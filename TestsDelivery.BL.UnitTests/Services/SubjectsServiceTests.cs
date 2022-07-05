@@ -6,7 +6,7 @@ using TestsDelivery.DAL.Repositories.Subjects;
 using TestsDelivery.DAL.Models.Subject;
 using Xunit;
 
-namespace TestsDelivery.BL.UnitTests.Services.Subjects
+namespace TestsDelivery.BL.UnitTests.Services
 {
     public class SubjectsServiceTests
     {

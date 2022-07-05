@@ -7,7 +7,7 @@ using Xunit;
 using TestsDelivery.UserModels.Subject;
 using TestsDelivery.Domain.Subject;
 
-namespace TestsDelivery.BL.UnitTests.Mediators.Subjects
+namespace TestsDelivery.BL.UnitTests.Mediators
 {
     public class SubjectsMediatorTests
     {

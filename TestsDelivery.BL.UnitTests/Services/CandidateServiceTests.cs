@@ -5,7 +5,7 @@ using TestsDelivery.BL.Services.Candidates;
 using TestsDelivery.DAL.Repositories.Candidate;
 using Xunit;
 
-namespace TestsDelivery.BL.UnitTests.Services.Candidate
+namespace TestsDelivery.BL.UnitTests.Services
 {
     public class CandidateServiceTests
     {

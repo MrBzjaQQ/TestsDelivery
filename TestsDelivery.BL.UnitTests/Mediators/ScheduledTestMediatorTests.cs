@@ -14,7 +14,7 @@ using TestsDelivery.UserModels.ListFilters;
 using TestsDelivery.UserModels.ScheduledTest;
 using Xunit;
 
-namespace TestsDelivery.BL.UnitTests.Mediators.ScheduledTest
+namespace TestsDelivery.BL.UnitTests.Mediators
 {
     public class ScheduledTestMediatorTests
     {

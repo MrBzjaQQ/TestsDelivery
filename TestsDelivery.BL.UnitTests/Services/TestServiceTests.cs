@@ -15,7 +15,7 @@ using System.Linq;
 using TestsDelivery.DAL.Models.Questions;
 using TestsDelivery.DAL.Repositories.AnswerOptions;
 
-namespace TestsDelivery.BL.UnitTests.Services.Test
+namespace TestsDelivery.BL.UnitTests.Services
 {
     public class TestServiceTests
     {

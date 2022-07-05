@@ -8,7 +8,7 @@ using TestsDelivery.BL.Services.Test;
 using TestsDelivery.Domain.Questions;
 using Xunit;
 
-namespace TestsDelivery.BL.UnitTests.Mediators.Test
+namespace TestsDelivery.BL.UnitTests.Mediators
 {
     public class TestMediatorTests
     {
