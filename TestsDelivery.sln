@@ -34,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsPortal.Domain", "Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsDelivery.DAL.Shared", "TestsPortal.DAL.Shared\TestsDelivery.DAL.Shared.csproj", "{7B4E25BE-7A89-4645-BEE7-6EFA0AAF779C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestsDelivery.BL.Shared", "TestsDelivery.BL.Shared\TestsDelivery.BL.Shared.csproj", "{0C5225C6-4C3E-46A0-94FC-F38062A0CA4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsDelivery.BL.Shared", "TestsDelivery.BL.Shared\TestsDelivery.BL.Shared.csproj", "{0C5225C6-4C3E-46A0-94FC-F38062A0CA4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

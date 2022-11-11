@@ -57,10 +57,10 @@ namespace TestsDelivery.BL.UnitTests.Mediators.Questions.Essay
             var returnedQuestion = _mediator.CreateQuestion(createModel);
 
             // Assert
-            Assert.Equal(questionToReturn.Name, createModel.Name);
-            Assert.Equal(questionToReturn.Text, createModel.Text);
-            Assert.Equal(questionToReturn.Name, createModel.Name);
-            Assert.Equal(questionToReturn.Subject.Id, createModel.SubjectId);
+            Assert.Equal(questionToReturn.Name, returnedQuestion.Name);
+            Assert.Equal(questionToReturn.Text, returnedQuestion.Text);
+            Assert.Equal(questionToReturn.Name, returnedQuestion.Name);
+            Assert.Equal(questionToReturn.Subject.Id, returnedQuestion.Subject.Id);
 
             _essayValidatorMock.Verify(x => x.ValidateCreateModel(createModel), Times.Once);
             _essayServiceMock.Verify(x => x.CreateQuestion(It.IsAny<EssayQuestion>()), Times.Once);
