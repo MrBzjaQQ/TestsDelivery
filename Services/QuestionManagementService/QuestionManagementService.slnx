@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/QuestionManagementService.Application/QuestionManagementService.Application.csproj" />
+    <Project Path="src/QuestionManagementService.Domain/QuestionManagementService.Domain.csproj" />
+    <Project Path="src/QuestionManagementService.Infrastructure.Database/QuestionManagementService.Infrastructure.Database.csproj" />
+    <Project Path="src/QuestionManagementService.WebApi/QuestionManagementService.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/QuestionManagementService.Tests.Integration/QuestionManagementService.Tests.Integration.csproj" />
+    <Project Path="tests/QuestionManagementService.Tests.Unit/QuestionManagementService.Tests.Unit.csproj" />
+  </Folder>
+</Solution>

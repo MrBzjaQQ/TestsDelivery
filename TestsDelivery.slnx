@@ -1,0 +1,85 @@
+<Solution>
+  <Folder Name="/Services/">
+    <Project Path="Services/TestsDelivery.AppHost/TestsDelivery.AppHost.csproj" />
+    <Project Path="Services/TestsDelivery.ServiceDefaults/TestsDelivery.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/Services/BffPortalService/" />
+  <Folder Name="/Services/BffPortalService/src/">
+    <Project Path="Services/BffPortalService/src/BffPortalService.Application/BffPortalService.Application.csproj" />
+    <Project Path="Services/BffPortalService/src/BffPortalService.Domain/BffPortalService.Domain.csproj" />
+    <Project Path="Services/BffPortalService/src/BffPortalService.Infrastructure.Database/BffPortalService.Infrastructure.Database.csproj" />
+    <Project Path="Services/BffPortalService/src/BffPortalService.Infrastructure.HttpClients/BffPortalService.Infrastructure.HttpClients.csproj" />
+    <Project Path="Services/BffPortalService/src/BffPortalService.WebApi/BffPortalService.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Services/BffPortalService/tests/">
+    <Project Path="Services/BffPortalService/tests/BffPortalService.Tests.Integration/BffPortalService.Tests.Integration.csproj" />
+    <Project Path="Services/BffPortalService/tests/BffPortalService.Tests.Unit/BffPortalService.Tests.Unit.csproj" />
+  </Folder>
+  <Folder Name="/Services/FileStorageService/" />
+  <Folder Name="/Services/FileStorageService/src/">
+    <Project Path="Services/FileStorageService/src/FileStorageService.Application/FileStorageService.Application.csproj" />
+    <Project Path="Services/FileStorageService/src/FileStorageService.Domain/FileStorageService.Domain.csproj" />
+    <Project Path="Services/FileStorageService/src/FileStorageService.Infrastructure.Database/FileStorageService.Infrastructure.Database.csproj" />
+    <Project Path="Services/FileStorageService/src/FileStorageService.WebApi/FileStorageService.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Services/FileStorageService/tests/">
+    <Project Path="Services/FileStorageService/tests/FileStorageService.Tests.Integration/FileStorageService.Tests.Integration.csproj" />
+    <Project Path="Services/FileStorageService/tests/FileStorageService.Tests.Unit/FileStorageService.Tests.Unit.csproj" />
+  </Folder>
+  <Folder Name="/Services/IdentityService/" />
+  <Folder Name="/Services/IdentityService/src/">
+    <Project Path="Services/IdentityService/src/IdentityService.Application/IdentityService.Application.csproj" />
+    <Project Path="Services/IdentityService/src/IdentityService.Domain/IdentityService.Domain.csproj" />
+    <Project Path="Services/IdentityService/src/IdentityService.Infrastructure.Database/IdentityService.Infrastructure.Database.csproj" />
+    <Project Path="Services/IdentityService/src/IdentityService.WebApi/IdentityService.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Services/IdentityService/tests/">
+    <Project Path="Services/IdentityService/tests/IdentityService.Tests.Integration/IdentityService.Tests.Integration.csproj" />
+    <Project Path="Services/IdentityService/tests/IdentityService.Tests.Unit/IdentityService.Tests.Unit.csproj" />
+  </Folder>
+  <Folder Name="/Services/NotificationService/" />
+  <Folder Name="/Services/NotificationService/src/">
+    <Project Path="Services/NotificationService/src/NotificationService.Application/NotificationService.Application.csproj" />
+    <Project Path="Services/NotificationService/src/NotificationService.Domain/NotificationService.Domain.csproj" />
+    <Project Path="Services/NotificationService/src/NotificationService.Infrastructure.Database/NotificationService.Infrastructure.Database.csproj" />
+    <Project Path="Services/NotificationService/src/NotificationService.Infrastructure/NotificationService.Infrastructure.csproj" />
+    <Project Path="Services/NotificationService/src/NotificationService.WebApi/NotificationService.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Services/NotificationService/tests/">
+    <Project Path="Services/NotificationService/tests/NotificationService.Tests.Integration/NotificationService.Tests.Integration.csproj" />
+    <Project Path="Services/NotificationService/tests/NotificationService.Tests.Unit/NotificationService.Tests.Unit.csproj" />
+  </Folder>
+  <Folder Name="/Services/QuestionManagementService/" />
+  <Folder Name="/Services/QuestionManagementService/src/">
+    <Project Path="Services/QuestionManagementService/src/QuestionManagementService.Application/QuestionManagementService.Application.csproj" />
+    <Project Path="Services/QuestionManagementService/src/QuestionManagementService.Domain/QuestionManagementService.Domain.csproj" />
+    <Project Path="Services/QuestionManagementService/src/QuestionManagementService.Infrastructure.Database/QuestionManagementService.Infrastructure.Database.csproj" />
+    <Project Path="Services/QuestionManagementService/src/QuestionManagementService.WebApi/QuestionManagementService.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Services/QuestionManagementService/tests/">
+    <Project Path="Services/QuestionManagementService/tests/QuestionManagementService.Tests.Integration/QuestionManagementService.Tests.Integration.csproj" />
+    <Project Path="Services/QuestionManagementService/tests/QuestionManagementService.Tests.Unit/QuestionManagementService.Tests.Unit.csproj" />
+  </Folder>
+  <Folder Name="/Services/StudentManagementService/" />
+  <Folder Name="/Services/StudentManagementService/src/">
+    <Project Path="Services/StudentManagementService/src/StudentManagementService.Application/StudentManagementService.Application.csproj" />
+    <Project Path="Services/StudentManagementService/src/StudentManagementService.Domain/StudentManagementService.Domain.csproj" />
+    <Project Path="Services/StudentManagementService/src/StudentManagementService.Infrastructure.Database/StudentManagementService.Infrastructure.Database.csproj" />
+    <Project Path="Services/StudentManagementService/src/StudentManagementService.WebApi/StudentManagementService.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Services/StudentManagementService/tests/">
+    <Project Path="Services/StudentManagementService/tests/StudentManagementService.Tests.Integration/StudentManagementService.Tests.Integration.csproj" />
+    <Project Path="Services/StudentManagementService/tests/StudentManagementService.Tests.Unit/StudentManagementService.Tests.Unit.csproj" />
+  </Folder>
+  <Folder Name="/Services/TestCheckingService/" />
+  <Folder Name="/Services/TestCheckingService/src/">
+    <Project Path="Services/TestCheckingService/src/TestCheckingService.Application/TestCheckingService.Application.csproj" />
+    <Project Path="Services/TestCheckingService/src/TestCheckingService.Domain/TestCheckingService.Domain.csproj" />
+    <Project Path="Services/TestCheckingService/src/TestCheckingService.Infrastructure.Database/TestCheckingService.Infrastructure.Database.csproj" />
+    <Project Path="Services/TestCheckingService/src/TestCheckingService.WebApi/TestCheckingService.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Services/TestCheckingService/tests/">
+    <Project Path="Services/TestCheckingService/tests/TestCheckingService.Tests.Integration/TestCheckingService.Tests.Integration.csproj" />
+    <Project Path="Services/TestCheckingService/tests/TestCheckingService.Tests.Unit/TestCheckingService.Tests.Unit.csproj" />
+  </Folder>
+</Solution>

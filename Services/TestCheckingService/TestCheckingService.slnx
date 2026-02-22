@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/TestCheckingService.Application/TestCheckingService.Application.csproj" />
+    <Project Path="src/TestCheckingService.Domain/TestCheckingService.Domain.csproj" />
+    <Project Path="src/TestCheckingService.Infrastructure.Database/TestCheckingService.Infrastructure.Database.csproj" />
+    <Project Path="src/TestCheckingService.WebApi/TestCheckingService.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/TestCheckingService.Tests.Unit/TestCheckingService.Tests.Unit.csproj" />
+    <Project Path="tests/TestCheckingService.Tests.Integration/TestCheckingService.Tests.Integration.csproj" />
+  </Folder>
+</Solution>

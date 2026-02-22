@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Test Result</title>
+</head>
+<body>
+    <h1>Test Result Available</h1>
+    <p>Dear {{StudentName}},</p>
+    <p>Your test result is ready:</p>
+    <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px;">
+        <h2>{{TestTitle}}</h2>
+        <p>Score: <strong>{{Score}} / {{MaxScore}}</strong> ({{Percentage}}%)</p>
+        <p>Status: <strong style="color: {{#if IsPassed}}green{{else}}red{{/if}};">{{#if IsPassed}}Passed{{else}}Failed{{/if}}</strong></p>
+    </div>
+    <p>Best regards,<br>TestsDelivery Team</p>
+</body>
+</html>

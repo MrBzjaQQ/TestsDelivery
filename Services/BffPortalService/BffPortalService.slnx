@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BffPortalService.Domain/BffPortalService.Domain.csproj" />
+    <Project Path="src/BffPortalService.Application/BffPortalService.Application.csproj" />
+    <Project Path="src/BffPortalService.Infrastructure.Database/BffPortalService.Infrastructure.Database.csproj" />
+    <Project Path="src/BffPortalService.Infrastructure.HttpClients/BffPortalService.Infrastructure.HttpClients.csproj" />
+    <Project Path="src/BffPortalService.WebApi/BffPortalService.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BffPortalService.Tests.Unit/BffPortalService.Tests.Unit.csproj" />
+    <Project Path="tests/BffPortalService.Tests.Integration/BffPortalService.Tests.Integration.csproj" />
+  </Folder>
+</Solution>
